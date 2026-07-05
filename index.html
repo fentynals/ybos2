@@ -327,7 +327,7 @@ const DATA = {
 /* Point this at your hosted feed.json. When set, the OS polls it every
    POLL_MS and merges radio/tasks/ship over the embedded snapshot, so dev
    updates appear without re-downloading. Leave blank to run fully offline. */
-const FEED_URL = "./feed.json"; // relative — works on any host
+const FEED_URL = "https://raw.githubusercontent.com/fentynals/ybos2/main/feed.json"; // raw repo — no Pages build, works on any host
 const POLL_MS = 15000;
 let LIVE = { on:false, last:null };
 async function pullFeed(){
