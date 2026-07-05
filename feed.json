@@ -1,11 +1,18 @@
 {
   "meta": {
-    "updated": "2026-07-05T02:01:53Z",
+    "updated": "2026-07-05T02:08:58.697266Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
-    "game": "HEADTAP"
+    "game": "HEADTAP",
+    "version": "2.0"
   },
   "radio": [
+    {
+      "who": "PRIME",
+      "cls": "shipx",
+      "msg": "v2.0 shipped \u2014 version stamp in topbar (live from feed), usage bar now = radio buffer fill",
+      "ts": "2026-07-05T02:08:58.697266Z"
+    },
     {
       "who": "CRON",
       "cls": "out",
