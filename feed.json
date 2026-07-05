@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-05T02:08:58.697266Z",
+    "updated": "2026-07-05T19:47:56.269Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -17,7 +17,24 @@
       "dislikes": 0,
       "fetched": "2026-07-05T02:57:59Z"
     },
-    "analytics": null,
+    "analytics": {
+      "updated": "2026-07-05T19:47:55.963Z",
+      "youtube": {
+        "subscribers": 6,
+        "views": 23,
+        "likes": null,
+        "comments": null
+      },
+      "top": [],
+      "series": [
+        {
+          "d": "07-05",
+          "tiktok": 0,
+          "youtube": 23,
+          "instagram": 0
+        }
+      ]
+    },
     "contentAgent": {
       "status": "idle",
       "note": "standing by — ask content-creator for ideas",
@@ -27,42 +44,84 @@
   "content": [],
   "rejections": [],
   "bugs": [
-    { "id": "vault-loadout-dupe", "sev": "high", "status": "open", "t": "vault↔loadout dupe", "note": "deposit gun → reset → collect bag = extra gun. PlayerInventory snapshot not synced on vault Deposit.", "ts": "2026-07-04T19:52:11.868376Z" },
-    { "id": "dead-interaction", "sev": "high", "status": "open", "t": "dead-interaction lock missing", "note": "PPS still active while dead; needs alive-guards on vault ops.", "ts": "2026-07-04T19:52:11.868376Z" },
-    { "id": "mobile-equip-bounce", "sev": "med", "status": "watch", "t": "mobile equip-bounce", "note": "DriverGunLock hardened + self-heals; awaiting confirm on a real phone.", "ts": "2026-07-04T19:52:11.868376Z" },
-    { "id": "wall-reach", "sev": "high", "status": "killed", "t": "wall-reach / alt-look exploit", "note": "server body-raycast head→gun on every take. 24-point sweep: every walled position refused.", "ts": "2026-07-04T19:52:11.868376Z" },
-    { "id": "speedeffect-box", "sev": "med", "status": "killed", "t": "A-Chassis SpeedEffect black box", "note": "103 fullscreen frames zeroed, SpeedEffect deleted from 8 cars + ServerStorage masters.", "ts": "2026-07-03T00:00:00Z" },
-    { "id": "dealer-dead-prompt", "sev": "low", "status": "killed", "t": "black market dealer dead prompt", "note": "now resolves active dealer via _ActiveDealer instead of nearest gun dealer.", "ts": "2026-07-03T00:00:00Z" }
+    {
+      "id": "vault-loadout-dupe",
+      "sev": "high",
+      "status": "open",
+      "t": "vault↔loadout dupe",
+      "note": "deposit gun → reset → collect bag = extra gun. PlayerInventory snapshot not synced on vault Deposit.",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "id": "dead-interaction",
+      "sev": "high",
+      "status": "open",
+      "t": "dead-interaction lock missing",
+      "note": "PPS still active while dead; needs alive-guards on vault ops.",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "id": "mobile-equip-bounce",
+      "sev": "med",
+      "status": "watch",
+      "t": "mobile equip-bounce",
+      "note": "DriverGunLock hardened + self-heals; awaiting confirm on a real phone.",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "id": "wall-reach",
+      "sev": "high",
+      "status": "killed",
+      "t": "wall-reach / alt-look exploit",
+      "note": "server body-raycast head→gun on every take. 24-point sweep: every walled position refused.",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "id": "speedeffect-box",
+      "sev": "med",
+      "status": "killed",
+      "t": "A-Chassis SpeedEffect black box",
+      "note": "103 fullscreen frames zeroed, SpeedEffect deleted from 8 cars + ServerStorage masters.",
+      "ts": "2026-07-03T00:00:00Z"
+    },
+    {
+      "id": "dealer-dead-prompt",
+      "sev": "low",
+      "status": "killed",
+      "t": "black market dealer dead prompt",
+      "note": "now resolves active dealer via _ActiveDealer instead of nearest gun dealer.",
+      "ts": "2026-07-03T00:00:00Z"
+    }
   ],
   "radio": [
     {
       "who": "PRIME",
       "cls": "shipx",
-      "msg": "v2.0 shipped \u2014 version stamp in topbar (live from feed), usage bar now = radio buffer fill",
+      "msg": "v2.0 shipped — version stamp in topbar (live from feed), usage bar now = radio buffer fill",
       "ts": "2026-07-05T02:08:58.697266Z"
     },
     {
       "who": "CRON",
       "cls": "out",
-      "msg": "heartbeat 2026-07-05 \u2014 8 commits in last 24h",
+      "msg": "heartbeat 2026-07-05 — 8 commits in last 24h",
       "ts": "2026-07-05T02:01:53Z"
     },
     {
       "who": "PRIME",
       "cls": "shipx",
-      "msg": "\ud83d\udce1 LIVE PUSH TEST \u2014 Fable committed this from the dev session. You touched nothing. The pipeline is real.",
+      "msg": "📡 LIVE PUSH TEST — Fable committed this from the dev session. You touched nothing. The pipeline is real.",
       "ts": "2026-07-05T00:17:56.443766Z"
     },
     {
       "who": "PRIME",
       "cls": "okx",
-      "msg": "GameSanitizer deployed \u2014 auto-strips SpeedEffect + anchors turf guns on paste",
+      "msg": "GameSanitizer deployed — auto-strips SpeedEffect + anchors turf guns on paste",
       "ts": "2026-07-04T19:52:11.868376Z"
     },
     {
       "who": "PRIME",
       "cls": "shipx",
-      "msg": "live pipeline online \u2014 OS now fetches feed.json, no more re-downloads",
+      "msg": "live pipeline online — OS now fetches feed.json, no more re-downloads",
       "ts": "2026-07-04T19:52:11.868376Z"
     },
     {
@@ -80,7 +139,7 @@
     {
       "who": "QA",
       "cls": "fx",
-      "msg": "OPEN: vault\u2194loadout dupe \u2014 PlayerInventory snapshot not synced on deposit",
+      "msg": "OPEN: vault↔loadout dupe — PlayerInventory snapshot not synced on deposit",
       "ts": "2026-07-04T19:52:11.868376Z"
     },
     {
@@ -92,19 +151,19 @@
     {
       "who": "STUDIO",
       "cls": "out",
-      "msg": "TURF4 wired \u2014 3 doors, 10 stations, 152 ARP parts anchored across turfs",
+      "msg": "TURF4 wired — 3 doors, 10 stations, 152 ARP parts anchored across turfs",
       "ts": "2026-07-04T19:52:11.868376Z"
     },
     {
       "who": "PRIME",
       "cls": "okx",
-      "msg": "wall-reach exploit killed server-side \u2014 body raycast, camera-proof",
+      "msg": "wall-reach exploit killed server-side — body raycast, camera-proof",
       "ts": "2026-07-04T19:52:11.868376Z"
     }
   ],
   "tasks": [
     {
-      "t": "vault\u2194loadout dupe: sync PlayerInventory on Deposit/Withdraw",
+      "t": "vault↔loadout dupe: sync PlayerInventory on Deposit/Withdraw",
       "col": 0,
       "pr": "high",
       "tags": [
@@ -157,7 +216,7 @@
       ]
     },
     {
-      "t": "GameSanitizer \u2014 runtime auto-repair on paste",
+      "t": "GameSanitizer — runtime auto-repair on paste",
       "col": 3,
       "pr": "med",
       "tags": [
@@ -194,7 +253,7 @@
       "d": "2026-07-05",
       "k": "feat",
       "t": "live push pipeline PROVEN",
-      "s": "this entry was committed by Fable via the GitHub API using your token \u2014 no manual edits."
+      "s": "this entry was committed by Fable via the GitHub API using your token — no manual edits."
     },
     {
       "d": "2026-07-04",
@@ -212,7 +271,7 @@
       "d": "2026-07-04",
       "k": "feat",
       "t": "18 real POIs on city map",
-      "s": "pulled actual workspace coordinates \u2014 map geography now matches HEADTAP."
+      "s": "pulled actual workspace coordinates — map geography now matches HEADTAP."
     }
   ]
 }
