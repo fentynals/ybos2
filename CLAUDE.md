@@ -3,8 +3,12 @@
 This repo powers YUNGSBRUH.OS, a live dashboard at https://fentynals.github.io/ybos2/
 It has exactly two files that matter:
 
-- `index.html` — the OS webpage. **NEVER edit this file. Ever.** It is generated elsewhere.
-  Hand-editing it has broken the site before. If a task seems to require changing it, stop and say so instead.
+- `index.html` — the OS webpage. You MAY edit it, with mandatory validation:
+  1. Before committing, extract every <script> block and syntax-check each one
+     (e.g. write to a temp .js file and run `node --check`). ALL must pass.
+  2. Verify the page still contains: `const FEED_URL = "https://raw.githubusercontent.com/fentynals/ybos2/main/feed.json"` — never change or remove the feed wiring.
+  3. Never commit index.html if any check fails. A broken index.html takes the whole site down with a blank screen and no error.
+  4. UI changes should preserve the existing design system (CSS variables, fonts, window manager) unless explicitly asked to redesign.
 - `feed.json` — the live data the OS polls every 15s. This is the ONLY file you edit.
 
 ## feed.json schema
