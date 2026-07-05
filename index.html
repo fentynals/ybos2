@@ -55,7 +55,7 @@ body::after{
 #clock{color:var(--amber);letter-spacing:.08em}
 #usage{display:flex;align-items:center;gap:6px;color:var(--dust)}
 #usage .bar{width:80px;height:5px;background:var(--steel2);border:1px solid var(--line)}
-#usage .bar i{display:block;height:100%;background:var(--amber);width:97%}
+#usage .bar i{display:block;height:100%;background:var(--amber);width:0%;transition:width .8s ease}
 .kbd{border:1px solid var(--line);border-bottom-width:2px;border-radius:3px;padding:1px 5px;color:var(--dust);font-size:10px}
 /* ===== desktop + windows ===== */
 #desk{position:fixed;inset:38px 0 54px 0;z-index:10}
@@ -202,12 +202,13 @@ body::after{
 <!-- TOP BAR -->
 <div id="topbar">
   <span class="brand">YB<em>.OS</em></span>
+  <span class="stat">ver <b id="ver">2.0</b></span>
   <span class="stat">kernel <b>FABLE-5</b></span>
   <span class="stat">studio <b>4ada…7aaf</b></span>
   <span class="stat">games <b id="tb-games">1</b></span>
   <span class="stat">shipped <b id="tb-shipped">0</b></span>
   <span class="grow"></span>
-  <span id="usage">usage <span class="bar"><i></i></span> 97%</span>
+  <span id="usage" title="radio buffer (entries / 60 cap)">usage <span class="bar"><i id="usagefill"></i></span> <span id="usagepct">--%</span></span>
   <span class="stat"><span class="kbd">CTRL</span>+<span class="kbd">K</span></span>
   <span id="livebadge" class="mono" style="display:flex;align-items:center;gap:5px;color:var(--dust);font-size:10px;letter-spacing:.12em"><i style="width:6px;height:6px;border-radius:50%;display:inline-block;background:#6B7385"></i>SNAPSHOT</span>
   <span id="clock">--:--:--</span>
@@ -339,6 +340,14 @@ async function pullFeed(){
     if(Array.isArray(j.radio)) DATA.radio = j.radio.map(x=>[x.who,x.cls,x.msg]);
     if(Array.isArray(j.tasks)) DATA.tasks = j.tasks;
     if(Array.isArray(j.ship))  DATA.ship  = j.ship;
+    if(j.meta && j.meta.version){ const v=document.getElementById('ver'); if(v) v.textContent=j.meta.version; }
+    // usage = radio buffer fill (live), overridable via meta.usage
+    let u = Math.round((DATA.radio.length/60)*100);
+    if(j.meta && typeof j.meta.usage === 'number') u = Math.round(j.meta.usage);
+    u = Math.max(0, Math.min(100, u));
+    const uf=document.getElementById('usagefill'), up=document.getElementById('usagepct');
+    if(uf) uf.style.width = u + '%';
+    if(up) up.textContent = u + '%';
     LIVE.on = true; LIVE.last = new Date();
     window.dispatchEvent(new CustomEvent("feed:update"));
   }catch(e){ LIVE.on=false; }
