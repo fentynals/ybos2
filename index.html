@@ -552,57 +552,124 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
     <div class="dim" style="font-size:11.5px;line-height:1.7">server validates everything · edit outside Play · verify through REAL prompts, not lookalike tests · one shared remote, string dispatcher · idempotent bootstraps</div>`;
 })();
 
-/* ---- CITY MAP (signature) ---- */
+/* ---- CITY MAP (3D isometric recon) ---- */
 (function(){
   const b = mkWin('map','CITY MAP','▦', Math.min(470,W*.36), 56, Math.min(560,W*.42), 430, true);
-  b.innerHTML = `<div class="eyebrow">HEADTAP WORLD · LIVE POIS</div>
+  b.innerHTML = `<div class="eyebrow">HEADTAP WORLD · 3D RECON</div>
     <div id="mapwrap"><canvas id="citymap"></canvas><div id="maptip"></div></div>
-    <div class="dim mono" style="font-size:9px;letter-spacing:.14em;margin-top:8px">HOVER A DISTRICT · AMBER=TURF · RED=JOB · BLUE=DEALER/TARGET · GREEN=LAW</div>`;
+    <div class="dim mono" style="font-size:9px;letter-spacing:.14em;margin-top:8px">DRAG TO ORBIT · HOVER A TOWER · AMBER=TURF · RED=JOB · BLUE=DEALER/TARGET · GREEN=LAW</div>`;
   const cv = document.getElementById('citymap'), ctx = cv.getContext('2d');
   const tip = document.getElementById('maptip');
-  function size(){ cv.width = cv.clientWidth*2; cv.height = 340*2; }
+  cv.style.cursor = 'grab';
+
+  /* ---- palette helpers ---- */
+  const STEEL=[26,34,49];
+  const h2r=h=>{h=h.replace('#','');return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];};
+  const mix=(a,c,t)=>[a[0]+(c[0]-a[0])*t,a[1]+(c[1]-a[1])*t,a[2]+(c[2]-a[2])*t];
+  const shade=(c,f)=>`rgb(${Math.min(255,c[0]*f)|0},${Math.min(255,c[1]*f)|0},${Math.min(255,c[2]*f)|0})`;
+  const rgba=(c,a)=>`rgba(${c[0]|0},${c[1]|0},${c[2]|0},${a})`;
+  const BOOST={ '#FFAA3C':0.46, '#E23B3B':0.30, '#9FD1FF':0.22, '#7BD88A':0.28 };
+
+  /* ---- build the city once: extruded blocks clustered on the real POI formation ---- */
+  const WORLD=2.0, GN=13, cs=WORLD/GN, foot=cs*0.66, half=foot/2;
+  const hash=(i,j)=>{let n=(i*73856093)^(j*19349663);n=(n<<13)^n;return ((n*(n*n*15731+789221)+1376312589)&0x7fffffff)/0x7fffffff;};
+  const cells=[];
+  for(let i=0;i<GN;i++)for(let j=0;j<GN;j++){
+    const ncx=(i+0.5)/GN, ncy=(j+0.5)/GN;
+    const wx=(ncx-0.5)*WORLD, wy=(ncy-0.5)*WORLD;
+    let col=STEEL, infl=0, hgt=0.05+hash(i,j)*0.09;
+    DATA.map.pois.forEach(p=>{
+      const d=Math.hypot(p.x-ncx,p.y-ncy), w=Math.max(0,1-d/0.14);
+      if(w>infl){ infl=w; col=mix(STEEL,h2r(p.c),Math.min(0.82,w*0.9)); }
+      hgt += w*(BOOST[p.c]||0.2)*(0.6+0.6*hash(i*3+7,j*5+1));
+    });
+    cells.push({wx,wy,col,hgt:Math.min(hgt,0.62)});
+  }
+
+  /* ---- camera / projection ---- */
+  let t=0, A=0.62, drag=false, lastX=0, idle=0;
+  const kSy=0.52, kZ=0.86, autoV=0.0022;
+  let cx=0, cy=0, SC=1;
+  function size(){ cv.width=cv.clientWidth*2; cv.height=340*2; SC=cv.width/3.1; cx=cv.width/2; cy=cv.height*0.60; }
   size(); addEventListener('resize', size);
-  let t=0, mouse={x:-1,y:-1};
+  function proj(wx,wy,z,ca,sa){ const rx=wx*ca-wy*sa, ry=wx*sa+wy*ca; return [cx+rx*SC, cy+ry*SC*kSy-z*SC*kZ, ry]; }
+
+  function drawGround(ca,sa){
+    const g=[proj(-1,-1,0,ca,sa),proj(1,-1,0,ca,sa),proj(1,1,0,ca,sa),proj(-1,1,0,ca,sa)];
+    ctx.fillStyle='#080A0F'; ctx.beginPath(); ctx.moveTo(g[0][0],g[0][1]);
+    for(let k=1;k<4;k++)ctx.lineTo(g[k][0],g[k][1]); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle='rgba(35,44,62,.45)'; ctx.lineWidth=1;
+    for(let k=0;k<=GN;k++){ const u=(k/GN-0.5)*WORLD;
+      let a=proj(u,-1,0,ca,sa),c=proj(u,1,0,ca,sa); ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(c[0],c[1]);ctx.stroke();
+      a=proj(-1,u,0,ca,sa);c=proj(1,u,0,ca,sa); ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(c[0],c[1]);ctx.stroke(); }
+    DATA.map.pois.forEach(p=>{ const wx=(p.x-0.5)*WORLD, wy=(p.y-0.5)*WORLD, r=0.13*WORLD;
+      const q=[proj(wx-r,wy-r,0,ca,sa),proj(wx+r,wy-r,0,ca,sa),proj(wx+r,wy+r,0,ca,sa),proj(wx-r,wy+r,0,ca,sa)];
+      ctx.fillStyle=rgba(h2r(p.c),0.055); ctx.beginPath();ctx.moveTo(q[0][0],q[0][1]);
+      for(let k=1;k<4;k++)ctx.lineTo(q[k][0],q[k][1]); ctx.closePath(); ctx.fill(); });
+  }
+
+  const Lx=-0.5, Ly=-0.72;
+  function drawBox(cell,ca,sa){
+    const {wx,wy,col,hgt}=cell;
+    const cor=[[wx-half,wy-half],[wx+half,wy-half],[wx+half,wy+half],[wx-half,wy+half]];
+    const T=cor.map(c=>proj(c[0],c[1],hgt,ca,sa)), B=cor.map(c=>proj(c[0],c[1],0,ca,sa));
+    const sides=[[0,1,0,-1],[1,2,1,0],[2,3,0,1],[3,0,-1,0]];
+    sides.forEach(s=>s.d=(B[s[0]][2]+B[s[1]][2])/2); sides.sort((a,c)=>c.d-a.d);
+    sides.forEach(s=>{ const nrx=s[2]*ca-s[3]*sa, nry=s[2]*sa+s[3]*ca;
+      const lf=Math.max(0,nrx*Lx+nry*Ly); ctx.fillStyle=shade(col,0.30+0.60*lf);
+      ctx.beginPath();ctx.moveTo(T[s[0]][0],T[s[0]][1]);ctx.lineTo(T[s[1]][0],T[s[1]][1]);
+      ctx.lineTo(B[s[1]][0],B[s[1]][1]);ctx.lineTo(B[s[0]][0],B[s[0]][1]);ctx.closePath();ctx.fill(); });
+    ctx.fillStyle=shade(col,1.08); ctx.beginPath();ctx.moveTo(T[0][0],T[0][1]);
+    for(let k=1;k<4;k++)ctx.lineTo(T[k][0],T[k][1]); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,.35)'; ctx.lineWidth=1; ctx.stroke();
+  }
+
+  let nodes=[];
+  function drawPins(ca,sa){
+    const arr=DATA.map.pois.map(p=>{ const wx=(p.x-0.5)*WORLD, wy=(p.y-0.5)*WORLD;
+      const base=proj(wx,wy,0,ca,sa), top=proj(wx,wy,0.74,ca,sa); return {p,base,top,ry:base[2]}; });
+    arr.sort((a,c)=>a.ry-c.ry);
+    arr.forEach(o=>{ const c=h2r(o.p.c);
+      const pulse=reduced?0.5:(Math.sin(t*2.2+o.p.x*9)*.5+.5);
+      ctx.strokeStyle=rgba(c,0.5-pulse*0.34); ctx.lineWidth=2; ctx.beginPath();
+      for(let k=0;k<=24;k++){ const a2=k/24*Math.PI*2, rr=10+pulse*16;
+        const gx=o.base[0]+Math.cos(a2)*rr, gy=o.base[1]+Math.sin(a2)*rr*kSy; k?ctx.lineTo(gx,gy):ctx.moveTo(gx,gy); } ctx.stroke();
+      ctx.strokeStyle=rgba(c,0.9); ctx.lineWidth=3; ctx.beginPath();ctx.moveTo(o.base[0],o.base[1]);ctx.lineTo(o.top[0],o.top[1]);ctx.stroke();
+      ctx.fillStyle=rgba(c,0.16); ctx.beginPath();ctx.arc(o.top[0],o.top[1],13,0,7);ctx.fill();
+      ctx.fillStyle=shade(c,1.0); ctx.beginPath();ctx.arc(o.top[0],o.top[1],5,0,7);ctx.fill();
+      ctx.font='600 16px IBM Plex Mono'; const lw=ctx.measureText(o.p.n).width;
+      ctx.fillStyle='rgba(9,12,18,.72)'; ctx.fillRect(o.top[0]+9,o.top[1]-16,lw+10,20);
+      ctx.fillStyle=rgba(mix(c,[255,255,255],0.35),0.95); ctx.fillText(o.p.n,o.top[0]+14,o.top[1]-1);
+      o.sx=o.top[0]; o.sy=o.top[1]; });
+    return arr;
+  }
+
   function draw(){
     t+=0.016;
-    const w=cv.width,h=cv.height;
-    ctx.clearRect(0,0,w,h);
-    // blocks
-    ctx.strokeStyle='rgba(35,44,62,.8)';ctx.lineWidth=2;
-    const bs=w/12;
-    for(let x=bs/2;x<w;x+=bs){for(let y=bs/2;y<h;y+=bs){
-      ctx.strokeRect(x+3,y+3,bs-6,bs-6);
-    }}
-    // radar sweep
-    if(!reduced){
-      const cx=w/2, cy=h/2, ang=t*.6;
-      const grd=ctx.createConicGradient ? ctx.createConicGradient(ang,cx,cy) : null;
-      if(grd){ grd.addColorStop(0,'rgba(255,170,60,.10)');grd.addColorStop(.08,'rgba(255,170,60,0)');grd.addColorStop(1,'rgba(255,170,60,0)');
-        ctx.fillStyle=grd;ctx.fillRect(0,0,w,h);}
-    }
-    // pois
-    DATA.map.pois.forEach(p=>{
-      const x=p.x*w, y=p.y*h;
-      const pulse = reduced?0 : (Math.sin(t*2.4+x)*.5+.5);
-      ctx.fillStyle=p.c; ctx.beginPath(); ctx.arc(x,y,7,0,7); ctx.fill();
-      ctx.strokeStyle=p.c; ctx.globalAlpha=.5-pulse*.4;
-      ctx.beginPath(); ctx.arc(x,y,12+pulse*14,0,7); ctx.stroke(); ctx.globalAlpha=1;
-      ctx.font='600 17px IBM Plex Mono'; ctx.fillStyle='rgba(201,205,214,.9)';
-      ctx.fillText(p.n, x+16, y+5);
-    });
+    if(!drag && !reduced){ idle++; if(idle>40) A+=autoV; }
+    const ca=Math.cos(A), sa=Math.sin(A);
+    ctx.clearRect(0,0,cv.width,cv.height);
+    drawGround(ca,sa);
+    cells.map(c=>({c,ry:c.wx*sa+c.wy*ca})).sort((a,d)=>a.ry-d.ry).forEach(o=>drawBox(o.c,ca,sa));
+    nodes=drawPins(ca,sa);
     requestAnimationFrame(draw);
   }
   draw();
+
+  cv.addEventListener('pointerdown',e=>{ drag=true; lastX=e.clientX; cv.style.cursor='grabbing'; if(cv.setPointerCapture)cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointerup',()=>{ drag=false; idle=0; cv.style.cursor='grab'; });
   cv.addEventListener('pointermove', e=>{
     const r=cv.getBoundingClientRect();
-    const mx=(e.clientX-r.left)/r.width, my=(e.clientY-r.top)/r.height;
-    const hit=DATA.map.pois.find(p=>Math.hypot(p.x-mx,(p.y-my)*(340/r.width*2))< .045);
+    if(drag){ A+=(e.clientX-lastX)*0.01; lastX=e.clientX; idle=0; tip.style.display='none'; return; }
+    const sc=cv.width/r.width, mx=(e.clientX-r.left)*sc, my=(e.clientY-r.top)*sc;
+    let hit=null, bd=1e9;
+    nodes.forEach(o=>{ const d=Math.hypot(o.sx-mx,o.sy-my); if(d<bd&&d<34){bd=d;hit=o.p;} });
     if(hit){ tip.style.display='block';
       tip.style.left=Math.min(e.clientX-r.left+14, r.width-230)+'px'; tip.style.top=(e.clientY-r.top+10)+'px';
       tip.innerHTML=`<div class="tt">${hit.n}</div>${hit.d}`;
     } else tip.style.display='none';
   });
-  cv.addEventListener('pointerleave',()=>tip.style.display='none');
+  cv.addEventListener('pointerleave',()=>{ tip.style.display='none'; });
 })();
 
 /* ---- TASKS (kanban) ---- */
