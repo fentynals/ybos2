@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "updated": "2026-07-04T19:52:11.868376Z",
+    "kernel": "FABLE-5",
+    "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
+    "game": "HEADTAP"
+  },
+  "radio": [
+    {
+      "who": "PRIME",
+      "cls": "okx",
+      "msg": "GameSanitizer deployed \u2014 auto-strips SpeedEffect + anchors turf guns on paste",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "PRIME",
+      "cls": "shipx",
+      "msg": "live pipeline online \u2014 OS now fetches feed.json, no more re-downloads",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "out",
+      "msg": "all 18 POIs pulled from real workspace coords into city map",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "PRIME",
+      "cls": "shipx",
+      "msg": "MSOP mine operator + enter/leave cinematics shipped",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "QA",
+      "cls": "fx",
+      "msg": "OPEN: vault\u2194loadout dupe \u2014 PlayerInventory snapshot not synced on deposit",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "PRIME",
+      "cls": "okx",
+      "msg": "turf gun economy: tagged, half reserve, vault-banned, no home-turf sales",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "out",
+      "msg": "TURF4 wired \u2014 3 doors, 10 stations, 152 ARP parts anchored across turfs",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "PRIME",
+      "cls": "okx",
+      "msg": "wall-reach exploit killed server-side \u2014 body raycast, camera-proof",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    }
+  ],
+  "tasks": [
+    {
+      "t": "vault\u2194loadout dupe: sync PlayerInventory on Deposit/Withdraw",
+      "col": 0,
+      "pr": "high",
+      "tags": [
+        "exploit",
+        "server"
+      ]
+    },
+    {
+      "t": "dead-interaction lock (PPS off while dead + alive guards)",
+      "col": 0,
+      "pr": "high",
+      "tags": [
+        "exploit"
+      ]
+    },
+    {
+      "t": "turf membership persistence (DataStore)",
+      "col": 0,
+      "pr": "med",
+      "tags": [
+        "turf",
+        "data"
+      ]
+    },
+    {
+      "t": "TURF5 build + wire",
+      "col": 0,
+      "pr": "low",
+      "tags": [
+        "turf",
+        "map"
+      ]
+    },
+    {
+      "t": "confirm gun equip-bounce fix on real phone",
+      "col": 2,
+      "pr": "high",
+      "tags": [
+        "mobile",
+        "qa"
+      ]
+    },
+    {
+      "t": "MSOP cinematic feel-check on mobile",
+      "col": 2,
+      "pr": "med",
+      "tags": [
+        "mineshaft",
+        "qa"
+      ]
+    },
+    {
+      "t": "GameSanitizer \u2014 runtime auto-repair on paste",
+      "col": 3,
+      "pr": "med",
+      "tags": [
+        "infra"
+      ]
+    },
+    {
+      "t": "MSOP operator + camera cinematics",
+      "col": 3,
+      "pr": "high",
+      "tags": [
+        "mineshaft"
+      ]
+    },
+    {
+      "t": "TURF3 + TURF4 wired",
+      "col": 3,
+      "pr": "high",
+      "tags": [
+        "turf"
+      ]
+    },
+    {
+      "t": "wall-reach server LoS gate",
+      "col": 3,
+      "pr": "high",
+      "tags": [
+        "exploit"
+      ]
+    }
+  ],
+  "ship": [
+    {
+      "d": "2026-07-04",
+      "k": "feat",
+      "t": "live feed pipeline",
+      "s": "OS fetches feed.json every 15s. dev updates now appear without re-downloading."
+    },
+    {
+      "d": "2026-07-04",
+      "k": "feat",
+      "t": "GameSanitizer",
+      "s": "runtime auto-repair: strips SpeedEffect/blur from pasted cars, anchors turf display guns, on boot + DescendantAdded."
+    },
+    {
+      "d": "2026-07-04",
+      "k": "feat",
+      "t": "18 real POIs on city map",
+      "s": "pulled actual workspace coordinates \u2014 map geography now matches HEADTAP."
+    }
+  ]
+}

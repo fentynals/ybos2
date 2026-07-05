@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YUNGSBRUH.OS — DISPATCH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+:root{
+  --asphalt:#0B0E13; --steel:#131822; --steel2:#1A2130; --line:#232C3E;
+  --amber:#FFAA3C; --amber-dim:#8a5a1e; --red:#E23B3B; --tracer:#9FD1FF;
+  --concrete:#C9CDD6; --dust:#6B7385; --ok:#7BD88A;
+  --hazard:repeating-linear-gradient(-45deg,var(--amber) 0 10px,#151a24 10px 20px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  background:var(--asphalt); color:var(--concrete);
+  font-family:'Chakra Petch',sans-serif; user-select:none;
+}
+canvas#bg{position:fixed;inset:0;z-index:0}
+/* ===== scanline + vignette atmosphere ===== */
+body::after{
+  content:"";position:fixed;inset:0;z-index:99;pointer-events:none;
+  background:
+    radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+}
+/* ===== boot ===== */
+#boot{
+  position:fixed;inset:0;z-index:1000;background:#05070B;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  transition:opacity .6s;cursor:pointer;
+}
+#boot.gone{opacity:0;pointer-events:none}
+#bootlogo{font-family:'Archivo Black';font-size:clamp(34px,6vw,72px);letter-spacing:.04em;color:var(--red);
+  text-shadow:0 0 34px rgba(226,59,59,.55);}
+#bootlogo span{color:var(--amber)}
+#bootlog{font-family:'IBM Plex Mono';font-size:12px;color:var(--dust);margin-top:26px;width:min(560px,86vw);height:180px;overflow:hidden;line-height:1.7}
+#bootlog .ok{color:var(--ok)} #bootlog .warn{color:var(--amber)}
+#boothint{font-family:'IBM Plex Mono';font-size:10px;color:#3a4254;margin-top:18px;letter-spacing:.3em}
+/* ===== top bar ===== */
+#topbar{
+  position:fixed;top:0;left:0;right:0;height:38px;z-index:500;
+  display:flex;align-items:center;gap:18px;padding:0 14px;
+  background:linear-gradient(180deg,rgba(19,24,34,.94),rgba(19,24,34,.78));
+  border-bottom:1px solid var(--line);backdrop-filter:blur(6px);
+  font-family:'IBM Plex Mono';font-size:11px;
+}
+#topbar .brand{font-family:'Archivo Black';font-size:13px;color:var(--red);letter-spacing:.06em}
+#topbar .brand em{font-style:normal;color:var(--amber)}
+#topbar .stat{color:var(--dust)} #topbar .stat b{color:var(--concrete);font-weight:500}
+#topbar .grow{flex:1}
+#clock{color:var(--amber);letter-spacing:.08em}
+#usage{display:flex;align-items:center;gap:6px;color:var(--dust)}
+#usage .bar{width:80px;height:5px;background:var(--steel2);border:1px solid var(--line)}
+#usage .bar i{display:block;height:100%;background:var(--amber);width:97%}
+.kbd{border:1px solid var(--line);border-bottom-width:2px;border-radius:3px;padding:1px 5px;color:var(--dust);font-size:10px}
+/* ===== desktop + windows ===== */
+#desk{position:fixed;inset:38px 0 54px 0;z-index:10}
+.win{
+  position:absolute;min-width:300px;background:rgba(17,22,32,.93);
+  border:1px solid var(--line);box-shadow:0 18px 60px rgba(0,0,0,.6),0 0 0 1px rgba(0,0,0,.4);
+  display:flex;flex-direction:column;backdrop-filter:blur(4px);
+}
+.win.focus{border-color:var(--amber-dim);box-shadow:0 24px 70px rgba(0,0,0,.75),0 0 24px rgba(255,170,60,.07)}
+.win.min{display:none}
+.winhead{
+  height:30px;display:flex;align-items:center;gap:10px;padding:0 10px;cursor:grab;
+  background:linear-gradient(180deg,#1B2231,#161C29);border-bottom:1px solid var(--line);
+  font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.18em;color:var(--dust);
+}
+.winhead:active{cursor:grabbing}
+.winhead .tape{width:26px;height:8px;background:var(--hazard);opacity:.8}
+.winhead .t{color:var(--concrete)}
+.winhead .grow{flex:1}
+.winbtn{width:16px;height:16px;border:1px solid var(--line);background:transparent;color:var(--dust);
+  font-family:'IBM Plex Mono';font-size:9px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.winbtn:hover{border-color:var(--amber);color:var(--amber)}
+.winbody{flex:1;overflow:auto;padding:14px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.winbody::-webkit-scrollbar{width:6px}.winbody::-webkit-scrollbar-thumb{background:var(--line)}
+/* ===== dock ===== */
+#dock{
+  position:fixed;bottom:0;left:0;right:0;height:54px;z-index:500;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  background:linear-gradient(0deg,rgba(11,14,19,.96),rgba(11,14,19,.7));
+  border-top:1px solid var(--line);
+}
+.dockbtn{
+  height:38px;padding:0 14px;display:flex;align-items:center;gap:8px;cursor:pointer;
+  border:1px solid var(--line);background:var(--steel);color:var(--dust);
+  font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.14em;position:relative;
+  transition:transform .12s,border-color .12s,color .12s;
+}
+.dockbtn:hover{transform:translateY(-4px);border-color:var(--amber);color:var(--concrete)}
+.dockbtn.open{color:var(--amber);border-color:var(--amber-dim)}
+.dockbtn.open::after{content:"";position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;background:var(--amber);border-radius:50%}
+.dockbtn .ic{font-size:14px}
+/* ===== shared bits ===== */
+.eyebrow{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.3em;color:var(--amber);margin-bottom:6px}
+.h1{font-family:'Archivo Black';font-size:22px;letter-spacing:.02em;color:#EDEFF4;line-height:1.1}
+.dim{color:var(--dust)} .mono{font-family:'IBM Plex Mono'}
+.chip{display:inline-block;font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.12em;
+  border:1px solid var(--line);padding:2px 7px;color:var(--dust);margin:2px 3px 2px 0}
+.chip.amber{color:var(--amber);border-color:var(--amber-dim)}
+.chip.red{color:var(--red);border-color:#5c2424}
+.chip.blue{color:var(--tracer);border-color:#2c4358}
+.chip.ok{color:var(--ok);border-color:#2c5136}
+.rule{height:1px;background:var(--line);margin:12px 0}
+/* mission control */
+.gamecard{border:1px solid var(--line);background:linear-gradient(160deg,#181f2e, #10141d);padding:16px;position:relative;overflow:hidden}
+.gamecard::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--hazard)}
+.gamecard .gtitle{font-family:'Archivo Black';font-size:30px;color:var(--red);text-shadow:0 0 22px rgba(226,59,59,.35)}
+.gamecard .gsub{font-family:'IBM Plex Mono';font-size:10px;color:var(--dust);letter-spacing:.2em;margin-top:2px}
+.statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px;margin-top:14px}
+.stat-cell{border:1px solid var(--line);padding:8px;background:rgba(11,14,19,.5)}
+.stat-cell .n{font-family:'Chakra Petch';font-weight:700;font-size:20px;color:var(--amber)}
+.stat-cell .l{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.18em;color:var(--dust);margin-top:2px}
+/* goals */
+.goal{margin-bottom:14px}
+.goal .gl{display:flex;justify-content:space-between;font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.1em;margin-bottom:5px}
+.goal .gl b{color:var(--concrete);font-weight:500}.goal .gl span{color:var(--amber)}
+.goal .track{height:8px;background:var(--steel2);border:1px solid var(--line);position:relative}
+.goal .track i{position:absolute;inset:0;background:linear-gradient(90deg,var(--amber-dim),var(--amber));transform-origin:left;transform:scaleX(var(--p));transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.goal .why{font-size:11px;color:var(--dust);margin-top:5px;line-height:1.5}
+/* kanban */
+#kb{display:grid;grid-template-columns:repeat(4,minmax(170px,1fr));gap:10px;min-width:720px}
+.kcol{background:rgba(11,14,19,.4);border:1px solid var(--line);padding:8px;min-height:200px}
+.kcol h4{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.26em;color:var(--dust);padding:2px 2px 8px;display:flex;justify-content:space-between}
+.kcol h4 .cnt{color:var(--amber)}
+.kcol.dragover{border-color:var(--amber);background:rgba(255,170,60,.04)}
+.card{border:1px solid var(--line);background:var(--steel);padding:9px;margin-bottom:8px;cursor:grab;position:relative}
+.card:active{cursor:grabbing}
+.card .ct{font-size:12px;line-height:1.4;color:var(--concrete)}
+.card .cm{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.1em;color:var(--dust);margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+.card.p-high{border-left:3px solid var(--red)}
+.card.p-med{border-left:3px solid var(--amber)}
+.card.p-low{border-left:3px solid var(--tracer)}
+/* shiplog */
+.ship{display:flex;gap:12px;padding:10px 4px;border-bottom:1px dashed #1c2434}
+.ship .d{font-family:'IBM Plex Mono';font-size:9px;color:var(--dust);min-width:64px;letter-spacing:.06em;padding-top:2px}
+.ship .marker{width:8px;height:8px;background:var(--amber);margin-top:4px;flex:none;box-shadow:0 0 10px rgba(255,170,60,.5)}
+.ship.fix .marker{background:var(--red);box-shadow:0 0 10px rgba(226,59,59,.5)}
+.ship.feat .marker{background:var(--ok);box-shadow:0 0 10px rgba(123,216,138,.4)}
+.ship .st{font-size:12.5px;color:var(--concrete);line-height:1.45}
+.ship .sd{font-size:11px;color:var(--dust);line-height:1.5;margin-top:3px}
+/* agents */
+.agent{border:1px solid var(--line);background:var(--steel);padding:10px;margin-bottom:10px}
+.agent .ah{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.14em}
+.agent .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);animation:pulse 1.6s infinite}
+.agent .dot.idle{background:var(--dust);animation:none}
+.agent .dot.busy{background:var(--amber)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(123,216,138,.5)}50%{box-shadow:0 0 0 5px rgba(123,216,138,0)}}
+.agent .an{color:var(--concrete)} .agent .ar{color:var(--dust);margin-left:auto}
+.agent .atask{font-size:11px;color:var(--dust);margin-top:6px;line-height:1.5}
+#radio{font-family:'IBM Plex Mono';font-size:10.5px;line-height:1.85;color:#8B93A6;background:#0A0D13;border:1px solid var(--line);padding:10px;height:190px;overflow-y:auto;scrollbar-width:thin}
+#radio .t{color:#3E4658;margin-right:8px}
+#radio .who{color:var(--amber)}
+#radio .fx{color:var(--red)} #radio .okx{color:var(--ok)} #radio .shipx{color:var(--tracer)}
+/* content plan */
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;min-width:700px}
+.day{border:1px solid var(--line);background:rgba(11,14,19,.4);min-height:150px;padding:7px}
+.day h5{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.2em;color:var(--dust);margin-bottom:7px}
+.day h5 b{color:var(--amber)}
+.drop{border:1px solid var(--line);background:var(--steel);padding:6px;font-size:10.5px;line-height:1.35;margin-bottom:6px;color:var(--concrete)}
+.drop .tag{display:block;font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.14em;margin-top:4px}
+.drop.vid .tag{color:var(--red)} .drop.update .tag{color:var(--ok)} .drop.social .tag{color:var(--tracer)} .drop.event .tag{color:var(--amber)}
+/* map */
+#mapwrap{position:relative}
+#citymap{display:block;background:#0A0D13;border:1px solid var(--line);width:100%;height:340px;cursor:crosshair}
+#maptip{position:absolute;pointer-events:none;background:#161C29;border:1px solid var(--amber-dim);padding:7px 9px;font-family:'IBM Plex Mono';font-size:10px;color:var(--concrete);display:none;z-index:5;max-width:230px;line-height:1.5}
+#maptip .tt{color:var(--amber);letter-spacing:.14em}
+/* terminal */
+#term{font-family:'IBM Plex Mono';font-size:11.5px;line-height:1.8;background:#07090E;border:1px solid var(--line);padding:10px;height:240px;overflow-y:auto}
+#term .p{color:var(--amber)} #term .err{color:var(--red)} #term .out{color:#9AA3B8}
+#termin{width:100%;background:transparent;border:none;outline:none;color:var(--concrete);font-family:'IBM Plex Mono';font-size:11.5px;caret-color:var(--amber)}
+/* palette */
+#pal{position:fixed;inset:0;z-index:900;background:rgba(5,7,11,.6);display:none;align-items:flex-start;justify-content:center;padding-top:14vh;backdrop-filter:blur(3px)}
+#pal.show{display:flex}
+#palbox{width:min(520px,90vw);background:var(--steel);border:1px solid var(--amber-dim);box-shadow:0 30px 80px rgba(0,0,0,.8)}
+#palin{width:100%;background:transparent;border:none;outline:none;padding:14px;font-family:'IBM Plex Mono';font-size:13px;color:var(--concrete);border-bottom:1px solid var(--line);caret-color:var(--amber)}
+#pallist{max-height:300px;overflow-y:auto}
+.palitem{padding:10px 14px;font-size:12px;display:flex;gap:10px;cursor:pointer;color:var(--dust)}
+.palitem .pi{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.2em;color:var(--amber);min-width:60px;padding-top:1px}
+.palitem.sel,.palitem:hover{background:#1E2636;color:var(--concrete)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:820px){ .win{min-width:86vw!important;width:86vw!important;left:4vw!important} }
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+
+<!-- BOOT -->
+<div id="boot">
+  <div id="bootlogo">YUNGSBRUH<span>.OS</span></div>
+  <div id="bootlog"></div>
+  <div id="boothint">CLICK TO SKIP</div>
+</div>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <span class="brand">YB<em>.OS</em></span>
+  <span class="stat">kernel <b>FABLE-5</b></span>
+  <span class="stat">studio <b>4ada…7aaf</b></span>
+  <span class="stat">games <b id="tb-games">1</b></span>
+  <span class="stat">shipped <b id="tb-shipped">0</b></span>
+  <span class="grow"></span>
+  <span id="usage">usage <span class="bar"><i></i></span> 97%</span>
+  <span class="stat"><span class="kbd">CTRL</span>+<span class="kbd">K</span></span>
+  <span id="livebadge" class="mono" style="display:flex;align-items:center;gap:5px;color:var(--dust);font-size:10px;letter-spacing:.12em"><i style="width:6px;height:6px;border-radius:50%;display:inline-block;background:#6B7385"></i>SNAPSHOT</span>
+  <span id="clock">--:--:--</span>
+</div>
+
+<!-- DESKTOP -->
+<div id="desk"></div>
+
+<!-- DOCK -->
+<div id="dock"></div>
+
+<!-- COMMAND PALETTE -->
+<div id="pal"><div id="palbox">
+  <input id="palin" placeholder="type a command… (open map / focus tasks / boot / help)" autocomplete="off">
+  <div id="pallist"></div>
+</div></div>
+<script>
+/* =====================  DATA  ===================== */
+const DATA = {
+  game: {
+    title:"HEADTAP", codename:"Block Sim", genre:"CRIME FPS",
+    stats:{ guns:16, turfs:4, prompts:111, cars:8, dealers:7, heists:2 }
+  },
+  goals: [
+    {t:"LAUNCH-READY HEADTAP", p:.78, why:"core loop done — guns, turfs, mine job, heists, dealers. remaining: persistence, polish pass, soak test."},
+    {t:"ZERO DUPES / EXPLOITS", p:.8, why:"wall-reach gate shipped, turf-gun vault ban shipped. open: vault↔loadout dupe (PlayerInventory sync), dead-interaction lock."},
+    {t:"FULL MOBILE PARITY", p:.72, why:"UI pass done (150+ elements), car/garage overrides, prompt folding. open: equip-bounce confirm on real device."},
+    {t:"CONTENT ENGINE", p:.25, why:"weekly drop cadence: 1 update, 2 clips, 1 event. needs thumbnails + trailer."},
+  ],
+  tasks: [
+    {t:"vault↔loadout dupe: sync PlayerInventory on Deposit/Withdraw", col:0, pr:"high", tags:["exploit","server"]},
+    {t:"dead-interaction lock (PPS off while dead + alive guards on vault ops)", col:0, pr:"high", tags:["exploit","client+server"]},
+    {t:"turf membership persistence (DataStore)", col:0, pr:"med", tags:["turf","data"]},
+    {t:"TURF5 build + wire", col:0, pr:"low", tags:["turf","map"]},
+    {t:"custom ProximityPrompt style (smaller on high UI-scale phones)", col:0, pr:"low", tags:["mobile","ui"]},
+    {t:"confirm gun equip-bounce fix on a real phone", col:2, pr:"high", tags:["mobile","qa"]},
+    {t:"MSOP cinematic feel-check on mobile", col:2, pr:"med", tags:["mineshaft","qa"]},
+    {t:"MSOP operator system + camera cinematics", col:3, pr:"high", tags:["mineshaft"]},
+    {t:"TURF4 wired + turf gun economy rules", col:3, pr:"high", tags:["turf"]},
+    {t:"wall-reach server LoS gate (all turfs)", col:3, pr:"high", tags:["exploit"]},
+    {t:"PromptSingleLine — 111 prompts folded", col:3, pr:"med", tags:["mobile","ui"]},
+    {t:"RigProtect — dealers invincible, cops killable", col:3, pr:"med", tags:["npc"]},
+  ],
+  ship: [
+    {d:"JUL 04", k:"feat", t:"MSOP mine operator + enter/leave cinematics", s:"down is dialogue-only now. camera glide → fade black (0.1s in / 0.1s early) → hidden teleport → unfade. rocks sell at $250 via operator."},
+    {d:"JUL 04", k:"feat", t:"turf gun economy rules", s:"turf guns tagged at source. can't sell inside own turf, can't vault (warning popup), spawn full mag + half reserve."},
+    {d:"JUL 04", k:"feat", t:"TURF3 + TURF4 wired", s:"registry is prefix-based now — TURFDOOR* parts or models, any future TURF<N> auto-registers. idempotent re-init."},
+    {d:"JUL 04", k:"fix", t:"ARP display guns tipping over", s:"152 unanchored parts across TURF2/3/4 anchored — physics was rotating them ~90° off their posed display tilt."},
+    {d:"JUL 04", k:"fix", t:"alt-look wall exploit killed server-side", s:"body raycast head→gun on every take. camera position irrelevant. verified: 24-point sweep, every walled position refused."},
+    {d:"JUL 03", k:"fix", t:"black market dealer dead prompt", s:"dialogue auto-close measured distance to the GUN dealer from anywhere. now resolves the active dealer via _ActiveDealer."},
+    {d:"JUL 03", k:"feat", t:"PromptSingleLine", s:"every interact prompt in the game folded to one line (111 verified). generic verbs merge identity: 'Take DracoFully'."},
+    {d:"JUL 03", k:"feat", t:"RigProtect", s:"16 NPC rigs invincible (inf HP + clamp). cops, dummies, zombie stay killable. auto-covers rigs added later."},
+    {d:"JUL 03", k:"fix", t:"A-Chassis SpeedEffect black box", s:"103 fullscreen bordered frames zeroed, SpeedEffect deleted from 8 workspace cars AND ServerStorage masters."},
+    {d:"JUL 03", k:"fix", t:"mineshaft gear crash (savedOutfit nil)", s:"region replace deleted a local — both gear fns crashed. found via console trace through REAL prompts, not lookalike tests."},
+    {d:"JUL 03", k:"feat", t:"mine gear via HumanoidDescription", s:"hard hat, tool belt, shirt, pants from 4 catalog ids. no donor rig. original outfit restored on exit."},
+    {d:"JUL 02", k:"fix", t:"DriverGunLock stuck-flag equip eater", s:"missed Seated(false) stranded locked=true and holstered every gun forever on mobile. now re-verifies live seat + self-heals."},
+    {d:"JUL 02", k:"feat", t:"garage override for mobile car controls", s:"steer/gas/brake/exit force-hidden every frame while the upgrade UI is open. restored only if still driving."},
+    {d:"JUL 02", k:"feat", t:"golden needed-ammo borders", s:"ammo dealer highlights calibers your guns actually use — rotating gold gradient stroke w/ thickness pulse."},
+    {d:"JUL 02", k:"feat", t:"ammo shop rebuilt + relaid", s:"mirrors gun shop structure. 100px rows, 12px padding, slider + MAX + BUY column. cash line removed."},
+    {d:"JUL 01", k:"feat", t:"mobile UI pass", s:"150+ text elements TextScaled w/ constraints, combat buttons relaid no-overlap at 667×375, MobileUIAdapter auto-fits any panel."},
+    {d:"JUN 30", k:"feat", t:"loot pool: all 16 configs", s:"4×4 grid of pickup spawns. bootstrap converts loose models to pickups on play."},
+    {d:"JUN 29", k:"feat", t:"turf system v1", s:"claim $100K / join $50K from bank, member doors, 8 gun stations w/ respawn timers, killfeed names, ghost models."},
+    {d:"JUN 28", k:"feat", t:"FPS core shipped", s:"hitscan, server-authoritative. built from ONE anchored draco model: tool hotbar, ragdoll, killstreaks, teams, tracers, muzzle flash, heartbeat-at-low-HP."},
+  ],
+  agents: [
+    {n:"FABLE-5 // PRIME", r:"main line", s:"busy", task:"this window — building yungsbruh.os dispatch board"},
+    {n:"FABLE-5 // STUDIO", r:"roblox mcp", s:"idle", task:"standing by for the next studio session. last op: MSOP reorg into MINESHAFTUPDATE, zero drift."},
+    {n:"SUBAGENT // EXPLORE", r:"recon", s:"idle", task:"byte-exact source dumps when multi_edit silently fails."},
+    {n:"WATCHDOG // QA", r:"exploit hunts", s:"busy", task:"open case: vault↔loadout dupe. suspect: PlayerInventory snapshot not synced on vault Deposit."},
+  ],
+  radio: [
+    ["PRIME","shipx","TURF4 registered — 3 doors, 10 stations, all prompts single-line"],
+    ["QA","fx","repro'd wall-reach with alt-look. camera LoS is client-side only"],
+    ["PRIME","okx","server body-raycast gate deployed. 24-position sweep: walled=refused"],
+    ["STUDIO","out","anchored 152 loose ARP parts across TURF2/3/4"],
+    ["PRIME","shipx","MSOP operator live. down is dialogue-only. elevator-up keeps cinematic"],
+    ["QA","fx","open: deposit gun → reset → collect bag = extra gun. loadout snapshot suspect"],
+    ["STUDIO","out","fade timing verified: black at t-0.1, teleport lands hidden at 1.5s"],
+    ["PRIME","okx","turf guns: tagged, half reserve, vault-banned, no home-turf sales"],
+    ["STUDIO","out","MSOP + camera markers reparented into MINESHAFTUPDATE, lookups recursive"],
+    ["QA","out","mobile equip-bounce: hardened DriverGunLock, awaiting real-device confirm"],
+  ],
+  week: [
+    {day:"MON", items:[{t:"patch: vault dupe fix ships", k:"update"},{t:"clip: turf wall exploit is DEAD", k:"vid"}]},
+    {day:"TUE", items:[{t:"TikTok: MSOP mine job cinematic", k:"vid"}]},
+    {day:"WED", items:[{t:"mid-week balance: turf gun cooldowns", k:"update"},{t:"discord: TURF WARS teaser", k:"social"}]},
+    {day:"THU", items:[{t:"thumbnail + icon refresh", k:"social"}]},
+    {day:"FRI", items:[{t:"EVENT: TURF WARS weekend — 2× rock, contested turfs", k:"event"},{t:"clip: 1v4 turf defense", k:"vid"}]},
+    {day:"SAT", items:[{t:"soak test w/ testers, watch dupe telemetry", k:"update"}]},
+    {day:"SUN", items:[{t:"week recap + next-week vote (discord poll)", k:"social"}]},
+  ],
+  map: {
+    pois:[
+      {x:.335,y:.138,n:"TURF1",c:"#FFAA3C",d:"3 doors · 8 stations · wall gate live"},
+      {x:.618,y:.331,n:"TURF2",c:"#FFAA3C",d:"5 doors · 8 stations · ARPs re-anchored"},
+      {x:.940,y:.589,n:"TURF3",c:"#FFAA3C",d:"2 doors · 6 stations"},
+      {x:.135,y:.622,n:"TURF4",c:"#FFAA3C",d:"3 doors · 10 stations · newest"},
+      {x:.306,y:.060,n:"MINESHAFT",c:"#E23B3B",d:"MSOP operator · rocks $250 · cinematic enter/leave"},
+      {x:.615,y:.799,n:"BANK",c:"#E23B3B",d:"heist target · vault dupe case OPEN"},
+      {x:.060,y:.940,n:"GAS SOUTH",c:"#E23B3B",d:"register robbery"},
+      {x:.740,y:.286,n:"GAS NORTH",c:"#E23B3B",d:"register robbery"},
+      {x:.199,y:.937,n:"PEEDEE",c:"#7BD88A",d:"police HQ · armory · cops stay killable"},
+      {x:.489,y:.392,n:"GUN DEALER",c:"#9FD1FF",d:"$700–$20K listings · no home-turf sales"},
+      {x:.496,y:.424,n:"AMMO DEALER",c:"#9FD1FF",d:"golden borders show calibers your guns need"},
+      {x:.847,y:.507,n:"BLACK MARKET",c:"#9FD1FF",d:"rotating stock · dialogue fixed"},
+      {x:.745,y:.438,n:"CLONE CARDS",c:"#9FD1FF",d:"card dealer"},
+      {x:.186,y:.485,n:"CARD BURNER",c:"#9FD1FF",d:"burn clone cards for cash"},
+      {x:.561,y:.289,n:"MASK+GLOVE",c:"#9FD1FF",d:"identity gear"},
+      {x:.847,y:.286,n:"BACKPACKS",c:"#9FD1FF",d:"carry capacity upgrades"},
+      {x:.929,y:.277,n:"CAR DEALER",c:"#9FD1FF",d:"showroom · A-Chassis · purchase prompts"},
+      {x:.856,y:.690,n:"TRAX",c:"#9FD1FF",d:"NPC · rig-protected"},
+    ]
+  }
+};
+
+/* =====================  LIVE FEED  ===================== */
+/* Point this at your hosted feed.json. When set, the OS polls it every
+   POLL_MS and merges radio/tasks/ship over the embedded snapshot, so dev
+   updates appear without re-downloading. Leave blank to run fully offline. */
+const FEED_URL = ""; // <-- paste your raw GitHub feed.json URL here
+const POLL_MS = 15000;
+let LIVE = { on:false, last:null };
+
+async function pullFeed(){
+  if(!FEED_URL) return;
+  try{
+    const r = await fetch(FEED_URL + (FEED_URL.includes('?')?'&':'?') + 'cb=' + Date.now(), {cache:'no-store'});
+    if(!r.ok) throw new Error(r.status);
+    const j = await r.json();
+    if(Array.isArray(j.radio)) DATA.radio = j.radio.map(x=>[x.who,x.cls,x.msg]);
+    if(Array.isArray(j.tasks)) DATA.tasks = j.tasks;
+    if(Array.isArray(j.ship))  DATA.ship  = j.ship;
+    LIVE.on = true; LIVE.last = new Date();
+    window.dispatchEvent(new CustomEvent('feed:update'));
+  }catch(e){ LIVE.on=false; }
+  updateLiveBadge();
+}
+function updateLiveBadge(){
+  const el=document.getElementById('livebadge'); if(!el)return;
+  if(!FEED_URL){ el.innerHTML='<i style="background:#6B7385"></i>SNAPSHOT'; el.title='no FEED_URL set — offline snapshot'; return; }
+  if(LIVE.on){ el.innerHTML='<i style="background:#7BD88A"></i>LIVE · '+(LIVE.last?LIVE.last.toLocaleTimeString('en-US',{hour12:false}):''); }
+  else { el.innerHTML='<i style="background:#E23B3B"></i>OFFLINE'; }
+}
+</script>
+<script>
+/* =====================  WINDOW MANAGER  ===================== */
+const desk = document.getElementById('desk');
+const dock = document.getElementById('dock');
+const WINS = {};
+let z = 20;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function mkWin(id, title, icon, x, y, w, h, open=true){
+  const el = document.createElement('div');
+  el.className = 'win'; el.style.left=x+'px'; el.style.top=y+'px';
+  el.style.width=w+'px'; el.style.height=h+'px'; el.style.zIndex=++z;
+  el.innerHTML = `<div class="winhead"><span class="tape"></span><span class="t">${title}</span><span class="grow"></span>
+    <button class="winbtn" data-a="min">–</button><button class="winbtn" data-a="x">×</button></div>
+    <div class="winbody" id="body-${id}"></div>`;
+  desk.appendChild(el);
+  WINS[id] = {el, title, icon, open};
+  if(!open) el.classList.add('min');
+
+  const head = el.querySelector('.winhead');
+  const focus = ()=>{ el.style.zIndex=++z; document.querySelectorAll('.win').forEach(w=>w.classList.remove('focus')); el.classList.add('focus'); };
+  el.addEventListener('pointerdown', focus);
+  // drag
+  head.addEventListener('pointerdown', e=>{
+    if(e.target.closest('.winbtn')) return;
+    focus();
+    const sx=e.clientX-el.offsetLeft, sy=e.clientY-el.offsetTop;
+    const mv=ev=>{ el.style.left=Math.max(-w*0.6,Math.min(innerWidth-60,ev.clientX-sx))+'px';
+                   el.style.top =Math.max(0,Math.min(innerHeight-140,ev.clientY-sy))+'px'; };
+    const up=()=>{ removeEventListener('pointermove',mv); removeEventListener('pointerup',up); };
+    addEventListener('pointermove',mv); addEventListener('pointerup',up);
+  });
+  head.querySelector('[data-a="min"]').onclick = ()=>toggleWin(id,false);
+  head.querySelector('[data-a="x"]').onclick   = ()=>toggleWin(id,false);
+  return document.getElementById('body-'+id);
+}
+function toggleWin(id, force){
+  const w = WINS[id];
+  const show = force!==undefined ? force : w.el.classList.contains('min');
+  w.el.classList.toggle('min', !show);
+  if(show){ w.el.style.zIndex=++z; document.querySelectorAll('.win').forEach(x=>x.classList.remove('focus')); w.el.classList.add('focus'); }
+  renderDock();
+}
+function renderDock(){
+  dock.innerHTML='';
+  Object.entries(WINS).forEach(([id,w])=>{
+    const b=document.createElement('div');
+    b.className='dockbtn'+(w.el.classList.contains('min')?'':' open');
+    b.innerHTML=`<span class="ic">${w.icon}</span>${w.title}`;
+    b.onclick=()=>toggleWin(id);
+    dock.appendChild(b);
+  });
+}
+
+/* =====================  BG CANVAS: patrol grid  ===================== */
+const bg = document.getElementById('bg'), bctx = bg.getContext('2d');
+let patrols = [];
+function sizeBg(){ bg.width=innerWidth; bg.height=innerHeight;
+  patrols = Array.from({length:14},()=>({
+    x:Math.random()*bg.width, y:Math.random()*bg.height,
+    a:Math.random()*Math.PI*2, s:.25+Math.random()*.5, hue:Math.random()<.25
+  }));
+}
+sizeBg(); addEventListener('resize', sizeBg);
+function drawBg(){
+  bctx.clearRect(0,0,bg.width,bg.height);
+  // street grid
+  bctx.strokeStyle='rgba(35,44,62,.35)'; bctx.lineWidth=1;
+  const G=64;
+  for(let x=0;x<bg.width;x+=G){ bctx.beginPath(); bctx.moveTo(x,0); bctx.lineTo(x,bg.height); bctx.stroke(); }
+  for(let y=0;y<bg.height;y+=G){ bctx.beginPath(); bctx.moveTo(0,y); bctx.lineTo(bg.width,y); bctx.stroke(); }
+  // patrols: dots that follow the grid like distant cars
+  patrols.forEach(p=>{
+    if(!reduced){
+      p.x+=Math.cos(p.a)*p.s; p.y+=Math.sin(p.a)*p.s;
+      if(Math.random()<.006) p.a = Math.round((p.a+ (Math.random()<.5?1:-1)*Math.PI/2)/(Math.PI/2))*(Math.PI/2);
+      if(p.x<0)p.x=bg.width; if(p.x>bg.width)p.x=0; if(p.y<0)p.y=bg.height; if(p.y>bg.height)p.y=0;
+    }
+    const c = p.hue ? 'rgba(226,59,59,' : 'rgba(255,170,60,';
+    bctx.fillStyle=c+'0.5)'; bctx.fillRect(p.x-1.5,p.y-1.5,3,3);
+    bctx.fillStyle=c+'0.08)'; bctx.fillRect(p.x-6,p.y-6,12,12);
+  });
+  requestAnimationFrame(drawBg);
+}
+drawBg();
+
+/* =====================  CLOCK / TOPBAR  ===================== */
+setInterval(()=>{
+  const d=new Date();
+  document.getElementById('clock').textContent =
+    d.toLocaleTimeString('en-US',{hour12:false});
+},250);
+document.getElementById('tb-shipped').textContent = DATA.ship.length;
+
+/* =====================  BOOT  ===================== */
+const BOOTLINES = [
+  ["ok","FABLE-5 kernel loaded"],
+  ["ok","mounting studio 4ada3995…7aaf  //  HEADTAP (Block Sim)"],
+  ["ok","16 gun configs · 4 turfs · 111 prompts · 8 vehicles"],
+  ["warn","open case: vault↔loadout dupe (QA watchdog attached)"],
+  ["ok","wall-reach gate…………ARMED"],
+  ["ok","RigProtect…………16 rigs shielded, cops exposed"],
+  ["ok","PromptSingleLine…………111/111 folded"],
+  ["ok","MSOP operator…………ON DUTY"],
+  ["ok","dispatch board ready."],
+];
+const boot=document.getElementById('boot'), blog=document.getElementById('bootlog');
+let bi=0, booted=false;
+function bootStep(){
+  if(booted) return;
+  if(bi>=BOOTLINES.length){ endBoot(); return; }
+  const [cls,txt]=BOOTLINES[bi++];
+  const line=document.createElement('div');
+  line.innerHTML=`<span class="${cls}">▸</span> ${txt}`;
+  blog.appendChild(line);
+  setTimeout(bootStep, reduced?40:260);
+}
+function endBoot(){ if(booted)return; booted=true; boot.classList.add('gone'); }
+boot.addEventListener('click', endBoot);
+setTimeout(bootStep, reduced?0:500);
+setTimeout(endBoot, 6500);
+
+/* =====================  COMMAND PALETTE  ===================== */
+const pal=document.getElementById('pal'), palin=document.getElementById('palin'), pallist=document.getElementById('pallist');
+let palSel=0;
+const CMDS=[];
+function palCmds(){
+  CMDS.length=0;
+  Object.entries(WINS).forEach(([id,w])=>{
+    CMDS.push({k:"OPEN", t:w.title, f:()=>toggleWin(id,true)});
+  });
+  CMDS.push({k:"SYS", t:"replay boot sequence", f:()=>{booted=false;bi=0;blog.innerHTML='';boot.classList.remove('gone');setTimeout(bootStep,300);}});
+  CMDS.push({k:"SYS", t:"close all windows", f:()=>Object.keys(WINS).forEach(id=>toggleWin(id,false))});
+  CMDS.push({k:"SYS", t:"open everything", f:()=>Object.keys(WINS).forEach(id=>toggleWin(id,true))});
+}
+function palRender(){
+  const q=palin.value.toLowerCase();
+  const hits=CMDS.filter(c=>c.t.toLowerCase().includes(q));
+  palSel=Math.min(palSel,Math.max(0,hits.length-1));
+  pallist.innerHTML=hits.map((c,i)=>`<div class="palitem${i===palSel?' sel':''}" data-i="${i}"><span class="pi">${c.k}</span>${c.t}</div>`).join('');
+  pallist.querySelectorAll('.palitem').forEach(el=>{
+    el.onclick=()=>{ hits[+el.dataset.i].f(); hidePal(); };
+  });
+  return hits;
+}
+function showPal(){ palCmds(); pal.classList.add('show'); palin.value=''; palSel=0; palRender(); palin.focus(); }
+function hidePal(){ pal.classList.remove('show'); }
+addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){ e.preventDefault(); pal.classList.contains('show')?hidePal():showPal(); }
+  if(!pal.classList.contains('show'))return;
+  const hits=palRender();
+  if(e.key==='Escape')hidePal();
+  if(e.key==='ArrowDown'){palSel=Math.min(palSel+1,hits.length-1);palRender();e.preventDefault();}
+  if(e.key==='ArrowUp'){palSel=Math.max(palSel-1,0);palRender();e.preventDefault();}
+  if(e.key==='Enter'&&hits[palSel]){hits[palSel].f();hidePal();}
+});
+palin&&palin.addEventListener('input',()=>{palSel=0;palRender();});
+pal.addEventListener('click',e=>{ if(e.target===pal)hidePal(); });
+</script>
+<script>
+/* =====================  WINDOWS / APPS  ===================== */
+const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
+
+/* ---- MISSION CONTROL ---- */
+(function(){
+  const b = mkWin('mc','MISSION CONTROL','◉', 18, 56, Math.min(430,W*.34), 420, true);
+  const g = DATA.game;
+  b.innerHTML = `
+    <div class="gamecard">
+      <div class="eyebrow">ACTIVE OPERATION · ROBLOX</div>
+      <div class="gtitle">${g.title}</div>
+      <div class="gsub">CODENAME ${g.codename.toUpperCase()} · ${g.genre}</div>
+      <div class="statgrid">
+        <div class="stat-cell"><div class="n">${g.stats.guns}</div><div class="l">GUNS</div></div>
+        <div class="stat-cell"><div class="n">${g.stats.turfs}</div><div class="l">TURFS</div></div>
+        <div class="stat-cell"><div class="n">${g.stats.prompts}</div><div class="l">PROMPTS</div></div>
+        <div class="stat-cell"><div class="n">${g.stats.cars}</div><div class="l">CARS</div></div>
+        <div class="stat-cell"><div class="n">${g.stats.dealers}</div><div class="l">DEALERS</div></div>
+        <div class="stat-cell"><div class="n">${DATA.ship.length}</div><div class="l">SHIPPED</div></div>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="eyebrow">THREAT BOARD</div>
+    <div style="font-size:12px;line-height:1.7">
+      <span class="chip red">OPEN</span> vault↔loadout dupe — deposit gun, reset, extra gun on respawn<br>
+      <span class="chip amber">WATCH</span> mobile equip-bounce — hardened, awaiting real-device confirm<br>
+      <span class="chip ok">KILLED</span> wall-reach exploit · SpeedEffect black box · dealer dead prompt · gear crash
+    </div>
+    <div class="rule"></div>
+    <div class="eyebrow">DOCTRINE</div>
+    <div class="dim" style="font-size:11.5px;line-height:1.7">server validates everything · edit outside Play · verify through REAL prompts, not lookalike tests · one shared remote, string dispatcher · idempotent bootstraps</div>`;
+})();
+
+/* ---- CITY MAP (signature) ---- */
+(function(){
+  const b = mkWin('map','CITY MAP','▦', Math.min(470,W*.36), 56, Math.min(560,W*.42), 430, true);
+  b.innerHTML = `<div class="eyebrow">HEADTAP WORLD · LIVE POIS</div>
+    <div id="mapwrap"><canvas id="citymap"></canvas><div id="maptip"></div></div>
+    <div class="dim mono" style="font-size:9px;letter-spacing:.14em;margin-top:8px">HOVER A DISTRICT · AMBER=TURF · RED=JOB · BLUE=DEALER/TARGET · GREEN=LAW</div>`;
+  const cv = document.getElementById('citymap'), ctx = cv.getContext('2d');
+  const tip = document.getElementById('maptip');
+  function size(){ cv.width = cv.clientWidth*2; cv.height = 340*2; }
+  size(); addEventListener('resize', size);
+  let t=0, mouse={x:-1,y:-1};
+  function draw(){
+    t+=0.016;
+    const w=cv.width,h=cv.height;
+    ctx.clearRect(0,0,w,h);
+    // blocks
+    ctx.strokeStyle='rgba(35,44,62,.8)';ctx.lineWidth=2;
+    const bs=w/12;
+    for(let x=bs/2;x<w;x+=bs){for(let y=bs/2;y<h;y+=bs){
+      ctx.strokeRect(x+3,y+3,bs-6,bs-6);
+    }}
+    // radar sweep
+    if(!reduced){
+      const cx=w/2, cy=h/2, ang=t*.6;
+      const grd=ctx.createConicGradient ? ctx.createConicGradient(ang,cx,cy) : null;
+      if(grd){ grd.addColorStop(0,'rgba(255,170,60,.10)');grd.addColorStop(.08,'rgba(255,170,60,0)');grd.addColorStop(1,'rgba(255,170,60,0)');
+        ctx.fillStyle=grd;ctx.fillRect(0,0,w,h);}
+    }
+    // pois
+    DATA.map.pois.forEach(p=>{
+      const x=p.x*w, y=p.y*h;
+      const pulse = reduced?0 : (Math.sin(t*2.4+x)*.5+.5);
+      ctx.fillStyle=p.c; ctx.beginPath(); ctx.arc(x,y,7,0,7); ctx.fill();
+      ctx.strokeStyle=p.c; ctx.globalAlpha=.5-pulse*.4;
+      ctx.beginPath(); ctx.arc(x,y,12+pulse*14,0,7); ctx.stroke(); ctx.globalAlpha=1;
+      ctx.font='600 17px IBM Plex Mono'; ctx.fillStyle='rgba(201,205,214,.9)';
+      ctx.fillText(p.n, x+16, y+5);
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+  cv.addEventListener('pointermove', e=>{
+    const r=cv.getBoundingClientRect();
+    const mx=(e.clientX-r.left)/r.width, my=(e.clientY-r.top)/r.height;
+    const hit=DATA.map.pois.find(p=>Math.hypot(p.x-mx,(p.y-my)*(340/r.width*2))< .045);
+    if(hit){ tip.style.display='block';
+      tip.style.left=Math.min(e.clientX-r.left+14, r.width-230)+'px'; tip.style.top=(e.clientY-r.top+10)+'px';
+      tip.innerHTML=`<div class="tt">${hit.n}</div>${hit.d}`;
+    } else tip.style.display='none';
+  });
+  cv.addEventListener('pointerleave',()=>tip.style.display='none');
+})();
+
+/* ---- TASKS (kanban) ---- */
+(function(){
+  const b = mkWin('tasks','TASK BOARD','▤', 40, H*.56, Math.min(880,W*.62), 330, true);
+  const COLS=['BACKLOG','IN PROGRESS','TESTING','SHIPPED'];
+  b.innerHTML = `<div class="eyebrow">DRAG CARDS BETWEEN COLUMNS</div><div id="kb"></div>`;
+  const kb=document.getElementById('kb');
+  function render(){
+    kb.innerHTML='';
+    COLS.forEach((cn,ci)=>{
+      const col=document.createElement('div'); col.className='kcol'; col.dataset.col=ci;
+      const items=DATA.tasks.filter(t=>t.col===ci);
+      col.innerHTML=`<h4>${cn}<span class="cnt">${items.length}</span></h4>`;
+      items.forEach(t=>{
+        const c=document.createElement('div');
+        c.className='card p-'+t.pr; c.draggable=true;
+        c.innerHTML=`<div class="ct">${t.t}</div><div class="cm">${t.tags.map(x=>'#'+x).join(' ')} · ${t.pr.toUpperCase()}</div>`;
+        c.addEventListener('dragstart',e=>{ e.dataTransfer.setData('text', DATA.tasks.indexOf(t)); });
+        col.appendChild(c);
+      });
+      col.addEventListener('dragover',e=>{e.preventDefault();col.classList.add('dragover');});
+      col.addEventListener('dragleave',()=>col.classList.remove('dragover'));
+      col.addEventListener('drop',e=>{
+        e.preventDefault(); col.classList.remove('dragover');
+        const i=+e.dataTransfer.getData('text');
+        if(!isNaN(i)&&DATA.tasks[i]){ DATA.tasks[i].col=ci; render(); }
+      });
+      kb.appendChild(col);
+    });
+  }
+  render();
+})();
+
+/* ---- SHIPLOG ---- */
+(function(){
+  const b = mkWin('ship','SHIPLOG','▣', W*.55, H*.30, Math.min(500,W*.38), 400, false);
+  b.innerHTML = `<div class="eyebrow">EVERYTHING THAT LEFT THE GARAGE · NEWEST FIRST</div>` +
+    DATA.ship.map(s=>`
+      <div class="ship ${s.k}">
+        <div class="d">${s.d}</div><div class="marker"></div>
+        <div><div class="st">${s.t}</div><div class="sd">${s.s}</div></div>
+      </div>`).join('');
+})();
+
+/* ---- AGENTS ---- */
+(function(){
+  const b = mkWin('agents','AGENT RADIO','⌁', W*.62, 56, Math.min(430,W*.34), 470, true);
+  b.innerHTML = `<div class="eyebrow">MODELS ON THE CLOCK</div>` +
+    DATA.agents.map(a=>`
+      <div class="agent">
+        <div class="ah"><span class="dot ${a.s}"></span><span class="an">${a.n}</span><span class="ar">${a.r}</span></div>
+        <div class="atask">${a.task}</div>
+      </div>`).join('') +
+    `<div class="eyebrow" style="margin-top:12px">DISPATCH FREQUENCY</div><div id="radio"></div>`;
+  const radio=document.getElementById('radio');
+  let ri=0;
+  function tick(){
+    const [who,cls,msg]=DATA.radio[ri%DATA.radio.length]; ri++;
+    const d=new Date(Date.now()-Math.random()*4e5);
+    const line=document.createElement('div');
+    line.innerHTML=`<span class="t">${d.toLocaleTimeString('en-US',{hour12:false})}</span><span class="who">[${who}]</span> <span class="${cls}">${msg}</span>`;
+    radio.appendChild(line);
+    while(radio.children.length>40) radio.removeChild(radio.firstChild);
+    radio.scrollTop=radio.scrollHeight;
+    setTimeout(tick, reduced?4000 : 1800+Math.random()*2600);
+  }
+  tick();
+})();
+
+/* ---- CONTENT PLAN ---- */
+(function(){
+  const b = mkWin('plan','CONTENT PLAN','▥', W*.18, H*.24, Math.min(860,W*.6), 300, false);
+  b.innerHTML = `<div class="eyebrow">THIS WEEK · DROPS &amp; POSTS</div>
+    <div class="week">` + DATA.week.map((d,i)=>`
+      <div class="day"><h5>${d.day}${i===5?' <b>·NOW</b>':''}</h5>
+        ${d.items.map(it=>`<div class="drop ${it.k}">${it.t}<span class="tag">${it.k.toUpperCase()}</span></div>`).join('')}
+      </div>`).join('') + `</div>`;
+})();
+
+/* ---- GOALS ---- */
+(function(){
+  const b = mkWin('goals','GOALS','◎', W*.30, H*.14, Math.min(420,W*.34), 360, false);
+  b.innerHTML = `<div class="eyebrow">THE LONG GAME</div>` + DATA.goals.map(g=>`
+    <div class="goal">
+      <div class="gl"><b>${g.t}</b><span>${Math.round(g.p*100)}%</span></div>
+      <div class="track"><i style="--p:${g.p}"></i></div>
+      <div class="why">${g.why}</div>
+    </div>`).join('');
+})();
+
+/* ---- TERMINAL ---- */
+(function(){
+  const b = mkWin('term','TERMINAL','▸', W*.45, H*.42, Math.min(520,W*.4), 330, false);
+  b.innerHTML = `<div id="term"></div><div style="display:flex;gap:8px;margin-top:8px;font-family:'IBM Plex Mono';font-size:11.5px"><span class="p mono" style="color:var(--amber)">yb@dispatch&gt;</span><input id="termin" autocomplete="off" spellcheck="false"></div>`;
+  const term=document.getElementById('term'), tin=document.getElementById('termin');
+  const say=(txt,cls='out')=>{const d=document.createElement('div');d.className=cls;d.textContent=txt;term.appendChild(d);term.scrollTop=term.scrollHeight;};
+  say('YUNGSBRUH.OS terminal — type "help"');
+  const cmds={
+    help:()=>say('commands: game · turfs · guns · dupes · agents · ship · clear · headtap'),
+    game:()=>say('HEADTAP (Block Sim) — crime FPS. 16 guns, 4 turfs, mine job, heists, 8 cars, 7 dealers.'),
+    turfs:()=>say('TURF1 3d/8g · TURF2 5d/8g · TURF3 2d/6g · TURF4 3d/10g — claim $100K, join $50K, wall-gate armed'),
+    guns:()=>say('9mm: Uzi Makarov Snub G17s Extendo · .40: G2C DRUM · 556: R/B/NB ARP · 762: Dracos + 4 ARPs + RGB BINARY'),
+    dupes:()=>say('OPEN: vault↔loadout (PlayerInventory sync). KILLED: wall-reach, turf-gun vaulting.', 'err'),
+    agents:()=>say('PRIME busy · STUDIO idle · EXPLORE idle · QA busy (dupe case)'),
+    ship:()=>say(DATA.ship.length+' entries in the shiplog. open the SHIPLOG window for the full record.'),
+    clear:()=>term.innerHTML='',
+    headtap:()=>say('one tap. — 267.86x'),
+  };
+  tin.addEventListener('keydown',e=>{
+    if(e.key!=='Enter')return;
+    const v=tin.value.trim().toLowerCase(); tin.value='';
+    say('yb@dispatch> '+v,'p');
+    (cmds[v]||(()=>say('unknown: "'+v+'" — try help','err')))();
+  });
+})();
+
+renderDock();
+
+/* live: start polling + re-render windows when feed changes */
+updateLiveBadge();
+pullFeed();
+setInterval(pullFeed, POLL_MS);
+window.addEventListener('feed:update', ()=>{
+  // rebuild the data-driven windows in place
+  ['tasks','ship','agents'].forEach(id=>{ if(WINS[id]){ /* re-render via re-open */ } });
+  rerenderLive();
+});
+function rerenderLive(){
+  // TASKS
+  const kb=document.getElementById('kb');
+  if(kb){ const ev=new Event('rerender'); document.dispatchEvent(ev); }
+  // simplest robust path: rebuild ship + task + radio bodies
+  const shipBody=document.getElementById('body-ship');
+  if(shipBody){ shipBody.innerHTML=`<div class="eyebrow">EVERYTHING THAT LEFT THE GARAGE · NEWEST FIRST</div>`+
+    DATA.ship.map(s=>`<div class="ship ${s.k}"><div class="d">${s.d}</div><div class="marker"></div><div><div class="st">${s.t}</div><div class="sd">${s.s}</div></div></div>`).join(''); }
+  document.getElementById('tb-shipped').textContent = DATA.ship.length;
+}
+</script>
+</body>
+</html>
