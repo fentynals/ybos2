@@ -32,7 +32,7 @@ Top-level arrays:
 - `content[]` — video-idea pool for the CONTENT studio; the content-creator agent appends here.
   Shape: { "t":"title", "hook":"exact first line / on-screen text", "fmt":"short|long|teaser|trend", "plat":"tiktok|shorts|yt|ig", "col":0-3 }
 - `rejections[]` — the user's "why I passed" taste log, so content-creator learns what to avoid.
-  Shape: { "t":"idea title", "plat":"…", "fmt":"…", "reason":"generic|offbrand|overdone|unfilmable|platform|hook|meh", "ts":ISO }
+  Shape: { "t":"idea title", "plat":"…", "fmt":"…", "reason":"generic|offbrand|overdone|unfilmable|platform|hook|meh|custom", "note":"free-text (filled when reason=custom, else empty)", "ts":ISO }
 
 ## Daily scheduled task ("heartbeat")
 When run as the daily update:

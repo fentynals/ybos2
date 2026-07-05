@@ -223,6 +223,8 @@ body::after{
 .rejmenu button{display:block;width:100%;text-align:left;background:transparent;border:0;color:var(--concrete);font-size:11px;padding:7px 10px;cursor:pointer;font-family:inherit}
 .rejmenu button:hover{background:rgba(255,170,60,.12);color:var(--amber)}
 .rejmenu button.plain{color:var(--dust);border-top:1px solid var(--line)}
+.rejmenu input{display:block;width:100%;box-sizing:border-box;background:#0A0D13;border:0;border-top:1px solid var(--line);color:var(--concrete);font-family:'IBM Plex Mono';font-size:11px;padding:7px 10px}
+.rejmenu input::placeholder{color:var(--dust)}
 /* dispatch log */
 #dispatch{font-family:'IBM Plex Mono';font-size:10.5px;line-height:1.85;color:#8B93A6;background:#0A0D13;border:1px solid var(--line);padding:10px;height:360px;overflow-y:auto;scrollbar-width:thin}
 #dispatch .t{color:#3E4658;margin-right:8px}
@@ -838,8 +840,8 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   const KEY='ybos.content.v1', RKEY='ybos.reject.v1';
   const REASONS=[['generic','too generic'],['offbrand','off-brand / wrong vibe'],['overdone','overdone / already did it'],['unfilmable','not filmable right now'],['platform','wrong platform'],['hook','weak hook'],['meh','just not feeling it']];
   const teachCount=()=>{ try{ return JSON.parse(localStorage.getItem(RKEY)||'[]').length; }catch(e){ return 0; } };
-  function logReject(t, reason){ let log=[]; try{ log=JSON.parse(localStorage.getItem(RKEY)||'[]'); }catch(e){}
-    log.unshift({t:t.t, plat:t.plat, fmt:t.fmt, reason, ts:new Date().toISOString()}); log=log.slice(0,100);
+  function logReject(t, reason, note){ let log=[]; try{ log=JSON.parse(localStorage.getItem(RKEY)||'[]'); }catch(e){}
+    log.unshift({t:t.t, plat:t.plat, fmt:t.fmt, reason, note:note||'', ts:new Date().toISOString()}); log=log.slice(0,100);
     try{ localStorage.setItem(RKEY, JSON.stringify(log)); }catch(e){} return log.length; }
   const clone=c=>({t:c.t, hook:c.hook||'', fmt:c.fmt||'short', plat:PLATS.includes(c.plat)?c.plat:'tiktok', col:c.col|0});
   const esc=s=>(''+s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
@@ -911,13 +913,17 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
     const menu=document.createElement('div'); menu.className='rejmenu';
     menu.innerHTML='<div class="rh">WHY PASS? — TEACHES CONTENT-CREATOR</div>'+
       REASONS.map(r=>`<button data-r="${r[0]}">${esc(r[1])}</button>`).join('')+
+      '<input class="rejin" placeholder="or type your own reason… (Enter)" autocomplete="off">'+
       '<button class="plain" data-r="__nolog">just delete (no note)</button>';
     card.appendChild(menu);
-    menu.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',ev=>{
-      ev.stopPropagation();
-      if(btn.dataset.r!=='__nolog'){ const n=logReject(t, btn.dataset.r); updateTeach(); flash('taught content-creator: “'+btn.textContent+'” · '+n+' notes logged'); }
-      const i=ideas.indexOf(t); if(i>=0) ideas.splice(i,1); save(); render(); renderTop();
-    }));
+    const drop=(reason,note)=>{ if(reason){ const n=logReject(t, reason, note); updateTeach(); flash('taught content-creator: “'+(note||reason)+'” · '+n+' notes logged'); }
+      const i=ideas.indexOf(t); if(i>=0) ideas.splice(i,1); save(); render(); renderTop(); };
+    menu.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',ev=>{ ev.stopPropagation();
+      if(btn.dataset.r==='__nolog') drop(null); else drop(btn.dataset.r, btn.textContent); }));
+    const inp=menu.querySelector('.rejin');
+    inp.addEventListener('click',ev=>ev.stopPropagation());
+    inp.addEventListener('keydown',ev=>{ ev.stopPropagation(); if(ev.key==='Enter'){ const v=inp.value.trim(); if(v) drop('custom', v); } });
+    setTimeout(()=>inp.focus(),0);
   }
   function updateTeach(){ const el=b.querySelector('#ctteach'); if(el) el.textContent='TASTE ✎ '+teachCount(); }
   const add=()=>{ const inp=b.querySelector('#ctnew'), v=inp.value.trim(); if(!v)return;
