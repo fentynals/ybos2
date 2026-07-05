@@ -5,7 +5,18 @@
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
     "version": "3.0",
-    "stats": null
+    "stats": {
+      "placeId": 124673719670870,
+      "universeId": 10194619622,
+      "name": "HEAD TAP",
+      "playing": 0,
+      "visits": 1360,
+      "favorites": 7,
+      "maxPlayers": 50,
+      "likes": 14,
+      "dislikes": 0,
+      "fetched": "2026-07-05T02:57:59Z"
+    }
   },
   "bugs": [
     { "id": "vault-loadout-dupe", "sev": "high", "status": "open", "t": "vault↔loadout dupe", "note": "deposit gun → reset → collect bag = extra gun. PlayerInventory snapshot not synced on vault Deposit.", "ts": "2026-07-04T19:52:11.868376Z" },
