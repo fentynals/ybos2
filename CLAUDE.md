@@ -20,6 +20,15 @@ It has exactly two files that matter:
   "favorites":N, "maxPlayers":N, "likes":N, "dislikes":N, "fetched":ISO }
 - `contentAgent` — status of the content-creator agent, shown live in the CONTENT studio bar.
   Shape: { "status":"idle"|"working", "note":"short status", "updated":ISO }
+- `analytics` — social stats shown in the ANALYTICS window. `null` until the analytics sync first runs.
+  Auto-pulled server-side (OAuth per platform) and written here — the browser can't call these APIs (CORS + secrets).
+  Full setup + API details in `UPLOAD_ANALYTICS_PLAN.md`. Shape:
+  { "updated":ISO,
+    "tiktok":{ "followers":N,"views":N,"likes":N,"comments":N,"shares":N },
+    "youtube":{ "subscribers":N,"views":N,"likes":N,"comments":N },
+    "instagram":{ "followers":N,"views":N,"likes":N,"comments":N },
+    "top":[ { "t":"post title","plat":"tiktok|youtube|instagram","views":N,"likes":N,"url":"..." } ],
+    "series":[ { "d":"MM-DD","tiktok":N,"youtube":N,"instagram":N } ] }  // series = daily views per platform
 
 Top-level arrays:
 - `radio[]` — dispatch lines in the DISPATCH LOG window. PREPEND newest first.

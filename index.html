@@ -138,40 +138,22 @@ body::after{
 .card.p-high{border-left:3px solid var(--red)}
 .card.p-med{border-left:3px solid var(--amber)}
 .card.p-low{border-left:3px solid var(--tracer)}
-/* shiplog */
-.ship{display:flex;gap:12px;padding:10px 4px;border-bottom:1px dashed #1c2434}
-.ship .d{font-family:'IBM Plex Mono';font-size:9px;color:var(--dust);min-width:64px;letter-spacing:.06em;padding-top:2px}
-.ship .marker{width:8px;height:8px;background:var(--amber);margin-top:4px;flex:none;box-shadow:0 0 10px rgba(255,170,60,.5)}
-.ship.fix .marker{background:var(--red);box-shadow:0 0 10px rgba(226,59,59,.5)}
-.ship.feat .marker{background:var(--ok);box-shadow:0 0 10px rgba(123,216,138,.4)}
-.ship .st{font-size:12.5px;color:var(--concrete);line-height:1.45}
-.ship .sd{font-size:11px;color:var(--dust);line-height:1.5;margin-top:3px}
 /* agents */
-.agent{border:1px solid var(--line);background:var(--steel);padding:10px;margin-bottom:10px}
-.agent .ah{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.14em}
-.agent .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);animation:pulse 1.6s infinite}
+.agent{border:1px solid var(--line);border-left:3px solid var(--dust);background:var(--steel);padding:11px 12px;margin-bottom:10px;transition:border-color .3s}
+.agent.busy{border-left-color:var(--amber)}
+.agent .ah{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.12em}
+.agent .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 1.6s infinite;flex:none}
 .agent .dot.idle{background:var(--dust);animation:none}
 .agent .dot.busy{background:var(--amber)}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(123,216,138,.5)}50%{box-shadow:0 0 0 5px rgba(123,216,138,0)}}
-.agent .an{color:var(--concrete)} .agent .ar{color:var(--dust);margin-left:auto}
-.agent .atask{font-size:11px;color:var(--dust);margin-top:6px;line-height:1.5}
-#radio{font-family:'IBM Plex Mono';font-size:10.5px;line-height:1.85;color:#8B93A6;background:#0A0D13;border:1px solid var(--line);padding:10px;height:190px;overflow-y:auto;scrollbar-width:thin}
-#radio .t{color:#3E4658;margin-right:8px}
-#radio .who{color:var(--amber)}
-#radio .fx{color:var(--red)} #radio .okx{color:var(--ok)} #radio .shipx{color:var(--tracer)}
-/* content plan */
-.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;min-width:700px}
-.day{border:1px solid var(--line);background:rgba(11,14,19,.4);min-height:150px;padding:7px}
-.day h5{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.2em;color:var(--dust);margin-bottom:7px}
-.day h5 b{color:var(--amber)}
-.drop{border:1px solid var(--line);background:var(--steel);padding:6px;font-size:10.5px;line-height:1.35;margin-bottom:6px;color:var(--concrete)}
-.drop .tag{display:block;font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.14em;margin-top:4px}
-.drop.vid .tag{color:var(--red)} .drop.update .tag{color:var(--ok)} .drop.social .tag{color:var(--tracer)} .drop.event .tag{color:var(--amber)}
-/* map */
-#mapwrap{position:relative}
-#citymap{display:block;background:#0A0D13;border:1px solid var(--line);width:100%;height:340px;cursor:crosshair}
-#maptip{position:absolute;pointer-events:none;background:#161C29;border:1px solid var(--amber-dim);padding:7px 9px;font-family:'IBM Plex Mono';font-size:10px;color:var(--concrete);display:none;z-index:5;max-width:230px;line-height:1.5}
-#maptip .tt{color:var(--amber);letter-spacing:.14em}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,170,60,.5)}50%{box-shadow:0 0 0 6px rgba(255,170,60,0)}}
+.agent .an{color:#EDEFF4;font-weight:600} .agent .ar{color:var(--dust);margin-left:auto;font-size:9px;letter-spacing:.14em}
+.agent .atask{font-size:11.5px;color:var(--concrete);margin-top:8px;line-height:1.5}
+.agent.idle .atask{color:var(--dust)}
+.agent .state{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.2em;color:var(--dust);margin-top:7px;display:flex;gap:8px;align-items:center}
+.agent.busy .state .lbl{color:var(--amber)}
+.agtag{display:inline-block;font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.12em;padding:1px 6px;border:1px solid var(--line);margin-right:6px}
+.agtag.okx{color:var(--ok);border-color:#2c5136} .agtag.fx{color:var(--red);border-color:#5c2424}
+.agtag.shipx{color:var(--tracer);border-color:#2c4358} .agtag.out{color:var(--dust)}
 /* game health */
 .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:9px}
 .kpi .cell{border:1px solid var(--line);background:linear-gradient(160deg,#181f2e,#10141d);padding:12px 12px 10px;position:relative;overflow:hidden}
@@ -225,15 +207,49 @@ body::after{
 .rejmenu button.plain{color:var(--dust);border-top:1px solid var(--line)}
 .rejmenu input{display:block;width:100%;box-sizing:border-box;background:#0A0D13;border:0;border-top:1px solid var(--line);color:var(--concrete);font-family:'IBM Plex Mono';font-size:11px;padding:7px 10px}
 .rejmenu input::placeholder{color:var(--dust)}
-/* dispatch log */
-#dispatch{font-family:'IBM Plex Mono';font-size:10.5px;line-height:1.85;color:#8B93A6;background:#0A0D13;border:1px solid var(--line);padding:10px;height:360px;overflow-y:auto;scrollbar-width:thin}
-#dispatch .t{color:#3E4658;margin-right:8px}
-#dispatch .who{color:var(--amber)}
-#dispatch .fx{color:var(--red)} #dispatch .okx{color:var(--ok)} #dispatch .shipx{color:var(--tracer)} #dispatch .out{color:#8B93A6}
-/* terminal */
-#term{font-family:'IBM Plex Mono';font-size:11.5px;line-height:1.8;background:#07090E;border:1px solid var(--line);padding:10px;height:240px;overflow-y:auto}
-#term .p{color:var(--amber)} #term .err{color:var(--red)} #term .out{color:#9AA3B8}
-#termin{width:100%;background:transparent;border:none;outline:none;color:var(--concrete);font-family:'IBM Plex Mono';font-size:11.5px;caret-color:var(--amber)}
+/* publish launchpad */
+.pub-btn{display:inline-block;font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.14em;border:1px solid var(--amber-dim);color:var(--amber);padding:1px 6px;margin-left:2px;cursor:pointer}
+.pub-btn:hover{background:rgba(255,170,60,.12)}
+#pub{position:fixed;inset:0;z-index:905;background:rgba(5,7,11,.64);display:none;align-items:flex-start;justify-content:center;padding-top:8vh;backdrop-filter:blur(3px)}
+#pub.show{display:flex}
+#pubbox{width:min(560px,93vw);max-height:84vh;overflow:auto;background:var(--steel);border:1px solid var(--amber-dim);box-shadow:0 30px 80px rgba(0,0,0,.8);scrollbar-width:thin}
+#pubbox .ph{position:sticky;top:0;background:var(--steel);font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.18em;color:var(--amber);padding:12px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;z-index:2}
+#pubbox .ph .pt{color:var(--concrete);letter-spacing:.02em;font-weight:600}
+#pubbox .ph .x{margin-left:auto;cursor:pointer;color:var(--dust);font-size:14px}
+#pubbox .ph .x:hover{color:var(--red)}
+#pubbody{padding:14px}
+.publabel{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.2em;color:var(--dust);margin:14px 0 6px;display:flex;align-items:center;gap:8px}
+.publabel:first-child{margin-top:0}
+.publabel b{color:var(--amber)}
+#pubcap{width:100%;min-height:118px;background:#0A0D13;border:1px solid var(--line);color:var(--concrete);font-family:'IBM Plex Mono';font-size:12px;line-height:1.6;padding:10px;resize:vertical;caret-color:var(--amber)}
+.pubgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pubup{display:flex;flex-direction:column;align-items:center;gap:5px;padding:13px 6px;border:1px solid var(--line);background:var(--steel2);color:var(--concrete);cursor:pointer;font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.12em;text-align:center}
+.pubup:hover{border-color:var(--amber);color:var(--amber)}
+.pubup.pri{border-color:var(--amber-dim);box-shadow:inset 0 0 0 1px rgba(255,170,60,.14)}
+.pubup .pi{font-size:18px;line-height:1}
+.pubup .ps{font-size:8px;letter-spacing:.1em;color:var(--dust)}
+.pubrow2{display:flex;gap:8px;margin-top:16px}
+.pubbtn{flex:1;font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.14em;border:1px solid var(--line);color:var(--dust);background:transparent;padding:11px;cursor:pointer}
+.pubbtn:hover{border-color:var(--amber);color:var(--amber)}
+.pubbtn.go{border-color:#2c5136;color:var(--ok)} .pubbtn.go:hover{background:rgba(123,216,138,.1)}
+/* analytics */
+.an-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.an-plat{border:1px solid var(--line);border-top-width:2px;background:linear-gradient(160deg,#181f2e,#10141d);padding:11px 12px}
+.an-plat.tiktok{border-top-color:var(--tracer)} .an-plat.youtube{border-top-color:var(--red)} .an-plat.instagram{border-top-color:#B784F0}
+.an-plat .pn{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.16em;color:var(--dust)}
+.an-plat .pf{font-family:'Chakra Petch';font-weight:700;font-size:22px;color:#EDEFF4;line-height:1.05;margin-top:5px}
+.an-plat .pl{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.14em;color:var(--dust);margin-top:1px}
+.an-plat .pv{font-family:'IBM Plex Mono';font-size:10px;color:var(--amber);margin-top:7px}
+#anchart{display:block;width:100%;height:140px;background:#0A0D13;border:1px solid var(--line);margin-top:6px}
+.an-leg{display:flex;gap:14px;font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.1em;color:var(--dust);margin-top:7px}
+.an-leg i{display:inline-block;width:9px;height:3px;margin-right:5px;vertical-align:middle}
+.an-top{display:flex;gap:10px;align-items:baseline;padding:8px 2px;border-bottom:1px dashed #1c2434;font-size:12px}
+.an-top .rk{font-family:'IBM Plex Mono';font-size:11px;color:var(--amber);min-width:20px}
+.an-top .tt{color:var(--concrete);flex:1;line-height:1.4}
+.an-top .vv{font-family:'IBM Plex Mono';font-size:10px;color:var(--dust);white-space:nowrap}
+.an-top .pill{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.1em;padding:1px 5px;border:1px solid var(--line)}
+.an-top .pill.tiktok{color:var(--tracer);border-color:#2c4358} .an-top .pill.youtube{color:var(--red);border-color:#5c2424}
+.an-top .pill.shorts{color:var(--amber);border-color:var(--amber-dim)} .an-top .pill.instagram{color:#B784F0;border-color:#5b3f7a}
 /* palette */
 #pal{position:fixed;inset:0;z-index:900;background:rgba(5,7,11,.6);display:none;align-items:flex-start;justify-content:center;padding-top:14vh;backdrop-filter:blur(3px)}
 #pal.show{display:flex}
@@ -279,8 +295,24 @@ body::after{
 
 <!-- COMMAND PALETTE -->
 <div id="pal"><div id="palbox">
-  <input id="palin" placeholder="type a command… (open map / focus tasks / boot / help)" autocomplete="off">
+  <input id="palin" placeholder="type a command… (focus tasks / open analytics / boot / help)" autocomplete="off">
   <div id="pallist"></div>
+</div></div>
+
+<!-- PUBLISH LAUNCHPAD -->
+<div id="pub"><div id="pubbox">
+  <div class="ph">PUBLISH · <span class="pt" id="pub-title"></span><span class="x" id="pub-x">×</span></div>
+  <div id="pubbody">
+    <div class="publabel">CAPTION <b id="pub-plat"></b> · tap to edit</div>
+    <textarea id="pubcap" spellcheck="false"></textarea>
+    <div class="pubrow2"><button class="pubbtn" id="pub-copy">⧉ COPY CAPTION</button></div>
+    <div class="publabel">OPEN UPLOADER — drop your clip, paste the caption</div>
+    <div class="pubgrid" id="pub-uploaders"></div>
+    <div class="pubrow2">
+      <button class="pubbtn go" id="pub-posted">MARK POSTED →</button>
+      <button class="pubbtn" id="pub-close">CLOSE</button>
+    </div>
+  </div>
 </div></div>
 <script>
 /* =====================  DATA  ===================== */
@@ -290,6 +322,7 @@ const DATA = {
     stats:{ guns:16, turfs:4, prompts:111, cars:8, dealers:7, heists:2 }
   },
   stats: null,   // live Roblox stats, filled from feed.meta.stats by the heartbeat
+  analytics: null,  // social analytics, filled from feed.meta.analytics by the analytics sync (see UPLOAD_ANALYTICS_PLAN.md)
   contentAgent: {status:"idle", note:"standing by", updated:null},  // filled from feed.meta.contentAgent
   bugs: [
     {id:"vault-loadout-dupe", sev:"high", status:"open", t:"vault↔loadout dupe", note:"deposit gun → reset → collect bag = extra gun. PlayerInventory snapshot not synced on vault Deposit."},
@@ -397,6 +430,7 @@ async function pullFeed(){
     if(Array.isArray(j.ship))  DATA.ship  = j.ship;
     if(Array.isArray(j.bugs))  DATA.bugs  = j.bugs;
     if(j.meta && 'stats' in j.meta) DATA.stats = j.meta.stats;
+    if(j.meta && 'analytics' in j.meta) DATA.analytics = j.meta.analytics;
     if(j.meta && j.meta.contentAgent) DATA.contentAgent = j.meta.contentAgent;
     if(j.tasks) DATA.feedTasks = j.tasks;       // shared board (agents write this); the human board lives in localStorage
     if(Array.isArray(j.content)) DATA.feedContent = j.content;
@@ -577,7 +611,7 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
 
 /* ---- GAME HEALTH (live Roblox stats) ---- */
 (function(){
-  const b = mkWin('health','GAME HEALTH','◉', 18, 56, Math.min(440,W*.34), 400, true);
+  const b = mkWin('health','GAME HEALTH','◉', W*.74, 56, Math.min(420,W*.24), 300, true);
   const g = DATA.game;
   const fmt = n => n>=1e6 ? (n/1e6).toFixed(n>=1e7?0:1)+'M' : n>=1e3 ? (n/1e3).toFixed(n>=1e4?0:1)+'k' : (''+n);
   function render(){
@@ -609,129 +643,9 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   window.addEventListener('feed:update', render);
 })();
 
-/* ---- CITY MAP (3D isometric recon) ---- */
-(function(){
-  const b = mkWin('map','CITY MAP','▦', Math.min(470,W*.36), 56, Math.min(560,W*.42), 430, true);
-  b.innerHTML = `<div class="eyebrow">HEADTAP WORLD · 3D RECON</div>
-    <div id="mapwrap"><canvas id="citymap"></canvas><div id="maptip"></div></div>
-    <div class="dim mono" style="font-size:9px;letter-spacing:.14em;margin-top:8px">DRAG TO ORBIT · HOVER A TOWER · AMBER=TURF · RED=JOB · BLUE=DEALER/TARGET · GREEN=LAW</div>`;
-  const cv = document.getElementById('citymap'), ctx = cv.getContext('2d');
-  const tip = document.getElementById('maptip');
-  cv.style.cursor = 'grab';
-
-  /* ---- palette helpers ---- */
-  const STEEL=[26,34,49];
-  const h2r=h=>{h=h.replace('#','');return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];};
-  const mix=(a,c,t)=>[a[0]+(c[0]-a[0])*t,a[1]+(c[1]-a[1])*t,a[2]+(c[2]-a[2])*t];
-  const shade=(c,f)=>`rgb(${Math.min(255,c[0]*f)|0},${Math.min(255,c[1]*f)|0},${Math.min(255,c[2]*f)|0})`;
-  const rgba=(c,a)=>`rgba(${c[0]|0},${c[1]|0},${c[2]|0},${a})`;
-  const BOOST={ '#FFAA3C':0.46, '#E23B3B':0.30, '#9FD1FF':0.22, '#7BD88A':0.28 };
-
-  /* ---- build the city once: extruded blocks clustered on the real POI formation ---- */
-  const WORLD=2.0, GN=13, cs=WORLD/GN, foot=cs*0.66, half=foot/2;
-  const hash=(i,j)=>{let n=(i*73856093)^(j*19349663);n=(n<<13)^n;return ((n*(n*n*15731+789221)+1376312589)&0x7fffffff)/0x7fffffff;};
-  const cells=[];
-  for(let i=0;i<GN;i++)for(let j=0;j<GN;j++){
-    const ncx=(i+0.5)/GN, ncy=(j+0.5)/GN;
-    const wx=(ncx-0.5)*WORLD, wy=(ncy-0.5)*WORLD;
-    let col=STEEL, infl=0, hgt=0.05+hash(i,j)*0.09;
-    DATA.map.pois.forEach(p=>{
-      const d=Math.hypot(p.x-ncx,p.y-ncy), w=Math.max(0,1-d/0.14);
-      if(w>infl){ infl=w; col=mix(STEEL,h2r(p.c),Math.min(0.82,w*0.9)); }
-      hgt += w*(BOOST[p.c]||0.2)*(0.6+0.6*hash(i*3+7,j*5+1));
-    });
-    cells.push({wx,wy,col,hgt:Math.min(hgt,0.62)});
-  }
-
-  /* ---- camera / projection ---- */
-  let t=0, A=0.62, drag=false, lastX=0, idle=0;
-  const kSy=0.52, kZ=0.86, autoV=0.0022;
-  let cx=0, cy=0, SC=1;
-  function size(){ cv.width=cv.clientWidth*2; cv.height=340*2; SC=cv.width/3.1; cx=cv.width/2; cy=cv.height*0.60; }
-  size(); addEventListener('resize', size);
-  function proj(wx,wy,z,ca,sa){ const rx=wx*ca-wy*sa, ry=wx*sa+wy*ca; return [cx+rx*SC, cy+ry*SC*kSy-z*SC*kZ, ry]; }
-
-  function drawGround(ca,sa){
-    const g=[proj(-1,-1,0,ca,sa),proj(1,-1,0,ca,sa),proj(1,1,0,ca,sa),proj(-1,1,0,ca,sa)];
-    ctx.fillStyle='#080A0F'; ctx.beginPath(); ctx.moveTo(g[0][0],g[0][1]);
-    for(let k=1;k<4;k++)ctx.lineTo(g[k][0],g[k][1]); ctx.closePath(); ctx.fill();
-    ctx.strokeStyle='rgba(35,44,62,.45)'; ctx.lineWidth=1;
-    for(let k=0;k<=GN;k++){ const u=(k/GN-0.5)*WORLD;
-      let a=proj(u,-1,0,ca,sa),c=proj(u,1,0,ca,sa); ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(c[0],c[1]);ctx.stroke();
-      a=proj(-1,u,0,ca,sa);c=proj(1,u,0,ca,sa); ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(c[0],c[1]);ctx.stroke(); }
-    DATA.map.pois.forEach(p=>{ const wx=(p.x-0.5)*WORLD, wy=(p.y-0.5)*WORLD, r=0.13*WORLD;
-      const q=[proj(wx-r,wy-r,0,ca,sa),proj(wx+r,wy-r,0,ca,sa),proj(wx+r,wy+r,0,ca,sa),proj(wx-r,wy+r,0,ca,sa)];
-      ctx.fillStyle=rgba(h2r(p.c),0.055); ctx.beginPath();ctx.moveTo(q[0][0],q[0][1]);
-      for(let k=1;k<4;k++)ctx.lineTo(q[k][0],q[k][1]); ctx.closePath(); ctx.fill(); });
-  }
-
-  const Lx=-0.5, Ly=-0.72;
-  function drawBox(cell,ca,sa){
-    const {wx,wy,col,hgt}=cell;
-    const cor=[[wx-half,wy-half],[wx+half,wy-half],[wx+half,wy+half],[wx-half,wy+half]];
-    const T=cor.map(c=>proj(c[0],c[1],hgt,ca,sa)), B=cor.map(c=>proj(c[0],c[1],0,ca,sa));
-    const sides=[[0,1,0,-1],[1,2,1,0],[2,3,0,1],[3,0,-1,0]];
-    sides.forEach(s=>s.d=(B[s[0]][2]+B[s[1]][2])/2); sides.sort((a,c)=>c.d-a.d);
-    sides.forEach(s=>{ const nrx=s[2]*ca-s[3]*sa, nry=s[2]*sa+s[3]*ca;
-      const lf=Math.max(0,nrx*Lx+nry*Ly); ctx.fillStyle=shade(col,0.30+0.60*lf);
-      ctx.beginPath();ctx.moveTo(T[s[0]][0],T[s[0]][1]);ctx.lineTo(T[s[1]][0],T[s[1]][1]);
-      ctx.lineTo(B[s[1]][0],B[s[1]][1]);ctx.lineTo(B[s[0]][0],B[s[0]][1]);ctx.closePath();ctx.fill(); });
-    ctx.fillStyle=shade(col,1.08); ctx.beginPath();ctx.moveTo(T[0][0],T[0][1]);
-    for(let k=1;k<4;k++)ctx.lineTo(T[k][0],T[k][1]); ctx.closePath(); ctx.fill();
-    ctx.strokeStyle='rgba(0,0,0,.35)'; ctx.lineWidth=1; ctx.stroke();
-  }
-
-  let nodes=[];
-  function drawPins(ca,sa){
-    const arr=DATA.map.pois.map(p=>{ const wx=(p.x-0.5)*WORLD, wy=(p.y-0.5)*WORLD;
-      const base=proj(wx,wy,0,ca,sa), top=proj(wx,wy,0.74,ca,sa); return {p,base,top,ry:base[2]}; });
-    arr.sort((a,c)=>a.ry-c.ry);
-    arr.forEach(o=>{ const c=h2r(o.p.c);
-      const pulse=reduced?0.5:(Math.sin(t*2.2+o.p.x*9)*.5+.5);
-      ctx.strokeStyle=rgba(c,0.5-pulse*0.34); ctx.lineWidth=2; ctx.beginPath();
-      for(let k=0;k<=24;k++){ const a2=k/24*Math.PI*2, rr=10+pulse*16;
-        const gx=o.base[0]+Math.cos(a2)*rr, gy=o.base[1]+Math.sin(a2)*rr*kSy; k?ctx.lineTo(gx,gy):ctx.moveTo(gx,gy); } ctx.stroke();
-      ctx.strokeStyle=rgba(c,0.9); ctx.lineWidth=3; ctx.beginPath();ctx.moveTo(o.base[0],o.base[1]);ctx.lineTo(o.top[0],o.top[1]);ctx.stroke();
-      ctx.fillStyle=rgba(c,0.16); ctx.beginPath();ctx.arc(o.top[0],o.top[1],13,0,7);ctx.fill();
-      ctx.fillStyle=shade(c,1.0); ctx.beginPath();ctx.arc(o.top[0],o.top[1],5,0,7);ctx.fill();
-      ctx.font='600 16px IBM Plex Mono'; const lw=ctx.measureText(o.p.n).width;
-      ctx.fillStyle='rgba(9,12,18,.72)'; ctx.fillRect(o.top[0]+9,o.top[1]-16,lw+10,20);
-      ctx.fillStyle=rgba(mix(c,[255,255,255],0.35),0.95); ctx.fillText(o.p.n,o.top[0]+14,o.top[1]-1);
-      o.sx=o.top[0]; o.sy=o.top[1]; });
-    return arr;
-  }
-
-  function draw(){
-    t+=0.016;
-    if(!drag && !reduced){ idle++; if(idle>40) A+=autoV; }
-    const ca=Math.cos(A), sa=Math.sin(A);
-    ctx.clearRect(0,0,cv.width,cv.height);
-    drawGround(ca,sa);
-    cells.map(c=>({c,ry:c.wx*sa+c.wy*ca})).sort((a,d)=>a.ry-d.ry).forEach(o=>drawBox(o.c,ca,sa));
-    nodes=drawPins(ca,sa);
-    requestAnimationFrame(draw);
-  }
-  draw();
-
-  cv.addEventListener('pointerdown',e=>{ drag=true; lastX=e.clientX; cv.style.cursor='grabbing'; if(cv.setPointerCapture)cv.setPointerCapture(e.pointerId); });
-  cv.addEventListener('pointerup',()=>{ drag=false; idle=0; cv.style.cursor='grab'; });
-  cv.addEventListener('pointermove', e=>{
-    const r=cv.getBoundingClientRect();
-    if(drag){ A+=(e.clientX-lastX)*0.01; lastX=e.clientX; idle=0; tip.style.display='none'; return; }
-    const sc=cv.width/r.width, mx=(e.clientX-r.left)*sc, my=(e.clientY-r.top)*sc;
-    let hit=null, bd=1e9;
-    nodes.forEach(o=>{ const d=Math.hypot(o.sx-mx,o.sy-my); if(d<bd&&d<34){bd=d;hit=o.p;} });
-    if(hit){ tip.style.display='block';
-      tip.style.left=Math.min(e.clientX-r.left+14, r.width-230)+'px'; tip.style.top=(e.clientY-r.top+10)+'px';
-      tip.innerHTML=`<div class="tt">${hit.n}</div>${hit.d}`;
-    } else tip.style.display='none';
-  });
-  cv.addEventListener('pointerleave',()=>{ tip.style.display='none'; });
-})();
-
 /* ---- TASK BOARD (persistent, local-first) ---- */
 (function(){
-  const b = mkWin('tasks','TASK BOARD','▤', 40, H*.56, Math.min(880,W*.62), 370, true);
+  const b = mkWin('tasks','TASK BOARD','▤', Math.min(392,W*.30), H*.50, Math.min(620,W*.42), 330, true);
   const COLS=['BACKLOG','IN PROGRESS','TESTING','SHIPPED'], PRS=['low','med','high'];
   const KEY='ybos.tasks.v1';
   const clone=t=>({t:t.t, col:t.col|0, pr:t.pr||'med', tags:(t.tags||[]).slice()});
@@ -786,28 +700,49 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   render();
 })();
 
-/* ---- SHIPLOG ---- */
+/* ---- AGENTS (live crew — one card per agent, derived from feed.radio + contentAgent) ---- */
 (function(){
-  const b = mkWin('ship','SHIPLOG','▣', W*.55, H*.30, Math.min(500,W*.38), 400, false);
-  b.innerHTML = `<div class="eyebrow">EVERYTHING THAT LEFT THE GARAGE · NEWEST FIRST</div>` +
-    DATA.ship.map(s=>`
-      <div class="ship ${s.k}">
-        <div class="d">${s.d}</div><div class="marker"></div>
-        <div><div class="st">${s.t}</div><div class="sd">${s.s}</div></div>
-      </div>`).join('');
-})();
-
-/* ---- DISPATCH LOG (real agent messages from feed.radio) ---- */
-(function(){
-  const b = mkWin('dispatch','DISPATCH LOG','⌁', W*.62, 56, Math.min(430,W*.34), 430, true);
-  b.innerHTML = `<div class="eyebrow">AGENT DISPATCH · LIVE FROM FEED · NEWEST FIRST</div><div id="dispatch"></div>`;
-  const log=b.querySelector('#dispatch');
+  const b = mkWin('agents','AGENTS','◎', 18, 56, Math.min(380,W*.30), 452, true);
   const esc=s=>(''+s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-  const time=ts=>{ if(!ts) return '--:--:--'; try{ return new Date(ts).toLocaleTimeString('en-US',{hour12:false}); }catch(e){ return '--:--:--'; } };
+  const ago=ts=>{ if(!ts) return ''; const s=(Date.now()-new Date(ts).getTime())/1000;
+    if(s<60) return 'just now'; if(s<3600) return Math.round(s/60)+'m ago';
+    if(s<86400) return Math.round(s/3600)+'h ago'; return Math.round(s/86400)+'d ago'; };
+  // fixed roster; live state is pulled from the newest radio line for each 'who'
+  const ROSTER=[
+    {key:'PRIME',   name:'PRIME',           role:'LEAD ENGINEER'},
+    {key:'STUDIO',  name:'STUDIO',          role:'ROBLOX STUDIO'},
+    {key:'QA',      name:'QA',              role:'EXPLOIT HUNT'},
+    {key:'CONTENT', name:'content-creator', role:'CONTENT PIPELINE'},
+    {key:'CRON',    name:'CRON',            role:'DAILY HEARTBEAT'},
+  ];
+  const TAGWORD={okx:'VERIFIED',fx:'BUG FOUND',shipx:'SHIPPED',out:'ROUTINE'};
+  const FRESH=6*3600*1000; // treat activity in the last 6h as "on duty"
   function render(){
-    log.innerHTML = (DATA.radio||[]).map(r=>
-      `<div><span class="t">${time(r.ts)}</span><span class="who">[${esc(r.who||'?')}]</span> <span class="${r.cls||'out'}">${esc(r.msg||'')}</span></div>`
-    ).join('') || `<div class="dim">no dispatch yet</div>`;
+    const radio=DATA.radio||[], ca=DATA.contentAgent||{};
+    let active=0;
+    const cards=ROSTER.map(a=>{
+      const last=radio.find(r=>(r.who||'').toUpperCase()===a.key);
+      let busy=false, note='no activity logged yet', ts=null, cls='out';
+      if(a.key==='CONTENT'){
+        busy = ca.status==='working';
+        note = ca.note || (last?last.msg:'standing by');
+        ts   = ca.updated || (last?last.ts:null);
+        cls  = last?(last.cls||'out'):'out';
+      } else if(last){
+        note=last.msg||note; ts=last.ts||null; cls=last.cls||'out';
+        busy = !!ts && (Date.now()-new Date(ts).getTime()) < FRESH;
+      }
+      if(busy) active++;
+      const t=ago(ts);
+      return `<div class="agent ${busy?'busy':'idle'}">
+        <div class="ah"><span class="dot ${busy?'busy':'idle'}"></span>
+          <span class="an">${esc(a.name)}</span><span class="ar">${a.role}</span></div>
+        <div class="atask">${esc(note)}</div>
+        <div class="state"><span class="agtag ${cls}">${TAGWORD[cls]||'—'}</span>
+          <span class="lbl">${busy?'ON DUTY':'IDLE'}</span>${t?`<span style="margin-left:auto">${t}</span>`:''}</div>
+      </div>`;
+    }).join('');
+    b.innerHTML=`<div class="eyebrow">CREW ON DUTY · ${active}/${ROSTER.length} ACTIVE · LIVE FROM FEED</div>${cards}`;
   }
   render();
   window.addEventListener('feed:update', render);
@@ -815,7 +750,7 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
 
 /* ---- BUGS (open threats from feed.bugs) ---- */
 (function(){
-  const b = mkWin('bugs','BUGS','⚠', W*.30, H*.14, Math.min(460,W*.36), 400, true);
+  const b = mkWin('bugs','BUGS','⚠', W*.74, 372, Math.min(420,W*.24), 340, true);
   const ord={open:0,watch:1,killed:2};
   const esc=s=>(''+s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
   function render(){
@@ -834,9 +769,24 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
 
 /* ---- CONTENT STUDIO (persistent pipeline + live agent activity) ---- */
 (function(){
-  const b = mkWin('content','CONTENT','▶', W*.18, H*.22, Math.min(940,W*.66), 460, true);
+  const b = mkWin('content','CONTENT','▶', Math.min(392,W*.30), 56, Math.min(620,W*.42), 470, true);
   const COLS=['IDEAS','SCRIPTED','FILMING','POSTED'], FMTS=['short','long','teaser','trend'];
   const PLATS=['tiktok','shorts','yt','ig'], PLABEL={tiktok:'TIKTOK',shorts:'SHORTS',yt:'YOUTUBE',ig:'INSTAGRAM'};
+  // ---- publish launchpad config ----
+  const PKEY='ybos.posts.v1';
+  const HTAGS={
+    tiktok:['#roblox','#headtap','#robloxfps','#fyp','#robloxedit','#gaming'],
+    shorts:['#roblox','#headtap','#shorts','#robloxfps','#robloxedit'],
+    yt:['#roblox','#headtap','#robloxfps','#robloxedit','#robloxgameplay'],
+    ig:['#roblox','#headtap','#reels','#robloxreels','#robloxfps','#gaming']
+  };
+  const UPLOADERS=[
+    {key:'tiktok', label:'TIKTOK',    ic:'♪', url:'https://www.tiktok.com/tiktokstudio/upload'},
+    {key:'yt',     label:'YOUTUBE',   ic:'▶', url:'https://www.youtube.com/upload'},
+    {key:'ig',     label:'INSTAGRAM', ic:'◎', url:'https://www.instagram.com/'}
+  ];
+  const capFor=t=>{ const tags=(HTAGS[t.plat]||HTAGS.tiktok).join(' ');
+    const parts=[t.t]; if(t.hook) parts.push(t.hook); parts.push(tags); return parts.join('\n\n'); };
   const KEY='ybos.content.v1', RKEY='ybos.reject.v1';
   const REASONS=[['generic','too generic'],['offbrand','off-brand / wrong vibe'],['overdone','overdone / already did it'],['unfilmable','not filmable right now'],['platform','wrong platform'],['hook','weak hook'],['meh','just not feeling it']];
   const teachCount=()=>{ try{ return JSON.parse(localStorage.getItem(RKEY)||'[]').length; }catch(e){ return 0; } };
@@ -893,11 +843,12 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
         c.innerHTML=`<span class="del" title="delete">×</span>
           <div class="ct">${esc(t.t)}</div>
           ${t.hook?`<div class="hk">${esc(t.hook)}</div>`:''}
-          <div class="cm"><span class="plat-badge pl-${pl} plat-cyc" title="click: change platform">${PLABEL[pl]}</span><span class="ctag ${t.fmt} fmt-cyc" title="click: change format">${(t.fmt||'').toUpperCase()}</span></div>`;
+          <div class="cm"><span class="plat-badge pl-${pl} plat-cyc" title="click: change platform">${PLABEL[pl]}</span><span class="ctag ${t.fmt} fmt-cyc" title="click: change format">${(t.fmt||'').toUpperCase()}</span><span class="pub-btn" title="publish — caption + open uploaders">⤴ PUBLISH</span></div>`;
         c.addEventListener('dragstart',e=>e.dataTransfer.setData('text', idx));
         c.querySelector('.del').addEventListener('click',ev=>{ ev.stopPropagation(); openReject(c, t); });
         c.querySelector('.fmt-cyc').addEventListener('click',ev=>{ ev.stopPropagation(); t.fmt=FMTS[(FMTS.indexOf(t.fmt)+1)%FMTS.length]; save(); render(); });
         c.querySelector('.plat-cyc').addEventListener('click',ev=>{ ev.stopPropagation(); t.plat=PLATS[(PLATS.indexOf(pl)+1)%PLATS.length]; save(); render(); });
+        c.querySelector('.pub-btn').addEventListener('click',ev=>{ ev.stopPropagation(); openPublish(t); });
         col.appendChild(c);
       });
       col.addEventListener('dragover',e=>{ e.preventDefault(); col.classList.add('dragover'); });
@@ -925,6 +876,38 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
     inp.addEventListener('keydown',ev=>{ ev.stopPropagation(); if(ev.key==='Enter'){ const v=inp.value.trim(); if(v) drop('custom', v); } });
     setTimeout(()=>inp.focus(),0);
   }
+  // ---- publish launchpad ----
+  const pub=document.getElementById('pub');
+  function closePub(){ pub.classList.remove('show'); }
+  function markPosted(t){
+    t.col=3; t.postedAt=new Date().toISOString();
+    try{ let log=JSON.parse(localStorage.getItem(PKEY)||'[]');
+      log.unshift({t:t.t, plat:t.plat, fmt:t.fmt, postedAt:t.postedAt}); log=log.slice(0,300);
+      localStorage.setItem(PKEY, JSON.stringify(log)); }catch(e){}
+    save(); render();
+  }
+  function openPublish(t){
+    const pl=PLATS.includes(t.plat)?t.plat:'tiktok', primary=(pl==='shorts'?'yt':pl);
+    document.getElementById('pub-title').textContent=t.t;
+    document.getElementById('pub-plat').textContent='· '+(PLABEL[pl]||'');
+    const cap=document.getElementById('pubcap'); cap.value=capFor(t);
+    const up=document.getElementById('pub-uploaders'); up.innerHTML='';
+    UPLOADERS.forEach(u=>{
+      const a=document.createElement('div'); a.className='pubup'+(u.key===primary?' pri':'');
+      a.innerHTML=`<span class="pi">${u.ic}</span>${u.label}<span class="ps">${u.key===primary?'★ this card':'cross-post'}</span>`;
+      a.onclick=()=>window.open(u.url,'_blank','noopener');
+      up.appendChild(a);
+    });
+    document.getElementById('pub-copy').onclick=async()=>{
+      try{ await navigator.clipboard.writeText(cap.value); flash('caption copied — paste it into the uploader'); }
+      catch(e){ cap.focus(); cap.select(); flash('select + copy the caption (clipboard blocked)'); } };
+    document.getElementById('pub-posted').onclick=()=>{ markPosted(t); closePub(); flash('“'+t.t+'” → POSTED · logged for analytics'); };
+    pub.classList.add('show');
+  }
+  document.getElementById('pub-x').onclick=closePub;
+  document.getElementById('pub-close').onclick=closePub;
+  pub.addEventListener('click',e=>{ if(e.target===pub) closePub(); });
+  addEventListener('keydown',e=>{ if(e.key==='Escape'&&pub.classList.contains('show')) closePub(); });
   function updateTeach(){ const el=b.querySelector('#ctteach'); if(el) el.textContent='TASTE ✎ '+teachCount(); }
   const add=()=>{ const inp=b.querySelector('#ctnew'), v=inp.value.trim(); if(!v)return;
     ideas.unshift({t:v,hook:'',fmt:'short',plat:'tiktok',col:0}); inp.value=''; save(); render(); renderTop(); };
@@ -943,49 +926,64 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   window.addEventListener('feed:update', renderTop);
 })();
 
-/* ---- MEMORY (CLAUDE.md project memory) ---- */
+/* ---- ANALYTICS (social stats, auto-pulled into feed.meta.analytics by the sync job) ---- */
 (function(){
-  const b = mkWin('mem','MEMORY','◈', W*.40, H*.20, Math.min(520,W*.42), 480, true);
-  b.innerHTML = `
-    <div class="gamecard" style="padding:14px">
-      <div class="eyebrow">CLAUDE CODE · PROJECT MEMORY</div>
-      <div style="font-family:'Archivo Black';font-size:20px;color:#EDEFF4;letter-spacing:.02em">CLAUDE.md</div>
-      <div class="gsub">THE RULES EVERY AGENT READS BEFORE TOUCHING THIS REPO</div>
-    </div>
-    <div class="rule"></div>
-
-    <div class="eyebrow">TWO FILES THAT MATTER</div>
-    <div style="font-size:12px;line-height:1.7;margin-bottom:6px">
-      <span class="chip amber">EDIT + VALIDATE</span>
-      <b class="mono" style="color:var(--concrete)">index.html</b> — the OS webpage. Editable, but every
-      <span class="mono" style="color:var(--amber)">&lt;script&gt;</span> block must pass a syntax check, the
-      <span class="mono" style="color:var(--amber)">FEED_URL</span> wiring must stay intact, and a broken commit
-      blank-screens the whole site.
-    </div>
-    <div style="font-size:12px;line-height:1.7">
-      <span class="chip ok">LIVE DATA</span>
-      <b class="mono" style="color:var(--concrete)">feed.json</b> — the data the OS polls every 15s.
-    </div>
-    <div class="rule"></div>
-
-    <div class="eyebrow">FEED.JSON · RADIO CLASS LEGEND</div>
-    <div style="font-size:11px;line-height:2;font-family:'IBM Plex Mono'">
-      <span style="color:var(--ok)">●</span> okx — verified / fix &nbsp;&nbsp;
-      <span style="color:var(--red)">●</span> fx — bug / exploit<br>
-      <span style="color:var(--tracer)">●</span> shipx — shipped &nbsp;&nbsp;
-      <span style="color:var(--dust)">●</span> out — routine
-    </div>
-    <div class="dim" style="font-size:11px;line-height:1.6;margin-top:8px">
-      radio[] prepend newest · tasks[] col 0–3 (backlog→shipped) · ship[] prepend newest · meta.updated = now on every commit
-    </div>
-    <div class="rule"></div>
-
-    <div class="eyebrow">DAILY HEARTBEAT</div>
-    <div class="dim" style="font-size:11.5px;line-height:1.65">
-      git pull first — never clobber other agents — then append ONE
-      <b class="mono" style="color:var(--amber)">CRON</b> · <b class="mono" style="color:var(--dust)">out</b>
-      line: date, commit count in last 24h, and HEADTAP's Roblox stats if reachable (skip silently if not).
-    </div>`;
+  const b = mkWin('analytics','ANALYTICS','▦', 18, H*.56, Math.min(600,W*.44), Math.min(320,H*.4), true);
+  const esc=s=>(''+s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const fmt=n=> n==null?'—' : n>=1e6?(n/1e6).toFixed(n>=1e7?0:1)+'M' : n>=1e3?(n/1e3).toFixed(n>=1e4?0:1)+'k' : (''+n);
+  const ago=ts=>{ if(!ts) return 'never'; const s=(Date.now()-new Date(ts).getTime())/1000;
+    if(s<60) return 'just now'; if(s<3600) return Math.round(s/60)+'m ago'; if(s<86400) return Math.round(s/3600)+'h ago'; return Math.round(s/86400)+'d ago'; };
+  const PMETA=[
+    {key:'tiktok',    name:'TIKTOK',    cls:'tiktok',    foll:'followers',   fl:'FOLLOWERS'},
+    {key:'youtube',   name:'YOUTUBE',   cls:'youtube',   foll:'subscribers', fl:'SUBSCRIBERS'},
+    {key:'instagram', name:'INSTAGRAM', cls:'instagram', foll:'followers',   fl:'FOLLOWERS'},
+  ];
+  const NP={tiktok:'tiktok',tt:'tiktok',youtube:'youtube',yt:'youtube',shorts:'shorts',instagram:'instagram',ig:'instagram',reels:'instagram'};
+  const SERIES=[['tiktok','#9FD1FF'],['youtube','#E23B3B'],['instagram','#B784F0']];
+  function drawChart(series){
+    const cv=document.getElementById('anchart'); if(!cv) return;
+    const w=cv.clientWidth||520, h=140; cv.width=w; cv.height=h;
+    const ctx=cv.getContext('2d'); ctx.clearRect(0,0,w,h);
+    if(!series || series.length<2){ ctx.fillStyle='#6B7385'; ctx.font="10px 'IBM Plex Mono'"; ctx.fillText('not enough data yet',12,h/2); return; }
+    let max=1; series.forEach(s=>SERIES.forEach(([k])=>{ if(typeof s[k]==='number'&&s[k]>max)max=s[k]; }));
+    const padL=6,padR=6,padT=10,padB=12, gw=w-padL-padR, gh=h-padT-padB;
+    const X=i=>padL+(gw*i/(series.length-1)), Y=v=>padT+gh-(gh*(v||0)/max);
+    ctx.strokeStyle='rgba(35,44,62,.6)'; ctx.lineWidth=1;
+    [0,.5,1].forEach(f=>{ const y=padT+gh*f; ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(w-padR,y); ctx.stroke(); });
+    SERIES.forEach(([k,c])=>{
+      ctx.strokeStyle=c; ctx.lineWidth=1.8; ctx.beginPath();
+      series.forEach((s,i)=>{ const x=X(i),y=Y(s[k]); i?ctx.lineTo(x,y):ctx.moveTo(x,y); });
+      ctx.stroke();
+      const li=series.length-1; ctx.fillStyle=c; ctx.beginPath(); ctx.arc(X(li),Y(series[li][k]),2.2,0,7); ctx.fill();
+    });
+  }
+  function render(){
+    const a=DATA.analytics;
+    if(!a){
+      b.innerHTML=`<div class="eyebrow">SOCIAL ANALYTICS · TIKTOK · YOUTUBE · INSTAGRAM</div>
+        <div class="ghwait"><b>Analytics not wired yet.</b><br>Auto-pull runs as a scheduled sync that authorizes each
+        account and writes numbers into <span class="mono" style="color:var(--amber)">feed.json → meta.analytics</span>.
+        Setup steps live in <span class="mono" style="color:var(--amber)">UPLOAD_ANALYTICS_PLAN.md</span>. Once it runs,
+        followers, views and your top posts land here live — same pipeline as GAME HEALTH.</div>`;
+      return;
+    }
+    const kpis=PMETA.map(p=>{ const d=a[p.key]||{};
+      return `<div class="an-plat ${p.cls}"><div class="pn">${p.name}</div>
+        <div class="pf">${fmt(d[p.foll])}</div><div class="pl">${p.fl}</div>
+        <div class="pv">${fmt(d.views)} views · ${fmt(d.likes)} likes</div></div>`; }).join('');
+    const top=(a.top||[]).slice(0,6).map((x,i)=>{ const pc=NP[(x.plat||'').toLowerCase()]||'tiktok';
+      return `<div class="an-top"><span class="rk">${i+1}</span><span class="pill ${pc}">${pc.toUpperCase()}</span>
+        <span class="tt">${esc(x.t||'')}</span><span class="vv">${fmt(x.views)} views</span></div>`; }).join('');
+    b.innerHTML=`<div class="eyebrow">SOCIAL ANALYTICS · SYNCED ${ago(a.updated).toUpperCase()}</div>
+      <div class="an-grid">${kpis}</div>
+      <div class="publabel" style="margin:14px 0 0">VIEWS · LAST ${(a.series||[]).length} DAYS</div>
+      <canvas id="anchart"></canvas>
+      <div class="an-leg"><span><i style="background:#9FD1FF"></i>TIKTOK</span><span><i style="background:#E23B3B"></i>YOUTUBE</span><span><i style="background:#B784F0"></i>INSTAGRAM</span></div>
+      ${top?`<div class="publabel" style="margin-top:14px">TOP POSTS</div>${top}`:''}`;
+    drawChart(a.series||[]);
+  }
+  render();
+  window.addEventListener('feed:update', render);
 })();
 
 renderDock();
@@ -994,12 +992,9 @@ renderDock();
 updateLiveBadge();
 pullFeed();
 setInterval(pullFeed, POLL_MS);
-/* GAME HEALTH, BUGS, DISPATCH each own their own feed:update listener.
-   Here we refresh SHIPLOG (live from feed.ship) + the topbar shipped count. */
+/* GAME HEALTH, BUGS, AGENTS each own their own feed:update listener.
+   Here we just keep the topbar shipped count in sync. */
 window.addEventListener('feed:update', ()=>{
-  const shipBody=document.getElementById('body-ship');
-  if(shipBody){ shipBody.innerHTML=`<div class="eyebrow">EVERYTHING THAT LEFT THE GARAGE · NEWEST FIRST</div>`+
-    DATA.ship.map(s=>`<div class="ship ${s.k}"><div class="d">${s.d}</div><div class="marker"></div><div><div class="st">${s.t}</div><div class="sd">${s.s}</div></div></div>`).join(''); }
   const sh=document.getElementById('tb-shipped'); if(sh) sh.textContent = DATA.ship.length;
 });
 </script>
