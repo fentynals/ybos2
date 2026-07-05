@@ -198,13 +198,25 @@ body::after{
 .card .del{position:absolute;top:5px;right:6px;color:var(--dust);cursor:pointer;font-size:12px;line-height:1;opacity:0}
 .card:hover .del{opacity:1} .card .del:hover{color:var(--red)}
 .card .pr-cyc{cursor:pointer}
-/* content board */
+/* content studio */
 .card .hk{font-size:10.5px;color:var(--dust);line-height:1.45;margin-top:5px}
 .ctag{display:inline-block;font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.12em;border:1px solid var(--line);padding:1px 5px;margin-right:4px}
 .ctag.short,.ctag.trend{color:var(--tracer);border-color:#2c4358}
 .ctag.long{color:var(--ok);border-color:#2c5136}
 .ctag.teaser{color:var(--amber);border-color:var(--amber-dim)}
-.ctag.fmt-cyc{cursor:pointer} .ctag.plat{color:var(--dust)}
+.ctag.fmt-cyc{cursor:pointer}
+.plat-badge{display:inline-block;font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.12em;padding:1px 6px;border:1px solid;margin-right:4px;cursor:pointer}
+.card.pl-yt{border-left:3px solid var(--red)}       .plat-badge.pl-yt{color:var(--red);border-color:#5c2424}
+.card.pl-tiktok{border-left:3px solid var(--tracer)} .plat-badge.pl-tiktok{color:var(--tracer);border-color:#2c4358}
+.card.pl-shorts{border-left:3px solid var(--amber)}  .plat-badge.pl-shorts{color:var(--amber);border-color:var(--amber-dim)}
+.card.pl-ig{border-left:3px solid #B784F0}           .plat-badge.pl-ig{color:#B784F0;border-color:#5b3f7a}
+/* agent status bar + incoming */
+.cstudio-bar{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(11,14,19,.5);padding:8px 10px;margin-bottom:8px;font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.1em}
+.cstudio-bar .dot{width:8px;height:8px;border-radius:50%;background:var(--dust);flex:none}
+.cstudio-bar.working{border-color:var(--amber-dim)} .cstudio-bar.working .dot{background:var(--ok);animation:pulse 1.6s infinite}
+.cstudio-bar .who{color:var(--concrete)} .cstudio-bar .note{color:var(--amber)} .cstudio-bar .ago{margin-left:auto;color:var(--dust)}
+.cstudio-in{display:flex;align-items:center;gap:10px;border:1px solid var(--amber-dim);background:rgba(255,170,60,.06);padding:7px 10px;margin-bottom:8px;font-size:11px;color:var(--concrete)}
+.cstudio-in .n{color:var(--amber);font-weight:600}
 /* dispatch log */
 #dispatch{font-family:'IBM Plex Mono';font-size:10.5px;line-height:1.85;color:#8B93A6;background:#0A0D13;border:1px solid var(--line);padding:10px;height:360px;overflow-y:auto;scrollbar-width:thin}
 #dispatch .t{color:#3E4658;margin-right:8px}
@@ -270,6 +282,7 @@ const DATA = {
     stats:{ guns:16, turfs:4, prompts:111, cars:8, dealers:7, heists:2 }
   },
   stats: null,   // live Roblox stats, filled from feed.meta.stats by the heartbeat
+  contentAgent: {status:"idle", note:"standing by", updated:null},  // filled from feed.meta.contentAgent
   bugs: [
     {id:"vault-loadout-dupe", sev:"high", status:"open", t:"vault↔loadout dupe", note:"deposit gun → reset → collect bag = extra gun. PlayerInventory snapshot not synced on vault Deposit."},
     {id:"dead-interaction", sev:"high", status:"open", t:"dead-interaction lock missing", note:"PPS still active while dead; needs alive-guards on vault ops."},
@@ -376,6 +389,7 @@ async function pullFeed(){
     if(Array.isArray(j.ship))  DATA.ship  = j.ship;
     if(Array.isArray(j.bugs))  DATA.bugs  = j.bugs;
     if(j.meta && 'stats' in j.meta) DATA.stats = j.meta.stats;
+    if(j.meta && j.meta.contentAgent) DATA.contentAgent = j.meta.contentAgent;
     if(j.tasks) DATA.feedTasks = j.tasks;       // shared board (agents write this); the human board lives in localStorage
     if(Array.isArray(j.content)) DATA.feedContent = j.content;
     if(j.meta && j.meta.version){ const v=document.getElementById('ver'); if(v) v.textContent=j.meta.version; }
@@ -810,28 +824,48 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   window.addEventListener('feed:update', render);
 })();
 
-/* ---- CONTENT BOARD (persistent video-idea pipeline) ---- */
+/* ---- CONTENT STUDIO (persistent pipeline + live agent activity) ---- */
 (function(){
-  const b = mkWin('content','CONTENT','▶', W*.20, H*.26, Math.min(900,W*.64), 390, true);
+  const b = mkWin('content','CONTENT','▶', W*.18, H*.22, Math.min(940,W*.66), 460, true);
   const COLS=['IDEAS','SCRIPTED','FILMING','POSTED'], FMTS=['short','long','teaser','trend'];
+  const PLATS=['tiktok','shorts','yt','ig'], PLABEL={tiktok:'TIKTOK',shorts:'SHORTS',yt:'YOUTUBE',ig:'INSTAGRAM'};
   const KEY='ybos.content.v1';
-  const clone=c=>({t:c.t, hook:c.hook||'', fmt:c.fmt||'short', plat:c.plat||'tiktok', col:c.col|0});
+  const clone=c=>({t:c.t, hook:c.hook||'', fmt:c.fmt||'short', plat:PLATS.includes(c.plat)?c.plat:'tiktok', col:c.col|0});
   const esc=s=>(''+s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+  const norm=s=>(''+s).trim().toLowerCase();
   let ideas=load();
   function load(){ try{ const raw=localStorage.getItem(KEY); if(raw) return JSON.parse(raw); }catch(e){}
-    return (DATA.feedContent||DATA.content||[]).map(clone); }
+    return (DATA.feedContent&&DATA.feedContent.length?DATA.feedContent:DATA.content||[]).map(clone); }
   function save(){ try{ localStorage.setItem(KEY, JSON.stringify(ideas)); }catch(e){} }
+  const ago=ts=>{ if(!ts) return 'never'; const s=(Date.now()-new Date(ts).getTime())/1000;
+    if(s<60) return 'just now'; if(s<3600) return Math.round(s/60)+'m ago'; if(s<86400) return Math.round(s/3600)+'h ago'; return Math.round(s/86400)+'d ago'; };
 
-  b.innerHTML = `<div class="eyebrow">VIDEO PIPELINE · SAVED IN THIS BROWSER · DRAG TO MOVE</div>
+  b.innerHTML = `<div class="eyebrow">CONTENT STUDIO · VIDEO PIPELINE · SAVED IN THIS BROWSER</div>
+    <div id="ctagent"></div><div id="ctincoming"></div>
     <div class="tbctl">
       <input id="ctnew" placeholder="new video idea… (Enter to add)" autocomplete="off">
       <button class="tbbtn" id="ctadd">+ ADD</button>
-      <button class="tbbtn" id="ctpull" title="replace board with feed.json content[]">PULL FEED</button>
       <button class="tbbtn" id="ctexport" title="copy JSON to paste into feed.json content[]">EXPORT</button>
     </div><div id="ctkb"></div>
     <div class="dim mono" id="ctmsg" style="font-size:9px;letter-spacing:.1em;margin-top:6px;min-height:12px"></div>`;
   const kb=b.querySelector('#ctkb'), msg=b.querySelector('#ctmsg');
+  const agentEl=b.querySelector('#ctagent'), inEl=b.querySelector('#ctincoming');
   const flash=m=>{ msg.textContent=m; setTimeout(()=>{ if(msg.textContent===m) msg.textContent=''; },2800); };
+
+  function renderTop(){
+    const a=DATA.contentAgent||{status:'idle',note:'standing by',updated:null};
+    const working=a.status==='working';
+    agentEl.innerHTML=`<div class="cstudio-bar ${working?'working':''}"><span class="dot"></span>
+      <span class="who">content-creator</span><span class="note">${esc(a.note||(working?'working…':'idle'))}</span>
+      <span class="ago">updated ${ago(a.updated)}</span></div>`;
+    const have=new Set(ideas.map(i=>norm(i.t)));
+    const incoming=(DATA.feedContent||[]).filter(i=>!have.has(norm(i.t)));
+    if(incoming.length){
+      inEl.innerHTML=`<div class="cstudio-in"><span class="n">${incoming.length}</span>&nbsp;new idea${incoming.length>1?'s':''} from content-creator
+        <span style="flex:1"></span><button class="tbbtn" id="ctmerge">MERGE →</button></div>`;
+      inEl.querySelector('#ctmerge').onclick=()=>{ incoming.forEach(i=>ideas.unshift(clone({...i,col:0}))); save(); render(); renderTop(); flash('merged '+incoming.length+' agent idea(s) into IDEAS'); };
+    } else inEl.innerHTML='';
+  }
 
   function render(){
     kb.innerHTML='';
@@ -840,15 +874,16 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
       const items=ideas.filter(t=>t.col===ci);
       col.innerHTML=`<h4>${cn}<span class="cnt">${items.length}</span></h4>`;
       items.forEach(t=>{
-        const idx=ideas.indexOf(t);
-        const c=document.createElement('div'); c.className='card'; c.draggable=true;
+        const idx=ideas.indexOf(t), pl=PLATS.includes(t.plat)?t.plat:'tiktok';
+        const c=document.createElement('div'); c.className='card pl-'+pl; c.draggable=true;
         c.innerHTML=`<span class="del" title="delete">×</span>
           <div class="ct">${esc(t.t)}</div>
           ${t.hook?`<div class="hk">${esc(t.hook)}</div>`:''}
-          <div class="cm"><span class="ctag ${t.fmt} fmt-cyc" title="click: change format">${(t.fmt||'').toUpperCase()}</span><span class="ctag plat">${esc((t.plat||'').toUpperCase())}</span></div>`;
+          <div class="cm"><span class="plat-badge pl-${pl} plat-cyc" title="click: change platform">${PLABEL[pl]}</span><span class="ctag ${t.fmt} fmt-cyc" title="click: change format">${(t.fmt||'').toUpperCase()}</span></div>`;
         c.addEventListener('dragstart',e=>e.dataTransfer.setData('text', idx));
-        c.querySelector('.del').addEventListener('click',ev=>{ ev.stopPropagation(); ideas.splice(idx,1); save(); render(); });
+        c.querySelector('.del').addEventListener('click',ev=>{ ev.stopPropagation(); ideas.splice(idx,1); save(); render(); renderTop(); });
         c.querySelector('.fmt-cyc').addEventListener('click',ev=>{ ev.stopPropagation(); t.fmt=FMTS[(FMTS.indexOf(t.fmt)+1)%FMTS.length]; save(); render(); });
+        c.querySelector('.plat-cyc').addEventListener('click',ev=>{ ev.stopPropagation(); t.plat=PLATS[(PLATS.indexOf(pl)+1)%PLATS.length]; save(); render(); });
         col.appendChild(c);
       });
       col.addEventListener('dragover',e=>{ e.preventDefault(); col.classList.add('dragover'); });
@@ -859,14 +894,14 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
     });
   }
   const add=()=>{ const inp=b.querySelector('#ctnew'), v=inp.value.trim(); if(!v)return;
-    ideas.unshift({t:v,hook:'',fmt:'short',plat:'tiktok',col:0}); inp.value=''; save(); render(); };
+    ideas.unshift({t:v,hook:'',fmt:'short',plat:'tiktok',col:0}); inp.value=''; save(); render(); renderTop(); };
   b.querySelector('#ctadd').onclick=add;
   b.querySelector('#ctnew').addEventListener('keydown',e=>{ if(e.key==='Enter')add(); });
-  b.querySelector('#ctpull').onclick=()=>{ ideas=(DATA.feedContent||[]).map(clone); save(); render(); flash('pulled '+ideas.length+' ideas from feed.json'); };
   b.querySelector('#ctexport').onclick=async()=>{ const json=JSON.stringify(ideas,null,2);
     try{ await navigator.clipboard.writeText(json); flash('copied '+ideas.length+' ideas — paste into feed.json content[]'); }
     catch(e){ flash('clipboard blocked — JSON logged to console'); console.log(json); } };
-  render();
+  renderTop(); render();
+  window.addEventListener('feed:update', renderTop);
 })();
 
 /* ---- MEMORY (CLAUDE.md project memory) ---- */

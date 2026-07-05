@@ -16,8 +16,14 @@
       "likes": 14,
       "dislikes": 0,
       "fetched": "2026-07-05T02:57:59Z"
+    },
+    "contentAgent": {
+      "status": "idle",
+      "note": "standing by — ask content-creator for ideas",
+      "updated": "2026-07-05T03:24:14Z"
     }
   },
+  "content": [],
   "bugs": [
     { "id": "vault-loadout-dupe", "sev": "high", "status": "open", "t": "vault↔loadout dupe", "note": "deposit gun → reset → collect bag = extra gun. PlayerInventory snapshot not synced on vault Deposit.", "ts": "2026-07-04T19:52:11.868376Z" },
     { "id": "dead-interaction", "sev": "high", "status": "open", "t": "dead-interaction lock missing", "note": "PPS still active while dead; needs alive-guards on vault ops.", "ts": "2026-07-04T19:52:11.868376Z" },
