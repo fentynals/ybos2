@@ -60,12 +60,20 @@ body::after{
 /* ===== desktop + windows ===== */
 #desk{position:fixed;inset:38px 0 54px 0;z-index:10}
 .win{
-  position:absolute;min-width:300px;background:rgba(17,22,32,.93);
+  position:absolute;min-width:240px;background:rgba(17,22,32,.93);
   border:1px solid var(--line);box-shadow:0 18px 60px rgba(0,0,0,.6),0 0 0 1px rgba(0,0,0,.4);
   display:flex;flex-direction:column;backdrop-filter:blur(4px);
 }
 .win.focus{border-color:var(--amber-dim);box-shadow:0 24px 70px rgba(0,0,0,.75),0 0 24px rgba(255,170,60,.07)}
 .win.min{display:none}
+/* resize handles */
+.rz{position:absolute;z-index:7}
+.rz-r{top:8px;bottom:10px;right:-3px;width:7px;cursor:ew-resize}
+.rz-b{left:8px;right:10px;bottom:-3px;height:7px;cursor:ns-resize}
+.rz-br{right:0;bottom:0;width:18px;height:18px;cursor:nwse-resize}
+.rz-br::after{content:"";position:absolute;right:3px;bottom:3px;width:8px;height:8px;
+  border-right:2px solid var(--dust);border-bottom:2px solid var(--dust);opacity:.55}
+.win.focus .rz-br::after{border-color:var(--amber);opacity:.7}
 .winhead{
   height:30px;display:flex;align-items:center;gap:10px;padding:0 10px;cursor:grab;
   background:linear-gradient(180deg,#1B2231,#161C29);border-bottom:1px solid var(--line);
@@ -250,6 +258,31 @@ body::after{
 .an-top .pill{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.1em;padding:1px 5px;border:1px solid var(--line)}
 .an-top .pill.tiktok{color:var(--tracer);border-color:#2c4358} .an-top .pill.youtube{color:var(--red);border-color:#5c2424}
 .an-top .pill.shorts{color:var(--amber);border-color:var(--amber-dim)} .an-top .pill.instagram{color:#B784F0;border-color:#5b3f7a}
+/* content plan */
+.plan-tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:9px;margin-bottom:12px}
+.plan-tab{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.1em;padding:6px 9px;border:1px solid var(--line);background:var(--steel);color:var(--dust);cursor:pointer;display:flex;gap:7px;align-items:center}
+.plan-tab.on{color:var(--amber);border-color:var(--amber-dim);background:rgba(255,170,60,.06)}
+.plan-tab .tc{font-size:8px;color:var(--dust)} .plan-tab.on .tc{color:var(--amber)}
+.plan-tab.addtab{color:var(--dust);border-style:dashed} .plan-tab.addtab:hover{border-color:var(--amber);color:var(--amber)}
+.plan-head{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.plan-name{flex:1;min-width:120px;background:#0A0D13;border:1px solid var(--line);color:#EDEFF4;font-family:'Chakra Petch';font-weight:600;font-size:14px;letter-spacing:.02em;padding:6px 9px}
+.plan-name:focus{outline:none;border-color:var(--amber-dim)}
+.plan-deltab{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.12em;border:1px solid var(--line);color:var(--dust);background:transparent;padding:6px 8px;cursor:pointer;flex:none}
+.plan-deltab:hover{border-color:var(--red);color:var(--red)}
+.plan-prog{margin-bottom:14px}
+.plan-prog .pl{display:flex;justify-content:space-between;font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.1em;color:var(--dust);margin-bottom:6px}
+.plan-prog .pl b{color:var(--amber);font-weight:500}
+.plan-prog .track{height:9px;background:var(--steel2);border:1px solid var(--line);position:relative;overflow:hidden}
+.plan-prog .track i{position:absolute;inset:0;transform-origin:left;background:linear-gradient(90deg,var(--amber-dim),var(--amber));transform:scaleX(var(--p));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.plan-item{display:flex;gap:10px;align-items:flex-start;padding:8px 4px;border-bottom:1px dashed #1c2434}
+.plan-item .num{font-family:'IBM Plex Mono';font-size:10px;color:var(--amber);flex:none;min-width:26px;text-align:right;padding-top:2px;opacity:.8}
+.plan-item .cb{width:17px;height:17px;border:1px solid var(--line);flex:none;cursor:pointer;display:grid;place-items:center;color:var(--ok);font-size:12px;line-height:1;margin-top:1px}
+.plan-item.done .cb{background:rgba(123,216,138,.12);border-color:#2c5136}
+.plan-item .pt{font-size:12.5px;line-height:1.5;color:var(--concrete);flex:1}
+.plan-item.done .pt{color:var(--dust);text-decoration:line-through}
+.plan-item .pdel{color:#3E4658;cursor:pointer;flex:none;opacity:0;font-size:13px;padding:0 2px}
+.plan-item:hover .pdel{opacity:1} .plan-item .pdel:hover{color:var(--red)}
+.plan-addrow{display:flex;gap:6px;margin-top:12px}
 /* palette */
 #pal{position:fixed;inset:0;z-index:900;background:rgba(5,7,11,.6);display:none;align-items:flex-start;justify-content:center;padding-top:14vh;backdrop-filter:blur(3px)}
 #pal.show{display:flex}
@@ -454,15 +487,34 @@ const WINS = {};
 let z = 20;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/* ---- window geometry persistence + resize/maximize ---- */
+const WKEY='ybos.win.', MINW=260, MINH=140;
+function loadGeom(id){ try{ return JSON.parse(localStorage.getItem(WKEY+id)); }catch(e){ return null; } }
+function normalGeom(w){ const el=w.el;
+  if(w.max&&w.prev) return {...w.prev};
+  return { left:parseFloat(el.style.left)||0, top:parseFloat(el.style.top)||0, width:el.offsetWidth, height:el.offsetHeight }; }
+function saveGeom(id){ const w=WINS[id]; if(!w) return; const g=normalGeom(w); g.max=!!w.max;
+  try{ localStorage.setItem(WKEY+id, JSON.stringify(g)); }catch(e){} }
+function applyMax(el){ el.style.left='0px'; el.style.top='0px'; el.style.width=desk.clientWidth+'px'; el.style.height=desk.clientHeight+'px'; }
+function setMaxBtn(w){ const b=w.el.querySelector('[data-a="max"]'); if(b){ b.textContent=w.max?'❐':'▢'; b.title=w.max?'restore':'maximize'; } }
+function winResized(id){ window.dispatchEvent(new CustomEvent('win:resize',{detail:{id}})); }
+function toggleMax(id){ const w=WINS[id], el=w.el;
+  if(w.max){ const p=w.prev||{left:40,top:40,width:520,height:360};
+    el.style.left=p.left+'px'; el.style.top=p.top+'px'; el.style.width=p.width+'px'; el.style.height=p.height+'px'; w.max=false; }
+  else { w.prev=normalGeom(w); applyMax(el); w.max=true; }
+  setMaxBtn(w); saveGeom(id); winResized(id); }
+function unmax(id){ const w=WINS[id]; if(w.max){ w.max=false; setMaxBtn(w); } }
+
 function mkWin(id, title, icon, x, y, w, h, open=true){
   const el = document.createElement('div');
   el.className = 'win'; el.style.left=x+'px'; el.style.top=y+'px';
   el.style.width=w+'px'; el.style.height=h+'px'; el.style.zIndex=++z;
   el.innerHTML = `<div class="winhead"><span class="tape"></span><span class="t">${title}</span><span class="grow"></span>
-    <button class="winbtn" data-a="min">–</button><button class="winbtn" data-a="x">×</button></div>
-    <div class="winbody" id="body-${id}"></div>`;
+    <button class="winbtn" data-a="max" title="maximize">▢</button><button class="winbtn" data-a="min" title="minimize">–</button><button class="winbtn" data-a="x" title="close">×</button></div>
+    <div class="winbody" id="body-${id}"></div>
+    <div class="rz rz-r"></div><div class="rz rz-b"></div><div class="rz rz-br"></div>`;
   desk.appendChild(el);
-  WINS[id] = {el, title, icon, open};
+  const rec = WINS[id] = {el, title, icon, open, max:false, prev:null};
   if(!open) el.classList.add('min');
 
   const head = el.querySelector('.winhead');
@@ -471,15 +523,39 @@ function mkWin(id, title, icon, x, y, w, h, open=true){
   // drag
   head.addEventListener('pointerdown', e=>{
     if(e.target.closest('.winbtn')) return;
-    focus();
+    focus(); unmax(id);
     const sx=e.clientX-el.offsetLeft, sy=e.clientY-el.offsetTop;
-    const mv=ev=>{ el.style.left=Math.max(-w*0.6,Math.min(innerWidth-60,ev.clientX-sx))+'px';
+    const mv=ev=>{ el.style.left=Math.max(-el.offsetWidth*0.6,Math.min(innerWidth-60,ev.clientX-sx))+'px';
                    el.style.top =Math.max(0,Math.min(innerHeight-140,ev.clientY-sy))+'px'; };
-    const up=()=>{ removeEventListener('pointermove',mv); removeEventListener('pointerup',up); };
+    const up=()=>{ removeEventListener('pointermove',mv); removeEventListener('pointerup',up); saveGeom(id); };
     addEventListener('pointermove',mv); addEventListener('pointerup',up);
   });
+  // resize — right edge, bottom edge, corner
+  const startResize=(e,dir)=>{ e.preventDefault(); e.stopPropagation(); focus(); unmax(id);
+    const sx=e.clientX, sy=e.clientY, sw=el.offsetWidth, sh=el.offsetHeight;
+    const mv=ev=>{ if(dir.includes('e')) el.style.width =Math.max(MINW, sw+(ev.clientX-sx))+'px';
+                   if(dir.includes('s')) el.style.height=Math.max(MINH, sh+(ev.clientY-sy))+'px'; };
+    const up=()=>{ removeEventListener('pointermove',mv); removeEventListener('pointerup',up); saveGeom(id); winResized(id); };
+    addEventListener('pointermove',mv); addEventListener('pointerup',up); };
+  el.querySelector('.rz-r').addEventListener('pointerdown', e=>startResize(e,'e'));
+  el.querySelector('.rz-b').addEventListener('pointerdown', e=>startResize(e,'s'));
+  el.querySelector('.rz-br').addEventListener('pointerdown', e=>startResize(e,'se'));
+
   head.querySelector('[data-a="min"]').onclick = ()=>toggleWin(id,false);
   head.querySelector('[data-a="x"]').onclick   = ()=>toggleWin(id,false);
+  head.querySelector('[data-a="max"]').onclick = ()=>toggleMax(id);
+
+  // restore persisted geometry (clamped into the desktop)
+  const g=loadGeom(id);
+  if(g){
+    const L=Math.min(Math.max(0,g.left||0), Math.max(0,desk.clientWidth-120));
+    const T=Math.min(Math.max(0,g.top||0),  Math.max(0,desk.clientHeight-80));
+    el.style.left=L+'px'; el.style.top=T+'px';
+    if(g.width)  el.style.width =Math.max(MINW,g.width)+'px';
+    if(g.height) el.style.height=Math.max(MINH,g.height)+'px';
+    if(g.max){ rec.prev={left:L,top:T,width:parseFloat(el.style.width),height:parseFloat(el.style.height)};
+      applyMax(el); rec.max=true; setMaxBtn(rec); }
+  }
   return document.getElementById('body-'+id);
 }
 function toggleWin(id, force){
@@ -984,6 +1060,97 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   }
   render();
   window.addEventListener('feed:update', render);
+  window.addEventListener('win:resize', e=>{ if(e.detail && e.detail.id==='analytics') render(); });
+})();
+
+/* ---- CONTENT PLAN (tabbed checklists; first tab = 30-day dev journey) ---- */
+(function(){
+  const b = mkWin('plan','CONTENT PLAN','☑', Math.min(360,W*.26), H*.14, Math.min(560,W*.44), Math.min(520,H*.66), true);
+  const KEY='ybos.plans.v1';
+  const esc=s=>(''+s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const SEED_JOURNEY=[
+    "DAY 1 of building a Roblox game: one Draco model, building the FPS core from scratch",
+    "Test dummies with escalating 25 to 5000 HP, healer + zombie AI",
+    "Damage numbers: white body shots, big red headshots",
+    "Splitting the Draco: FULLY DRACO vs SEMI DRACO",
+    "Pickup system evolution: walk-over → click → full hotbar inventory",
+    "Muzzle flash + ejecting shell casings",
+    "WEEK 1 RECAP: first real gunfight montage",
+    "New gun: Glock 17 Extendo (blue tracers)",
+    "Kill feed with device emojis (PC/mobile/console)",
+    "Headshot kill SFX + heartbeat when you're almost dead",
+    "ADS + recoil + aiming polish",
+    "Welcome room spawn flow + death screen vignette",
+    "Knockdown system: 25% chance you drop on hit",
+    "WEEK 2 RECAP: XP, levels, food shop, sprint",
+    "The ARP + full rifle animation set (equip/idle/reload/run/walk)",
+    "FULL mobile support: run, roll, crouch, prone, sprint, shoot on touch",
+    "Pistol lineup: Snubnose, Makarov, G17Gen4, G17DRUM, G2C Binary Drum",
+    "The HELLCAT arrives (A-Chassis)",
+    "SafeZone system: shields, highlights, leave countdown",
+    "ATMs, cash pickups, and the hostility system",
+    "WEEK 3 RECAP: Gun Dealer + Clone Card Dealer crime economy",
+    "Fists + delivery missions",
+    "THE CITY PLAN: revealing the full building list",
+    "The 4 TURFS (gang headquarters)",
+    "ICEBLOX jewelry store + its safezone",
+    "THE MINESHAFT",
+    "Chop shop, dealership, gun store tour",
+    "Decoration pass: making the block feel alive",
+    "Behind the scenes: the live analytics dashboard",
+    "FULL GAME TOUR + what's next for Block Simulator",
+  ];
+  const seed=()=>({ active:0, tabs:[ { name:"HEADTAP DEVELOPMENT JOURNY", items:SEED_JOURNEY.map(t=>({t,done:false})) } ] });
+  let store=load();
+  function load(){ try{ const r=localStorage.getItem(KEY); if(r){ const p=JSON.parse(r); if(p&&Array.isArray(p.tabs)&&p.tabs.length) return p; } }catch(e){} return seed(); }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+  const clampActive=()=>{ if(store.active>=store.tabs.length) store.active=store.tabs.length-1; if(store.active<0) store.active=0; };
+
+  b.innerHTML=`<div class="eyebrow">CONTENT PLANS · TABS = SEPARATE PLANS · SAVED IN THIS BROWSER</div>
+    <div class="plan-tabs" id="plan-tabs"></div><div id="plan-body"></div>`;
+  const tabsEl=b.querySelector('#plan-tabs'), bodyEl=b.querySelector('#plan-body');
+
+  function renderTabs(){
+    tabsEl.innerHTML = store.tabs.map((t,i)=>{
+      const done=t.items.filter(x=>x.done).length;
+      return `<button class="plan-tab ${i===store.active?'on':''}" data-i="${i}">${esc(t.name)||'UNTITLED'}<span class="tc">${done}/${t.items.length}</span></button>`;
+    }).join('') + `<button class="plan-tab addtab" id="plan-addtab">+ NEW TAB</button>`;
+    tabsEl.querySelectorAll('.plan-tab[data-i]').forEach(el=>el.onclick=()=>{ store.active=+el.dataset.i; save(); render(); });
+    tabsEl.querySelector('#plan-addtab').onclick=()=>{
+      store.tabs.push({name:'NEW PLAN', items:[]}); store.active=store.tabs.length-1; save(); render();
+      const ni=bodyEl.querySelector('.plan-name'); if(ni){ ni.focus(); ni.select(); }
+    };
+  }
+  function renderBody(){
+    clampActive();
+    const tab=store.tabs[store.active];
+    const done=tab.items.filter(x=>x.done).length, tot=tab.items.length, pct=tot?Math.round(done/tot*100):0;
+    bodyEl.innerHTML=`
+      <div class="plan-head"><input class="plan-name" value="${esc(tab.name)}" placeholder="plan name…" spellcheck="false">
+        ${store.tabs.length>1?'<button class="plan-deltab">DELETE TAB</button>':''}</div>
+      <div class="plan-prog"><div class="pl"><b>${done}/${tot}</b> done<span>${pct}%</span></div>
+        <div class="track"><i style="--p:${tot?done/tot:0}"></i></div></div>
+      <div id="plan-items">${ tot ? tab.items.map((it,i)=>`
+        <div class="plan-item ${it.done?'done':''}" data-i="${i}"><span class="num">${i+1}</span>
+          <span class="cb">${it.done?'✓':''}</span><span class="pt">${esc(it.t)}</span><span class="pdel" title="delete">×</span>
+        </div>`).join('') : '<div class="dim" style="font-size:12px;padding:8px 2px">no items yet — add one below</div>' }</div>
+      <div class="tbctl plan-addrow"><input id="plan-new" placeholder="add item… (Enter)" autocomplete="off"><button class="tbbtn" id="plan-addit">+ ADD</button></div>`;
+    const nm=bodyEl.querySelector('.plan-name');
+    nm.addEventListener('input',()=>{ tab.name=nm.value; save(); renderTabs(); });
+    const delt=bodyEl.querySelector('.plan-deltab');
+    if(delt) delt.onclick=()=>{ store.tabs.splice(store.active,1); store.active=Math.max(0,store.active-1); save(); render(); };
+    bodyEl.querySelectorAll('.plan-item').forEach(row=>{
+      const i=+row.dataset.i, toggle=()=>{ tab.items[i].done=!tab.items[i].done; save(); render(); };
+      row.querySelector('.cb').onclick=toggle;
+      row.querySelector('.pt').onclick=toggle;
+      row.querySelector('.pdel').onclick=ev=>{ ev.stopPropagation(); tab.items.splice(i,1); save(); render(); };
+    });
+    const add=()=>{ const inp=bodyEl.querySelector('#plan-new'), v=inp.value.trim(); if(!v)return; tab.items.push({t:v,done:false}); save(); render(); const n=bodyEl.querySelector('#plan-new'); if(n) n.focus(); };
+    bodyEl.querySelector('#plan-addit').onclick=add;
+    bodyEl.querySelector('#plan-new').addEventListener('keydown',e=>{ if(e.key==='Enter')add(); });
+  }
+  function render(){ renderTabs(); renderBody(); }
+  render();
 })();
 
 renderDock();
