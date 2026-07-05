@@ -185,6 +185,12 @@ body::after{
 .bugchip{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.12em;padding:4px 8px;border:1px solid var(--line);color:var(--dust);cursor:pointer}
 .bugchip.on{color:var(--amber);border-color:var(--amber-dim);background:rgba(255,170,60,.07)}
 .bugchip:hover:not(.on){color:var(--concrete)}
+.bug .bf{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:9px}
+.bug .bd{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.1em;color:#5a6273}
+.bugfix{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.12em;border:1px solid #2c5136;color:var(--ok);background:transparent;padding:4px 9px;cursor:pointer;flex:none}
+.bugfix:hover{background:rgba(123,216,138,.12)}
+.bugfix.bugreopen{border-color:var(--line);color:var(--dust)}
+.bugfix.bugreopen:hover{border-color:var(--amber);color:var(--amber);background:transparent}
 /* task board (persistent) */
 .tbctl{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;align-items:center}
 .tbctl input{flex:1;min-width:120px;background:#0A0D13;border:1px solid var(--line);color:var(--concrete);font-family:'IBM Plex Mono';font-size:11px;padding:5px 7px}
@@ -871,29 +877,41 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   window.addEventListener('feed:update', render);
 })();
 
-/* ---- BUGS (tracker from feed.bugs; filterable) ---- */
+/* ---- BUGS (tracker from feed.bugs; filter + local FIXED toggle) ---- */
 (function(){
   const b = mkWin('bugs','BUGS','⚠', Math.min(560,W*.42), 56, Math.min(500,W*.36), Math.min(680,H*.84), true);
   const ord={open:0,watch:1,killed:2}, sevOrd={high:0,med:1,low:2};
   const esc=s=>(''+s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-  const FKEY='ybos.bugfilter';
+  const fmtDate=ts=>{ if(!ts) return ''; try{ return new Date(ts).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}); }catch(e){ return ''; } };
+  const FKEY='ybos.bugfilter', XKEY='ybos.bugsfixed';
   let filter=localStorage.getItem(FKEY)||'open';
+  const loadFixed=()=>{ try{ return new Set(JSON.parse(localStorage.getItem(XKEY)||'[]')); }catch(e){ return new Set(); } };
+  const saveFixed=set=>{ try{ localStorage.setItem(XKEY, JSON.stringify([...set])); }catch(e){} };
+  const keyOf=x=>x.id||x.t;
   function render(){
-    const all=(DATA.bugs||[]).slice();
+    const fixed=loadFixed();
+    const all=(DATA.bugs||[]).slice().map(x=>{ const f=fixed.has(keyOf(x)); return {...x, _st: f?'killed':x.status, _fixed:f}; });
     const c={open:0,watch:0,killed:0,high:0,med:0,low:0};
-    all.forEach(x=>{ if(c[x.status]!=null)c[x.status]++; if(x.status!=='killed'&&c[x.sev]!=null)c[x.sev]++; });
+    all.forEach(x=>{ if(c[x._st]!=null)c[x._st]++; if(x._st!=='killed'&&c[x.sev]!=null)c[x.sev]++; });
     const isSev=['high','med','low'].includes(filter);
-    let list=all.filter(x=> filter==='all' ? true : isSev ? (x.sev===filter&&x.status!=='killed') : x.status===filter);
-    list.sort((a,d)=>(ord[a.status]??9)-(ord[d.status]??9) || (sevOrd[a.sev]??9)-(sevOrd[d.sev]??9) || (new Date(d.ts||0)-new Date(a.ts||0)));
+    let list=all.filter(x=> filter==='all' ? true : isSev ? (x.sev===filter&&x._st!=='killed') : x._st===filter);
+    list.sort((a,d)=>(ord[a._st]??9)-(ord[d._st]??9) || (sevOrd[a.sev]??9)-(sevOrd[d.sev]??9) || (new Date(d.ts||0)-new Date(a.ts||0)));
     const chip=(f,label,n)=>`<span class="bugchip ${filter===f?'on':''}" data-f="${f}">${label}${n!=null?' '+n:''}</span>`;
     b.innerHTML = `<div class="eyebrow">BUG TRACKER · ${c.open} OPEN · ${c.watch} WATCH · ${c.killed} KILLED</div>
       <div class="bugfilters">${chip('open','OPEN',c.open)}${chip('watch','WATCH',c.watch)}${chip('killed','KILLED',c.killed)}${chip('high','HIGH',c.high)}${chip('med','MED',c.med)}${chip('low','LOW',c.low)}${chip('all','ALL',all.length)}</div>
-      <div id="buglist">${ list.length ? list.map(x=>`
-        <div class="bug ${x.status}">
-          <div class="bh"><span class="st">${(x.status||'').toUpperCase()}</span><span class="bt">${esc(x.t)}</span><span class="sv ${x.sev||''}">${(x.sev||'').toUpperCase()}</span></div>
+      <div id="buglist">${ list.length ? list.map(x=>{
+        const k=esc(keyOf(x)), d=fmtDate(x.ts);
+        const btn = x._fixed
+          ? `<button class="bugfix bugreopen" data-k="${k}" data-a="reopen">↩ REOPEN</button>`
+          : `<button class="bugfix" data-k="${k}" data-a="fix">✓ MARK FIXED</button>`;
+        return `<div class="bug ${x._st}">
+          <div class="bh"><span class="st">${(x._st||'').toUpperCase()}</span><span class="bt">${esc(x.t)}</span><span class="sv ${x.sev||''}">${(x.sev||'').toUpperCase()}</span></div>
           <div class="bn">${esc(x.note||'')}</div>
-        </div>`).join('') : `<div class="dim">nothing in this filter</div>` }</div>`;
+          <div class="bf"><span class="bd">${d?'reported '+d:''}</span>${btn}</div>
+        </div>`; }).join('') : `<div class="dim">nothing in this filter</div>` }</div>`;
     b.querySelectorAll('.bugchip').forEach(el=>el.onclick=()=>{ filter=el.dataset.f; localStorage.setItem(FKEY,filter); render(); });
+    b.querySelectorAll('.bugfix').forEach(el=>el.onclick=()=>{ const set=loadFixed(), k=el.dataset.k;
+      if(el.dataset.a==='fix') set.add(k); else set.delete(k); saveFixed(set); render(); });
   }
   render();
   window.addEventListener('feed:update', render);
