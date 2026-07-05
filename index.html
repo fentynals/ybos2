@@ -327,28 +327,26 @@ const DATA = {
 /* Point this at your hosted feed.json. When set, the OS polls it every
    POLL_MS and merges radio/tasks/ship over the embedded snapshot, so dev
    updates appear without re-downloading. Leave blank to run fully offline. */
-const FEED_URL = ""; // <-- paste your raw GitHub feed.json URL here
+const FEED_URL = "./feed.json"; // relative — works on any host
 const POLL_MS = 15000;
 let LIVE = { on:false, last:null };
-
 async function pullFeed(){
   if(!FEED_URL) return;
   try{
-    const r = await fetch(FEED_URL + (FEED_URL.includes('?')?'&':'?') + 'cb=' + Date.now(), {cache:'no-store'});
+    const r = await fetch(FEED_URL + (FEED_URL.includes("?")?"&":"?") + "cb=" + Date.now(), {cache:"no-store"});
     if(!r.ok) throw new Error(r.status);
     const j = await r.json();
     if(Array.isArray(j.radio)) DATA.radio = j.radio.map(x=>[x.who,x.cls,x.msg]);
     if(Array.isArray(j.tasks)) DATA.tasks = j.tasks;
     if(Array.isArray(j.ship))  DATA.ship  = j.ship;
     LIVE.on = true; LIVE.last = new Date();
-    window.dispatchEvent(new CustomEvent('feed:update'));
+    window.dispatchEvent(new CustomEvent("feed:update"));
   }catch(e){ LIVE.on=false; }
   updateLiveBadge();
 }
 function updateLiveBadge(){
-  const el=document.getElementById('livebadge'); if(!el)return;
-  if(!FEED_URL){ el.innerHTML='<i style="background:#6B7385"></i>SNAPSHOT'; el.title='no FEED_URL set — offline snapshot'; return; }
-  if(LIVE.on){ el.innerHTML='<i style="background:#7BD88A"></i>LIVE · '+(LIVE.last?LIVE.last.toLocaleTimeString('en-US',{hour12:false}):''); }
+  const el=document.getElementById("livebadge"); if(!el)return;
+  if(LIVE.on){ el.innerHTML='<i style="background:#7BD88A"></i>LIVE · '+(LIVE.last?LIVE.last.toLocaleTimeString("en-US",{hour12:false}):""); }
   else { el.innerHTML='<i style="background:#E23B3B"></i>OFFLINE'; }
 }
 </script>
