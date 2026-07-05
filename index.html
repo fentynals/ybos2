@@ -283,6 +283,46 @@ body::after{
 .plan-item .pdel{color:#3E4658;cursor:pointer;flex:none;opacity:0;font-size:13px;padding:0 2px}
 .plan-item:hover .pdel{opacity:1} .plan-item .pdel:hover{color:var(--red)}
 .plan-addrow{display:flex;gap:6px;margin-top:12px}
+/* content hub (merged) */
+.hub-tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.hub-tab{flex:1;font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.16em;padding:9px 6px;border:1px solid var(--line);border-bottom:none;background:var(--steel);color:var(--dust);cursor:pointer;text-align:center}
+.hub-tab.on{color:var(--amber);border-color:var(--amber-dim);background:rgba(255,170,60,.07)}
+.hub-tab:hover:not(.on){color:var(--concrete)}
+/* insights */
+.ins-sec{margin-bottom:18px}
+.ins-h{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.24em;color:var(--amber);margin-bottom:9px;display:flex;align-items:center;gap:8px}
+.ins-h .tag{font-size:8px;letter-spacing:.14em;color:var(--dust);border:1px solid var(--line);padding:1px 6px}
+.ins-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ins-card{border:1px solid var(--line);border-top-width:2px;background:linear-gradient(160deg,#181f2e,#10141d);padding:10px 11px}
+.ins-card.tiktok{border-top-color:var(--tracer)} .ins-card.youtube{border-top-color:var(--red)} .ins-card.instagram{border-top-color:#B784F0}
+.ins-card .pn{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.14em;color:var(--dust)}
+.ins-card .big{font-family:'Chakra Petch';font-weight:700;font-size:20px;color:#EDEFF4;margin-top:4px;line-height:1}
+.ins-card .sub{font-family:'IBM Plex Mono';font-size:9px;color:var(--amber);margin-top:5px}
+.ins-note{border:1px dashed var(--amber-dim);background:rgba(255,170,60,.05);padding:10px 12px;font-size:11.5px;line-height:1.6;color:var(--concrete)}
+.ins-note b{color:var(--amber)}
+.ins-row{display:flex;gap:10px;align-items:baseline;padding:7px 2px;border-bottom:1px dashed #1c2434;font-size:12px}
+.ins-row .rk{font-family:'IBM Plex Mono';color:var(--amber);min-width:18px}
+.ins-row .t{color:var(--concrete);flex:1;line-height:1.4}
+.ins-row .v{font-family:'IBM Plex Mono';font-size:10px;color:var(--dust);white-space:nowrap}
+/* playbook */
+.pb-summary{font-size:12.5px;line-height:1.6;color:var(--concrete);border-left:2px solid var(--amber-dim);padding-left:10px;margin-bottom:14px}
+.pb-list{list-style:none;margin:0 0 10px;padding:0}
+.pb-list li{font-size:12px;line-height:1.5;color:var(--concrete);padding:5px 0 5px 18px;position:relative}
+.pb-list li::before{content:"▸";position:absolute;left:2px;color:var(--amber)}
+.pb-pillars{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.pb-pill{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.1em;border:1px solid var(--amber-dim);color:var(--amber);padding:3px 8px}
+.pb-plat{border:1px solid var(--line);border-left-width:3px;padding:10px 12px;margin-bottom:8px}
+.pb-plat.tiktok{border-left-color:var(--tracer)} .pb-plat.youtube{border-left-color:var(--red)} .pb-plat.instagram{border-left-color:#B784F0}
+.pb-plat .ph{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.14em;color:#EDEFF4;display:flex;gap:8px;align-items:center;margin-bottom:6px}
+.pb-plat .ph .cad{margin-left:auto;font-size:8px;color:var(--dust);letter-spacing:.1em}
+.pb-plat .meta{font-family:'IBM Plex Mono';font-size:9px;color:var(--dust);line-height:1.7;margin-bottom:6px}
+.pb-plat .meta b{color:var(--amber)}
+.pb-plat .hook{font-size:11px;color:var(--concrete);line-height:1.5;padding:3px 0 3px 14px;position:relative}
+.pb-plat .hook::before{content:"“";position:absolute;left:2px;color:var(--dust)}
+.pb-week{border:1px solid var(--line);background:rgba(11,14,19,.4);padding:8px 10px;margin-bottom:6px;display:flex;gap:10px;font-size:11.5px}
+.pb-week .d{font-family:'IBM Plex Mono';font-size:9px;color:var(--amber);min-width:34px;padding-top:2px}
+.pb-week .pl{font-family:'IBM Plex Mono';font-size:8px;padding:1px 5px;border:1px solid var(--line);height:fit-content;margin-top:1px;color:var(--dust)}
+.pb-week .body{flex:1} .pb-week .body .idea{color:var(--concrete);line-height:1.4} .pb-week .body .hk{color:var(--dust);font-size:10.5px;margin-top:2px;line-height:1.4}
 /* palette */
 #pal{position:fixed;inset:0;z-index:900;background:rgba(5,7,11,.6);display:none;align-items:flex-start;justify-content:center;padding-top:14vh;backdrop-filter:blur(3px)}
 #pal.show{display:flex}
@@ -356,6 +396,7 @@ const DATA = {
   },
   stats: null,   // live Roblox stats, filled from feed.meta.stats by the heartbeat
   analytics: null,  // social analytics, filled from feed.meta.analytics by the analytics sync (see UPLOAD_ANALYTICS_PLAN.md)
+  playbook: null,   // content playbook, optionally overridden from feed.meta.playbook (else the embedded Fable 5 seed)
   contentAgent: {status:"idle", note:"standing by", updated:null},  // filled from feed.meta.contentAgent
   bugs: [
     {id:"vault-loadout-dupe", sev:"high", status:"open", t:"vault↔loadout dupe", note:"deposit gun → reset → collect bag = extra gun. PlayerInventory snapshot not synced on vault Deposit."},
@@ -464,6 +505,7 @@ async function pullFeed(){
     if(Array.isArray(j.bugs))  DATA.bugs  = j.bugs;
     if(j.meta && 'stats' in j.meta) DATA.stats = j.meta.stats;
     if(j.meta && 'analytics' in j.meta) DATA.analytics = j.meta.analytics;
+    if(j.meta && j.meta.playbook) DATA.playbook = j.meta.playbook;
     if(j.meta && j.meta.contentAgent) DATA.contentAgent = j.meta.contentAgent;
     if(j.tasks) DATA.feedTasks = j.tasks;       // shared board (agents write this); the human board lives in localStorage
     if(Array.isArray(j.content)) DATA.feedContent = j.content;
@@ -843,163 +885,283 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   window.addEventListener('feed:update', render);
 })();
 
-/* ---- CONTENT STUDIO (persistent pipeline + live agent activity) ---- */
+/* ---- CONTENT HQ (merged: PIPELINE + PLANS + INSIGHTS) ---- */
 (function(){
-  const b = mkWin('content','CONTENT','▶', Math.min(392,W*.30), 56, Math.min(620,W*.42), 470, true);
-  const COLS=['IDEAS','SCRIPTED','FILMING','POSTED'], FMTS=['short','long','teaser','trend'];
-  const PLATS=['tiktok','shorts','yt','ig'], PLABEL={tiktok:'TIKTOK',shorts:'SHORTS',yt:'YOUTUBE',ig:'INSTAGRAM'};
-  // ---- publish launchpad config ----
-  const PKEY='ybos.posts.v1';
-  const HTAGS={
-    tiktok:['#roblox','#headtap','#robloxfps','#fyp','#robloxedit','#gaming'],
-    shorts:['#roblox','#headtap','#shorts','#robloxfps','#robloxedit'],
-    yt:['#roblox','#headtap','#robloxfps','#robloxedit','#robloxgameplay'],
-    ig:['#roblox','#headtap','#reels','#robloxreels','#robloxfps','#gaming']
-  };
-  const UPLOADERS=[
-    {key:'tiktok', label:'TIKTOK',    ic:'♪', url:'https://www.tiktok.com/tiktokstudio/upload'},
-    {key:'yt',     label:'YOUTUBE',   ic:'▶', url:'https://www.youtube.com/upload'},
-    {key:'ig',     label:'INSTAGRAM', ic:'◎', url:'https://www.instagram.com/'}
-  ];
-  const capFor=t=>{ const tags=(HTAGS[t.plat]||HTAGS.tiktok).join(' ');
-    const parts=[t.t]; if(t.hook) parts.push(t.hook); parts.push(tags); return parts.join('\n\n'); };
-  const KEY='ybos.content.v1', RKEY='ybos.reject.v1';
-  const REASONS=[['generic','too generic'],['offbrand','off-brand / wrong vibe'],['overdone','overdone / already did it'],['unfilmable','not filmable right now'],['platform','wrong platform'],['hook','weak hook'],['meh','just not feeling it']];
-  const teachCount=()=>{ try{ return JSON.parse(localStorage.getItem(RKEY)||'[]').length; }catch(e){ return 0; } };
-  function logReject(t, reason, note){ let log=[]; try{ log=JSON.parse(localStorage.getItem(RKEY)||'[]'); }catch(e){}
-    log.unshift({t:t.t, plat:t.plat, fmt:t.fmt, reason, note:note||'', ts:new Date().toISOString()}); log=log.slice(0,100);
-    try{ localStorage.setItem(RKEY, JSON.stringify(log)); }catch(e){} return log.length; }
-  const clone=c=>({t:c.t, hook:c.hook||'', fmt:c.fmt||'short', plat:PLATS.includes(c.plat)?c.plat:'tiktok', col:c.col|0});
+  const b = mkWin('content','CONTENT','▶', Math.min(360,W*.28), 56, Math.min(660,W*.48), Math.min(560,H*.74), true);
   const esc=s=>(''+s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
-  const norm=s=>(''+s).trim().toLowerCase();
-  let ideas=load();
-  function load(){ try{ const raw=localStorage.getItem(KEY); if(raw) return JSON.parse(raw); }catch(e){}
-    return (DATA.feedContent&&DATA.feedContent.length?DATA.feedContent:DATA.content||[]).map(clone); }
-  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(ideas)); }catch(e){} }
   const ago=ts=>{ if(!ts) return 'never'; const s=(Date.now()-new Date(ts).getTime())/1000;
     if(s<60) return 'just now'; if(s<3600) return Math.round(s/60)+'m ago'; if(s<86400) return Math.round(s/3600)+'h ago'; return Math.round(s/86400)+'d ago'; };
+  const fmtN=n=> n==null?'—' : n>=1e6?(n/1e6).toFixed(n>=1e7?0:1)+'M' : n>=1e3?(n/1e3).toFixed(n>=1e4?0:1)+'k' : (''+n);
+  const PKEY='ybos.posts.v1';
 
-  b.innerHTML = `<div class="eyebrow">CONTENT STUDIO · VIDEO PIPELINE · SAVED IN THIS BROWSER</div>
-    <div id="ctagent"></div><div id="ctincoming"></div>
-    <div class="tbctl">
-      <input id="ctnew" placeholder="new video idea… (Enter to add)" autocomplete="off">
-      <button class="tbbtn" id="ctadd">+ ADD</button>
-      <button class="tbbtn" id="ctexport" title="copy JSON to paste into feed.json content[]">EXPORT</button>
-      <button class="tbbtn" id="ctteach" title="copy your 'why I passed' log to teach content-creator (paste into feed.json rejections[])">TASTE ✎ 0</button>
-    </div><div id="ctkb"></div>
-    <div class="dim mono" id="ctmsg" style="font-size:9px;letter-spacing:.1em;margin-top:6px;min-height:12px"></div>`;
-  const kb=b.querySelector('#ctkb'), msg=b.querySelector('#ctmsg');
-  const agentEl=b.querySelector('#ctagent'), inEl=b.querySelector('#ctincoming');
-  const flash=m=>{ msg.textContent=m; setTimeout(()=>{ if(msg.textContent===m) msg.textContent=''; },2800); };
+  // Fable 5 cold-start playbook (feed.meta.playbook overrides this if present)
+  const SEED_PLAYBOOK = {
+    summary:"HEADTAP is at true zero (7 YT subs, 0 TikTok/IG, 1.3K game visits), so the play is volume + repurposing: cut one gameplay capture session into 5-7 shorts a week, post the same cut to TikTok, Shorts, and Reels, and let TikTok's cold-start algorithm do discovery. Differentiate with the two things generic Roblox FPS channels can't fake — the dev-transparency angle (wall-reach exploit killed server-side, live vault-dupe hunt) and specific in-game money moments ($100K turf claims, $250 mine rocks, bank heists). The month-one goal is one repeatable format that clears 10K views, not channel polish.",
+    priorities:[
+      "Batch-film one 2-hour capture session this weekend: turf claim, MSOP mine run with the enter cinematic, bank heist, wall-reach refusal demo, and 16-gun b-roll — this feeds all 7 posts below",
+      "Post the wall-reach exploit-killed clip first on TikTok (split-screen exploiter POV vs server refusing the shot) — the most differentiated asset the game has",
+      "Set up all 3 accounts with matching handle/PFP and the Roblox game link in every bio before posting anything",
+      "Publish one YouTube long-form anchor this week (16-gun tier list) so Shorts traffic has somewhere to convert into subs",
+      "Repurpose every TikTok cut to Shorts and Reels same day — 3x surface area, zero extra filming",
+      "Log views-per-format after 14 days and double down on the single best-performing angle"
+    ],
+    pillars:["Exploit-caught / dev transparency","Turf war clutch moments","Money routes (mine → turf → heist)","Gun reveals & tier debates","Heists gone wrong","Devlog: building a crime city"],
+    platforms:{
+      tiktok:{focus:"Raw 7-21s clutch clips and exploit-caught moments — the discovery engine for a zero-follower account",cadence:"1-2/day",bestTimes:"3-6pm & 7-10pm ET weekdays, 12-3pm weekends (hypothesis — validate vs first 2 weeks of view data)",audience:"US 13-19 Roblox FPS players who watch clutch/POV crime-game content (assumed, no first-party data yet)",hooks:["he thought this wall glitch made him invincible…","POV: you just spent $100K on one street","the server watched him cheat in real time","$250 a rock and nobody knows this spot exists","4 people rushed my turf. I was alone."]},
+      youtube:{focus:"Shorts mirror TikTok for reach; long-form (tier lists, exploit breakdowns, money guides) converts views into subscribers",cadence:"1 Short/day + 1 long-form/week",bestTimes:"Shorts 3-7pm ET; long-form Fri-Sat 12-3pm ET upload (hypothesis — validate via YT Studio once data exists)",audience:"Roblox players searching gun tier lists, money routes, and exploit breakdowns — slightly older than TikTok (assumed)",hooks:["I Ranked All 16 Guns in HEADTAP (Tier List)","Players Found a Wall Hack. Here's How I Killed It.","$0 to $1,000,000 in HEADTAP — Fastest Money Route","Someone Is Duplicating Guns in My Game. I'm Hunting Them.","Building a Crime City in Roblox — Devlog #1"]},
+      instagram:{focus:"Reels reuse the TikTok cut with a cleaner first frame; carousels for gun reveals and patch notes build brand legitimacy",cadence:"1 Reel/day + 1-2 carousels/week",bestTimes:"11am-1pm & 7-9pm ET (hypothesis — validate once Insights unlock)",audience:"Slight skew older/more visual than TikTok; treats the page as proof the game is real and active (assumed)",hooks:["this cost him $100K and he'd do it again","16 guns. one city. pick your poison.","caught cheating by the server itself","the mine nobody talks about pays $250 a rock","patch notes but they actually go hard"]}
+    },
+    next7days:[
+      {day:"Mon",plat:"tiktok",idea:"Split-screen the killed wall-reach exploit: left an alt-look attempt through a turf wall, right the killfeed staying empty as the server refuses every shot; end on a 'PATCHED' stamp, loop it",hook:"he found a glitch to shoot through walls… watch the server say no"},
+      {day:"Tue",plat:"youtube",idea:"Shorts cut of the full turf-claim moment: walk to a TURF door with $100K, claim, member doors unlock and the 8 gun stations light up in sequence; punch the price on screen",hook:"$100K for one street. worth it? watch the doors."},
+      {day:"Wed",plat:"instagram",idea:"Reel of the MSOP mine job start to finish: cinematic enter (camera glide → fade), mine rocks, operator pays $250 each, cinematic exit — front-load the cash payout in frame 1",hook:"the mine nobody talks about pays $250 a rock"},
+      {day:"Thu",plat:"tiktok",idea:"Bank heist gone wrong: crack the vault, cops spawn, escape run to the gas station and rob the register on the way out — hard cut the escape to a beat drop, no dead air",hook:"POV: the heist goes wrong at the worst possible second"},
+      {day:"Fri",plat:"youtube",idea:"Long-form anchor: all 16 guns ranked S-F, live-fire demo per gun, deliberately controversial picks to bait comments; thumbnail = RGB Binary vs Draco over a tier grid",hook:"I Ranked All 16 Guns in HEADTAP — the Draco placement will make you mad"},
+      {day:"Sat",plat:"tiktok",idea:"1vX turf defense clip under trending audio: hold your turf's member-door chokepoint solo against a rush, killfeed visible, loop the final kill back to the first push",hook:"4 rushed my turf. I paid $100K. nobody's taking it."},
+      {day:"Sun",plat:"instagram",idea:"Dealer-tour Reel: fast whip-pan cuts through all 7 dealers — gun, ammo (show the golden needed-ammo borders), black market, clone cards, card burner, mask+glove, backpacks — one beat per dealer",hook:"7 dealers run this city. here's what each one sells."}
+    ]
+  };
 
-  function renderTop(){
-    const a=DATA.contentAgent||{status:'idle',note:'standing by',updated:null};
-    const working=a.status==='working';
-    agentEl.innerHTML=`<div class="cstudio-bar ${working?'working':''}"><span class="dot"></span>
-      <span class="who">content-creator</span><span class="note">${esc(a.note||(working?'working…':'idle'))}</span>
-      <span class="ago">updated ${ago(a.updated)}</span></div>`;
-    const have=new Set(ideas.map(i=>norm(i.t)));
-    const incoming=(DATA.feedContent||[]).filter(i=>!have.has(norm(i.t)));
-    if(incoming.length){
-      inEl.innerHTML=`<div class="cstudio-in"><span class="n">${incoming.length}</span>&nbsp;new idea${incoming.length>1?'s':''} from content-creator
-        <span style="flex:1"></span><button class="tbbtn" id="ctmerge">MERGE →</button></div>`;
-      inEl.querySelector('#ctmerge').onclick=()=>{ incoming.forEach(i=>ideas.unshift(clone({...i,col:0}))); save(); render(); renderTop(); flash('merged '+incoming.length+' agent idea(s) into IDEAS'); };
-    } else inEl.innerHTML='';
-  }
+  const MODES=['PIPELINE','PLANS','INSIGHTS'], MKEY='ybos.contenthub.mode';
+  let mode = localStorage.getItem(MKEY); if(!MODES.includes(mode)) mode='PIPELINE';
+  b.innerHTML=`<div class="hub-tabs" id="hub-tabs"></div>
+    <div id="m-pipeline"></div><div id="m-plans"></div><div id="m-insights"></div>`;
+  const tabsEl=b.querySelector('#hub-tabs');
+  const mEls={ PIPELINE:b.querySelector('#m-pipeline'), PLANS:b.querySelector('#m-plans'), INSIGHTS:b.querySelector('#m-insights') };
+  function renderTabs(){ tabsEl.innerHTML=MODES.map(m=>`<button class="hub-tab ${m===mode?'on':''}" data-m="${m}">${m}</button>`).join('');
+    tabsEl.querySelectorAll('.hub-tab').forEach(el=>el.onclick=()=>{ mode=el.dataset.m; localStorage.setItem(MKEY,mode); renderTabs(); showMode(); }); }
+  function showMode(){ Object.entries(mEls).forEach(([k,el])=>el.style.display = k===mode?'block':'none'); if(mode==='INSIGHTS') renderInsights(); }
 
-  function render(){
-    kb.innerHTML='';
-    COLS.forEach((cn,ci)=>{
-      const col=document.createElement('div'); col.className='kcol'; col.dataset.col=ci;
-      const items=ideas.filter(t=>t.col===ci);
-      col.innerHTML=`<h4>${cn}<span class="cnt">${items.length}</span></h4>`;
-      items.forEach(t=>{
-        const idx=ideas.indexOf(t), pl=PLATS.includes(t.plat)?t.plat:'tiktok';
-        const c=document.createElement('div'); c.className='card pl-'+pl; c.draggable=true;
-        c.innerHTML=`<span class="del" title="delete">×</span>
-          <div class="ct">${esc(t.t)}</div>
-          ${t.hook?`<div class="hk">${esc(t.hook)}</div>`:''}
-          <div class="cm"><span class="plat-badge pl-${pl} plat-cyc" title="click: change platform">${PLABEL[pl]}</span><span class="ctag ${t.fmt} fmt-cyc" title="click: change format">${(t.fmt||'').toUpperCase()}</span><span class="pub-btn" title="publish — caption + open uploaders">⤴ PUBLISH</span></div>`;
-        c.addEventListener('dragstart',e=>e.dataTransfer.setData('text', idx));
-        c.querySelector('.del').addEventListener('click',ev=>{ ev.stopPropagation(); openReject(c, t); });
-        c.querySelector('.fmt-cyc').addEventListener('click',ev=>{ ev.stopPropagation(); t.fmt=FMTS[(FMTS.indexOf(t.fmt)+1)%FMTS.length]; save(); render(); });
-        c.querySelector('.plat-cyc').addEventListener('click',ev=>{ ev.stopPropagation(); t.plat=PLATS[(PLATS.indexOf(pl)+1)%PLATS.length]; save(); render(); });
-        c.querySelector('.pub-btn').addEventListener('click',ev=>{ ev.stopPropagation(); openPublish(t); });
-        col.appendChild(c);
+  /* ===================== PIPELINE ===================== */
+  (function(){
+    const host=mEls.PIPELINE;
+    const COLS=['IDEAS','SCRIPTED','FILMING','POSTED'], FMTS=['short','long','teaser','trend'];
+    const PLATS=['tiktok','shorts','yt','ig'], PLABEL={tiktok:'TIKTOK',shorts:'SHORTS',yt:'YOUTUBE',ig:'INSTAGRAM'};
+    const HTAGS={tiktok:['#roblox','#headtap','#robloxfps','#fyp','#robloxedit','#gaming'],shorts:['#roblox','#headtap','#shorts','#robloxfps','#robloxedit'],yt:['#roblox','#headtap','#robloxfps','#robloxedit','#robloxgameplay'],ig:['#roblox','#headtap','#reels','#robloxreels','#robloxfps','#gaming']};
+    const UPLOADERS=[{key:'tiktok',label:'TIKTOK',ic:'♪',url:'https://www.tiktok.com/tiktokstudio/upload'},{key:'yt',label:'YOUTUBE',ic:'▶',url:'https://www.youtube.com/upload'},{key:'ig',label:'INSTAGRAM',ic:'◎',url:'https://www.instagram.com/'}];
+    const capFor=t=>{ const tags=(HTAGS[t.plat]||HTAGS.tiktok).join(' '); const parts=[t.t]; if(t.hook) parts.push(t.hook); parts.push(tags); return parts.join('\n\n'); };
+    const KEY='ybos.content.v1', RKEY='ybos.reject.v1';
+    const REASONS=[['generic','too generic'],['offbrand','off-brand / wrong vibe'],['overdone','overdone / already did it'],['unfilmable','not filmable right now'],['platform','wrong platform'],['hook','weak hook'],['meh','just not feeling it']];
+    const teachCount=()=>{ try{ return JSON.parse(localStorage.getItem(RKEY)||'[]').length; }catch(e){ return 0; } };
+    function logReject(t,reason,note){ let log=[]; try{ log=JSON.parse(localStorage.getItem(RKEY)||'[]'); }catch(e){} log.unshift({t:t.t,plat:t.plat,fmt:t.fmt,reason,note:note||'',ts:new Date().toISOString()}); log=log.slice(0,100); try{ localStorage.setItem(RKEY,JSON.stringify(log)); }catch(e){} return log.length; }
+    const clone=c=>({t:c.t,hook:c.hook||'',fmt:c.fmt||'short',plat:PLATS.includes(c.plat)?c.plat:'tiktok',col:c.col|0});
+    const norm=s=>(''+s).trim().toLowerCase();
+    let ideas=load();
+    function load(){ try{ const raw=localStorage.getItem(KEY); if(raw) return JSON.parse(raw); }catch(e){} return (DATA.feedContent&&DATA.feedContent.length?DATA.feedContent:DATA.content||[]).map(clone); }
+    function save(){ try{ localStorage.setItem(KEY,JSON.stringify(ideas)); }catch(e){} }
+
+    host.innerHTML=`<div class="eyebrow">VIDEO PIPELINE · SAVED IN THIS BROWSER</div>
+      <div id="ctagent"></div><div id="ctincoming"></div>
+      <div class="tbctl"><input id="ctnew" placeholder="new video idea… (Enter to add)" autocomplete="off">
+        <button class="tbbtn" id="ctadd">+ ADD</button>
+        <button class="tbbtn" id="ctexport" title="copy JSON to paste into feed.json content[]">EXPORT</button>
+        <button class="tbbtn" id="ctteach" title="copy your taste log to teach content-creator">TASTE ✎ 0</button>
+      </div><div id="ctkb"></div>
+      <div class="dim mono" id="ctmsg" style="font-size:9px;letter-spacing:.1em;margin-top:6px;min-height:12px"></div>`;
+    const kb=host.querySelector('#ctkb'), msg=host.querySelector('#ctmsg'), agentEl=host.querySelector('#ctagent'), inEl=host.querySelector('#ctincoming');
+    const flash=m=>{ msg.textContent=m; setTimeout(()=>{ if(msg.textContent===m) msg.textContent=''; },2800); };
+
+    function renderTop(){
+      const a=DATA.contentAgent||{status:'idle',note:'standing by',updated:null};
+      const working=a.status==='working';
+      agentEl.innerHTML=`<div class="cstudio-bar ${working?'working':''}"><span class="dot"></span>
+        <span class="who">content-creator</span><span class="note">${esc(a.note||(working?'working…':'idle'))}</span>
+        <span class="ago">updated ${ago(a.updated)}</span></div>`;
+      const have=new Set(ideas.map(i=>norm(i.t)));
+      const incoming=(DATA.feedContent||[]).filter(i=>!have.has(norm(i.t)));
+      if(incoming.length){
+        inEl.innerHTML=`<div class="cstudio-in"><span class="n">${incoming.length}</span>&nbsp;new idea${incoming.length>1?'s':''} from content-creator
+          <span style="flex:1"></span><button class="tbbtn" id="ctmerge">MERGE →</button></div>`;
+        inEl.querySelector('#ctmerge').onclick=()=>{ incoming.forEach(i=>ideas.unshift(clone({...i,col:0}))); save(); render(); renderTop(); flash('merged '+incoming.length+' agent idea(s) into IDEAS'); };
+      } else inEl.innerHTML='';
+    }
+    function render(){
+      kb.innerHTML='';
+      COLS.forEach((cn,ci)=>{
+        const col=document.createElement('div'); col.className='kcol'; col.dataset.col=ci;
+        const items=ideas.filter(t=>t.col===ci);
+        col.innerHTML=`<h4>${cn}<span class="cnt">${items.length}</span></h4>`;
+        items.forEach(t=>{
+          const idx=ideas.indexOf(t), pl=PLATS.includes(t.plat)?t.plat:'tiktok';
+          const c=document.createElement('div'); c.className='card pl-'+pl; c.draggable=true;
+          c.innerHTML=`<span class="del" title="delete">×</span>
+            <div class="ct">${esc(t.t)}</div>
+            ${t.hook?`<div class="hk">${esc(t.hook)}</div>`:''}
+            <div class="cm"><span class="plat-badge pl-${pl} plat-cyc" title="click: change platform">${PLABEL[pl]}</span><span class="ctag ${t.fmt} fmt-cyc" title="click: change format">${(t.fmt||'').toUpperCase()}</span><span class="pub-btn" title="publish — caption + open uploaders">⤴ PUBLISH</span></div>`;
+          c.addEventListener('dragstart',e=>e.dataTransfer.setData('text', idx));
+          c.querySelector('.del').addEventListener('click',ev=>{ ev.stopPropagation(); openReject(c, t); });
+          c.querySelector('.fmt-cyc').addEventListener('click',ev=>{ ev.stopPropagation(); t.fmt=FMTS[(FMTS.indexOf(t.fmt)+1)%FMTS.length]; save(); render(); });
+          c.querySelector('.plat-cyc').addEventListener('click',ev=>{ ev.stopPropagation(); t.plat=PLATS[(PLATS.indexOf(pl)+1)%PLATS.length]; save(); render(); });
+          c.querySelector('.pub-btn').addEventListener('click',ev=>{ ev.stopPropagation(); openPublish(t); });
+          col.appendChild(c);
+        });
+        col.addEventListener('dragover',e=>{ e.preventDefault(); col.classList.add('dragover'); });
+        col.addEventListener('dragleave',()=>col.classList.remove('dragover'));
+        col.addEventListener('drop',e=>{ e.preventDefault(); col.classList.remove('dragover');
+          const i=+e.dataTransfer.getData('text'); if(!isNaN(i)&&ideas[i]){ ideas[i].col=ci; save(); render(); } });
+        kb.appendChild(col);
       });
-      col.addEventListener('dragover',e=>{ e.preventDefault(); col.classList.add('dragover'); });
-      col.addEventListener('dragleave',()=>col.classList.remove('dragover'));
-      col.addEventListener('drop',e=>{ e.preventDefault(); col.classList.remove('dragover');
-        const i=+e.dataTransfer.getData('text'); if(!isNaN(i)&&ideas[i]){ ideas[i].col=ci; save(); render(); } });
-      kb.appendChild(col);
-    });
+    }
+    function openReject(card, t){
+      const existing=card.querySelector('.rejmenu'); if(existing){ existing.remove(); return; }
+      document.querySelectorAll('#body-content .rejmenu').forEach(m=>m.remove());
+      const menu=document.createElement('div'); menu.className='rejmenu';
+      menu.innerHTML='<div class="rh">WHY PASS? — TEACHES CONTENT-CREATOR</div>'+
+        REASONS.map(r=>`<button data-r="${r[0]}">${esc(r[1])}</button>`).join('')+
+        '<input class="rejin" placeholder="or type your own reason… (Enter)" autocomplete="off">'+
+        '<button class="plain" data-r="__nolog">just delete (no note)</button>';
+      card.appendChild(menu);
+      const drop=(reason,note)=>{ if(reason){ const n=logReject(t, reason, note); updateTeach(); flash('taught content-creator: “'+(note||reason)+'” · '+n+' notes logged'); }
+        const i=ideas.indexOf(t); if(i>=0) ideas.splice(i,1); save(); render(); renderTop(); };
+      menu.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',ev=>{ ev.stopPropagation();
+        if(btn.dataset.r==='__nolog') drop(null); else drop(btn.dataset.r, btn.textContent); }));
+      const inp=menu.querySelector('.rejin');
+      inp.addEventListener('click',ev=>ev.stopPropagation());
+      inp.addEventListener('keydown',ev=>{ ev.stopPropagation(); if(ev.key==='Enter'){ const v=inp.value.trim(); if(v) drop('custom', v); } });
+      setTimeout(()=>inp.focus(),0);
+    }
+    const pub=document.getElementById('pub');
+    function closePub(){ pub.classList.remove('show'); }
+    function markPosted(t){
+      t.col=3; t.postedAt=new Date().toISOString();
+      try{ let log=JSON.parse(localStorage.getItem(PKEY)||'[]'); log.unshift({t:t.t,plat:t.plat,fmt:t.fmt,postedAt:t.postedAt}); log=log.slice(0,300); localStorage.setItem(PKEY,JSON.stringify(log)); }catch(e){}
+      save(); render();
+    }
+    function openPublish(t){
+      const pl=PLATS.includes(t.plat)?t.plat:'tiktok', primary=(pl==='shorts'?'yt':pl);
+      document.getElementById('pub-title').textContent=t.t;
+      document.getElementById('pub-plat').textContent='· '+(PLABEL[pl]||'');
+      const cap=document.getElementById('pubcap'); cap.value=capFor(t);
+      const up=document.getElementById('pub-uploaders'); up.innerHTML='';
+      UPLOADERS.forEach(u=>{
+        const a=document.createElement('div'); a.className='pubup'+(u.key===primary?' pri':'');
+        a.innerHTML=`<span class="pi">${u.ic}</span>${u.label}<span class="ps">${u.key===primary?'★ this card':'cross-post'}</span>`;
+        a.onclick=()=>window.open(u.url,'_blank','noopener');
+        up.appendChild(a);
+      });
+      document.getElementById('pub-copy').onclick=async()=>{
+        try{ await navigator.clipboard.writeText(cap.value); flash('caption copied — paste it into the uploader'); }
+        catch(e){ cap.focus(); cap.select(); flash('select + copy the caption (clipboard blocked)'); } };
+      document.getElementById('pub-posted').onclick=()=>{ markPosted(t); closePub(); flash('“'+t.t+'” → POSTED · logged for analytics'); };
+      pub.classList.add('show');
+    }
+    document.getElementById('pub-x').onclick=closePub;
+    document.getElementById('pub-close').onclick=closePub;
+    pub.addEventListener('click',e=>{ if(e.target===pub) closePub(); });
+    addEventListener('keydown',e=>{ if(e.key==='Escape'&&pub.classList.contains('show')) closePub(); });
+    function updateTeach(){ const el=host.querySelector('#ctteach'); if(el) el.textContent='TASTE ✎ '+teachCount(); }
+    const add=()=>{ const inp=host.querySelector('#ctnew'), v=inp.value.trim(); if(!v)return;
+      ideas.unshift({t:v,hook:'',fmt:'short',plat:'tiktok',col:0}); inp.value=''; save(); render(); renderTop(); };
+    host.querySelector('#ctadd').onclick=add;
+    host.querySelector('#ctnew').addEventListener('keydown',e=>{ if(e.key==='Enter')add(); });
+    host.querySelector('#ctexport').onclick=async()=>{ const json=JSON.stringify(ideas,null,2);
+      try{ await navigator.clipboard.writeText(json); flash('copied '+ideas.length+' ideas — paste into feed.json content[]'); }
+      catch(e){ flash('clipboard blocked — JSON logged to console'); console.log(json); } };
+    host.querySelector('#ctteach').onclick=async()=>{ let log=[]; try{ log=JSON.parse(localStorage.getItem(RKEY)||'[]'); }catch(e){}
+      if(!log.length){ flash('no taste notes yet — click × on an idea and pick a reason'); return; }
+      const json=JSON.stringify(log,null,2);
+      try{ await navigator.clipboard.writeText(json); flash('copied '+log.length+' taste notes'); }
+      catch(e){ flash('clipboard blocked — JSON logged to console'); console.log(json); } };
+    document.addEventListener('click',e=>{ if(!e.target.closest('.rejmenu')&&!e.target.closest('.del')) document.querySelectorAll('#body-content .rejmenu').forEach(m=>m.remove()); });
+    renderTop(); render(); updateTeach();
+    window.addEventListener('feed:update', renderTop);
+  })();
+
+  /* ===================== PLANS ===================== */
+  (function(){
+    const host=mEls.PLANS;
+    const KEY='ybos.plans.v1';
+    const SEED_JOURNEY=[
+      "DAY 1 of building a Roblox game: one Draco model, building the FPS core from scratch","Test dummies with escalating 25 to 5000 HP, healer + zombie AI","Damage numbers: white body shots, big red headshots","Splitting the Draco: FULLY DRACO vs SEMI DRACO","Pickup system evolution: walk-over → click → full hotbar inventory","Muzzle flash + ejecting shell casings","WEEK 1 RECAP: first real gunfight montage","New gun: Glock 17 Extendo (blue tracers)","Kill feed with device emojis (PC/mobile/console)","Headshot kill SFX + heartbeat when you're almost dead","ADS + recoil + aiming polish","Welcome room spawn flow + death screen vignette","Knockdown system: 25% chance you drop on hit","WEEK 2 RECAP: XP, levels, food shop, sprint","The ARP + full rifle animation set (equip/idle/reload/run/walk)","FULL mobile support: run, roll, crouch, prone, sprint, shoot on touch","Pistol lineup: Snubnose, Makarov, G17Gen4, G17DRUM, G2C Binary Drum","The HELLCAT arrives (A-Chassis)","SafeZone system: shields, highlights, leave countdown","ATMs, cash pickups, and the hostility system","WEEK 3 RECAP: Gun Dealer + Clone Card Dealer crime economy","Fists + delivery missions","THE CITY PLAN: revealing the full building list","The 4 TURFS (gang headquarters)","ICEBLOX jewelry store + its safezone","THE MINESHAFT","Chop shop, dealership, gun store tour","Decoration pass: making the block feel alive","Behind the scenes: the live analytics dashboard","FULL GAME TOUR + what's next for Block Simulator"
+    ];
+    const seed=()=>({active:0,tabs:[{name:"HEADTAP DEVELOPMENT JOURNY",items:SEED_JOURNEY.map(t=>({t,done:false}))}]});
+    let store=load();
+    function load(){ try{ const r=localStorage.getItem(KEY); if(r){ const p=JSON.parse(r); if(p&&Array.isArray(p.tabs)&&p.tabs.length) return p; } }catch(e){} return seed(); }
+    function save(){ try{ localStorage.setItem(KEY,JSON.stringify(store)); }catch(e){} }
+    const clampActive=()=>{ if(store.active>=store.tabs.length) store.active=store.tabs.length-1; if(store.active<0) store.active=0; };
+
+    host.innerHTML=`<div class="eyebrow">CONTENT PLANS · TABS = SEPARATE PLANS · SAVED IN THIS BROWSER</div>
+      <div class="plan-tabs" id="plan-tabs"></div><div id="plan-body"></div>`;
+    const tabsEl=host.querySelector('#plan-tabs'), bodyEl=host.querySelector('#plan-body');
+    function renderTabs(){
+      tabsEl.innerHTML = store.tabs.map((t,i)=>{ const done=t.items.filter(x=>x.done).length;
+        return `<button class="plan-tab ${i===store.active?'on':''}" data-i="${i}">${esc(t.name)||'UNTITLED'}<span class="tc">${done}/${t.items.length}</span></button>`; }).join('')
+        + `<button class="plan-tab addtab" id="plan-addtab">+ NEW TAB</button>`;
+      tabsEl.querySelectorAll('.plan-tab[data-i]').forEach(el=>el.onclick=()=>{ store.active=+el.dataset.i; save(); render(); });
+      tabsEl.querySelector('#plan-addtab').onclick=()=>{ store.tabs.push({name:'NEW PLAN',items:[]}); store.active=store.tabs.length-1; save(); render(); const ni=bodyEl.querySelector('.plan-name'); if(ni){ ni.focus(); ni.select(); } };
+    }
+    function renderBody(){
+      clampActive();
+      const tab=store.tabs[store.active];
+      const done=tab.items.filter(x=>x.done).length, tot=tab.items.length, pct=tot?Math.round(done/tot*100):0;
+      bodyEl.innerHTML=`
+        <div class="plan-head"><input class="plan-name" value="${esc(tab.name)}" placeholder="plan name…" spellcheck="false">
+          ${store.tabs.length>1?'<button class="plan-deltab">DELETE TAB</button>':''}</div>
+        <div class="plan-prog"><div class="pl"><b>${done}/${tot}</b> done<span>${pct}%</span></div>
+          <div class="track"><i style="--p:${tot?done/tot:0}"></i></div></div>
+        <div id="plan-items">${ tot ? tab.items.map((it,i)=>`
+          <div class="plan-item ${it.done?'done':''}" data-i="${i}"><span class="num">${i+1}</span>
+            <span class="cb">${it.done?'✓':''}</span><span class="pt">${esc(it.t)}</span><span class="pdel" title="delete">×</span>
+          </div>`).join('') : '<div class="dim" style="font-size:12px;padding:8px 2px">no items yet — add one below</div>' }</div>
+        <div class="tbctl plan-addrow"><input id="plan-new" placeholder="add item… (Enter)" autocomplete="off"><button class="tbbtn" id="plan-addit">+ ADD</button></div>`;
+      const nm=bodyEl.querySelector('.plan-name');
+      nm.addEventListener('input',()=>{ tab.name=nm.value; save(); renderTabs(); });
+      const delt=bodyEl.querySelector('.plan-deltab');
+      if(delt) delt.onclick=()=>{ store.tabs.splice(store.active,1); store.active=Math.max(0,store.active-1); save(); render(); };
+      bodyEl.querySelectorAll('.plan-item').forEach(row=>{
+        const i=+row.dataset.i, toggle=()=>{ tab.items[i].done=!tab.items[i].done; save(); render(); };
+        row.querySelector('.cb').onclick=toggle; row.querySelector('.pt').onclick=toggle;
+        row.querySelector('.pdel').onclick=ev=>{ ev.stopPropagation(); tab.items.splice(i,1); save(); render(); };
+      });
+      const add=()=>{ const inp=bodyEl.querySelector('#plan-new'), v=inp.value.trim(); if(!v)return; tab.items.push({t:v,done:false}); save(); render(); const n=bodyEl.querySelector('#plan-new'); if(n) n.focus(); };
+      bodyEl.querySelector('#plan-addit').onclick=add;
+      bodyEl.querySelector('#plan-new').addEventListener('keydown',e=>{ if(e.key==='Enter')add(); });
+    }
+    function render(){ renderTabs(); renderBody(); }
+    render();
+  })();
+
+  /* ===================== INSIGHTS ===================== */
+  function renderPlaybook(PB){
+    if(!PB) return '<div class="ins-note">playbook loading…</div>';
+    const plats=[['tiktok','TIKTOK'],['youtube','YOUTUBE'],['instagram','INSTAGRAM']];
+    const plHtml=plats.map(([k,n])=>{ const p=PB.platforms&&PB.platforms[k]; if(!p) return '';
+      return `<div class="pb-plat ${k}"><div class="ph">${n}<span class="cad">${esc(p.cadence||'')}</span></div>
+        <div class="meta"><b>focus</b> ${esc(p.focus||'')}<br><b>best times</b> ${esc(p.bestTimes||'')}<br><b>audience</b> ${esc(p.audience||'')}</div>
+        ${(p.hooks||[]).map(h=>`<div class="hook">${esc(h)}”</div>`).join('')}</div>`; }).join('');
+    const week=(PB.next7days||[]).map(d=>`<div class="pb-week"><span class="d">${esc(d.day||'')}</span><span class="pl">${esc((d.plat||'').toUpperCase())}</span><div class="body"><div class="idea">${esc(d.idea||'')}</div><div class="hk">“${esc(d.hook||'')}”</div></div></div>`).join('');
+    return `${PB.summary?`<div class="pb-summary">${esc(PB.summary)}</div>`:''}
+      ${(PB.priorities&&PB.priorities.length)?`<div class="ins-h" style="color:var(--dust);margin-top:4px">DO NEXT</div><ul class="pb-list">${PB.priorities.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+      ${(PB.pillars&&PB.pillars.length)?`<div class="ins-h" style="color:var(--dust)">PILLARS</div><div class="pb-pillars">${PB.pillars.map(x=>`<span class="pb-pill">${esc(x)}</span>`).join('')}</div>`:''}
+      <div class="ins-h" style="color:var(--dust)">PER PLATFORM</div>${plHtml}
+      ${week?`<div class="ins-h" style="color:var(--dust)">THIS WEEK · FILM ONCE, POST 7×</div>${week}`:''}`;
   }
-  function openReject(card, t){
-    const existing=card.querySelector('.rejmenu'); if(existing){ existing.remove(); return; }
-    document.querySelectorAll('#body-content .rejmenu').forEach(m=>m.remove());
-    const menu=document.createElement('div'); menu.className='rejmenu';
-    menu.innerHTML='<div class="rh">WHY PASS? — TEACHES CONTENT-CREATOR</div>'+
-      REASONS.map(r=>`<button data-r="${r[0]}">${esc(r[1])}</button>`).join('')+
-      '<input class="rejin" placeholder="or type your own reason… (Enter)" autocomplete="off">'+
-      '<button class="plain" data-r="__nolog">just delete (no note)</button>';
-    card.appendChild(menu);
-    const drop=(reason,note)=>{ if(reason){ const n=logReject(t, reason, note); updateTeach(); flash('taught content-creator: “'+(note||reason)+'” · '+n+' notes logged'); }
-      const i=ideas.indexOf(t); if(i>=0) ideas.splice(i,1); save(); render(); renderTop(); };
-    menu.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',ev=>{ ev.stopPropagation();
-      if(btn.dataset.r==='__nolog') drop(null); else drop(btn.dataset.r, btn.textContent); }));
-    const inp=menu.querySelector('.rejin');
-    inp.addEventListener('click',ev=>ev.stopPropagation());
-    inp.addEventListener('keydown',ev=>{ ev.stopPropagation(); if(ev.key==='Enter'){ const v=inp.value.trim(); if(v) drop('custom', v); } });
-    setTimeout(()=>inp.focus(),0);
+  function renderInsights(){
+    const host=mEls.INSIGHTS, a=DATA.analytics, PB=DATA.playbook||SEED_PLAYBOOK;
+    let posts=[]; try{ posts=JSON.parse(localStorage.getItem(PKEY)||'[]'); }catch(e){}
+    const platMeta=[{k:'tiktok',n:'TIKTOK',foll:'followers'},{k:'youtube',n:'YOUTUBE',foll:'subscribers'},{k:'instagram',n:'INSTAGRAM',foll:'followers'}];
+    let cards='';
+    if(a){ cards=platMeta.map(p=>{ const d=a[p.k]; if(!d) return `<div class="ins-card ${p.k}"><div class="pn">${p.n}</div><div class="big">—</div><div class="sub">not synced</div></div>`;
+      const eng=(d.views>0)?Math.round(((d.likes||0)+(d.comments||0))/d.views*100):null;
+      return `<div class="ins-card ${p.k}"><div class="pn">${p.n}</div><div class="big">${fmtN(d[p.foll])}</div><div class="sub">${fmtN(d.views)} views${eng!=null?' · '+eng+'% eng':''}</div></div>`; }).join(''); }
+    const top=(a&&a.top)||[];
+    let topHtml;
+    if(top.length){ const best=top[0];
+      topHtml = top.slice(0,5).map((x,i)=>`<div class="ins-row"><span class="rk">${i+1}</span><span class="t">${esc(x.t||'')}</span><span class="v">${fmtN(x.views)} views</span></div>`).join('')
+        + `<div class="ins-note" style="margin-top:8px"><b>Why #1 won:</b> “${esc(best.t)}” pulled ${fmtN(best.views)} views${best.likes?` and ${fmtN(best.likes)} likes`:''} — your strongest format/hook so far. Make more like it.</div>`;
+    } else {
+      topHtml = `<div class="ins-note">No ranked posts yet${posts.length?` (${posts.length} marked posted locally, waiting on platform stats)`:''}. Post videos — the sync then ranks your best performers here and spells out <b>why</b> they won.</div>`;
+    }
+    const timesHtml = `<div class="ins-note"><b>Not measured yet.</b> Real best-times + audience demographics need an expanded sync (YouTube Analytics OAuth + TikTok/IG audience insights) that isn't wired. Until then, treat the playbook times below as starting hypotheses and let your own post results correct them.</div>`;
+    host.innerHTML = `
+      <div class="ins-sec"><div class="ins-h">PLATFORM SCORECARD <span class="tag">${a?'LIVE':'AWAITING SYNC'}</span></div>${a?`<div class="ins-cards">${cards}</div>`:'<div class="ins-note">Analytics not synced yet — see the ANALYTICS window.</div>'}</div>
+      <div class="ins-sec"><div class="ins-h">TOP PERFORMERS · WHY</div>${topHtml}</div>
+      <div class="ins-sec"><div class="ins-h">BEST TIMES &amp; AUDIENCE</div>${timesHtml}</div>
+      <div class="ins-sec"><div class="ins-h">FABLE 5 PLAYBOOK <span class="tag">COLD-START GROWTH</span></div>${renderPlaybook(PB)}</div>`;
   }
-  // ---- publish launchpad ----
-  const pub=document.getElementById('pub');
-  function closePub(){ pub.classList.remove('show'); }
-  function markPosted(t){
-    t.col=3; t.postedAt=new Date().toISOString();
-    try{ let log=JSON.parse(localStorage.getItem(PKEY)||'[]');
-      log.unshift({t:t.t, plat:t.plat, fmt:t.fmt, postedAt:t.postedAt}); log=log.slice(0,300);
-      localStorage.setItem(PKEY, JSON.stringify(log)); }catch(e){}
-    save(); render();
-  }
-  function openPublish(t){
-    const pl=PLATS.includes(t.plat)?t.plat:'tiktok', primary=(pl==='shorts'?'yt':pl);
-    document.getElementById('pub-title').textContent=t.t;
-    document.getElementById('pub-plat').textContent='· '+(PLABEL[pl]||'');
-    const cap=document.getElementById('pubcap'); cap.value=capFor(t);
-    const up=document.getElementById('pub-uploaders'); up.innerHTML='';
-    UPLOADERS.forEach(u=>{
-      const a=document.createElement('div'); a.className='pubup'+(u.key===primary?' pri':'');
-      a.innerHTML=`<span class="pi">${u.ic}</span>${u.label}<span class="ps">${u.key===primary?'★ this card':'cross-post'}</span>`;
-      a.onclick=()=>window.open(u.url,'_blank','noopener');
-      up.appendChild(a);
-    });
-    document.getElementById('pub-copy').onclick=async()=>{
-      try{ await navigator.clipboard.writeText(cap.value); flash('caption copied — paste it into the uploader'); }
-      catch(e){ cap.focus(); cap.select(); flash('select + copy the caption (clipboard blocked)'); } };
-    document.getElementById('pub-posted').onclick=()=>{ markPosted(t); closePub(); flash('“'+t.t+'” → POSTED · logged for analytics'); };
-    pub.classList.add('show');
-  }
-  document.getElementById('pub-x').onclick=closePub;
-  document.getElementById('pub-close').onclick=closePub;
-  pub.addEventListener('click',e=>{ if(e.target===pub) closePub(); });
-  addEventListener('keydown',e=>{ if(e.key==='Escape'&&pub.classList.contains('show')) closePub(); });
-  function updateTeach(){ const el=b.querySelector('#ctteach'); if(el) el.textContent='TASTE ✎ '+teachCount(); }
-  const add=()=>{ const inp=b.querySelector('#ctnew'), v=inp.value.trim(); if(!v)return;
-    ideas.unshift({t:v,hook:'',fmt:'short',plat:'tiktok',col:0}); inp.value=''; save(); render(); renderTop(); };
-  b.querySelector('#ctadd').onclick=add;
-  b.querySelector('#ctnew').addEventListener('keydown',e=>{ if(e.key==='Enter')add(); });
-  b.querySelector('#ctexport').onclick=async()=>{ const json=JSON.stringify(ideas,null,2);
-    try{ await navigator.clipboard.writeText(json); flash('copied '+ideas.length+' ideas — paste into feed.json content[]'); }
-    catch(e){ flash('clipboard blocked — JSON logged to console'); console.log(json); } };
-  b.querySelector('#ctteach').onclick=async()=>{ let log=[]; try{ log=JSON.parse(localStorage.getItem(RKEY)||'[]'); }catch(e){}
-    if(!log.length){ flash('no taste notes yet — click × on an idea and pick a reason'); return; }
-    const json=JSON.stringify(log,null,2);
-    try{ await navigator.clipboard.writeText(json); flash('copied '+log.length+' taste notes — paste into feed.json rejections[] or hand to content-creator'); }
-    catch(e){ flash('clipboard blocked — JSON logged to console'); console.log(json); } };
-  document.addEventListener('click',e=>{ if(!e.target.closest('.rejmenu')&&!e.target.closest('.del')) document.querySelectorAll('#body-content .rejmenu').forEach(m=>m.remove()); });
-  renderTop(); render(); updateTeach();
-  window.addEventListener('feed:update', renderTop);
+
+  renderTabs(); showMode();
+  window.addEventListener('feed:update', ()=>{ if(mode==='INSIGHTS') renderInsights(); });
 })();
 
 /* ---- ANALYTICS (social stats, auto-pulled into feed.meta.analytics by the sync job) ---- */
@@ -1061,96 +1223,6 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   render();
   window.addEventListener('feed:update', render);
   window.addEventListener('win:resize', e=>{ if(e.detail && e.detail.id==='analytics') render(); });
-})();
-
-/* ---- CONTENT PLAN (tabbed checklists; first tab = 30-day dev journey) ---- */
-(function(){
-  const b = mkWin('plan','CONTENT PLAN','☑', Math.min(360,W*.26), H*.14, Math.min(560,W*.44), Math.min(520,H*.66), true);
-  const KEY='ybos.plans.v1';
-  const esc=s=>(''+s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-  const SEED_JOURNEY=[
-    "DAY 1 of building a Roblox game: one Draco model, building the FPS core from scratch",
-    "Test dummies with escalating 25 to 5000 HP, healer + zombie AI",
-    "Damage numbers: white body shots, big red headshots",
-    "Splitting the Draco: FULLY DRACO vs SEMI DRACO",
-    "Pickup system evolution: walk-over → click → full hotbar inventory",
-    "Muzzle flash + ejecting shell casings",
-    "WEEK 1 RECAP: first real gunfight montage",
-    "New gun: Glock 17 Extendo (blue tracers)",
-    "Kill feed with device emojis (PC/mobile/console)",
-    "Headshot kill SFX + heartbeat when you're almost dead",
-    "ADS + recoil + aiming polish",
-    "Welcome room spawn flow + death screen vignette",
-    "Knockdown system: 25% chance you drop on hit",
-    "WEEK 2 RECAP: XP, levels, food shop, sprint",
-    "The ARP + full rifle animation set (equip/idle/reload/run/walk)",
-    "FULL mobile support: run, roll, crouch, prone, sprint, shoot on touch",
-    "Pistol lineup: Snubnose, Makarov, G17Gen4, G17DRUM, G2C Binary Drum",
-    "The HELLCAT arrives (A-Chassis)",
-    "SafeZone system: shields, highlights, leave countdown",
-    "ATMs, cash pickups, and the hostility system",
-    "WEEK 3 RECAP: Gun Dealer + Clone Card Dealer crime economy",
-    "Fists + delivery missions",
-    "THE CITY PLAN: revealing the full building list",
-    "The 4 TURFS (gang headquarters)",
-    "ICEBLOX jewelry store + its safezone",
-    "THE MINESHAFT",
-    "Chop shop, dealership, gun store tour",
-    "Decoration pass: making the block feel alive",
-    "Behind the scenes: the live analytics dashboard",
-    "FULL GAME TOUR + what's next for Block Simulator",
-  ];
-  const seed=()=>({ active:0, tabs:[ { name:"HEADTAP DEVELOPMENT JOURNY", items:SEED_JOURNEY.map(t=>({t,done:false})) } ] });
-  let store=load();
-  function load(){ try{ const r=localStorage.getItem(KEY); if(r){ const p=JSON.parse(r); if(p&&Array.isArray(p.tabs)&&p.tabs.length) return p; } }catch(e){} return seed(); }
-  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
-  const clampActive=()=>{ if(store.active>=store.tabs.length) store.active=store.tabs.length-1; if(store.active<0) store.active=0; };
-
-  b.innerHTML=`<div class="eyebrow">CONTENT PLANS · TABS = SEPARATE PLANS · SAVED IN THIS BROWSER</div>
-    <div class="plan-tabs" id="plan-tabs"></div><div id="plan-body"></div>`;
-  const tabsEl=b.querySelector('#plan-tabs'), bodyEl=b.querySelector('#plan-body');
-
-  function renderTabs(){
-    tabsEl.innerHTML = store.tabs.map((t,i)=>{
-      const done=t.items.filter(x=>x.done).length;
-      return `<button class="plan-tab ${i===store.active?'on':''}" data-i="${i}">${esc(t.name)||'UNTITLED'}<span class="tc">${done}/${t.items.length}</span></button>`;
-    }).join('') + `<button class="plan-tab addtab" id="plan-addtab">+ NEW TAB</button>`;
-    tabsEl.querySelectorAll('.plan-tab[data-i]').forEach(el=>el.onclick=()=>{ store.active=+el.dataset.i; save(); render(); });
-    tabsEl.querySelector('#plan-addtab').onclick=()=>{
-      store.tabs.push({name:'NEW PLAN', items:[]}); store.active=store.tabs.length-1; save(); render();
-      const ni=bodyEl.querySelector('.plan-name'); if(ni){ ni.focus(); ni.select(); }
-    };
-  }
-  function renderBody(){
-    clampActive();
-    const tab=store.tabs[store.active];
-    const done=tab.items.filter(x=>x.done).length, tot=tab.items.length, pct=tot?Math.round(done/tot*100):0;
-    bodyEl.innerHTML=`
-      <div class="plan-head"><input class="plan-name" value="${esc(tab.name)}" placeholder="plan name…" spellcheck="false">
-        ${store.tabs.length>1?'<button class="plan-deltab">DELETE TAB</button>':''}</div>
-      <div class="plan-prog"><div class="pl"><b>${done}/${tot}</b> done<span>${pct}%</span></div>
-        <div class="track"><i style="--p:${tot?done/tot:0}"></i></div></div>
-      <div id="plan-items">${ tot ? tab.items.map((it,i)=>`
-        <div class="plan-item ${it.done?'done':''}" data-i="${i}"><span class="num">${i+1}</span>
-          <span class="cb">${it.done?'✓':''}</span><span class="pt">${esc(it.t)}</span><span class="pdel" title="delete">×</span>
-        </div>`).join('') : '<div class="dim" style="font-size:12px;padding:8px 2px">no items yet — add one below</div>' }</div>
-      <div class="tbctl plan-addrow"><input id="plan-new" placeholder="add item… (Enter)" autocomplete="off"><button class="tbbtn" id="plan-addit">+ ADD</button></div>`;
-    const nm=bodyEl.querySelector('.plan-name');
-    nm.addEventListener('input',()=>{ tab.name=nm.value; save(); renderTabs(); });
-    const delt=bodyEl.querySelector('.plan-deltab');
-    if(delt) delt.onclick=()=>{ store.tabs.splice(store.active,1); store.active=Math.max(0,store.active-1); save(); render(); };
-    bodyEl.querySelectorAll('.plan-item').forEach(row=>{
-      const i=+row.dataset.i, toggle=()=>{ tab.items[i].done=!tab.items[i].done; save(); render(); };
-      row.querySelector('.cb').onclick=toggle;
-      row.querySelector('.pt').onclick=toggle;
-      row.querySelector('.pdel').onclick=ev=>{ ev.stopPropagation(); tab.items.splice(i,1); save(); render(); };
-    });
-    const add=()=>{ const inp=bodyEl.querySelector('#plan-new'), v=inp.value.trim(); if(!v)return; tab.items.push({t:v,done:false}); save(); render(); const n=bodyEl.querySelector('#plan-new'); if(n) n.focus(); };
-    bodyEl.querySelector('#plan-addit').onclick=add;
-    bodyEl.querySelector('#plan-new').addEventListener('keydown',e=>{ if(e.key==='Enter')add(); });
-  }
-  function render(){ renderTabs(); renderBody(); }
-  render();
 })();
 
 renderDock();
