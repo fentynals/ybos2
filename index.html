@@ -217,6 +217,12 @@ body::after{
 .cstudio-bar .who{color:var(--concrete)} .cstudio-bar .note{color:var(--amber)} .cstudio-bar .ago{margin-left:auto;color:var(--dust)}
 .cstudio-in{display:flex;align-items:center;gap:10px;border:1px solid var(--amber-dim);background:rgba(255,170,60,.06);padding:7px 10px;margin-bottom:8px;font-size:11px;color:var(--concrete)}
 .cstudio-in .n{color:var(--amber);font-weight:600}
+/* "why pass?" reject dropdown */
+.rejmenu{position:absolute;top:4px;right:4px;z-index:60;background:#161C29;border:1px solid var(--amber-dim);min-width:172px;box-shadow:0 8px 24px rgba(0,0,0,.55)}
+.rejmenu .rh{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.14em;color:var(--amber);padding:7px 10px;border-bottom:1px solid var(--line)}
+.rejmenu button{display:block;width:100%;text-align:left;background:transparent;border:0;color:var(--concrete);font-size:11px;padding:7px 10px;cursor:pointer;font-family:inherit}
+.rejmenu button:hover{background:rgba(255,170,60,.12);color:var(--amber)}
+.rejmenu button.plain{color:var(--dust);border-top:1px solid var(--line)}
 /* dispatch log */
 #dispatch{font-family:'IBM Plex Mono';font-size:10.5px;line-height:1.85;color:#8B93A6;background:#0A0D13;border:1px solid var(--line);padding:10px;height:360px;overflow-y:auto;scrollbar-width:thin}
 #dispatch .t{color:#3E4658;margin-right:8px}
@@ -829,7 +835,12 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   const b = mkWin('content','CONTENT','▶', W*.18, H*.22, Math.min(940,W*.66), 460, true);
   const COLS=['IDEAS','SCRIPTED','FILMING','POSTED'], FMTS=['short','long','teaser','trend'];
   const PLATS=['tiktok','shorts','yt','ig'], PLABEL={tiktok:'TIKTOK',shorts:'SHORTS',yt:'YOUTUBE',ig:'INSTAGRAM'};
-  const KEY='ybos.content.v1';
+  const KEY='ybos.content.v1', RKEY='ybos.reject.v1';
+  const REASONS=[['generic','too generic'],['offbrand','off-brand / wrong vibe'],['overdone','overdone / already did it'],['unfilmable','not filmable right now'],['platform','wrong platform'],['hook','weak hook'],['meh','just not feeling it']];
+  const teachCount=()=>{ try{ return JSON.parse(localStorage.getItem(RKEY)||'[]').length; }catch(e){ return 0; } };
+  function logReject(t, reason){ let log=[]; try{ log=JSON.parse(localStorage.getItem(RKEY)||'[]'); }catch(e){}
+    log.unshift({t:t.t, plat:t.plat, fmt:t.fmt, reason, ts:new Date().toISOString()}); log=log.slice(0,100);
+    try{ localStorage.setItem(RKEY, JSON.stringify(log)); }catch(e){} return log.length; }
   const clone=c=>({t:c.t, hook:c.hook||'', fmt:c.fmt||'short', plat:PLATS.includes(c.plat)?c.plat:'tiktok', col:c.col|0});
   const esc=s=>(''+s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
   const norm=s=>(''+s).trim().toLowerCase();
@@ -846,6 +857,7 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
       <input id="ctnew" placeholder="new video idea… (Enter to add)" autocomplete="off">
       <button class="tbbtn" id="ctadd">+ ADD</button>
       <button class="tbbtn" id="ctexport" title="copy JSON to paste into feed.json content[]">EXPORT</button>
+      <button class="tbbtn" id="ctteach" title="copy your 'why I passed' log to teach content-creator (paste into feed.json rejections[])">TASTE ✎ 0</button>
     </div><div id="ctkb"></div>
     <div class="dim mono" id="ctmsg" style="font-size:9px;letter-spacing:.1em;margin-top:6px;min-height:12px"></div>`;
   const kb=b.querySelector('#ctkb'), msg=b.querySelector('#ctmsg');
@@ -881,7 +893,7 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
           ${t.hook?`<div class="hk">${esc(t.hook)}</div>`:''}
           <div class="cm"><span class="plat-badge pl-${pl} plat-cyc" title="click: change platform">${PLABEL[pl]}</span><span class="ctag ${t.fmt} fmt-cyc" title="click: change format">${(t.fmt||'').toUpperCase()}</span></div>`;
         c.addEventListener('dragstart',e=>e.dataTransfer.setData('text', idx));
-        c.querySelector('.del').addEventListener('click',ev=>{ ev.stopPropagation(); ideas.splice(idx,1); save(); render(); renderTop(); });
+        c.querySelector('.del').addEventListener('click',ev=>{ ev.stopPropagation(); openReject(c, t); });
         c.querySelector('.fmt-cyc').addEventListener('click',ev=>{ ev.stopPropagation(); t.fmt=FMTS[(FMTS.indexOf(t.fmt)+1)%FMTS.length]; save(); render(); });
         c.querySelector('.plat-cyc').addEventListener('click',ev=>{ ev.stopPropagation(); t.plat=PLATS[(PLATS.indexOf(pl)+1)%PLATS.length]; save(); render(); });
         col.appendChild(c);
@@ -893,6 +905,21 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
       kb.appendChild(col);
     });
   }
+  function openReject(card, t){
+    const existing=card.querySelector('.rejmenu'); if(existing){ existing.remove(); return; }
+    document.querySelectorAll('#body-content .rejmenu').forEach(m=>m.remove());
+    const menu=document.createElement('div'); menu.className='rejmenu';
+    menu.innerHTML='<div class="rh">WHY PASS? — TEACHES CONTENT-CREATOR</div>'+
+      REASONS.map(r=>`<button data-r="${r[0]}">${esc(r[1])}</button>`).join('')+
+      '<button class="plain" data-r="__nolog">just delete (no note)</button>';
+    card.appendChild(menu);
+    menu.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',ev=>{
+      ev.stopPropagation();
+      if(btn.dataset.r!=='__nolog'){ const n=logReject(t, btn.dataset.r); updateTeach(); flash('taught content-creator: “'+btn.textContent+'” · '+n+' notes logged'); }
+      const i=ideas.indexOf(t); if(i>=0) ideas.splice(i,1); save(); render(); renderTop();
+    }));
+  }
+  function updateTeach(){ const el=b.querySelector('#ctteach'); if(el) el.textContent='TASTE ✎ '+teachCount(); }
   const add=()=>{ const inp=b.querySelector('#ctnew'), v=inp.value.trim(); if(!v)return;
     ideas.unshift({t:v,hook:'',fmt:'short',plat:'tiktok',col:0}); inp.value=''; save(); render(); renderTop(); };
   b.querySelector('#ctadd').onclick=add;
@@ -900,7 +927,13 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   b.querySelector('#ctexport').onclick=async()=>{ const json=JSON.stringify(ideas,null,2);
     try{ await navigator.clipboard.writeText(json); flash('copied '+ideas.length+' ideas — paste into feed.json content[]'); }
     catch(e){ flash('clipboard blocked — JSON logged to console'); console.log(json); } };
-  renderTop(); render();
+  b.querySelector('#ctteach').onclick=async()=>{ let log=[]; try{ log=JSON.parse(localStorage.getItem(RKEY)||'[]'); }catch(e){}
+    if(!log.length){ flash('no taste notes yet — click × on an idea and pick a reason'); return; }
+    const json=JSON.stringify(log,null,2);
+    try{ await navigator.clipboard.writeText(json); flash('copied '+log.length+' taste notes — paste into feed.json rejections[] or hand to content-creator'); }
+    catch(e){ flash('clipboard blocked — JSON logged to console'); console.log(json); } };
+  document.addEventListener('click',e=>{ if(!e.target.closest('.rejmenu')&&!e.target.closest('.del')) document.querySelectorAll('#body-content .rejmenu').forEach(m=>m.remove()); });
+  renderTop(); render(); updateTeach();
   window.addEventListener('feed:update', renderTop);
 })();
 
