@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — YUNGSBRUH.OS</title>
+<style>
+  :root{ color-scheme:dark; }
+  body{ background:#0B0E13; color:#C9CDD6; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    line-height:1.65; margin:0; padding:48px 20px; }
+  main{ max-width:720px; margin:0 auto; }
+  h1{ color:#EDEFF4; font-size:26px; letter-spacing:.02em; }
+  h2{ color:#FFAA3C; font-size:15px; letter-spacing:.06em; text-transform:uppercase; margin-top:34px; }
+  a{ color:#9FD1FF; }
+  .muted{ color:#6B7385; font-size:13px; }
+  hr{ border:0; border-top:1px solid #232C3E; margin:28px 0; }
+  ul{ padding-left:20px; }
+  li{ margin:6px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="muted">YUNGSBRUH.OS — the HEADTAP development dashboard. Last updated 5 July 2026.</p>
+  <hr>
+
+  <h2>1. Who this covers</h2>
+  <p>YUNGSBRUH.OS ("the App") is a private, single-operator dashboard. It is used only by its operator
+  to view analytics for the operator's own connected social accounts. It has no other users and does not
+  collect data from the public.</p>
+
+  <h2>2. What data we access</h2>
+  <p>When the operator connects an account, the App reads, via the official platform APIs, only public
+  and account-level statistics for that operator's own accounts, such as:</p>
+  <ul>
+    <li>Follower / subscriber counts</li>
+    <li>Video and post view, like, comment, and share counts</li>
+    <li>Post titles and links</li>
+  </ul>
+  <p>The App does <strong>not</strong> access private messages, contacts, or the data of any other user,
+  and it does not post, modify, or delete content on the operator's behalf through the analytics sync.</p>
+
+  <h2>3. How data is used and stored</h2>
+  <p>Retrieved statistics are written into a data file (<code>feed.json</code>) that powers the operator's
+  own dashboard display. Access tokens are stored as encrypted secrets in the operator's GitHub repository
+  and are used solely to make read-only API calls. Data is not sold, shared, or transferred to any third party.</p>
+
+  <h2>4. Third-party platforms</h2>
+  <p>The App uses the TikTok, YouTube (Google), and Instagram (Meta) APIs. Data obtained from each platform
+  is used in accordance with that platform's developer terms and policies.</p>
+
+  <h2>5. Data retention & removal</h2>
+  <p>Statistics persist only in the dashboard's data file and can be cleared at any time by the operator.
+  To revoke access, the operator removes the stored tokens and disconnects the App from the platform's
+  app settings.</p>
+
+  <h2>6. Contact</h2>
+  <p>Questions or removal requests: <a href="mailto:faztaoyt@gmail.com">faztaoyt@gmail.com</a></p>
+
+  <hr>
+  <p class="muted">See also our <a href="terms.html">Terms of Service</a>.</p>
+</main>
+</body>
+</html>
