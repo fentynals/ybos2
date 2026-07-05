@@ -720,6 +720,51 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   });
 })();
 
+/* ---- MEMORY (CLAUDE.md project memory) ---- */
+(function(){
+  const b = mkWin('mem','MEMORY','◈', W*.40, H*.20, Math.min(520,W*.42), 480, true);
+  b.innerHTML = `
+    <div class="gamecard" style="padding:14px">
+      <div class="eyebrow">CLAUDE CODE · PROJECT MEMORY</div>
+      <div style="font-family:'Archivo Black';font-size:20px;color:#EDEFF4;letter-spacing:.02em">CLAUDE.md</div>
+      <div class="gsub">THE RULES EVERY AGENT READS BEFORE TOUCHING THIS REPO</div>
+    </div>
+    <div class="rule"></div>
+
+    <div class="eyebrow">TWO FILES THAT MATTER</div>
+    <div style="font-size:12px;line-height:1.7;margin-bottom:6px">
+      <span class="chip amber">EDIT + VALIDATE</span>
+      <b class="mono" style="color:var(--concrete)">index.html</b> — the OS webpage. Editable, but every
+      <span class="mono" style="color:var(--amber)">&lt;script&gt;</span> block must pass a syntax check, the
+      <span class="mono" style="color:var(--amber)">FEED_URL</span> wiring must stay intact, and a broken commit
+      blank-screens the whole site.
+    </div>
+    <div style="font-size:12px;line-height:1.7">
+      <span class="chip ok">LIVE DATA</span>
+      <b class="mono" style="color:var(--concrete)">feed.json</b> — the data the OS polls every 15s.
+    </div>
+    <div class="rule"></div>
+
+    <div class="eyebrow">FEED.JSON · RADIO CLASS LEGEND</div>
+    <div style="font-size:11px;line-height:2;font-family:'IBM Plex Mono'">
+      <span style="color:var(--ok)">●</span> okx — verified / fix &nbsp;&nbsp;
+      <span style="color:var(--red)">●</span> fx — bug / exploit<br>
+      <span style="color:var(--tracer)">●</span> shipx — shipped &nbsp;&nbsp;
+      <span style="color:var(--dust)">●</span> out — routine
+    </div>
+    <div class="dim" style="font-size:11px;line-height:1.6;margin-top:8px">
+      radio[] prepend newest · tasks[] col 0–3 (backlog→shipped) · ship[] prepend newest · meta.updated = now on every commit
+    </div>
+    <div class="rule"></div>
+
+    <div class="eyebrow">DAILY HEARTBEAT</div>
+    <div class="dim" style="font-size:11.5px;line-height:1.65">
+      git pull first — never clobber other agents — then append ONE
+      <b class="mono" style="color:var(--amber)">CRON</b> · <b class="mono" style="color:var(--dust)">out</b>
+      line: date, commit count in last 24h, and HEADTAP's Roblox stats if reachable (skip silently if not).
+    </div>`;
+})();
+
 renderDock();
 
 /* live: start polling + re-render windows when feed changes */
