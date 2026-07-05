@@ -1,0 +1,57 @@
+name: analytics-sync
+
+# Pulls TikTok / YouTube / Instagram stats into feed.json -> meta.analytics.
+# Runs every 6h, or on demand (Actions tab -> Run workflow). Set dry_run=true
+# for the first run to see the numbers in the logs without committing.
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Fetch + print only, do not commit'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: analytics-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync analytics
+        env:
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+          YT_CHANNEL_ID: ${{ secrets.YT_CHANNEL_ID }}
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: node tools/sync-analytics.mjs
+
+      - name: Commit + push if changed
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name  "ybos-analytics[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed.json
+          if git diff --staged --quiet; then
+            echo "no analytics changes"
+          else
+            git commit -m "chore(analytics): sync social stats"
+            git pull --rebase --autostash origin ${GITHUB_REF_NAME} || true
+            git push
+          fi
