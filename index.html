@@ -558,6 +558,31 @@ function toggleMax(id){ const w=WINS[id], el=w.el;
   setMaxBtn(w); saveGeom(id); winResized(id); }
 function unmax(id){ const w=WINS[id]; if(w.max){ w.max=false; setMaxBtn(w); } }
 
+/* tile every window edge-to-edge to fill the desktop (no overlap) */
+const LAYOUT_VER='tile1';
+function tileWindows(){
+  const W=desk.clientWidth, H=desk.clientHeight, g=6;
+  const set=(id,x,y,w,h)=>{ const win=WINS[id]; if(!win) return; const el=win.el;
+    win.max=false; el.classList.remove('min'); win.open=true;
+    el.style.left=Math.round(x)+'px'; el.style.top=Math.round(y)+'px';
+    el.style.width=Math.round(Math.max(MINW,w))+'px'; el.style.height=Math.round(Math.max(MINH,h))+'px';
+    setMaxBtn(win); saveGeom(id); };
+  if(W>=1080){ // 3 columns, filling the desktop
+    const c1=W*0.27, c2=W*0.40, c3=W-c1-c2-g*2;
+    const x1=0, x2=c1+g, x3=c1+c2+g*2, half=(H-g)/2;
+    const cTop=(H-g)*0.60, rTop=(H-g)*0.55;
+    set('agents', x1,0, c1,half);       set('health', x1,half+g, c1,H-half-g);
+    set('content', x2,0, c2,cTop);      set('tasks',  x2,cTop+g, c2,H-cTop-g);
+    set('bugs',   x3,0, c3,rTop);       set('analytics', x3,rTop+g, c3,H-rTop-g);
+  } else { // narrow: 2 columns x 3 rows
+    const cw=(W-g)/2, x2=cw+g, rh=(H-2*g)/3;
+    set('content', 0,0, cw,rh);         set('bugs',      x2,0,        cw,rh);
+    set('tasks',   0,rh+g, cw,rh);      set('analytics', x2,rh+g,     cw,rh);
+    set('agents',  0,2*(rh+g), cw,rh);  set('health',    x2,2*(rh+g), cw,rh);
+  }
+  renderDock(); winResized('analytics');
+}
+
 function mkWin(id, title, icon, x, y, w, h, open=true){
   const el = document.createElement('div');
   el.className = 'win'; el.style.left=x+'px'; el.style.top=y+'px';
@@ -709,6 +734,7 @@ function palCmds(){
   CMDS.push({k:"SYS", t:"replay boot sequence", f:()=>{booted=false;bi=0;blog.innerHTML='';boot.classList.remove('gone');setTimeout(bootStep,300);}});
   CMDS.push({k:"SYS", t:"close all windows", f:()=>Object.keys(WINS).forEach(id=>toggleWin(id,false))});
   CMDS.push({k:"SYS", t:"open everything", f:()=>Object.keys(WINS).forEach(id=>toggleWin(id,true))});
+  CMDS.push({k:"SYS", t:"tile windows (fill screen, no overlap)", f:()=>{Object.keys(WINS).forEach(id=>toggleWin(id,true)); tileWindows();}});
 }
 function palRender(){
   const q=palin.value.toLowerCase();
@@ -1258,6 +1284,9 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
 })();
 
 renderDock();
+
+/* first load on the new layout: tile all windows edge-to-edge to fill the screen */
+if(localStorage.getItem('ybos.layoutver')!==LAYOUT_VER){ tileWindows(); try{ localStorage.setItem('ybos.layoutver',LAYOUT_VER); }catch(e){} }
 
 /* live: start polling + re-render windows when feed changes */
 updateLiveBadge();
