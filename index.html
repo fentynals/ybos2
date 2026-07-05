@@ -126,7 +126,7 @@ body::after{
 .goal .track i{position:absolute;inset:0;background:linear-gradient(90deg,var(--amber-dim),var(--amber));transform-origin:left;transform:scaleX(var(--p));transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
 .goal .why{font-size:11px;color:var(--dust);margin-top:5px;line-height:1.5}
 /* kanban */
-#kb{display:grid;grid-template-columns:repeat(4,minmax(170px,1fr));gap:10px;min-width:720px}
+#kb,#ctkb{display:grid;grid-template-columns:repeat(4,minmax(170px,1fr));gap:10px;min-width:720px}
 .kcol{background:rgba(11,14,19,.4);border:1px solid var(--line);padding:8px;min-height:200px}
 .kcol h4{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.26em;color:var(--dust);padding:2px 2px 8px;display:flex;justify-content:space-between}
 .kcol h4 .cnt{color:var(--amber)}
@@ -198,6 +198,13 @@ body::after{
 .card .del{position:absolute;top:5px;right:6px;color:var(--dust);cursor:pointer;font-size:12px;line-height:1;opacity:0}
 .card:hover .del{opacity:1} .card .del:hover{color:var(--red)}
 .card .pr-cyc{cursor:pointer}
+/* content board */
+.card .hk{font-size:10.5px;color:var(--dust);line-height:1.45;margin-top:5px}
+.ctag{display:inline-block;font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.12em;border:1px solid var(--line);padding:1px 5px;margin-right:4px}
+.ctag.short,.ctag.trend{color:var(--tracer);border-color:#2c4358}
+.ctag.long{color:var(--ok);border-color:#2c5136}
+.ctag.teaser{color:var(--amber);border-color:var(--amber-dim)}
+.ctag.fmt-cyc{cursor:pointer} .ctag.plat{color:var(--dust)}
 /* dispatch log */
 #dispatch{font-family:'IBM Plex Mono';font-size:10.5px;line-height:1.85;color:#8B93A6;background:#0A0D13;border:1px solid var(--line);padding:10px;height:360px;overflow-y:auto;scrollbar-width:thin}
 #dispatch .t{color:#3E4658;margin-right:8px}
@@ -270,6 +277,20 @@ const DATA = {
     {id:"wall-reach", sev:"high", status:"killed", t:"wall-reach / alt-look exploit", note:"server body-raycast head→gun on every take. 24-point sweep: every walled position refused."},
     {id:"speedeffect-box", sev:"med", status:"killed", t:"A-Chassis SpeedEffect black box", note:"103 fullscreen frames zeroed, SpeedEffect deleted from 8 cars + masters."},
     {id:"dealer-dead-prompt", sev:"low", status:"killed", t:"black market dealer dead prompt", note:"resolves active dealer via _ActiveDealer instead of nearest gun dealer."},
+  ],
+  content: [
+    {t:"Wall-reach exploit: caught & killed", hook:"'I found a god glitch' → the server refuses every shot. Split-screen his POV vs the raycast gate.", fmt:"short", plat:"tiktok", col:0},
+    {t:"Claiming your first turf", hook:"POV: drop $100K on a block — doors unlock, 8 gun stations light up. Caption: 'worth it?'", fmt:"short", plat:"tiktok", col:0},
+    {t:"1v4 turf defense", hook:"They rushed my turf 4-on-1. Last-man-standing hold using the wall gate. Clutch or die.", fmt:"short", plat:"tiktok", col:0},
+    {t:"MSOP mine job — full cinematic run", hook:"Enter cinematic → mine rocks → operator pays $250 → fade-out exit. Show off the camera glide.", fmt:"short", plat:"shorts", col:0},
+    {t:"Every gun in HEADTAP, ranked", hook:"16 guns, S-to-F tier list. Draco vs RGB Binary vs Uzi. Bait the comment-section arguments.", fmt:"long", plat:"yt", col:0},
+    {t:"Bank heist gone wrong", hook:"Cracking the vault → cops spawn → escape through the gas station. Tension-cut to a beat drop.", fmt:"short", plat:"tiktok", col:0},
+    {t:"Someone cloned their guns — dupe-hunt devlog", hook:"The vault↔loadout dupe: how it works and how we're killing it. Dev transparency builds trust.", fmt:"long", plat:"yt", col:0},
+    {t:"TURF WARS weekend — event teaser", hook:"2× rock, every turf contested, one weekend only. 12s hype cut + a date card at the end.", fmt:"teaser", plat:"tiktok", col:0},
+    {t:"POV: last one alive in a turf war", hook:"Trending audio over a clutch 1vX. No talking, loopable, made to be rewatched.", fmt:"trend", plat:"tiktok", col:0},
+    {t:"$0 to $1M — fastest money route", hook:"Mine → sell → claim turf → tax → heist. The optimal loop, timed and edited tight.", fmt:"long", plat:"yt", col:0},
+    {t:"New gun drop — reveal", hook:"3s black → muzzle flash → floating stat card. Post the day before an update lands.", fmt:"short", plat:"shorts", col:0},
+    {t:"Building a crime city in Roblox — devlog #1", hook:"Behind the turfs: how the map + economy came together. Series opener, sets up the channel.", fmt:"long", plat:"yt", col:0},
   ],
   tasks: [
     {t:"vault↔loadout dupe: sync PlayerInventory on Deposit/Withdraw", col:0, pr:"high", tags:["exploit","server"]},
@@ -355,7 +376,8 @@ async function pullFeed(){
     if(Array.isArray(j.ship))  DATA.ship  = j.ship;
     if(Array.isArray(j.bugs))  DATA.bugs  = j.bugs;
     if(j.meta && 'stats' in j.meta) DATA.stats = j.meta.stats;
-    if(j.tasks) DATA.feedTasks = j.tasks;   // shared board (agents write this); the human board lives in localStorage
+    if(j.tasks) DATA.feedTasks = j.tasks;       // shared board (agents write this); the human board lives in localStorage
+    if(Array.isArray(j.content)) DATA.feedContent = j.content;
     if(j.meta && j.meta.version){ const v=document.getElementById('ver'); if(v) v.textContent=j.meta.version; }
     LIVE.on = true; LIVE.last = new Date();
     window.dispatchEvent(new CustomEvent("feed:update"));
@@ -786,6 +808,65 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   }
   render();
   window.addEventListener('feed:update', render);
+})();
+
+/* ---- CONTENT BOARD (persistent video-idea pipeline) ---- */
+(function(){
+  const b = mkWin('content','CONTENT','▶', W*.20, H*.26, Math.min(900,W*.64), 390, true);
+  const COLS=['IDEAS','SCRIPTED','FILMING','POSTED'], FMTS=['short','long','teaser','trend'];
+  const KEY='ybos.content.v1';
+  const clone=c=>({t:c.t, hook:c.hook||'', fmt:c.fmt||'short', plat:c.plat||'tiktok', col:c.col|0});
+  const esc=s=>(''+s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+  let ideas=load();
+  function load(){ try{ const raw=localStorage.getItem(KEY); if(raw) return JSON.parse(raw); }catch(e){}
+    return (DATA.feedContent||DATA.content||[]).map(clone); }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(ideas)); }catch(e){} }
+
+  b.innerHTML = `<div class="eyebrow">VIDEO PIPELINE · SAVED IN THIS BROWSER · DRAG TO MOVE</div>
+    <div class="tbctl">
+      <input id="ctnew" placeholder="new video idea… (Enter to add)" autocomplete="off">
+      <button class="tbbtn" id="ctadd">+ ADD</button>
+      <button class="tbbtn" id="ctpull" title="replace board with feed.json content[]">PULL FEED</button>
+      <button class="tbbtn" id="ctexport" title="copy JSON to paste into feed.json content[]">EXPORT</button>
+    </div><div id="ctkb"></div>
+    <div class="dim mono" id="ctmsg" style="font-size:9px;letter-spacing:.1em;margin-top:6px;min-height:12px"></div>`;
+  const kb=b.querySelector('#ctkb'), msg=b.querySelector('#ctmsg');
+  const flash=m=>{ msg.textContent=m; setTimeout(()=>{ if(msg.textContent===m) msg.textContent=''; },2800); };
+
+  function render(){
+    kb.innerHTML='';
+    COLS.forEach((cn,ci)=>{
+      const col=document.createElement('div'); col.className='kcol'; col.dataset.col=ci;
+      const items=ideas.filter(t=>t.col===ci);
+      col.innerHTML=`<h4>${cn}<span class="cnt">${items.length}</span></h4>`;
+      items.forEach(t=>{
+        const idx=ideas.indexOf(t);
+        const c=document.createElement('div'); c.className='card'; c.draggable=true;
+        c.innerHTML=`<span class="del" title="delete">×</span>
+          <div class="ct">${esc(t.t)}</div>
+          ${t.hook?`<div class="hk">${esc(t.hook)}</div>`:''}
+          <div class="cm"><span class="ctag ${t.fmt} fmt-cyc" title="click: change format">${(t.fmt||'').toUpperCase()}</span><span class="ctag plat">${esc((t.plat||'').toUpperCase())}</span></div>`;
+        c.addEventListener('dragstart',e=>e.dataTransfer.setData('text', idx));
+        c.querySelector('.del').addEventListener('click',ev=>{ ev.stopPropagation(); ideas.splice(idx,1); save(); render(); });
+        c.querySelector('.fmt-cyc').addEventListener('click',ev=>{ ev.stopPropagation(); t.fmt=FMTS[(FMTS.indexOf(t.fmt)+1)%FMTS.length]; save(); render(); });
+        col.appendChild(c);
+      });
+      col.addEventListener('dragover',e=>{ e.preventDefault(); col.classList.add('dragover'); });
+      col.addEventListener('dragleave',()=>col.classList.remove('dragover'));
+      col.addEventListener('drop',e=>{ e.preventDefault(); col.classList.remove('dragover');
+        const i=+e.dataTransfer.getData('text'); if(!isNaN(i)&&ideas[i]){ ideas[i].col=ci; save(); render(); } });
+      kb.appendChild(col);
+    });
+  }
+  const add=()=>{ const inp=b.querySelector('#ctnew'), v=inp.value.trim(); if(!v)return;
+    ideas.unshift({t:v,hook:'',fmt:'short',plat:'tiktok',col:0}); inp.value=''; save(); render(); };
+  b.querySelector('#ctadd').onclick=add;
+  b.querySelector('#ctnew').addEventListener('keydown',e=>{ if(e.key==='Enter')add(); });
+  b.querySelector('#ctpull').onclick=()=>{ ideas=(DATA.feedContent||[]).map(clone); save(); render(); flash('pulled '+ideas.length+' ideas from feed.json'); };
+  b.querySelector('#ctexport').onclick=async()=>{ const json=JSON.stringify(ideas,null,2);
+    try{ await navigator.clipboard.writeText(json); flash('copied '+ideas.length+' ideas — paste into feed.json content[]'); }
+    catch(e){ flash('clipboard blocked — JSON logged to console'); console.log(json); } };
+  render();
 })();
 
 /* ---- MEMORY (CLAUDE.md project memory) ---- */
