@@ -172,6 +172,37 @@ body::after{
 #citymap{display:block;background:#0A0D13;border:1px solid var(--line);width:100%;height:340px;cursor:crosshair}
 #maptip{position:absolute;pointer-events:none;background:#161C29;border:1px solid var(--amber-dim);padding:7px 9px;font-family:'IBM Plex Mono';font-size:10px;color:var(--concrete);display:none;z-index:5;max-width:230px;line-height:1.5}
 #maptip .tt{color:var(--amber);letter-spacing:.14em}
+/* game health */
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:9px}
+.kpi .cell{border:1px solid var(--line);background:linear-gradient(160deg,#181f2e,#10141d);padding:12px 12px 10px;position:relative;overflow:hidden}
+.kpi .cell::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--amber);opacity:.5}
+.kpi .cell.live::before{background:var(--ok)}
+.kpi .n{font-family:'Chakra Petch';font-weight:700;font-size:26px;color:var(--concrete);line-height:1}
+.kpi .n.hot{color:var(--ok)}
+.kpi .l{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.18em;color:var(--dust);margin-top:6px}
+.kpi .s{font-family:'IBM Plex Mono';font-size:9px;color:var(--amber);margin-top:3px}
+.ghwait{border:1px dashed var(--amber-dim);background:rgba(255,170,60,.05);padding:12px;font-size:11.5px;line-height:1.6;color:var(--concrete)}
+/* bugs */
+.bug{border:1px solid var(--line);border-left-width:3px;background:var(--steel);padding:9px 11px;margin-bottom:8px}
+.bug.open{border-left-color:var(--red)} .bug.watch{border-left-color:var(--amber)} .bug.killed{border-left-color:var(--ok);opacity:.62}
+.bug .bh{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.12em}
+.bug .st{padding:1px 6px;border:1px solid var(--line)}
+.bug.open .st{color:var(--red)} .bug.watch .st{color:var(--amber)} .bug.killed .st{color:var(--ok)}
+.bug .sv{color:var(--dust)} .bug .bt{color:var(--concrete);margin-left:auto;font-size:11px;letter-spacing:0}
+.bug .bn{font-size:11px;color:var(--dust);margin-top:6px;line-height:1.5}
+/* task board (persistent) */
+.tbctl{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;align-items:center}
+.tbctl input{flex:1;min-width:120px;background:#0A0D13;border:1px solid var(--line);color:var(--concrete);font-family:'IBM Plex Mono';font-size:11px;padding:5px 7px}
+.tbbtn{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.12em;border:1px solid var(--line);color:var(--dust);background:transparent;padding:5px 9px;cursor:pointer}
+.tbbtn:hover{border-color:var(--amber);color:var(--amber)}
+.card .del{position:absolute;top:5px;right:6px;color:var(--dust);cursor:pointer;font-size:12px;line-height:1;opacity:0}
+.card:hover .del{opacity:1} .card .del:hover{color:var(--red)}
+.card .pr-cyc{cursor:pointer}
+/* dispatch log */
+#dispatch{font-family:'IBM Plex Mono';font-size:10.5px;line-height:1.85;color:#8B93A6;background:#0A0D13;border:1px solid var(--line);padding:10px;height:360px;overflow-y:auto;scrollbar-width:thin}
+#dispatch .t{color:#3E4658;margin-right:8px}
+#dispatch .who{color:var(--amber)}
+#dispatch .fx{color:var(--red)} #dispatch .okx{color:var(--ok)} #dispatch .shipx{color:var(--tracer)} #dispatch .out{color:#8B93A6}
 /* terminal */
 #term{font-family:'IBM Plex Mono';font-size:11.5px;line-height:1.8;background:#07090E;border:1px solid var(--line);padding:10px;height:240px;overflow-y:auto}
 #term .p{color:var(--amber)} #term .err{color:var(--red)} #term .out{color:#9AA3B8}
@@ -205,10 +236,9 @@ body::after{
   <span class="stat">ver <b id="ver">2.0</b></span>
   <span class="stat">kernel <b>FABLE-5</b></span>
   <span class="stat">studio <b>4ada…7aaf</b></span>
-  <span class="stat">games <b id="tb-games">1</b></span>
+  <span class="stat">online <b id="tb-online">—</b></span>
   <span class="stat">shipped <b id="tb-shipped">0</b></span>
   <span class="grow"></span>
-  <span id="usage" title="radio buffer (entries / 60 cap)">usage <span class="bar"><i id="usagefill"></i></span> <span id="usagepct">--%</span></span>
   <span class="stat"><span class="kbd">CTRL</span>+<span class="kbd">K</span></span>
   <span id="livebadge" class="mono" style="display:flex;align-items:center;gap:5px;color:var(--dust);font-size:10px;letter-spacing:.12em"><i style="width:6px;height:6px;border-radius:50%;display:inline-block;background:#6B7385"></i>SNAPSHOT</span>
   <span id="clock">--:--:--</span>
@@ -232,11 +262,14 @@ const DATA = {
     title:"HEADTAP", codename:"Block Sim", genre:"CRIME FPS",
     stats:{ guns:16, turfs:4, prompts:111, cars:8, dealers:7, heists:2 }
   },
-  goals: [
-    {t:"LAUNCH-READY HEADTAP", p:.78, why:"core loop done — guns, turfs, mine job, heists, dealers. remaining: persistence, polish pass, soak test."},
-    {t:"ZERO DUPES / EXPLOITS", p:.8, why:"wall-reach gate shipped, turf-gun vault ban shipped. open: vault↔loadout dupe (PlayerInventory sync), dead-interaction lock."},
-    {t:"FULL MOBILE PARITY", p:.72, why:"UI pass done (150+ elements), car/garage overrides, prompt folding. open: equip-bounce confirm on real device."},
-    {t:"CONTENT ENGINE", p:.25, why:"weekly drop cadence: 1 update, 2 clips, 1 event. needs thumbnails + trailer."},
+  stats: null,   // live Roblox stats, filled from feed.meta.stats by the heartbeat
+  bugs: [
+    {id:"vault-loadout-dupe", sev:"high", status:"open", t:"vault↔loadout dupe", note:"deposit gun → reset → collect bag = extra gun. PlayerInventory snapshot not synced on vault Deposit."},
+    {id:"dead-interaction", sev:"high", status:"open", t:"dead-interaction lock missing", note:"PPS still active while dead; needs alive-guards on vault ops."},
+    {id:"mobile-equip-bounce", sev:"med", status:"watch", t:"mobile equip-bounce", note:"DriverGunLock hardened + self-heals; awaiting confirm on a real phone."},
+    {id:"wall-reach", sev:"high", status:"killed", t:"wall-reach / alt-look exploit", note:"server body-raycast head→gun on every take. 24-point sweep: every walled position refused."},
+    {id:"speedeffect-box", sev:"med", status:"killed", t:"A-Chassis SpeedEffect black box", note:"103 fullscreen frames zeroed, SpeedEffect deleted from 8 cars + masters."},
+    {id:"dealer-dead-prompt", sev:"low", status:"killed", t:"black market dealer dead prompt", note:"resolves active dealer via _ActiveDealer instead of nearest gun dealer."},
   ],
   tasks: [
     {t:"vault↔loadout dupe: sync PlayerInventory on Deposit/Withdraw", col:0, pr:"high", tags:["exploit","server"]},
@@ -273,32 +306,13 @@ const DATA = {
     {d:"JUN 29", k:"feat", t:"turf system v1", s:"claim $100K / join $50K from bank, member doors, 8 gun stations w/ respawn timers, killfeed names, ghost models."},
     {d:"JUN 28", k:"feat", t:"FPS core shipped", s:"hitscan, server-authoritative. built from ONE anchored draco model: tool hotbar, ragdoll, killstreaks, teams, tracers, muzzle flash, heartbeat-at-low-HP."},
   ],
-  agents: [
-    {n:"FABLE-5 // PRIME", r:"main line", s:"busy", task:"this window — building yungsbruh.os dispatch board"},
-    {n:"FABLE-5 // STUDIO", r:"roblox mcp", s:"idle", task:"standing by for the next studio session. last op: MSOP reorg into MINESHAFTUPDATE, zero drift."},
-    {n:"SUBAGENT // EXPLORE", r:"recon", s:"idle", task:"byte-exact source dumps when multi_edit silently fails."},
-    {n:"WATCHDOG // QA", r:"exploit hunts", s:"busy", task:"open case: vault↔loadout dupe. suspect: PlayerInventory snapshot not synced on vault Deposit."},
-  ],
   radio: [
-    ["PRIME","shipx","TURF4 registered — 3 doors, 10 stations, all prompts single-line"],
-    ["QA","fx","repro'd wall-reach with alt-look. camera LoS is client-side only"],
-    ["PRIME","okx","server body-raycast gate deployed. 24-position sweep: walled=refused"],
-    ["STUDIO","out","anchored 152 loose ARP parts across TURF2/3/4"],
-    ["PRIME","shipx","MSOP operator live. down is dialogue-only. elevator-up keeps cinematic"],
-    ["QA","fx","open: deposit gun → reset → collect bag = extra gun. loadout snapshot suspect"],
-    ["STUDIO","out","fade timing verified: black at t-0.1, teleport lands hidden at 1.5s"],
-    ["PRIME","okx","turf guns: tagged, half reserve, vault-banned, no home-turf sales"],
-    ["STUDIO","out","MSOP + camera markers reparented into MINESHAFTUPDATE, lookups recursive"],
-    ["QA","out","mobile equip-bounce: hardened DriverGunLock, awaiting real-device confirm"],
-  ],
-  week: [
-    {day:"MON", items:[{t:"patch: vault dupe fix ships", k:"update"},{t:"clip: turf wall exploit is DEAD", k:"vid"}]},
-    {day:"TUE", items:[{t:"TikTok: MSOP mine job cinematic", k:"vid"}]},
-    {day:"WED", items:[{t:"mid-week balance: turf gun cooldowns", k:"update"},{t:"discord: TURF WARS teaser", k:"social"}]},
-    {day:"THU", items:[{t:"thumbnail + icon refresh", k:"social"}]},
-    {day:"FRI", items:[{t:"EVENT: TURF WARS weekend — 2× rock, contested turfs", k:"event"},{t:"clip: 1v4 turf defense", k:"vid"}]},
-    {day:"SAT", items:[{t:"soak test w/ testers, watch dupe telemetry", k:"update"}]},
-    {day:"SUN", items:[{t:"week recap + next-week vote (discord poll)", k:"social"}]},
+    {who:"PRIME", cls:"shipx", msg:"TURF4 registered — 3 doors, 10 stations, all prompts single-line"},
+    {who:"QA",    cls:"fx",    msg:"repro'd wall-reach with alt-look. camera LoS is client-side only"},
+    {who:"PRIME", cls:"okx",   msg:"server body-raycast gate deployed. 24-position sweep: walled=refused"},
+    {who:"STUDIO",cls:"out",   msg:"anchored 152 loose ARP parts across TURF2/3/4"},
+    {who:"PRIME", cls:"shipx", msg:"MSOP operator live. down is dialogue-only. elevator-up keeps cinematic"},
+    {who:"QA",    cls:"fx",    msg:"open: deposit gun → reset → collect bag = extra gun. loadout snapshot suspect"},
   ],
   map: {
     pois:[
@@ -337,17 +351,12 @@ async function pullFeed(){
     const r = await fetch(FEED_URL + (FEED_URL.includes("?")?"&":"?") + "cb=" + Date.now(), {cache:"no-store"});
     if(!r.ok) throw new Error(r.status);
     const j = await r.json();
-    if(Array.isArray(j.radio)) DATA.radio = j.radio.map(x=>[x.who,x.cls,x.msg]);
-    if(Array.isArray(j.tasks)) DATA.tasks = j.tasks;
+    if(Array.isArray(j.radio)) DATA.radio = j.radio;
     if(Array.isArray(j.ship))  DATA.ship  = j.ship;
+    if(Array.isArray(j.bugs))  DATA.bugs  = j.bugs;
+    if(j.meta && 'stats' in j.meta) DATA.stats = j.meta.stats;
+    if(j.tasks) DATA.feedTasks = j.tasks;   // shared board (agents write this); the human board lives in localStorage
     if(j.meta && j.meta.version){ const v=document.getElementById('ver'); if(v) v.textContent=j.meta.version; }
-    // usage = radio buffer fill (live), overridable via meta.usage
-    let u = Math.round((DATA.radio.length/60)*100);
-    if(j.meta && typeof j.meta.usage === 'number') u = Math.round(j.meta.usage);
-    u = Math.max(0, Math.min(100, u));
-    const uf=document.getElementById('usagefill'), up=document.getElementById('usagepct');
-    if(uf) uf.style.width = u + '%';
-    if(up) up.textContent = u + '%';
     LIVE.on = true; LIVE.last = new Date();
     window.dispatchEvent(new CustomEvent("feed:update"));
   }catch(e){ LIVE.on=false; }
@@ -522,34 +531,38 @@ pal.addEventListener('click',e=>{ if(e.target===pal)hidePal(); });
 /* =====================  WINDOWS / APPS  ===================== */
 const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
 
-/* ---- MISSION CONTROL ---- */
+/* ---- GAME HEALTH (live Roblox stats) ---- */
 (function(){
-  const b = mkWin('mc','MISSION CONTROL','◉', 18, 56, Math.min(430,W*.34), 420, true);
+  const b = mkWin('health','GAME HEALTH','◉', 18, 56, Math.min(440,W*.34), 400, true);
   const g = DATA.game;
-  b.innerHTML = `
-    <div class="gamecard">
-      <div class="eyebrow">ACTIVE OPERATION · ROBLOX</div>
-      <div class="gtitle">${g.title}</div>
-      <div class="gsub">CODENAME ${g.codename.toUpperCase()} · ${g.genre}</div>
-      <div class="statgrid">
-        <div class="stat-cell"><div class="n">${g.stats.guns}</div><div class="l">GUNS</div></div>
-        <div class="stat-cell"><div class="n">${g.stats.turfs}</div><div class="l">TURFS</div></div>
-        <div class="stat-cell"><div class="n">${g.stats.prompts}</div><div class="l">PROMPTS</div></div>
-        <div class="stat-cell"><div class="n">${g.stats.cars}</div><div class="l">CARS</div></div>
-        <div class="stat-cell"><div class="n">${g.stats.dealers}</div><div class="l">DEALERS</div></div>
-        <div class="stat-cell"><div class="n">${DATA.ship.length}</div><div class="l">SHIPPED</div></div>
+  const fmt = n => n>=1e6 ? (n/1e6).toFixed(n>=1e7?0:1)+'M' : n>=1e3 ? (n/1e3).toFixed(n>=1e4?0:1)+'k' : (''+n);
+  function render(){
+    const s = DATA.stats;
+    let body = `
+      <div class="gamecard" style="padding:14px 16px">
+        <div class="eyebrow">ACTIVE OPERATION · ROBLOX</div>
+        <div class="gtitle" style="font-size:26px">${g.title}</div>
+        <div class="gsub">CODENAME ${g.codename.toUpperCase()} · ${g.genre}</div>
       </div>
-    </div>
-    <div class="rule"></div>
-    <div class="eyebrow">THREAT BOARD</div>
-    <div style="font-size:12px;line-height:1.7">
-      <span class="chip red">OPEN</span> vault↔loadout dupe — deposit gun, reset, extra gun on respawn<br>
-      <span class="chip amber">WATCH</span> mobile equip-bounce — hardened, awaiting real-device confirm<br>
-      <span class="chip ok">KILLED</span> wall-reach exploit · SpeedEffect black box · dealer dead prompt · gear crash
-    </div>
-    <div class="rule"></div>
-    <div class="eyebrow">DOCTRINE</div>
-    <div class="dim" style="font-size:11.5px;line-height:1.7">server validates everything · edit outside Play · verify through REAL prompts, not lookalike tests · one shared remote, string dispatcher · idempotent bootstraps</div>`;
+      <div class="rule"></div>`;
+    if(!s){
+      body += `<div class="ghwait"><b>Live stats not wired yet.</b><br>Give me HEADTAP's place ID (or game URL) and the heartbeat pulls real players / visits / likes into <span class="mono" style="color:var(--amber)">feed.json</span> — no proxy, no secrets.</div>`;
+    } else {
+      const ratio = (s.likes+s.dislikes)>0 ? Math.round(s.likes/(s.likes+s.dislikes)*100) : null;
+      body += `<div class="eyebrow">LIVE · ROBLOX PUBLIC API</div>
+        <div class="kpi">
+          <div class="cell live"><div class="n hot">${typeof s.playing==='number'?fmt(s.playing):'—'}</div><div class="l">PLAYING NOW</div></div>
+          <div class="cell"><div class="n">${s.visits!=null?fmt(s.visits):'—'}</div><div class="l">VISITS</div></div>
+          <div class="cell"><div class="n">${s.favorites!=null?fmt(s.favorites):'—'}</div><div class="l">FAVORITES</div></div>
+          <div class="cell"><div class="n">${ratio!=null?ratio+'%':'—'}</div><div class="l">LIKE RATIO</div><div class="s">${s.likes!=null?fmt(s.likes)+' likes':''}</div></div>
+        </div>
+        <div class="dim mono" style="font-size:9px;letter-spacing:.1em;margin-top:10px">${s.name?('“'+s.name+'” · '):''}place ${s.placeId||'?'} · updated ${s.fetched? new Date(s.fetched).toLocaleString('en-US',{hour12:false}) : '—'}</div>`;
+    }
+    b.innerHTML = body;
+    const on=document.getElementById('tb-online'); if(on) on.textContent = (s&&typeof s.playing==='number')? fmt(s.playing) : '—';
+  }
+  render();
+  window.addEventListener('feed:update', render);
 })();
 
 /* ---- CITY MAP (3D isometric recon) ---- */
@@ -672,35 +685,60 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   cv.addEventListener('pointerleave',()=>{ tip.style.display='none'; });
 })();
 
-/* ---- TASKS (kanban) ---- */
+/* ---- TASK BOARD (persistent, local-first) ---- */
 (function(){
-  const b = mkWin('tasks','TASK BOARD','▤', 40, H*.56, Math.min(880,W*.62), 330, true);
-  const COLS=['BACKLOG','IN PROGRESS','TESTING','SHIPPED'];
-  b.innerHTML = `<div class="eyebrow">DRAG CARDS BETWEEN COLUMNS</div><div id="kb"></div>`;
-  const kb=document.getElementById('kb');
+  const b = mkWin('tasks','TASK BOARD','▤', 40, H*.56, Math.min(880,W*.62), 370, true);
+  const COLS=['BACKLOG','IN PROGRESS','TESTING','SHIPPED'], PRS=['low','med','high'];
+  const KEY='ybos.tasks.v1';
+  const clone=t=>({t:t.t, col:t.col|0, pr:t.pr||'med', tags:(t.tags||[]).slice()});
+  const esc=s=>(''+s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  let tasks = load();
+  function load(){ try{ const raw=localStorage.getItem(KEY); if(raw) return JSON.parse(raw); }catch(e){}
+    return (DATA.feedTasks||DATA.tasks||[]).map(clone); }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(tasks)); }catch(e){} }
+
+  b.innerHTML = `<div class="eyebrow">YOUR BOARD · SAVED IN THIS BROWSER · DRAG TO MOVE</div>
+    <div class="tbctl">
+      <input id="tbnew" placeholder="new card… (Enter to add)" autocomplete="off">
+      <button class="tbbtn" id="tbadd">+ ADD</button>
+      <button class="tbbtn" id="tbpull" title="replace board with the shared feed.json tasks">PULL FEED</button>
+      <button class="tbbtn" id="tbexport" title="copy JSON to paste into feed.json tasks[]">EXPORT</button>
+    </div><div id="kb"></div>
+    <div class="dim mono" id="tbmsg" style="font-size:9px;letter-spacing:.1em;margin-top:6px;min-height:12px"></div>`;
+  const kb=b.querySelector('#kb'), msg=b.querySelector('#tbmsg');
+  const flash=m=>{ msg.textContent=m; setTimeout(()=>{ if(msg.textContent===m) msg.textContent=''; },2800); };
+
   function render(){
     kb.innerHTML='';
     COLS.forEach((cn,ci)=>{
       const col=document.createElement('div'); col.className='kcol'; col.dataset.col=ci;
-      const items=DATA.tasks.filter(t=>t.col===ci);
+      const items=tasks.filter(t=>t.col===ci);
       col.innerHTML=`<h4>${cn}<span class="cnt">${items.length}</span></h4>`;
       items.forEach(t=>{
-        const c=document.createElement('div');
-        c.className='card p-'+t.pr; c.draggable=true;
-        c.innerHTML=`<div class="ct">${t.t}</div><div class="cm">${t.tags.map(x=>'#'+x).join(' ')} · ${t.pr.toUpperCase()}</div>`;
-        c.addEventListener('dragstart',e=>{ e.dataTransfer.setData('text', DATA.tasks.indexOf(t)); });
+        const idx=tasks.indexOf(t);
+        const c=document.createElement('div'); c.className='card p-'+t.pr; c.draggable=true;
+        c.innerHTML=`<span class="del" title="delete">×</span><div class="ct">${esc(t.t)}</div>
+          <div class="cm">${(t.tags||[]).map(x=>'#'+esc(x)).join(' ')} <span class="pr-cyc" title="click: change priority">· ${t.pr.toUpperCase()}</span></div>`;
+        c.addEventListener('dragstart',e=>e.dataTransfer.setData('text', idx));
+        c.querySelector('.del').addEventListener('click',ev=>{ ev.stopPropagation(); tasks.splice(idx,1); save(); render(); });
+        c.querySelector('.pr-cyc').addEventListener('click',ev=>{ ev.stopPropagation(); t.pr=PRS[(PRS.indexOf(t.pr)+1)%3]; save(); render(); });
         col.appendChild(c);
       });
-      col.addEventListener('dragover',e=>{e.preventDefault();col.classList.add('dragover');});
+      col.addEventListener('dragover',e=>{ e.preventDefault(); col.classList.add('dragover'); });
       col.addEventListener('dragleave',()=>col.classList.remove('dragover'));
-      col.addEventListener('drop',e=>{
-        e.preventDefault(); col.classList.remove('dragover');
-        const i=+e.dataTransfer.getData('text');
-        if(!isNaN(i)&&DATA.tasks[i]){ DATA.tasks[i].col=ci; render(); }
-      });
+      col.addEventListener('drop',e=>{ e.preventDefault(); col.classList.remove('dragover');
+        const i=+e.dataTransfer.getData('text'); if(!isNaN(i)&&tasks[i]){ tasks[i].col=ci; save(); render(); } });
       kb.appendChild(col);
     });
   }
+  const add=()=>{ const inp=b.querySelector('#tbnew'), v=inp.value.trim(); if(!v)return;
+    tasks.unshift({t:v,col:0,pr:'med',tags:[]}); inp.value=''; save(); render(); };
+  b.querySelector('#tbadd').onclick=add;
+  b.querySelector('#tbnew').addEventListener('keydown',e=>{ if(e.key==='Enter')add(); });
+  b.querySelector('#tbpull').onclick=()=>{ tasks=(DATA.feedTasks||[]).map(clone); save(); render(); flash('pulled '+tasks.length+' cards from feed.json'); };
+  b.querySelector('#tbexport').onclick=async()=>{ const json=JSON.stringify(tasks,null,2);
+    try{ await navigator.clipboard.writeText(json); flash('copied '+tasks.length+' cards — paste into feed.json tasks[]'); }
+    catch(e){ flash('clipboard blocked — JSON logged to console'); console.log(json); } };
   render();
 })();
 
@@ -715,76 +753,39 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
       </div>`).join('');
 })();
 
-/* ---- AGENTS ---- */
+/* ---- DISPATCH LOG (real agent messages from feed.radio) ---- */
 (function(){
-  const b = mkWin('agents','AGENT RADIO','⌁', W*.62, 56, Math.min(430,W*.34), 470, true);
-  b.innerHTML = `<div class="eyebrow">MODELS ON THE CLOCK</div>` +
-    DATA.agents.map(a=>`
-      <div class="agent">
-        <div class="ah"><span class="dot ${a.s}"></span><span class="an">${a.n}</span><span class="ar">${a.r}</span></div>
-        <div class="atask">${a.task}</div>
-      </div>`).join('') +
-    `<div class="eyebrow" style="margin-top:12px">DISPATCH FREQUENCY</div><div id="radio"></div>`;
-  const radio=document.getElementById('radio');
-  let ri=0;
-  function tick(){
-    const [who,cls,msg]=DATA.radio[ri%DATA.radio.length]; ri++;
-    const d=new Date(Date.now()-Math.random()*4e5);
-    const line=document.createElement('div');
-    line.innerHTML=`<span class="t">${d.toLocaleTimeString('en-US',{hour12:false})}</span><span class="who">[${who}]</span> <span class="${cls}">${msg}</span>`;
-    radio.appendChild(line);
-    while(radio.children.length>40) radio.removeChild(radio.firstChild);
-    radio.scrollTop=radio.scrollHeight;
-    setTimeout(tick, reduced?4000 : 1800+Math.random()*2600);
+  const b = mkWin('dispatch','DISPATCH LOG','⌁', W*.62, 56, Math.min(430,W*.34), 430, true);
+  b.innerHTML = `<div class="eyebrow">AGENT DISPATCH · LIVE FROM FEED · NEWEST FIRST</div><div id="dispatch"></div>`;
+  const log=b.querySelector('#dispatch');
+  const esc=s=>(''+s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const time=ts=>{ if(!ts) return '--:--:--'; try{ return new Date(ts).toLocaleTimeString('en-US',{hour12:false}); }catch(e){ return '--:--:--'; } };
+  function render(){
+    log.innerHTML = (DATA.radio||[]).map(r=>
+      `<div><span class="t">${time(r.ts)}</span><span class="who">[${esc(r.who||'?')}]</span> <span class="${r.cls||'out'}">${esc(r.msg||'')}</span></div>`
+    ).join('') || `<div class="dim">no dispatch yet</div>`;
   }
-  tick();
+  render();
+  window.addEventListener('feed:update', render);
 })();
 
-/* ---- CONTENT PLAN ---- */
+/* ---- BUGS (open threats from feed.bugs) ---- */
 (function(){
-  const b = mkWin('plan','CONTENT PLAN','▥', W*.18, H*.24, Math.min(860,W*.6), 300, false);
-  b.innerHTML = `<div class="eyebrow">THIS WEEK · DROPS &amp; POSTS</div>
-    <div class="week">` + DATA.week.map((d,i)=>`
-      <div class="day"><h5>${d.day}${i===5?' <b>·NOW</b>':''}</h5>
-        ${d.items.map(it=>`<div class="drop ${it.k}">${it.t}<span class="tag">${it.k.toUpperCase()}</span></div>`).join('')}
-      </div>`).join('') + `</div>`;
-})();
-
-/* ---- GOALS ---- */
-(function(){
-  const b = mkWin('goals','GOALS','◎', W*.30, H*.14, Math.min(420,W*.34), 360, false);
-  b.innerHTML = `<div class="eyebrow">THE LONG GAME</div>` + DATA.goals.map(g=>`
-    <div class="goal">
-      <div class="gl"><b>${g.t}</b><span>${Math.round(g.p*100)}%</span></div>
-      <div class="track"><i style="--p:${g.p}"></i></div>
-      <div class="why">${g.why}</div>
-    </div>`).join('');
-})();
-
-/* ---- TERMINAL ---- */
-(function(){
-  const b = mkWin('term','TERMINAL','▸', W*.45, H*.42, Math.min(520,W*.4), 330, false);
-  b.innerHTML = `<div id="term"></div><div style="display:flex;gap:8px;margin-top:8px;font-family:'IBM Plex Mono';font-size:11.5px"><span class="p mono" style="color:var(--amber)">yb@dispatch&gt;</span><input id="termin" autocomplete="off" spellcheck="false"></div>`;
-  const term=document.getElementById('term'), tin=document.getElementById('termin');
-  const say=(txt,cls='out')=>{const d=document.createElement('div');d.className=cls;d.textContent=txt;term.appendChild(d);term.scrollTop=term.scrollHeight;};
-  say('YUNGSBRUH.OS terminal — type "help"');
-  const cmds={
-    help:()=>say('commands: game · turfs · guns · dupes · agents · ship · clear · headtap'),
-    game:()=>say('HEADTAP (Block Sim) — crime FPS. 16 guns, 4 turfs, mine job, heists, 8 cars, 7 dealers.'),
-    turfs:()=>say('TURF1 3d/8g · TURF2 5d/8g · TURF3 2d/6g · TURF4 3d/10g — claim $100K, join $50K, wall-gate armed'),
-    guns:()=>say('9mm: Uzi Makarov Snub G17s Extendo · .40: G2C DRUM · 556: R/B/NB ARP · 762: Dracos + 4 ARPs + RGB BINARY'),
-    dupes:()=>say('OPEN: vault↔loadout (PlayerInventory sync). KILLED: wall-reach, turf-gun vaulting.', 'err'),
-    agents:()=>say('PRIME busy · STUDIO idle · EXPLORE idle · QA busy (dupe case)'),
-    ship:()=>say(DATA.ship.length+' entries in the shiplog. open the SHIPLOG window for the full record.'),
-    clear:()=>term.innerHTML='',
-    headtap:()=>say('one tap. — 267.86x'),
-  };
-  tin.addEventListener('keydown',e=>{
-    if(e.key!=='Enter')return;
-    const v=tin.value.trim().toLowerCase(); tin.value='';
-    say('yb@dispatch> '+v,'p');
-    (cmds[v]||(()=>say('unknown: "'+v+'" — try help','err')))();
-  });
+  const b = mkWin('bugs','BUGS','⚠', W*.30, H*.14, Math.min(460,W*.36), 400, true);
+  const ord={open:0,watch:1,killed:2};
+  const esc=s=>(''+s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  function render(){
+    const bugs=(DATA.bugs||[]).slice().sort((a,c)=>(ord[a.status]??9)-(ord[c.status]??9));
+    const openN=bugs.filter(x=>x.status==='open').length, watchN=bugs.filter(x=>x.status==='watch').length;
+    b.innerHTML = `<div class="eyebrow">WHAT'S BROKEN RIGHT NOW · ${openN} OPEN · ${watchN} WATCH</div>` +
+      (bugs.length ? bugs.map(x=>`
+        <div class="bug ${x.status}">
+          <div class="bh"><span class="st">${(x.status||'').toUpperCase()}</span><span class="sv">${(x.sev||'').toUpperCase()}</span><span class="bt">${esc(x.t)}</span></div>
+          <div class="bn">${esc(x.note||'')}</div>
+        </div>`).join('') : `<div class="dim">no bugs tracked</div>`);
+  }
+  render();
+  window.addEventListener('feed:update', render);
 })();
 
 /* ---- MEMORY (CLAUDE.md project memory) ---- */
@@ -838,21 +839,14 @@ renderDock();
 updateLiveBadge();
 pullFeed();
 setInterval(pullFeed, POLL_MS);
+/* GAME HEALTH, BUGS, DISPATCH each own their own feed:update listener.
+   Here we refresh SHIPLOG (live from feed.ship) + the topbar shipped count. */
 window.addEventListener('feed:update', ()=>{
-  // rebuild the data-driven windows in place
-  ['tasks','ship','agents'].forEach(id=>{ if(WINS[id]){ /* re-render via re-open */ } });
-  rerenderLive();
-});
-function rerenderLive(){
-  // TASKS
-  const kb=document.getElementById('kb');
-  if(kb){ const ev=new Event('rerender'); document.dispatchEvent(ev); }
-  // simplest robust path: rebuild ship + task + radio bodies
   const shipBody=document.getElementById('body-ship');
   if(shipBody){ shipBody.innerHTML=`<div class="eyebrow">EVERYTHING THAT LEFT THE GARAGE · NEWEST FIRST</div>`+
     DATA.ship.map(s=>`<div class="ship ${s.k}"><div class="d">${s.d}</div><div class="marker"></div><div><div class="st">${s.t}</div><div class="sd">${s.s}</div></div></div>`).join(''); }
-  document.getElementById('tb-shipped').textContent = DATA.ship.length;
-}
+  const sh=document.getElementById('tb-shipped'); if(sh) sh.textContent = DATA.ship.length;
+});
 </script>
 </body>
 </html>

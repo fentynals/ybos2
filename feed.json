@@ -4,8 +4,17 @@
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
-    "version": "2.0"
+    "version": "3.0",
+    "stats": null
   },
+  "bugs": [
+    { "id": "vault-loadout-dupe", "sev": "high", "status": "open", "t": "vault↔loadout dupe", "note": "deposit gun → reset → collect bag = extra gun. PlayerInventory snapshot not synced on vault Deposit.", "ts": "2026-07-04T19:52:11.868376Z" },
+    { "id": "dead-interaction", "sev": "high", "status": "open", "t": "dead-interaction lock missing", "note": "PPS still active while dead; needs alive-guards on vault ops.", "ts": "2026-07-04T19:52:11.868376Z" },
+    { "id": "mobile-equip-bounce", "sev": "med", "status": "watch", "t": "mobile equip-bounce", "note": "DriverGunLock hardened + self-heals; awaiting confirm on a real phone.", "ts": "2026-07-04T19:52:11.868376Z" },
+    { "id": "wall-reach", "sev": "high", "status": "killed", "t": "wall-reach / alt-look exploit", "note": "server body-raycast head→gun on every take. 24-point sweep: every walled position refused.", "ts": "2026-07-04T19:52:11.868376Z" },
+    { "id": "speedeffect-box", "sev": "med", "status": "killed", "t": "A-Chassis SpeedEffect black box", "note": "103 fullscreen frames zeroed, SpeedEffect deleted from 8 cars + ServerStorage masters.", "ts": "2026-07-03T00:00:00Z" },
+    { "id": "dealer-dead-prompt", "sev": "low", "status": "killed", "t": "black market dealer dead prompt", "note": "now resolves active dealer via _ActiveDealer instead of nearest gun dealer.", "ts": "2026-07-03T00:00:00Z" }
+  ],
   "radio": [
     {
       "who": "PRIME",
