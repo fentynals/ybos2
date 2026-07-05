@@ -96,18 +96,19 @@ async function tiktok() {
 }
 
 /* ------------------------------- Instagram ------------------------------- */
-/* Graph API. Needs a Business/Creator IG account + long-lived token + IG user id.
- * Per-post view counts require per-media insights; kept best-effort (ranked by
+/* Instagram API with Instagram Login (graph.instagram.com — no Facebook Page).
+ * IG_TOKEN = long-lived user token (60 days, refreshable). Uses /me, so no user id
+ * needed. Per-post view counts need per-media insights; kept best-effort (ranked by
  * likes) so the sync still works on day one. */
 async function instagram() {
-  const tok = env('IG_TOKEN'), uid = env('IG_USER_ID');
-  if (!tok || !uid) return null;
-  const base = 'https://graph.facebook.com/v19.0';
-  const uj = await getJSON(`${base}/${uid}?fields=followers_count,media_count&access_token=${encodeURIComponent(tok)}`);
-  const stats = { followers: uj.followers_count ?? null, views: null, likes: null, comments: null };
+  const tok = env('IG_TOKEN');
+  if (!tok) return null;
+  const base = 'https://graph.instagram.com';
+  const me = await getJSON(`${base}/me?fields=user_id,username,account_type,followers_count,media_count&access_token=${encodeURIComponent(tok)}`);
+  const stats = { followers: me.followers_count ?? null, views: null, likes: null, comments: null };
   let top = [];
   try {
-    const mj = await getJSON(`${base}/${uid}/media?fields=id,caption,permalink,like_count,comments_count,media_type&limit=20&access_token=${encodeURIComponent(tok)}`);
+    const mj = await getJSON(`${base}/me/media?fields=id,caption,permalink,like_count,comments_count,media_type&limit=20&access_token=${encodeURIComponent(tok)}`);
     const media = mj.data || [];
     let likes = 0, comments = 0;
     media.forEach(m => { likes += m.like_count || 0; comments += m.comments_count || 0; });
