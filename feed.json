@@ -1,11 +1,17 @@
 {
   "meta": {
-    "updated": "2026-07-04T19:52:11.868376Z",
+    "updated": "2026-07-05T00:17:56.443766Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP"
   },
   "radio": [
+    {
+      "who": "PRIME",
+      "cls": "shipx",
+      "msg": "\ud83d\udce1 LIVE PUSH TEST \u2014 Fable committed this from the dev session. You touched nothing. The pipeline is real.",
+      "ts": "2026-07-05T00:17:56.443766Z"
+    },
     {
       "who": "PRIME",
       "cls": "okx",
@@ -143,6 +149,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-05",
+      "k": "feat",
+      "t": "live push pipeline PROVEN",
+      "s": "this entry was committed by Fable via the GitHub API using your token \u2014 no manual edits."
+    },
     {
       "d": "2026-07-04",
       "k": "feat",
