@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-05T19:47:56.269Z",
+    "updated": "2026-07-05T20:44:00.029Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,9 +18,9 @@
       "fetched": "2026-07-05T02:57:59Z"
     },
     "analytics": {
-      "updated": "2026-07-05T19:47:55.963Z",
+      "updated": "2026-07-05T20:43:59.721Z",
       "youtube": {
-        "subscribers": 6,
+        "subscribers": 7,
         "views": 23,
         "likes": null,
         "comments": null
