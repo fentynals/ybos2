@@ -1,11 +1,17 @@
 {
   "meta": {
-    "updated": "2026-07-05T00:17:56.443766Z",
+    "updated": "2026-07-05T02:01:53Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP"
   },
   "radio": [
+    {
+      "who": "CRON",
+      "cls": "out",
+      "msg": "heartbeat 2026-07-05 \u2014 8 commits in last 24h",
+      "ts": "2026-07-05T02:01:53Z"
+    },
     {
       "who": "PRIME",
       "cls": "shipx",
