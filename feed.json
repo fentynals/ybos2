@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-05T21:55:26.321Z",
+    "updated": "2026-07-06T02:26:35.690Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,7 +18,7 @@
       "fetched": "2026-07-05T02:57:59Z"
     },
     "analytics": {
-      "updated": "2026-07-05T21:55:24.815Z",
+      "updated": "2026-07-06T02:26:34.238Z",
       "tiktok": {
         "followers": 0,
         "views": 0,
@@ -45,6 +45,12 @@
           "tiktok": 0,
           "youtube": 23,
           "instagram": 0
+        },
+        {
+          "d": "07-06",
+          "tiktok": 0,
+          "youtube": 23,
+          "instagram": 0
         }
       ]
     },
@@ -57,29 +63,190 @@
   "content": [],
   "rejections": [],
   "bugs": [
-    { "id": "dupe-glitch", "sev": "high", "status": "open", "t": "Dupe glitch (ATM / vault)", "note": "aksararara · PC. Open ATM (go to vault) → put a gun in inventory → reset → collect own = duplicated guns.", "ts": "2026-06-13T00:00:00Z" },
-    { "id": "atm-free-ammo", "sev": "high", "status": "open", "t": "Free ammo exploit (ATM)", "note": "Crimson (@123GamerWheaty). Getting full ammo for free via the ATM. Original write-up was deleted; 15 replies on the thread.", "ts": "2026-06-14T00:00:00Z" },
-    { "id": "offduty-keep-gun", "sev": "high", "status": "open", "t": "Off-duty cops keep the gun", "note": "Umakevic (@thedominater_Raptor) · PC · sev 9/10. Become police → go off duty → store the pistol at an ATM and repeat to keep the gun.", "ts": "2026-06-20T00:00:00Z" },
-    { "id": "vault-ammo-reset", "sev": "high", "status": "open", "t": "Vault resets gun ammo to 0", "note": "Godspeed (@gopro5403) · mobile, affects all. Any gun placed in the vault comes back with 0 ammo after a rejoin.", "ts": "2026-06-25T19:48:00Z" },
-    { "id": "garage-fling", "sev": "med", "status": "open", "t": "Garage re-entry flings you skyward", "note": "TahirDev (@poesdepro1) · PC · sev 8/10. Enter garage → leave → enter again → leave = thrown randomly out of the sky.", "ts": "2026-06-27T05:07:00Z" },
-    { "id": "bank-rope", "sev": "med", "status": "open", "t": "Bank rope flings you to your death", "note": "TahirDev (@poesdepro1) · PC · sev 6/10. Get on the rope → swing → it tweaks → flings you out of the building. Also reachable from the bank office.", "ts": "2026-06-27T04:50:00Z" },
-    { "id": "hellcat-gui-stuck", "sev": "med", "status": "watch", "t": "Hellcat exit: GUI stays + auto-move (mobile)", "note": "KodaKen (@KodaDay) · mobile. After exiting the Hellcat the GUI stays and the player moves on their own. NOTE: thread tagged BOTH unfixed and fixed — needs confirm.", "ts": "2026-06-08T23:16:00Z" },
-    { "id": "bank-door-block", "sev": "med", "status": "open", "t": "Bank door blocks the escape path", "note": "Godspeed (@gopro5403) · all devices. When robbing the bank the door blocks the path to escape.", "ts": "2026-06-27T10:05:00Z" },
-    { "id": "police-nochase", "sev": "med", "status": "open", "t": "Police don't chase properly", "note": "LeChiffre (@Bedmed122) · phone. Have a gun out and shoot at the ground; the police should chase you but they don't.", "ts": "2026-06-13T00:00:00Z" },
-    { "id": "stamina-ui-noreset", "sev": "med", "status": "open", "t": "Stamina UI doesn't reset (mobile)", "note": "rayyan123617 · mobile. Drain stamina to zero → reset / die → the stamina UI doesn't reset.", "ts": "2026-06-15T00:00:00Z" },
-    { "id": "gas-ui-mobile", "sev": "med", "status": "open", "t": "Gas UI disappears (mobile)", "note": "Godspeed (@gopro5403) · mobile. At the gas station the UI disappears / can't be seen on mobile.", "ts": "2026-06-20T00:00:00Z" },
-    { "id": "fist-bug", "sev": "med", "status": "open", "t": "Fists misbehave after tapping (mobile)", "note": "LeChiffre (@Bedmed122) · mobile. Tap the fist button → tap anywhere on screen and the fists glitch.", "ts": "2026-06-16T00:00:00Z" },
-    { "id": "iphone-garage-ui", "sev": "med", "status": "open", "t": "iPhone pops the car / garage UI", "note": "rayyan123617 · mobile. At a car spawner the garage UI opens; opening the in-game iPhone also pops the UI.", "ts": "2026-07-03T00:00:00Z" },
-    { "id": "floating-atm", "sev": "med", "status": "open", "t": "Random floating ATM", "note": "Godspeed (@gopro5403). A floating ATM in the world (self-explanatory per reporter).", "ts": "2026-06-17T00:00:00Z" },
-    { "id": "flying-barn", "sev": "med", "status": "open", "t": "Flying / floating barn", "note": "DJBuilder (Dj_andgirraffy2) · PC. The barn is floating.", "ts": "2026-06-20T00:00:00Z" },
-    { "id": "roadkill-bug", "sev": "med", "status": "open", "t": "Roadkill bug", "note": "DJBuilder. Roadkill behavior bug (3 replies; open the thread for repro).", "ts": "2026-06-22T00:00:00Z" },
-    { "id": "aimlock-bug", "sev": "med", "status": "open", "t": "Aimlock bug", "note": "LeChiffre (@Bedmed122). Aim-lock behaving wrong (no repro given — confirm whether it's an aim exploit).", "ts": "2026-06-21T00:00:00Z" },
-    { "id": "phone-gun-glitch", "sev": "med", "status": "open", "t": "Gun + iPhone at the same time glitches", "note": "GG_DON (@Ram77712). Using a gun and the in-game iPhone simultaneously glitches.", "ts": "2026-06-18T00:00:00Z" },
-    { "id": "ammo-ui-scale", "sev": "low", "status": "open", "t": "Ammo UI not scaled (mobile)", "note": "Godspeed (@gopro5403) · mobile. Gunshop ammo UI isn't scaled for mobile.", "ts": "2026-06-27T10:09:00Z" },
-    { "id": "watch-ui-scale", "sev": "low", "status": "open", "t": "Jewelry watch UI not scaled (mobile)", "note": "Godspeed (@gopro5403) · mobile. Jewelry-store watches UI isn't scaled for mobile.", "ts": "2026-06-27T10:07:00Z" },
-    { "id": "car-stuck", "sev": "low", "status": "open", "t": "Car front gets stuck", "note": "DJBuilder (Dj_andgirraffy2) · PC · sev 3/10. Get the McLeasy → drive a long straight road → the front of the car gets stuck.", "ts": "2026-06-21T00:00:00Z" },
-    { "id": "dealer-guy-outside", "sev": "low", "status": "open", "t": "Dealership NPC stands outside the dealership", "note": "Godspeed (@gopro5403) · all devices. The dealership guy is positioned outside the dealership.", "ts": "2026-06-18T00:00:00Z" },
-    { "id": "dealer-random-guy", "sev": "low", "status": "open", "t": "Random guy at the dealership", "note": "Godspeed (@gopro5403). An unexpected NPC at the dealership.", "ts": "2026-06-20T00:00:00Z" }
+    {
+      "id": "dupe-glitch",
+      "sev": "high",
+      "status": "open",
+      "t": "Dupe glitch (ATM / vault)",
+      "note": "aksararara · PC. Open ATM (go to vault) → put a gun in inventory → reset → collect own = duplicated guns.",
+      "ts": "2026-06-13T00:00:00Z"
+    },
+    {
+      "id": "atm-free-ammo",
+      "sev": "high",
+      "status": "open",
+      "t": "Free ammo exploit (ATM)",
+      "note": "Crimson (@123GamerWheaty). Getting full ammo for free via the ATM. Original write-up was deleted; 15 replies on the thread.",
+      "ts": "2026-06-14T00:00:00Z"
+    },
+    {
+      "id": "offduty-keep-gun",
+      "sev": "high",
+      "status": "open",
+      "t": "Off-duty cops keep the gun",
+      "note": "Umakevic (@thedominater_Raptor) · PC · sev 9/10. Become police → go off duty → store the pistol at an ATM and repeat to keep the gun.",
+      "ts": "2026-06-20T00:00:00Z"
+    },
+    {
+      "id": "vault-ammo-reset",
+      "sev": "high",
+      "status": "open",
+      "t": "Vault resets gun ammo to 0",
+      "note": "Godspeed (@gopro5403) · mobile, affects all. Any gun placed in the vault comes back with 0 ammo after a rejoin.",
+      "ts": "2026-06-25T19:48:00Z"
+    },
+    {
+      "id": "garage-fling",
+      "sev": "med",
+      "status": "open",
+      "t": "Garage re-entry flings you skyward",
+      "note": "TahirDev (@poesdepro1) · PC · sev 8/10. Enter garage → leave → enter again → leave = thrown randomly out of the sky.",
+      "ts": "2026-06-27T05:07:00Z"
+    },
+    {
+      "id": "bank-rope",
+      "sev": "med",
+      "status": "open",
+      "t": "Bank rope flings you to your death",
+      "note": "TahirDev (@poesdepro1) · PC · sev 6/10. Get on the rope → swing → it tweaks → flings you out of the building. Also reachable from the bank office.",
+      "ts": "2026-06-27T04:50:00Z"
+    },
+    {
+      "id": "hellcat-gui-stuck",
+      "sev": "med",
+      "status": "watch",
+      "t": "Hellcat exit: GUI stays + auto-move (mobile)",
+      "note": "KodaKen (@KodaDay) · mobile. After exiting the Hellcat the GUI stays and the player moves on their own. NOTE: thread tagged BOTH unfixed and fixed — needs confirm.",
+      "ts": "2026-06-08T23:16:00Z"
+    },
+    {
+      "id": "bank-door-block",
+      "sev": "med",
+      "status": "open",
+      "t": "Bank door blocks the escape path",
+      "note": "Godspeed (@gopro5403) · all devices. When robbing the bank the door blocks the path to escape.",
+      "ts": "2026-06-27T10:05:00Z"
+    },
+    {
+      "id": "police-nochase",
+      "sev": "med",
+      "status": "open",
+      "t": "Police don't chase properly",
+      "note": "LeChiffre (@Bedmed122) · phone. Have a gun out and shoot at the ground; the police should chase you but they don't.",
+      "ts": "2026-06-13T00:00:00Z"
+    },
+    {
+      "id": "stamina-ui-noreset",
+      "sev": "med",
+      "status": "open",
+      "t": "Stamina UI doesn't reset (mobile)",
+      "note": "rayyan123617 · mobile. Drain stamina to zero → reset / die → the stamina UI doesn't reset.",
+      "ts": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "gas-ui-mobile",
+      "sev": "med",
+      "status": "open",
+      "t": "Gas UI disappears (mobile)",
+      "note": "Godspeed (@gopro5403) · mobile. At the gas station the UI disappears / can't be seen on mobile.",
+      "ts": "2026-06-20T00:00:00Z"
+    },
+    {
+      "id": "fist-bug",
+      "sev": "med",
+      "status": "open",
+      "t": "Fists misbehave after tapping (mobile)",
+      "note": "LeChiffre (@Bedmed122) · mobile. Tap the fist button → tap anywhere on screen and the fists glitch.",
+      "ts": "2026-06-16T00:00:00Z"
+    },
+    {
+      "id": "iphone-garage-ui",
+      "sev": "med",
+      "status": "open",
+      "t": "iPhone pops the car / garage UI",
+      "note": "rayyan123617 · mobile. At a car spawner the garage UI opens; opening the in-game iPhone also pops the UI.",
+      "ts": "2026-07-03T00:00:00Z"
+    },
+    {
+      "id": "floating-atm",
+      "sev": "med",
+      "status": "open",
+      "t": "Random floating ATM",
+      "note": "Godspeed (@gopro5403). A floating ATM in the world (self-explanatory per reporter).",
+      "ts": "2026-06-17T00:00:00Z"
+    },
+    {
+      "id": "flying-barn",
+      "sev": "med",
+      "status": "open",
+      "t": "Flying / floating barn",
+      "note": "DJBuilder (Dj_andgirraffy2) · PC. The barn is floating.",
+      "ts": "2026-06-20T00:00:00Z"
+    },
+    {
+      "id": "roadkill-bug",
+      "sev": "med",
+      "status": "open",
+      "t": "Roadkill bug",
+      "note": "DJBuilder. Roadkill behavior bug (3 replies; open the thread for repro).",
+      "ts": "2026-06-22T00:00:00Z"
+    },
+    {
+      "id": "aimlock-bug",
+      "sev": "med",
+      "status": "open",
+      "t": "Aimlock bug",
+      "note": "LeChiffre (@Bedmed122). Aim-lock behaving wrong (no repro given — confirm whether it's an aim exploit).",
+      "ts": "2026-06-21T00:00:00Z"
+    },
+    {
+      "id": "phone-gun-glitch",
+      "sev": "med",
+      "status": "open",
+      "t": "Gun + iPhone at the same time glitches",
+      "note": "GG_DON (@Ram77712). Using a gun and the in-game iPhone simultaneously glitches.",
+      "ts": "2026-06-18T00:00:00Z"
+    },
+    {
+      "id": "ammo-ui-scale",
+      "sev": "low",
+      "status": "open",
+      "t": "Ammo UI not scaled (mobile)",
+      "note": "Godspeed (@gopro5403) · mobile. Gunshop ammo UI isn't scaled for mobile.",
+      "ts": "2026-06-27T10:09:00Z"
+    },
+    {
+      "id": "watch-ui-scale",
+      "sev": "low",
+      "status": "open",
+      "t": "Jewelry watch UI not scaled (mobile)",
+      "note": "Godspeed (@gopro5403) · mobile. Jewelry-store watches UI isn't scaled for mobile.",
+      "ts": "2026-06-27T10:07:00Z"
+    },
+    {
+      "id": "car-stuck",
+      "sev": "low",
+      "status": "open",
+      "t": "Car front gets stuck",
+      "note": "DJBuilder (Dj_andgirraffy2) · PC · sev 3/10. Get the McLeasy → drive a long straight road → the front of the car gets stuck.",
+      "ts": "2026-06-21T00:00:00Z"
+    },
+    {
+      "id": "dealer-guy-outside",
+      "sev": "low",
+      "status": "open",
+      "t": "Dealership NPC stands outside the dealership",
+      "note": "Godspeed (@gopro5403) · all devices. The dealership guy is positioned outside the dealership.",
+      "ts": "2026-06-18T00:00:00Z"
+    },
+    {
+      "id": "dealer-random-guy",
+      "sev": "low",
+      "status": "open",
+      "t": "Random guy at the dealership",
+      "note": "Godspeed (@gopro5403). An unexpected NPC at the dealership.",
+      "ts": "2026-06-20T00:00:00Z"
+    }
   ],
   "radio": [
     {
