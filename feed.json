@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-07T19:43:54.477Z",
+    "updated": "2026-07-07T19:56:00.000Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -256,6 +256,36 @@
   ],
   "radio": [
     {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Overhead nametag: verified checkmark + glimmer added to the left of yungsbruh's name; grouped 517 fences + fire hydrants into decoration folders",
+      "ts": "2026-07-07T19:55:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "FFA hardened — max-ammo caliber pools, fists in loadout, random spawn each match, wipe ALL player cars on start (even driven), storm now deep purple",
+      "ts": "2026-07-07T19:20:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "Security: killed 5 dormant LightConfig backdoors (glock/minecart/bank x2/walking-sounds) + an exploitable UpdateWalkspeed remote",
+      "ts": "2026-07-07T17:00:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "25-min day / 5-min night cycle (fixed ClockTime 1s-quantization) + gentle death-aware passive health regen (regen script was being auto-deleted on spawn)",
+      "ts": "2026-07-07T15:30:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Footsteps rebuilt: foot-plant-synced single-shot per material + road (Plaster) material fix; C63 AMG redline volume tamed; cops 40 -> 3",
+      "ts": "2026-07-07T13:00:00Z"
+    },
+    {
       "who": "PRIME",
       "cls": "shipx",
       "msg": "v2.0 shipped — version stamp in topbar (live from feed), usage bar now = radio buffer fill",
@@ -410,6 +440,36 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "Verified checkmark badge (overhead nametag)",
+      "s": "yungsbruh gets a glimmering blue verified badge left of the username, shine synced to the level label"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "FFA overhaul",
+      "s": "max ammo + fists, random spawn each match, full player-car wipe on start, deep-purple storm, no money-drop or car-spawner during FFA"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "fix",
+      "t": "Purged 5 LightConfig backdoors + walkspeed exploit",
+      "s": "dormant code-loader hidden in free models (glock/minecart/bank x2/walking-sounds) and an UpdateWalkspeed remote, all removed"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "Day/night cycle + passive health regen",
+      "s": "25m day / 5m night; gentle death-aware regen (the regen script had been silently deleted on spawn)"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "fix",
+      "t": "Footsteps, C63 audio, cop count",
+      "s": "foot-synced per-material footsteps + Plaster road fix, tamed C63 redline volume, cops 40 -> 3"
+    },
     {
       "d": "2026-07-05",
       "k": "feat",
