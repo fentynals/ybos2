@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-08T03:39:13.171Z",
+    "updated": "2026-07-08T05:00:31.224Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -263,6 +263,12 @@
   "radio": [
     {
       "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Loading screen now flies through the CP cameras (loadingcamera folder), each aimed at its POI's general direction. Cars phase through all exterior decor (collision groups) while players on foot still bump it. POI 'entering' redone as floor-pad detection (safezone-style) so balconies/canopies over doors stop false-triggering. Mineshaft overhead sign fixed -- Bangers font, pickaxe icon, world-scale so it shrinks with distance.",
+      "ts": "2026-07-08T05:00:00Z"
+    },
+    {
+      "who": "STUDIO",
       "cls": "shipx",
       "msg": "Big HEADTAP drop: hold-E dumpster looting (cash/gun rarity table), cargo missions now deliver to mailBoxes, a food store on the HDC1 hot-dog carts, and a MINESHAFT POI. Plus door-entry gating -- gun store / gas / dealership / turfs only count as 'entered' once you actually walk through their door (GSDOOR/GASDOOR/ddoor/TURFDOOR), so forecourts and pump canopies stop false-triggering.",
       "ts": "2026-07-08T03:39:00Z"
@@ -458,6 +464,30 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-08",
+      "k": "feat",
+      "t": "Loading-screen cinematic uses the CP cameras",
+      "s": "the join loading screen cycles the loadingcamera CP parts, each aimed toward its named POI's general direction"
+    },
+    {
+      "d": "2026-07-08",
+      "k": "feat",
+      "t": "Cars phase through exterior decor",
+      "s": "collision groups: Vehicles<->ExteriorDecor off; players on foot still collide, cars still hit roads/buildings"
+    },
+    {
+      "d": "2026-07-08",
+      "k": "fix",
+      "t": "POI entry redone as floor-pad (safezone-style) detection",
+      "s": "you register as inside only while standing over the POI's floor pad -- kills the balcony/canopy/forecourt false-triggers the box + door-touch had"
+    },
+    {
+      "d": "2026-07-08",
+      "k": "fix",
+      "t": "Mineshaft overhead sign + cargo markers",
+      "s": "sign uses Bangers font + pickaxe icon + world-stud scale (shrinks with distance); cargo drop markers now invisible"
+    },
     {
       "d": "2026-07-07",
       "k": "feat",
