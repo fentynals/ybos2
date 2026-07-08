@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-08T01:55:36.246Z",
+    "updated": "2026-07-08T03:39:13.171Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -263,6 +263,12 @@
   "radio": [
     {
       "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Big HEADTAP drop: hold-E dumpster looting (cash/gun rarity table), cargo missions now deliver to mailBoxes, a food store on the HDC1 hot-dog carts, and a MINESHAFT POI. Plus door-entry gating -- gun store / gas / dealership / turfs only count as 'entered' once you actually walk through their door (GSDOOR/GASDOOR/ddoor/TURFDOOR), so forecourts and pump canopies stop false-triggering.",
+      "ts": "2026-07-08T03:39:00Z"
+    },
+    {
+      "who": "STUDIO",
       "cls": "okx",
       "msg": "GUN STORE ambience gated to the GSDOOR: pulled the zone's front edge back to the door so the outside canopy no longer counts as inside. Verified checkmark finalized via an in-game tuner (base 0.99, angle 287).",
       "ts": "2026-07-08T01:34:00Z"
@@ -452,6 +458,36 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "Door-entry gating for building POIs",
+      "s": "gun store / gas / dealership / turfs only register as entered after you walk through their named door (GSDOOR/GASDOOR/ddoor/TURFDOOR) -- kills forecourt/canopy false-triggers"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "MINESHAFT POI + overhead sign",
+      "s": "mineshaft top is now a labelled POI with a floating name/image billboard (icon id still a placeholder)"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "Dumpster looting (hold-E Search)",
+      "s": "50% nothing / 30% $0-500 / 14% $500-10k / 5% pistol / 0.9% 556 ARP / 0.1% G17DRUM, 90s per-dumpster cooldown"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "Cargo missions route to mailBoxes",
+      "s": "delivery drop spots now seed at the 11 mailBoxes instead of hardcoded map coords"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "Food store on the hot-dog carts",
+      "s": "Pizza + Burger buy prompts added to the 3 HDC1 hot dog trailers"
+    },
     {
       "d": "2026-07-07",
       "k": "fix",
