@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-07T19:56:00.000Z",
+    "updated": "2026-07-08T01:34:22.775Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -257,6 +257,12 @@
   "radio": [
     {
       "who": "STUDIO",
+      "cls": "okx",
+      "msg": "GUN STORE ambience gated to the GSDOOR: pulled the zone's front edge back to the door so the outside canopy no longer counts as inside. Verified checkmark finalized via an in-game tuner (base 0.99, angle 287).",
+      "ts": "2026-07-08T01:34:00Z"
+    },
+    {
+      "who": "STUDIO",
       "cls": "shipx",
       "msg": "Overhead nametag: verified checkmark + glimmer added to the left of yungsbruh's name; grouped 517 fences + fire hydrants into decoration folders",
       "ts": "2026-07-07T19:55:00Z"
@@ -440,6 +446,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-07",
+      "k": "fix",
+      "t": "Gun store 'entering' zone tightened to the door",
+      "s": "front edge of the GUN STORE ambience box moved back to the GSDOOR (Z -132) so the outside canopy area stops registering as inside the store"
+    },
     {
       "d": "2026-07-07",
       "k": "feat",
