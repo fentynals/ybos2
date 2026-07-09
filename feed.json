@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-09T14:36:26.663Z",
+    "updated": "2026-07-09T15:15:00.000Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -270,6 +270,12 @@
     {
       "who": "STUDIO",
       "cls": "shipx",
+      "msg": "MONETIZATION CATALOG LIVE: 16 dev products + 18 gamepasses created & priced on HEADTAP via Open Cloud API -- airdrop tiers (149/399/999), cash packs up to $500K/4999 R$, loadouts, Turf Deed 2499, roles (Police/SWAT), 2x Cash/XP, watches/backpacks/kill FX. 3 legacy items renamed in place (Jail Skip 99, SWAT Access 699, Deep Pockets 449). ALL ON SALE -- granting code (ProcessReceipt + pass perks) is the next build. IDs: ~/.roblox/headtap_monetization_ids.md. Subscription on hold.",
+      "ts": "2026-07-09T15:15:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
       "msg": "Loading screen overhauled: intro music, a 'WHAT'S NEW' changelog panel (auto version = V1.x.<PlaceVersion>, bumps on publish), camera bass-bop to the beat, inventory hidden until you spawn, and a PLAY transition -- logo slides up, the UI drops down, the dark border stays framing the view then deletes on spawn. Loading cameras now support start->END dolly moves (position-paired) + POI aims, and you must click PLAY (no auto-spawn). Also: TURF3 blue sign added, turf guns spawn half-ammo + are now droppable.",
       "ts": "2026-07-09T00:30:00Z"
     },
@@ -476,6 +482,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-09",
+      "k": "feat",
+      "t": "Monetization catalog: 34 items live via Open Cloud",
+      "s": "16 dev products + 18 gamepasses created/renamed & priced through the API (airdrops, cash packs, loadouts, turf deed, roles, 2x boosts, cosmetics) -- all on sale; in-game granting code is the next build"
+    },
     {
       "d": "2026-07-08",
       "k": "feat",
