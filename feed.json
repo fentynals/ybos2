@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-08T19:11:03.164Z",
+    "updated": "2026-07-09T00:30:13.790Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -263,6 +263,12 @@
   "radio": [
     {
       "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Loading screen overhauled: intro music, a 'WHAT'S NEW' changelog panel (auto version = V1.x.<PlaceVersion>, bumps on publish), camera bass-bop to the beat, inventory hidden until you spawn, and a PLAY transition -- logo slides up, the UI drops down, the dark border stays framing the view then deletes on spawn. Loading cameras now support start->END dolly moves (position-paired) + POI aims, and you must click PLAY (no auto-spawn). Also: TURF3 blue sign added, turf guns spawn half-ammo + are now droppable.",
+      "ts": "2026-07-09T00:30:00Z"
+    },
+    {
+      "who": "STUDIO",
       "cls": "okx",
       "msg": "Loading screen now flies through the CP cameras (loadingcamera folder), each aimed at its POI's general direction. Cars phase through all exterior decor (collision groups) while players on foot still bump it. POI 'entering' redone as floor-pad detection (safezone-style) so balconies/canopies over doors stop false-triggering. Mineshaft overhead sign fixed -- Bangers font, pickaxe icon, world-scale so it shrinks with distance.",
       "ts": "2026-07-08T05:00:00Z"
@@ -464,6 +470,24 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-08",
+      "k": "feat",
+      "t": "Loading screen: music + What's New panel + PLAY transition",
+      "s": "intro track, a WHAT'S NEW changelog panel (auto version V1.x.PlaceVersion), camera bass-bop, inventory hidden until spawn; PLAY slides the logo up + UI down while the dark border stays then deletes on spawn"
+    },
+    {
+      "d": "2026-07-08",
+      "k": "feat",
+      "t": "Loading cameras: dolly moves + must-click-PLAY",
+      "s": "start->END camera dolly moves (position-paired), POI aims, and no auto-spawn -- the player must click PLAY"
+    },
+    {
+      "d": "2026-07-08",
+      "k": "feat",
+      "t": "TURF3 sign + turf gun ammo/drop",
+      "s": "TURF3 got its blue overhead sign; turf guns now spawn half-ammo (full mag) and can be dropped + picked back up"
+    },
     {
       "d": "2026-07-08",
       "k": "feat",
