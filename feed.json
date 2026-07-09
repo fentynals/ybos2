@@ -1,6 +1,6 @@
 {
     "meta":  {
-                 "updated":  "2026-07-09T16:18:08Z",
+                 "updated":  "2026-07-09T17:53:59Z",
                  "kernel":  "FABLE-5",
                  "studio":  "4ada3995-48d7-42b4-9265-70736b397aaf",
                  "game":  "HEADTAP",
@@ -276,6 +276,12 @@
                   {
                       "who":  "STUDIO",
                       "cls":  "shipx",
+                      "msg":  "SHOP UI LIVE (visual only): left-edge dock (SHOP / friend-invite / settings) + full shop panel listing all 14 products + 17 gamepasses with live store names/prices, ITEMS+GAMEPASSES tabs, category sections, hand-built neon glow engine (stacked UIStrokes w/ falloff + breathing pulse -- Roblox has no box-shadow), mythic cards get rotating iridescent borders. Invite wired to SocialService; purchases intentionally stubbed at promptPurchase() until Ian greenlights. Also: silent footsteps now silent for owner too; phone Garage button fully paywalled behind SPAWN CAR FROM PHONE.",
+                      "ts":  "2026-07-09T17:53:59Z"
+                  },
+                  {
+                      "who":  "STUDIO",
+                      "cls":  "shipx",
                       "msg":  "GRANTING CODE LIVE: ProcessReceipt + pass perks built in Studio via MCP. Airdrop tiers drop ON the buyer (basic/adv/mythical = 0/50/100% black-market gun + 500/1.5K/5K cash), Jail Skip (instant no-bond release, banks a charge if bought free), SPAWN CAR FROM PHONE now gates phone spawns \u003e30 studs from pads, Silent Footsteps mutes steps on other clients, Extra Health 125HP every spawn. New: RS.ShopConfig + SSS.MonetizationServer; edits: BlackMarketJobs, PoliceSystem, PhoneServer, FootstepController.",
                       "ts":  "2026-07-09T16:18:08Z"
                   },
@@ -500,6 +506,12 @@
                   }
               ],
     "ship":  [
+                 {
+                     "d":  "2026-07-09",
+                     "k":  "feat",
+                     "t":  "In-game shop UI + side dock (SHOP/invite/settings)",
+                     "s":  "Neon-glow dock and full catalog shop panel (31 items, live store data), settings + invite; purchase wiring is a one-function stub away"
+                 },
                  {
                      "d":  "2026-07-09",
                      "k":  "feat",
