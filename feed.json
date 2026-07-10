@@ -1,6 +1,6 @@
 ﻿{
     "meta":  {
-                 "updated":  "2026-07-10T14:47:43Z",
+                 "updated":  "2026-07-10T17:54:53Z",
                  "kernel":  "FABLE-5",
                  "studio":  "4ada3995-48d7-42b4-9265-70736b397aaf",
                  "game":  "HEADTAP",
@@ -282,6 +282,18 @@
                   {
                       "who":  "STUDIO",
                       "cls":  "shipx",
+                      "msg":  "MOBILE UI FIT + CHANGELOG V1.4: UISuite panels (SHOP/CREWS/FRIENDS+/PLAYTIME/SETTINGS) now author at 1280x720 design px on touch and shrink uniformly via the animation UIScale (DailyRewards computeFitScale pattern); left dock scales 0.62 + repositions, collapse arrow hidden on touch. Loading-screen CHANGE LOG widened + text shrunk on phones, bullets updated to V1.4 (bank heist / black market gear / level-ups / settings / nametags / max-ammo rewards). Desktop rendering byte-identical.",
+                      "ts":  "2026-07-10T17:54:53Z"
+                  },
+                  {
+                      "who":  "STUDIO",
+                      "cls":  "okx",
+                      "msg":  "BANK MOVE #2 FIXED: heist scripts now find the bank ANYWHERE in workspace (waitForAnywhere recursive binds) -- survived the move into the main-map BANK model; C4/RF props re-seated on the new vault door + panel; vault ClickDetector deleted. Gear tile + hotbar art wired (walkie talkie 124882634128831 / C4 75909675164289).",
+                      "ts":  "2026-07-10T17:54:53Z"
+                  },
+                  {
+                      "who":  "STUDIO",
+                      "cls":  "shipx",
                       "msg":  "BANK REVAMP SHIPPED: heist rewired after the sewer move (stale BANKSEWER dupes renamed OLD_, live root set bound, INVAULTPARTT region rebuilt). NEW MECHANICS -- laser door hack now REQUIRES the RF Transmitter (NEED RF TRANSMITTER notice), hack jingle + lasers fade out over 1.5s; vault door is hold-E PLACE C4 (NEED C4 notice), 10s beep loop then explosion + breach (old crack minigame retired). C4 (.5k, consumable) + RF Transmitter (, reusable) sell at the Black Market dealer with GEAR tiles in the shop UI (image slots ready for art). Plus :cash admin command. Full flow verified in playtest.",
                       "ts":  "2026-07-10T14:47:43Z"
                   },
@@ -548,6 +560,12 @@
                   }
               ],
     "ship":  [
+                 {
+                     "d":  "2026-07-10",
+                     "k":  "fix",
+                     "t":  "Mobile UI fit + changelog V1.4 + bank rebind after second move",
+                     "s":  "Panels+dock scale properly on touch; heist scripts location-proof; changelog refreshed"
+                 },
                  {
                      "d":  "2026-07-10",
                      "k":  "feat",
