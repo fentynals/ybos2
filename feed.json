@@ -1,6 +1,6 @@
 ﻿{
     "meta":  {
-                 "updated":  "2026-07-10T13:04:06Z",
+                 "updated":  "2026-07-10T14:47:43Z",
                  "kernel":  "FABLE-5",
                  "studio":  "4ada3995-48d7-42b4-9265-70736b397aaf",
                  "game":  "HEADTAP",
@@ -282,6 +282,12 @@
                   {
                       "who":  "STUDIO",
                       "cls":  "shipx",
+                      "msg":  "BANK REVAMP SHIPPED: heist rewired after the sewer move (stale BANKSEWER dupes renamed OLD_, live root set bound, INVAULTPARTT region rebuilt). NEW MECHANICS -- laser door hack now REQUIRES the RF Transmitter (NEED RF TRANSMITTER notice), hack jingle + lasers fade out over 1.5s; vault door is hold-E PLACE C4 (NEED C4 notice), 10s beep loop then explosion + breach (old crack minigame retired). C4 (.5k, consumable) + RF Transmitter (, reusable) sell at the Black Market dealer with GEAR tiles in the shop UI (image slots ready for art). Plus :cash admin command. Full flow verified in playtest.",
+                      "ts":  "2026-07-10T14:47:43Z"
+                  },
+                  {
+                      "who":  "STUDIO",
+                      "cls":  "shipx",
                       "msg":  "PROGRESSION PASS: hexagon LEVEL UP popup (center-top, gold for player level / green for stamina, queued CanvasGroup rig) + sprint stamina rework -- sprinting now earns 20 XP/s (walk stays 1/s), per-level XP scales 60*(N+1), hard cap at stamina 50 (PlayerStats clamps server-side; legacy over-cap saves keep their level). Also: Daily Rewards + Playtime reward GUNS now grant at MAX ammo (caliber pool topped to cap, duplicate daily gun days pay out as an ammo refill), and Playtime cash tiles reuse the Daily Rewards cash-stack textures.",
                       "ts":  "2026-07-10T13:04:06Z"
                   },
@@ -542,6 +548,12 @@
                   }
               ],
     "ship":  [
+                 {
+                     "d":  "2026-07-10",
+                     "k":  "feat",
+                     "t":  "Bank heist revamp: C4 breach + RF transmitter hack + Black Market gear",
+                     "s":  "Laser hack gated on RF Transmitter, vault opens via 10s C4 fuse with beep/boom audio, lasers fade on hack; gear purchasable at the Black Market"
+                 },
                  {
                      "d":  "2026-07-10",
                      "k":  "feat",
