@@ -1,6 +1,6 @@
 ﻿{
     "meta":  {
-                 "updated":  "2026-07-10T12:25:17Z",
+                 "updated":  "2026-07-10T13:04:06Z",
                  "kernel":  "FABLE-5",
                  "studio":  "4ada3995-48d7-42b4-9265-70736b397aaf",
                  "game":  "HEADTAP",
@@ -282,6 +282,12 @@
                   {
                       "who":  "STUDIO",
                       "cls":  "shipx",
+                      "msg":  "PROGRESSION PASS: hexagon LEVEL UP popup (center-top, gold for player level / green for stamina, queued CanvasGroup rig) + sprint stamina rework -- sprinting now earns 20 XP/s (walk stays 1/s), per-level XP scales 60*(N+1), hard cap at stamina 50 (PlayerStats clamps server-side; legacy over-cap saves keep their level). Also: Daily Rewards + Playtime reward GUNS now grant at MAX ammo (caliber pool topped to cap, duplicate daily gun days pay out as an ammo refill), and Playtime cash tiles reuse the Daily Rewards cash-stack textures.",
+                      "ts":  "2026-07-10T13:04:06Z"
+                  },
+                  {
+                      "who":  "STUDIO",
+                      "cls":  "shipx",
                       "msg":  "UI SUITE v2: proper open/close animations on every panel (screen dim + Back-overshoot pop-in, slide+shrink close, click-outside-to-close, panels snap shut on death) + NEW SETTINGS panel (Music / Hit Sounds / Streamer Mode -- Music+Streamer actually mute the POI station via player attributes, Hit Sounds gates the headshot ding in FPSClient). Dock raised above the dim so panel switching stays one click. Also: GUN DEALER + AMMO DEALER got bold white GothamBlack overhead nametags (default nameplates off). Verified in playtest.",
                       "ts":  "2026-07-10T12:25:17Z"
                   },
@@ -536,6 +542,12 @@
                   }
               ],
     "ship":  [
+                 {
+                     "d":  "2026-07-10",
+                     "k":  "feat",
+                     "t":  "Level-up hexagon popups + stamina XP rework + max-ammo reward guns",
+                     "s":  "Hex popup for player + stamina levels; sprint XP 20/s with scaling curve capped at 50; daily/playtime reward guns arrive with full caliber pool"
+                 },
                  {
                      "d":  "2026-07-10",
                      "k":  "feat",
