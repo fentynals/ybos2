@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-12T13:02:09.501Z",
+    "updated": "2026-07-12T15:47:43Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -279,6 +279,30 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "SHOP restyle: gun spawner cards now FULL-BLEED art + overlaid text, matching the money/XP cards (play-verified)",
+      "ts": "2026-07-12T15:47:43Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "/sg reworked: per-gun spawner pass owners type /sg <gun> (60s cooldown) instead of auto-give every spawn; legacy all-guns pass + dev list intact",
+      "ts": "2026-07-12T15:47:43Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Mineshaft QoL: F throws carried planks back; pallet pickup clamped to what the blueprint still needs (4/5 = only 1 plank)",
+      "ts": "2026-07-12T15:47:43Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Mine deaths no longer eat your holstered guns -- loadout snapshotted at death, rebuilt on respawn (outside-mine deaths unchanged)",
+      "ts": "2026-07-12T15:47:43Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -584,6 +608,24 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-12",
+      "k": "feat",
+      "t": "/sg gun spawner command (per-gun passes, 60s cd)",
+      "s": "Spawner pass owners claim their gun by typing /sg; no more auto-give on spawn"
+    },
+    {
+      "d": "2026-07-12",
+      "k": "fix",
+      "t": "Mineshaft plank + gun-loss fixes",
+      "s": "F returns planks, pickup clamped to blueprint need, guns survive mine deaths"
+    },
+    {
+      "d": "2026-07-12",
+      "k": "feat",
+      "t": "Shop full-bleed card art",
+      "s": "Gun spawner cards restyled like money/XP: image fills the box, text overlays"
+    },
     {
       "d": "2026-07-12",
       "k": "feat",
