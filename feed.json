@@ -1,786 +1,792 @@
 {
- "meta": {
-  "updated": "2026-07-12T05:31:37Z",
-  "kernel": "FABLE-5",
-  "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
-  "game": "HEADTAP",
-  "version": "3.0",
-  "stats": {
-   "placeId": 124673719670870,
-   "universeId": 10194619622,
-   "name": "HEAD TAP",
-   "playing": 0,
-   "visits": 1360,
-   "favorites": 7,
-   "maxPlayers": 50,
-   "likes": 14,
-   "dislikes": 0,
-   "fetched": "2026-07-05T02:57:59Z"
-  },
-  "analytics": {
-   "updated": "2026-07-10T09:21:27.360Z",
-   "tiktok": {
-    "followers": 0,
-    "views": 0,
-    "likes": 0,
-    "comments": 0,
-    "shares": 0
-   },
-   "youtube": {
-    "subscribers": 7,
-    "views": 23,
-    "likes": null,
-    "comments": null
-   },
-   "instagram": {
-    "followers": 0,
-    "views": null,
-    "likes": 0,
-    "comments": 0
-   },
-   "top": [],
-   "series": [
-    {
-     "d": "07-05",
-     "tiktok": 0,
-     "youtube": 23,
-     "instagram": 0
+  "meta": {
+    "updated": "2026-07-12T08:03:30.890Z",
+    "kernel": "FABLE-5",
+    "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
+    "game": "HEADTAP",
+    "version": "3.0",
+    "stats": {
+      "placeId": 124673719670870,
+      "universeId": 10194619622,
+      "name": "HEAD TAP",
+      "playing": 0,
+      "visits": 1360,
+      "favorites": 7,
+      "maxPlayers": 50,
+      "likes": 14,
+      "dislikes": 0,
+      "fetched": "2026-07-05T02:57:59Z"
     },
-    {
-     "d": "07-06",
-     "tiktok": 0,
-     "youtube": 23,
-     "instagram": 0
+    "analytics": {
+      "updated": "2026-07-12T08:03:28.996Z",
+      "tiktok": {
+        "followers": 0,
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "shares": 0
+      },
+      "youtube": {
+        "subscribers": 7,
+        "views": 23,
+        "likes": null,
+        "comments": null
+      },
+      "instagram": {
+        "followers": 0,
+        "views": null,
+        "likes": 0,
+        "comments": 0
+      },
+      "top": [],
+      "series": [
+        {
+          "d": "07-05",
+          "tiktok": 0,
+          "youtube": 23,
+          "instagram": 0
+        },
+        {
+          "d": "07-06",
+          "tiktok": 0,
+          "youtube": 23,
+          "instagram": 0
+        },
+        {
+          "d": "07-07",
+          "tiktok": 0,
+          "youtube": 23,
+          "instagram": 0
+        },
+        {
+          "d": "07-08",
+          "tiktok": 0,
+          "youtube": 23,
+          "instagram": 0
+        },
+        {
+          "d": "07-09",
+          "tiktok": 0,
+          "youtube": 23,
+          "instagram": 0
+        },
+        {
+          "d": "07-10",
+          "tiktok": 0,
+          "youtube": 23,
+          "instagram": 0
+        },
+        {
+          "d": "07-12",
+          "tiktok": 0,
+          "youtube": 23,
+          "instagram": 0
+        }
+      ]
     },
-    {
-     "d": "07-07",
-     "tiktok": 0,
-     "youtube": 23,
-     "instagram": 0
-    },
-    {
-     "d": "07-08",
-     "tiktok": 0,
-     "youtube": 23,
-     "instagram": 0
-    },
-    {
-     "d": "07-09",
-     "tiktok": 0,
-     "youtube": 23,
-     "instagram": 0
-    },
-    {
-     "d": "07-10",
-     "tiktok": 0,
-     "youtube": 23,
-     "instagram": 0
+    "contentAgent": {
+      "status": "idle",
+      "note": "standing by â€” ask content-creator for ideas",
+      "updated": "2026-07-05T03:24:14Z"
     }
-   ]
   },
-  "contentAgent": {
-   "status": "idle",
-   "note": "standing by â€” ask content-creator for ideas",
-   "updated": "2026-07-05T03:24:14Z"
-  }
- },
- "content": [],
- "rejections": [],
- "bugs": [
-  {
-   "id": "dupe-glitch",
-   "sev": "high",
-   "status": "open",
-   "t": "Dupe glitch (ATM / vault)",
-   "note": "aksararara Â· PC. Open ATM (go to vault) â†’ put a gun in inventory â†’ reset â†’ collect own = duplicated guns.",
-   "ts": "2026-06-13T00:00:00Z"
-  },
-  {
-   "id": "atm-free-ammo",
-   "sev": "high",
-   "status": "open",
-   "t": "Free ammo exploit (ATM)",
-   "note": "Crimson (@123GamerWheaty). Getting full ammo for free via the ATM. Original write-up was deleted; 15 replies on the thread.",
-   "ts": "2026-06-14T00:00:00Z"
-  },
-  {
-   "id": "offduty-keep-gun",
-   "sev": "high",
-   "status": "open",
-   "t": "Off-duty cops keep the gun",
-   "note": "Umakevic (@thedominater_Raptor) Â· PC Â· sev 9/10. Become police â†’ go off duty â†’ store the pistol at an ATM and repeat to keep the gun.",
-   "ts": "2026-06-20T00:00:00Z"
-  },
-  {
-   "id": "vault-ammo-reset",
-   "sev": "high",
-   "status": "open",
-   "t": "Vault resets gun ammo to 0",
-   "note": "Godspeed (@gopro5403) Â· mobile, affects all. Any gun placed in the vault comes back with 0 ammo after a rejoin.",
-   "ts": "2026-06-25T19:48:00Z"
-  },
-  {
-   "id": "garage-fling",
-   "sev": "med",
-   "status": "open",
-   "t": "Garage re-entry flings you skyward",
-   "note": "TahirDev (@poesdepro1) Â· PC Â· sev 8/10. Enter garage â†’ leave â†’ enter again â†’ leave = thrown randomly out of the sky.",
-   "ts": "2026-06-27T05:07:00Z"
-  },
-  {
-   "id": "bank-rope",
-   "sev": "med",
-   "status": "open",
-   "t": "Bank rope flings you to your death",
-   "note": "TahirDev (@poesdepro1) Â· PC Â· sev 6/10. Get on the rope â†’ swing â†’ it tweaks â†’ flings you out of the building. Also reachable from the bank office.",
-   "ts": "2026-06-27T04:50:00Z"
-  },
-  {
-   "id": "hellcat-gui-stuck",
-   "sev": "med",
-   "status": "watch",
-   "t": "Hellcat exit: GUI stays + auto-move (mobile)",
-   "note": "KodaKen (@KodaDay) Â· mobile. After exiting the Hellcat the GUI stays and the player moves on their own. NOTE: thread tagged BOTH unfixed and fixed â€” needs confirm.",
-   "ts": "2026-06-08T23:16:00Z"
-  },
-  {
-   "id": "bank-door-block",
-   "sev": "med",
-   "status": "open",
-   "t": "Bank door blocks the escape path",
-   "note": "Godspeed (@gopro5403) Â· all devices. When robbing the bank the door blocks the path to escape.",
-   "ts": "2026-06-27T10:05:00Z"
-  },
-  {
-   "id": "police-nochase",
-   "sev": "med",
-   "status": "open",
-   "t": "Police don't chase properly",
-   "note": "LeChiffre (@Bedmed122) Â· phone. Have a gun out and shoot at the ground; the police should chase you but they don't.",
-   "ts": "2026-06-13T00:00:00Z"
-  },
-  {
-   "id": "stamina-ui-noreset",
-   "sev": "med",
-   "status": "open",
-   "t": "Stamina UI doesn't reset (mobile)",
-   "note": "rayyan123617 Â· mobile. Drain stamina to zero â†’ reset / die â†’ the stamina UI doesn't reset.",
-   "ts": "2026-06-15T00:00:00Z"
-  },
-  {
-   "id": "gas-ui-mobile",
-   "sev": "med",
-   "status": "open",
-   "t": "Gas UI disappears (mobile)",
-   "note": "Godspeed (@gopro5403) Â· mobile. At the gas station the UI disappears / can't be seen on mobile.",
-   "ts": "2026-06-20T00:00:00Z"
-  },
-  {
-   "id": "fist-bug",
-   "sev": "med",
-   "status": "open",
-   "t": "Fists misbehave after tapping (mobile)",
-   "note": "LeChiffre (@Bedmed122) Â· mobile. Tap the fist button â†’ tap anywhere on screen and the fists glitch.",
-   "ts": "2026-06-16T00:00:00Z"
-  },
-  {
-   "id": "iphone-garage-ui",
-   "sev": "med",
-   "status": "open",
-   "t": "iPhone pops the car / garage UI",
-   "note": "rayyan123617 Â· mobile. At a car spawner the garage UI opens; opening the in-game iPhone also pops the UI.",
-   "ts": "2026-07-03T00:00:00Z"
-  },
-  {
-   "id": "floating-atm",
-   "sev": "med",
-   "status": "open",
-   "t": "Random floating ATM",
-   "note": "Godspeed (@gopro5403). A floating ATM in the world (self-explanatory per reporter).",
-   "ts": "2026-06-17T00:00:00Z"
-  },
-  {
-   "id": "flying-barn",
-   "sev": "med",
-   "status": "open",
-   "t": "Flying / floating barn",
-   "note": "DJBuilder (Dj_andgirraffy2) Â· PC. The barn is floating.",
-   "ts": "2026-06-20T00:00:00Z"
-  },
-  {
-   "id": "roadkill-bug",
-   "sev": "med",
-   "status": "open",
-   "t": "Roadkill bug",
-   "note": "DJBuilder. Roadkill behavior bug (3 replies; open the thread for repro).",
-   "ts": "2026-06-22T00:00:00Z"
-  },
-  {
-   "id": "aimlock-bug",
-   "sev": "med",
-   "status": "open",
-   "t": "Aimlock bug",
-   "note": "LeChiffre (@Bedmed122). Aim-lock behaving wrong (no repro given â€” confirm whether it's an aim exploit).",
-   "ts": "2026-06-21T00:00:00Z"
-  },
-  {
-   "id": "phone-gun-glitch",
-   "sev": "med",
-   "status": "open",
-   "t": "Gun + iPhone at the same time glitches",
-   "note": "GG_DON (@Ram77712). Using a gun and the in-game iPhone simultaneously glitches.",
-   "ts": "2026-06-18T00:00:00Z"
-  },
-  {
-   "id": "ammo-ui-scale",
-   "sev": "low",
-   "status": "open",
-   "t": "Ammo UI not scaled (mobile)",
-   "note": "Godspeed (@gopro5403) Â· mobile. Gunshop ammo UI isn't scaled for mobile.",
-   "ts": "2026-06-27T10:09:00Z"
-  },
-  {
-   "id": "watch-ui-scale",
-   "sev": "low",
-   "status": "open",
-   "t": "Jewelry watch UI not scaled (mobile)",
-   "note": "Godspeed (@gopro5403) Â· mobile. Jewelry-store watches UI isn't scaled for mobile.",
-   "ts": "2026-06-27T10:07:00Z"
-  },
-  {
-   "id": "car-stuck",
-   "sev": "low",
-   "status": "open",
-   "t": "Car front gets stuck",
-   "note": "DJBuilder (Dj_andgirraffy2) Â· PC Â· sev 3/10. Get the McLeasy â†’ drive a long straight road â†’ the front of the car gets stuck.",
-   "ts": "2026-06-21T00:00:00Z"
-  },
-  {
-   "id": "dealer-guy-outside",
-   "sev": "low",
-   "status": "open",
-   "t": "Dealership NPC stands outside the dealership",
-   "note": "Godspeed (@gopro5403) Â· all devices. The dealership guy is positioned outside the dealership.",
-   "ts": "2026-06-18T00:00:00Z"
-  },
-  {
-   "id": "dealer-random-guy",
-   "sev": "low",
-   "status": "open",
-   "t": "Random guy at the dealership",
-   "note": "Godspeed (@gopro5403). An unexpected NPC at the dealership.",
-   "ts": "2026-06-20T00:00:00Z"
-  }
- ],
- "radio": [
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "MONETIZATION SHIPPED: 4 new dev products (+5/+15/+40/+100 Levels, 99-1299 R$) and 6 new gamepasses (per-gun Spawners, Makarov thru Black Neon Draco, 149-1299 R$) created via Open Cloud, priced, on sale, and FULLY WIRED -- +Levels grants via PlayerStats.addNotoriety in ProcessReceipt, spawner passes auto-deliver their gun every spawn, and the legacy Gun Spawner pass (799) now unlocks the /sg command for the 5 standard guns. Verified live in play mode: all 6 guns landed in the backpack on spawn with correct mags, shop Levels+Spawners tabs show real price pills, zero COMING SOON left in the whole shop. API gotcha for next time: price+isForSale must share ONE PATCH now.",
-   "ts": "2026-07-12T05:31:37Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "LEVELS TAB ICONS: all 4 XP cards in the shop Levels tab now carry real bottle art via UISuiteConfig image fields -- single bottle on +5, triple on +15, big pile on +40 AND +100 (cash-tab style art reuse), plus dedicated 2x XP pass art. The supplied ids were DECAL ids (all 4 failed PreloadAsync); resolved to underlying image ids via InsertService Decal.Texture and visually verified in-viewport. XP dev products still not created -- those cards stay COMING SOON until the ids land in ShopConfig.",
-   "ts": "2026-07-12T04:50:23Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "SHOP REDESIGN: UISuite shop rebuilt as square-card grids (Bundles 2-wide w/ 2x2 tile grid, all other tabs 4-wide, auto-wrap, aspect-true at any resolution incl. the mobile UIScale). image-items render FULL-BLEED art with bottom scrim + overlaid text per spec. New catalog cards: 2x Cash atop Money (live id), XP bottle products +5/+15/+40/+100 in Levels, 6 weapon-spawner passes (real gun art) + Buy A Turf in Spawners -- 10 new cfgKeys show COMING SOON until their passes/products are created. Config-driven: swap art via `image`, tiers via the items arrays in UISuiteConfig.",
-   "ts": "2026-07-11T00:00:00Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "FFA POLISH + PASSIVE HEIST GEAR: dead players now get an ELIMINATED beat then real spectate (death screen suppressed FFAUI, countdown hit 0 and black-fade blinded the camera -- all fixed); cops wiped at match start, squad rebuilt at match end (_FFAActive watcher in PoliceSystem); zone eye (FFAZONECENTER ball) now spawns at a random spawn point per round and despawns with the match. C4/RF Transmitter are passive gear: hotbar-click auto-unequips (BankHeistClient + new HeistGearPassive server backstop), C4 world charges recolored tan (were grey unions). Airdrop unlock countdown 180s->60s. Dumpster loot: red EMPTY billboard (fixed px size, 50-stud range) while on cooldown. '+20 STAMINA' sprint floater removed.",
-   "ts": "2026-07-11T00:00:00Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "MOBILE UI FIT + CHANGELOG V1.4: UISuite panels (SHOP/CREWS/FRIENDS+/PLAYTIME/SETTINGS) now author at 1280x720 design px on touch and shrink uniformly via the animation UIScale (DailyRewards computeFitScale pattern); left dock scales 0.62 + repositions, collapse arrow hidden on touch. Loading-screen CHANGE LOG widened + text shrunk on phones, bullets updated to V1.4 (bank heist / black market gear / level-ups / settings / nametags / max-ammo rewards). Desktop rendering byte-identical.",
-   "ts": "2026-07-10T17:54:53Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "okx",
-   "msg": "BANK MOVE #2 FIXED: heist scripts now find the bank ANYWHERE in workspace (waitForAnywhere recursive binds) -- survived the move into the main-map BANK model; C4/RF props re-seated on the new vault door + panel; vault ClickDetector deleted. Gear tile + hotbar art wired (walkie talkie 124882634128831 / C4 75909675164289).",
-   "ts": "2026-07-10T17:54:53Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "BANK REVAMP SHIPPED: heist rewired after the sewer move (stale BANKSEWER dupes renamed OLD_, live root set bound, INVAULTPARTT region rebuilt). NEW MECHANICS -- laser door hack now REQUIRES the RF Transmitter (NEED RF TRANSMITTER notice), hack jingle + lasers fade out over 1.5s; vault door is hold-E PLACE C4 (NEED C4 notice), 10s beep loop then explosion + breach (old crack minigame retired). C4 (.5k, consumable) + RF Transmitter (, reusable) sell at the Black Market dealer with GEAR tiles in the shop UI (image slots ready for art). Plus :cash admin command. Full flow verified in playtest.",
-   "ts": "2026-07-10T14:47:43Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "PROGRESSION PASS: hexagon LEVEL UP popup (center-top, gold for player level / green for stamina, queued CanvasGroup rig) + sprint stamina rework -- sprinting now earns 20 XP/s (walk stays 1/s), per-level XP scales 60*(N+1), hard cap at stamina 50 (PlayerStats clamps server-side; legacy over-cap saves keep their level). Also: Daily Rewards + Playtime reward GUNS now grant at MAX ammo (caliber pool topped to cap, duplicate daily gun days pay out as an ammo refill), and Playtime cash tiles reuse the Daily Rewards cash-stack textures.",
-   "ts": "2026-07-10T13:04:06Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "UI SUITE v2: proper open/close animations on every panel (screen dim + Back-overshoot pop-in, slide+shrink close, click-outside-to-close, panels snap shut on death) + NEW SETTINGS panel (Music / Hit Sounds / Streamer Mode -- Music+Streamer actually mute the POI station via player attributes, Hit Sounds gates the headshot ding in FPSClient). Dock raised above the dim so panel switching stays one click. Also: GUN DEALER + AMMO DEALER got bold white GothamBlack overhead nametags (default nameplates off). Verified in playtest.",
-   "ts": "2026-07-10T12:25:17Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "UI SUITE SHIPPED: SHOP + CREWS + FRIENDS+ + PLAYTIME REWARDS. New UISuiteConfig/UISuiteServer/UISuiteClient + UIEvent/UIFunction remotes; SideButtons stack w/ collapse arrow and live gift countdown. CREWS binds real Roblox groups (GroupService) to in-game teams via new CrewTeamBridge -- group crews are UNCAPPED (4-cap still applies to /invite), Team Damage inherits the leader-only gate. Server-authoritative claims, DataStore UISuiteV1 w/ pcall+retry+BindToClose.",
-   "ts": "2026-07-10T00:45:54Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "okx",
-   "msg": "UI SUITE VERIFIED IN PLAY: playtime tile claim paid exactly +$500; REDEEM ALL bridge paid +$13,000 and granted 3 real guns; double-claim + locked-tile + spoofed-group-join all rejected server-side. Fixed 2 bugs found while testing: panels rendered UNDER DailyRewards (DisplayOrder 63 -> 70) and bundle price pill overlapped tile captions (card 170 -> 196px). Report: ServerStorage.UI_SUITE_REPORT.",
-   "ts": "2026-07-10T00:45:54Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "fx",
-   "msg": "ACTION NEEDED: ShopConfig.products.PLAYTIME_UNLOCK_ALL is a placeholder id=0 -- create the 'Redeem All' dev product and paste the id, or the REDEEM ALL banner stays COMING SOON. Only placeholder in the whole catalog.",
-   "ts": "2026-07-10T00:45:54Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "SHOP UI LIVE (visual only): left-edge dock (SHOP / friend-invite / settings) + full shop panel listing all 14 products + 17 gamepasses with live store names/prices, ITEMS+GAMEPASSES tabs, category sections, hand-built neon glow engine (stacked UIStrokes w/ falloff + breathing pulse -- Roblox has no box-shadow), mythic cards get rotating iridescent borders. Invite wired to SocialService; purchases intentionally stubbed at promptPurchase() until Ian greenlights. Also: silent footsteps now silent for owner too; phone Garage button fully paywalled behind SPAWN CAR FROM PHONE.",
-   "ts": "2026-07-09T17:53:59Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "GRANTING CODE LIVE: ProcessReceipt + pass perks built in Studio via MCP. Airdrop tiers drop ON the buyer (basic/adv/mythical = 0/50/100% black-market gun + 500/1.5K/5K cash), Jail Skip (instant no-bond release, banks a charge if bought free), SPAWN CAR FROM PHONE now gates phone spawns >30 studs from pads, Silent Footsteps mutes steps on other clients, Extra Health 125HP every spawn. New: RS.ShopConfig + SSS.MonetizationServer; edits: BlackMarketJobs, PoliceSystem, PhoneServer, FootstepController.",
-   "ts": "2026-07-09T16:18:08Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "okx",
-   "msg": "VERIFIED IN PLAY MODE: jail skip both paths (jailed=instant out, free=banked charge auto-used on next arrest), 3 paid crates landed 0.0 studs from buyer w/ correct tier loot, phone gate denied w/o pass + spawned with it, MaxHealth=125 live. Also fixed: stacked paid drops raycasting off each other's roofs (spawned 330 studs high).",
-   "ts": "2026-07-09T16:18:08Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "MONETIZATION CATALOG LIVE: 16 dev products + 18 gamepasses created & priced on HEADTAP via Open Cloud API -- airdrop tiers (149/399/999), cash packs up to $500K/4999 R$, loadouts, Turf Deed 2499, roles (Police/SWAT), 2x Cash/XP, watches/backpacks/kill FX. 3 legacy items renamed in place (Jail Skip 99, SWAT Access 699, Deep Pockets 449). ALL ON SALE -- granting code (ProcessReceipt + pass perks) is the next build. IDs: ~/.roblox/headtap_monetization_ids.md. Subscription on hold.",
-   "ts": "2026-07-09T15:15:00Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "Loading screen overhauled: intro music, a 'WHAT'S NEW' changelog panel (auto version = V1.x.<PlaceVersion>, bumps on publish), camera bass-bop to the beat, inventory hidden until you spawn, and a PLAY transition -- logo slides up, the UI drops down, the dark border stays framing the view then deletes on spawn. Loading cameras now support start->END dolly moves (position-paired) + POI aims, and you must click PLAY (no auto-spawn). Also: TURF3 blue sign added, turf guns spawn half-ammo + are now droppable.",
-   "ts": "2026-07-09T00:30:00Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "okx",
-   "msg": "Loading screen now flies through the CP cameras (loadingcamera folder), each aimed at its POI's general direction. Cars phase through all exterior decor (collision groups) while players on foot still bump it. POI 'entering' redone as floor-pad detection (safezone-style) so balconies/canopies over doors stop false-triggering. Mineshaft overhead sign fixed -- Bangers font, pickaxe icon, world-scale so it shrinks with distance.",
-   "ts": "2026-07-08T05:00:00Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "Big HEADTAP drop: hold-E dumpster looting (cash/gun rarity table), cargo missions now deliver to mailBoxes, a food store on the HDC1 hot-dog carts, and a MINESHAFT POI. Plus door-entry gating -- gun store / gas / dealership / turfs only count as 'entered' once you actually walk through their door (GSDOOR/GASDOOR/ddoor/TURFDOOR), so forecourts and pump canopies stop false-triggering.",
-   "ts": "2026-07-08T03:39:00Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "okx",
-   "msg": "GUN STORE ambience gated to the GSDOOR: pulled the zone's front edge back to the door so the outside canopy no longer counts as inside. Verified checkmark finalized via an in-game tuner (base 0.99, angle 287).",
-   "ts": "2026-07-08T01:34:00Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "shipx",
-   "msg": "Overhead nametag: verified checkmark + glimmer added to the left of yungsbruh's name; grouped 517 fences + fire hydrants into decoration folders",
-   "ts": "2026-07-07T19:55:00Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "okx",
-   "msg": "FFA hardened â€” max-ammo caliber pools, fists in loadout, random spawn each match, wipe ALL player cars on start (even driven), storm now deep purple",
-   "ts": "2026-07-07T19:20:00Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "fx",
-   "msg": "Security: killed 5 dormant LightConfig backdoors (glock/minecart/bank x2/walking-sounds) + an exploitable UpdateWalkspeed remote",
-   "ts": "2026-07-07T17:00:00Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "okx",
-   "msg": "25-min day / 5-min night cycle (fixed ClockTime 1s-quantization) + gentle death-aware passive health regen (regen script was being auto-deleted on spawn)",
-   "ts": "2026-07-07T15:30:00Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "okx",
-   "msg": "Footsteps rebuilt: foot-plant-synced single-shot per material + road (Plaster) material fix; C63 AMG redline volume tamed; cops 40 -> 3",
-   "ts": "2026-07-07T13:00:00Z"
-  },
-  {
-   "who": "PRIME",
-   "cls": "shipx",
-   "msg": "v2.0 shipped â€” version stamp in topbar (live from feed), usage bar now = radio buffer fill",
-   "ts": "2026-07-05T02:08:58.697266Z"
-  },
-  {
-   "who": "CRON",
-   "cls": "out",
-   "msg": "heartbeat 2026-07-05 â€” 8 commits in last 24h",
-   "ts": "2026-07-05T02:01:53Z"
-  },
-  {
-   "who": "PRIME",
-   "cls": "shipx",
-   "msg": "ðŸ“¡ LIVE PUSH TEST â€” Fable committed this from the dev session. You touched nothing. The pipeline is real.",
-   "ts": "2026-07-05T00:17:56.443766Z"
-  },
-  {
-   "who": "PRIME",
-   "cls": "okx",
-   "msg": "GameSanitizer deployed â€” auto-strips SpeedEffect + anchors turf guns on paste",
-   "ts": "2026-07-04T19:52:11.868376Z"
-  },
-  {
-   "who": "PRIME",
-   "cls": "shipx",
-   "msg": "live pipeline online â€” OS now fetches feed.json, no more re-downloads",
-   "ts": "2026-07-04T19:52:11.868376Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "out",
-   "msg": "all 18 POIs pulled from real workspace coords into city map",
-   "ts": "2026-07-04T19:52:11.868376Z"
-  },
-  {
-   "who": "PRIME",
-   "cls": "shipx",
-   "msg": "MSOP mine operator + enter/leave cinematics shipped",
-   "ts": "2026-07-04T19:52:11.868376Z"
-  },
-  {
-   "who": "QA",
-   "cls": "fx",
-   "msg": "OPEN: vaultâ†”loadout dupe â€” PlayerInventory snapshot not synced on deposit",
-   "ts": "2026-07-04T19:52:11.868376Z"
-  },
-  {
-   "who": "PRIME",
-   "cls": "okx",
-   "msg": "turf gun economy: tagged, half reserve, vault-banned, no home-turf sales",
-   "ts": "2026-07-04T19:52:11.868376Z"
-  },
-  {
-   "who": "STUDIO",
-   "cls": "out",
-   "msg": "TURF4 wired â€” 3 doors, 10 stations, 152 ARP parts anchored across turfs",
-   "ts": "2026-07-04T19:52:11.868376Z"
-  },
-  {
-   "who": "PRIME",
-   "cls": "okx",
-   "msg": "wall-reach exploit killed server-side â€” body raycast, camera-proof",
-   "ts": "2026-07-04T19:52:11.868376Z"
-  }
- ],
- "tasks": [
-  {
-   "t": "vaultâ†”loadout dupe: sync PlayerInventory on Deposit/Withdraw",
-   "col": 0,
-   "pr": "high",
-   "tags": [
-    "exploit",
-    "server"
-   ]
-  },
-  {
-   "t": "dead-interaction lock (PPS off while dead + alive guards)",
-   "col": 0,
-   "pr": "high",
-   "tags": [
-    "exploit"
-   ]
-  },
-  {
-   "t": "turf membership persistence (DataStore)",
-   "col": 0,
-   "pr": "med",
-   "tags": [
-    "turf",
-    "data"
-   ]
-  },
-  {
-   "t": "TURF5 build + wire",
-   "col": 0,
-   "pr": "low",
-   "tags": [
-    "turf",
-    "map"
-   ]
-  },
-  {
-   "t": "confirm gun equip-bounce fix on real phone",
-   "col": 2,
-   "pr": "high",
-   "tags": [
-    "mobile",
-    "qa"
-   ]
-  },
-  {
-   "t": "MSOP cinematic feel-check on mobile",
-   "col": 2,
-   "pr": "med",
-   "tags": [
-    "mineshaft",
-    "qa"
-   ]
-  },
-  {
-   "t": "GameSanitizer â€” runtime auto-repair on paste",
-   "col": 3,
-   "pr": "med",
-   "tags": [
-    "infra"
-   ]
-  },
-  {
-   "t": "MSOP operator + camera cinematics",
-   "col": 3,
-   "pr": "high",
-   "tags": [
-    "mineshaft"
-   ]
-  },
-  {
-   "t": "TURF3 + TURF4 wired",
-   "col": 3,
-   "pr": "high",
-   "tags": [
-    "turf"
-   ]
-  },
-  {
-   "t": "wall-reach server LoS gate",
-   "col": 3,
-   "pr": "high",
-   "tags": [
-    "exploit"
-   ]
-  }
- ],
- "ship": [
-  {
-   "d": "2026-07-12",
-   "k": "feat",
-   "t": "Shop goes fully live: +Levels products + gun Spawner passes",
-   "s": "10 new Robux items created+wired+play-verified; every shop card now purchasable"
-  },
-  {
-   "d": "2026-07-12",
-   "k": "feat",
-   "t": "Levels-tab XP card icons wired",
-   "s": "4 decal ids resolved to image ids, all verified rendering; +40/+100 share Big art"
-  },
-  {
-   "d": "2026-07-11",
-   "k": "feat",
-   "t": "Shop UI square-card redesign + spawner/XP/2xCash catalog",
-   "s": "Grid cards on all 7 tabs, full-bleed art, no clipping; 10 new items pending pass/product ids"
-  },
-  {
-   "d": "2026-07-11",
-   "k": "fix",
-   "t": "FFA spectate/cops/zone-eye + passive C4/RF + airdrop 60s + dumpster EMPTY",
-   "s": "FFA deaths spectate properly; cops sit out matches; eye randomizes+despawns; heist gear unequippable; stamina floater gone"
-  },
-  {
-   "d": "2026-07-10",
-   "k": "fix",
-   "t": "Mobile UI fit + changelog V1.4 + bank rebind after second move",
-   "s": "Panels+dock scale properly on touch; heist scripts location-proof; changelog refreshed"
-  },
-  {
-   "d": "2026-07-10",
-   "k": "feat",
-   "t": "Bank heist revamp: C4 breach + RF transmitter hack + Black Market gear",
-   "s": "Laser hack gated on RF Transmitter, vault opens via 10s C4 fuse with beep/boom audio, lasers fade on hack; gear purchasable at the Black Market"
-  },
-  {
-   "d": "2026-07-10",
-   "k": "feat",
-   "t": "Level-up hexagon popups + stamina XP rework + max-ammo reward guns",
-   "s": "Hex popup for player + stamina levels; sprint XP 20/s with scaling curve capped at 50; daily/playtime reward guns arrive with full caliber pool"
-  },
-  {
-   "d": "2026-07-10",
-   "k": "feat",
-   "t": "UI open/close animations + Settings panel + dealer nametags",
-   "s": "Dim overlay + pop-in/out tweens on all 5 dock panels; new Settings toggles wired to real systems; Gun/Ammo Dealer billboard nametags"
-  },
-  {
-   "d": "2026-07-10",
-   "k": "feat",
-   "t": "UI Suite: shop, crews, invite rewards, playtime rewards",
-   "s": "Four server-authoritative UI systems w/ ribbon headers + diamond X + neon stroke identity; group-based crews ride the existing team/friendly-fire system via a new uncapped bridge"
-  },
-  {
-   "d": "2026-07-09",
-   "k": "feat",
-   "t": "In-game shop UI + side dock (SHOP/invite/settings)",
-   "s": "Neon-glow dock and full catalog shop panel (31 items, live store data), settings + invite; purchase wiring is a one-function stub away"
-  },
-  {
-   "d": "2026-07-09",
-   "k": "feat",
-   "t": "P2W granting code: purchases now actually deliver",
-   "s": "ProcessReceipt router + 3 pass perks wired into the real systems (airdrop crate, jail, phone garage, footsteps, health) and play-tested end to end; unwired products auto-retry so they grant retroactively when built"
-  },
-  {
-   "d": "2026-07-09",
-   "k": "feat",
-   "t": "Monetization catalog: 34 items live via Open Cloud",
-   "s": "16 dev products + 18 gamepasses created/renamed & priced through the API (airdrops, cash packs, loadouts, turf deed, roles, 2x boosts, cosmetics) -- all on sale; in-game granting code is the next build"
-  },
-  {
-   "d": "2026-07-08",
-   "k": "feat",
-   "t": "Loading screen: music + What's New panel + PLAY transition",
-   "s": "intro track, a WHAT'S NEW changelog panel (auto version V1.x.PlaceVersion), camera bass-bop, inventory hidden until spawn; PLAY slides the logo up + UI down while the dark border stays then deletes on spawn"
-  },
-  {
-   "d": "2026-07-08",
-   "k": "feat",
-   "t": "Loading cameras: dolly moves + must-click-PLAY",
-   "s": "start->END camera dolly moves (position-paired), POI aims, and no auto-spawn -- the player must click PLAY"
-  },
-  {
-   "d": "2026-07-08",
-   "k": "feat",
-   "t": "TURF3 sign + turf gun ammo/drop",
-   "s": "TURF3 got its blue overhead sign; turf guns now spawn half-ammo (full mag) and can be dropped + picked back up"
-  },
-  {
-   "d": "2026-07-08",
-   "k": "feat",
-   "t": "Loading-screen cinematic uses the CP cameras",
-   "s": "the join loading screen cycles the loadingcamera CP parts, each aimed toward its named POI's general direction"
-  },
-  {
-   "d": "2026-07-08",
-   "k": "feat",
-   "t": "Cars phase through exterior decor",
-   "s": "collision groups: Vehicles<->ExteriorDecor off; players on foot still collide, cars still hit roads/buildings"
-  },
-  {
-   "d": "2026-07-08",
-   "k": "fix",
-   "t": "POI entry redone as floor-pad (safezone-style) detection",
-   "s": "you register as inside only while standing over the POI's floor pad -- kills the balcony/canopy/forecourt false-triggers the box + door-touch had"
-  },
-  {
-   "d": "2026-07-08",
-   "k": "fix",
-   "t": "Mineshaft overhead sign + cargo markers",
-   "s": "sign uses Bangers font + pickaxe icon + world-stud scale (shrinks with distance); cargo drop markers now invisible"
-  },
-  {
-   "d": "2026-07-07",
-   "k": "feat",
-   "t": "Door-entry gating for building POIs",
-   "s": "gun store / gas / dealership / turfs only register as entered after you walk through their named door (GSDOOR/GASDOOR/ddoor/TURFDOOR) -- kills forecourt/canopy false-triggers"
-  },
-  {
-   "d": "2026-07-07",
-   "k": "feat",
-   "t": "MINESHAFT POI + overhead sign",
-   "s": "mineshaft top is now a labelled POI with a floating name/image billboard (icon id still a placeholder)"
-  },
-  {
-   "d": "2026-07-07",
-   "k": "feat",
-   "t": "Dumpster looting (hold-E Search)",
-   "s": "50% nothing / 30% $0-500 / 14% $500-10k / 5% pistol / 0.9% 556 ARP / 0.1% G17DRUM, 90s per-dumpster cooldown"
-  },
-  {
-   "d": "2026-07-07",
-   "k": "feat",
-   "t": "Cargo missions route to mailBoxes",
-   "s": "delivery drop spots now seed at the 11 mailBoxes instead of hardcoded map coords"
-  },
-  {
-   "d": "2026-07-07",
-   "k": "feat",
-   "t": "Food store on the hot-dog carts",
-   "s": "Pizza + Burger buy prompts added to the 3 HDC1 hot dog trailers"
-  },
-  {
-   "d": "2026-07-07",
-   "k": "fix",
-   "t": "Gun store 'entering' zone tightened to the door",
-   "s": "front edge of the GUN STORE ambience box moved back to the GSDOOR (Z -132) so the outside canopy area stops registering as inside the store"
-  },
-  {
-   "d": "2026-07-07",
-   "k": "feat",
-   "t": "Verified checkmark badge (overhead nametag)",
-   "s": "yungsbruh gets a glimmering blue verified badge left of the username, shine synced to the level label"
-  },
-  {
-   "d": "2026-07-07",
-   "k": "feat",
-   "t": "FFA overhaul",
-   "s": "max ammo + fists, random spawn each match, full player-car wipe on start, deep-purple storm, no money-drop or car-spawner during FFA"
-  },
-  {
-   "d": "2026-07-07",
-   "k": "fix",
-   "t": "Purged 5 LightConfig backdoors + walkspeed exploit",
-   "s": "dormant code-loader hidden in free models (glock/minecart/bank x2/walking-sounds) and an UpdateWalkspeed remote, all removed"
-  },
-  {
-   "d": "2026-07-07",
-   "k": "feat",
-   "t": "Day/night cycle + passive health regen",
-   "s": "25m day / 5m night; gentle death-aware regen (the regen script had been silently deleted on spawn)"
-  },
-  {
-   "d": "2026-07-07",
-   "k": "fix",
-   "t": "Footsteps, C63 audio, cop count",
-   "s": "foot-synced per-material footsteps + Plaster road fix, tamed C63 redline volume, cops 40 -> 3"
-  },
-  {
-   "d": "2026-07-05",
-   "k": "feat",
-   "t": "live push pipeline PROVEN",
-   "s": "this entry was committed by Fable via the GitHub API using your token â€” no manual edits."
-  },
-  {
-   "d": "2026-07-04",
-   "k": "feat",
-   "t": "live feed pipeline",
-   "s": "OS fetches feed.json every 15s. dev updates now appear without re-downloading."
-  },
-  {
-   "d": "2026-07-04",
-   "k": "feat",
-   "t": "GameSanitizer",
-   "s": "runtime auto-repair: strips SpeedEffect/blur from pasted cars, anchors turf display guns, on boot + DescendantAdded."
-  },
-  {
-   "d": "2026-07-04",
-   "k": "feat",
-   "t": "18 real POIs on city map",
-   "s": "pulled actual workspace coordinates â€” map geography now matches HEADTAP."
-  }
- ]
+  "content": [],
+  "rejections": [],
+  "bugs": [
+    {
+      "id": "dupe-glitch",
+      "sev": "high",
+      "status": "open",
+      "t": "Dupe glitch (ATM / vault)",
+      "note": "aksararara Â· PC. Open ATM (go to vault) â†’ put a gun in inventory â†’ reset â†’ collect own = duplicated guns.",
+      "ts": "2026-06-13T00:00:00Z"
+    },
+    {
+      "id": "atm-free-ammo",
+      "sev": "high",
+      "status": "open",
+      "t": "Free ammo exploit (ATM)",
+      "note": "Crimson (@123GamerWheaty). Getting full ammo for free via the ATM. Original write-up was deleted; 15 replies on the thread.",
+      "ts": "2026-06-14T00:00:00Z"
+    },
+    {
+      "id": "offduty-keep-gun",
+      "sev": "high",
+      "status": "open",
+      "t": "Off-duty cops keep the gun",
+      "note": "Umakevic (@thedominater_Raptor) Â· PC Â· sev 9/10. Become police â†’ go off duty â†’ store the pistol at an ATM and repeat to keep the gun.",
+      "ts": "2026-06-20T00:00:00Z"
+    },
+    {
+      "id": "vault-ammo-reset",
+      "sev": "high",
+      "status": "open",
+      "t": "Vault resets gun ammo to 0",
+      "note": "Godspeed (@gopro5403) Â· mobile, affects all. Any gun placed in the vault comes back with 0 ammo after a rejoin.",
+      "ts": "2026-06-25T19:48:00Z"
+    },
+    {
+      "id": "garage-fling",
+      "sev": "med",
+      "status": "open",
+      "t": "Garage re-entry flings you skyward",
+      "note": "TahirDev (@poesdepro1) Â· PC Â· sev 8/10. Enter garage â†’ leave â†’ enter again â†’ leave = thrown randomly out of the sky.",
+      "ts": "2026-06-27T05:07:00Z"
+    },
+    {
+      "id": "bank-rope",
+      "sev": "med",
+      "status": "open",
+      "t": "Bank rope flings you to your death",
+      "note": "TahirDev (@poesdepro1) Â· PC Â· sev 6/10. Get on the rope â†’ swing â†’ it tweaks â†’ flings you out of the building. Also reachable from the bank office.",
+      "ts": "2026-06-27T04:50:00Z"
+    },
+    {
+      "id": "hellcat-gui-stuck",
+      "sev": "med",
+      "status": "watch",
+      "t": "Hellcat exit: GUI stays + auto-move (mobile)",
+      "note": "KodaKen (@KodaDay) Â· mobile. After exiting the Hellcat the GUI stays and the player moves on their own. NOTE: thread tagged BOTH unfixed and fixed â€” needs confirm.",
+      "ts": "2026-06-08T23:16:00Z"
+    },
+    {
+      "id": "bank-door-block",
+      "sev": "med",
+      "status": "open",
+      "t": "Bank door blocks the escape path",
+      "note": "Godspeed (@gopro5403) Â· all devices. When robbing the bank the door blocks the path to escape.",
+      "ts": "2026-06-27T10:05:00Z"
+    },
+    {
+      "id": "police-nochase",
+      "sev": "med",
+      "status": "open",
+      "t": "Police don't chase properly",
+      "note": "LeChiffre (@Bedmed122) Â· phone. Have a gun out and shoot at the ground; the police should chase you but they don't.",
+      "ts": "2026-06-13T00:00:00Z"
+    },
+    {
+      "id": "stamina-ui-noreset",
+      "sev": "med",
+      "status": "open",
+      "t": "Stamina UI doesn't reset (mobile)",
+      "note": "rayyan123617 Â· mobile. Drain stamina to zero â†’ reset / die â†’ the stamina UI doesn't reset.",
+      "ts": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "gas-ui-mobile",
+      "sev": "med",
+      "status": "open",
+      "t": "Gas UI disappears (mobile)",
+      "note": "Godspeed (@gopro5403) Â· mobile. At the gas station the UI disappears / can't be seen on mobile.",
+      "ts": "2026-06-20T00:00:00Z"
+    },
+    {
+      "id": "fist-bug",
+      "sev": "med",
+      "status": "open",
+      "t": "Fists misbehave after tapping (mobile)",
+      "note": "LeChiffre (@Bedmed122) Â· mobile. Tap the fist button â†’ tap anywhere on screen and the fists glitch.",
+      "ts": "2026-06-16T00:00:00Z"
+    },
+    {
+      "id": "iphone-garage-ui",
+      "sev": "med",
+      "status": "open",
+      "t": "iPhone pops the car / garage UI",
+      "note": "rayyan123617 Â· mobile. At a car spawner the garage UI opens; opening the in-game iPhone also pops the UI.",
+      "ts": "2026-07-03T00:00:00Z"
+    },
+    {
+      "id": "floating-atm",
+      "sev": "med",
+      "status": "open",
+      "t": "Random floating ATM",
+      "note": "Godspeed (@gopro5403). A floating ATM in the world (self-explanatory per reporter).",
+      "ts": "2026-06-17T00:00:00Z"
+    },
+    {
+      "id": "flying-barn",
+      "sev": "med",
+      "status": "open",
+      "t": "Flying / floating barn",
+      "note": "DJBuilder (Dj_andgirraffy2) Â· PC. The barn is floating.",
+      "ts": "2026-06-20T00:00:00Z"
+    },
+    {
+      "id": "roadkill-bug",
+      "sev": "med",
+      "status": "open",
+      "t": "Roadkill bug",
+      "note": "DJBuilder. Roadkill behavior bug (3 replies; open the thread for repro).",
+      "ts": "2026-06-22T00:00:00Z"
+    },
+    {
+      "id": "aimlock-bug",
+      "sev": "med",
+      "status": "open",
+      "t": "Aimlock bug",
+      "note": "LeChiffre (@Bedmed122). Aim-lock behaving wrong (no repro given â€” confirm whether it's an aim exploit).",
+      "ts": "2026-06-21T00:00:00Z"
+    },
+    {
+      "id": "phone-gun-glitch",
+      "sev": "med",
+      "status": "open",
+      "t": "Gun + iPhone at the same time glitches",
+      "note": "GG_DON (@Ram77712). Using a gun and the in-game iPhone simultaneously glitches.",
+      "ts": "2026-06-18T00:00:00Z"
+    },
+    {
+      "id": "ammo-ui-scale",
+      "sev": "low",
+      "status": "open",
+      "t": "Ammo UI not scaled (mobile)",
+      "note": "Godspeed (@gopro5403) Â· mobile. Gunshop ammo UI isn't scaled for mobile.",
+      "ts": "2026-06-27T10:09:00Z"
+    },
+    {
+      "id": "watch-ui-scale",
+      "sev": "low",
+      "status": "open",
+      "t": "Jewelry watch UI not scaled (mobile)",
+      "note": "Godspeed (@gopro5403) Â· mobile. Jewelry-store watches UI isn't scaled for mobile.",
+      "ts": "2026-06-27T10:07:00Z"
+    },
+    {
+      "id": "car-stuck",
+      "sev": "low",
+      "status": "open",
+      "t": "Car front gets stuck",
+      "note": "DJBuilder (Dj_andgirraffy2) Â· PC Â· sev 3/10. Get the McLeasy â†’ drive a long straight road â†’ the front of the car gets stuck.",
+      "ts": "2026-06-21T00:00:00Z"
+    },
+    {
+      "id": "dealer-guy-outside",
+      "sev": "low",
+      "status": "open",
+      "t": "Dealership NPC stands outside the dealership",
+      "note": "Godspeed (@gopro5403) Â· all devices. The dealership guy is positioned outside the dealership.",
+      "ts": "2026-06-18T00:00:00Z"
+    },
+    {
+      "id": "dealer-random-guy",
+      "sev": "low",
+      "status": "open",
+      "t": "Random guy at the dealership",
+      "note": "Godspeed (@gopro5403). An unexpected NPC at the dealership.",
+      "ts": "2026-06-20T00:00:00Z"
+    }
+  ],
+  "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "MONETIZATION SHIPPED: 4 new dev products (+5/+15/+40/+100 Levels, 99-1299 R$) and 6 new gamepasses (per-gun Spawners, Makarov thru Black Neon Draco, 149-1299 R$) created via Open Cloud, priced, on sale, and FULLY WIRED -- +Levels grants via PlayerStats.addNotoriety in ProcessReceipt, spawner passes auto-deliver their gun every spawn, and the legacy Gun Spawner pass (799) now unlocks the /sg command for the 5 standard guns. Verified live in play mode: all 6 guns landed in the backpack on spawn with correct mags, shop Levels+Spawners tabs show real price pills, zero COMING SOON left in the whole shop. API gotcha for next time: price+isForSale must share ONE PATCH now.",
+      "ts": "2026-07-12T05:31:37Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "LEVELS TAB ICONS: all 4 XP cards in the shop Levels tab now carry real bottle art via UISuiteConfig image fields -- single bottle on +5, triple on +15, big pile on +40 AND +100 (cash-tab style art reuse), plus dedicated 2x XP pass art. The supplied ids were DECAL ids (all 4 failed PreloadAsync); resolved to underlying image ids via InsertService Decal.Texture and visually verified in-viewport. XP dev products still not created -- those cards stay COMING SOON until the ids land in ShopConfig.",
+      "ts": "2026-07-12T04:50:23Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "SHOP REDESIGN: UISuite shop rebuilt as square-card grids (Bundles 2-wide w/ 2x2 tile grid, all other tabs 4-wide, auto-wrap, aspect-true at any resolution incl. the mobile UIScale). image-items render FULL-BLEED art with bottom scrim + overlaid text per spec. New catalog cards: 2x Cash atop Money (live id), XP bottle products +5/+15/+40/+100 in Levels, 6 weapon-spawner passes (real gun art) + Buy A Turf in Spawners -- 10 new cfgKeys show COMING SOON until their passes/products are created. Config-driven: swap art via `image`, tiers via the items arrays in UISuiteConfig.",
+      "ts": "2026-07-11T00:00:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "FFA POLISH + PASSIVE HEIST GEAR: dead players now get an ELIMINATED beat then real spectate (death screen suppressed FFAUI, countdown hit 0 and black-fade blinded the camera -- all fixed); cops wiped at match start, squad rebuilt at match end (_FFAActive watcher in PoliceSystem); zone eye (FFAZONECENTER ball) now spawns at a random spawn point per round and despawns with the match. C4/RF Transmitter are passive gear: hotbar-click auto-unequips (BankHeistClient + new HeistGearPassive server backstop), C4 world charges recolored tan (were grey unions). Airdrop unlock countdown 180s->60s. Dumpster loot: red EMPTY billboard (fixed px size, 50-stud range) while on cooldown. '+20 STAMINA' sprint floater removed.",
+      "ts": "2026-07-11T00:00:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "MOBILE UI FIT + CHANGELOG V1.4: UISuite panels (SHOP/CREWS/FRIENDS+/PLAYTIME/SETTINGS) now author at 1280x720 design px on touch and shrink uniformly via the animation UIScale (DailyRewards computeFitScale pattern); left dock scales 0.62 + repositions, collapse arrow hidden on touch. Loading-screen CHANGE LOG widened + text shrunk on phones, bullets updated to V1.4 (bank heist / black market gear / level-ups / settings / nametags / max-ammo rewards). Desktop rendering byte-identical.",
+      "ts": "2026-07-10T17:54:53Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "BANK MOVE #2 FIXED: heist scripts now find the bank ANYWHERE in workspace (waitForAnywhere recursive binds) -- survived the move into the main-map BANK model; C4/RF props re-seated on the new vault door + panel; vault ClickDetector deleted. Gear tile + hotbar art wired (walkie talkie 124882634128831 / C4 75909675164289).",
+      "ts": "2026-07-10T17:54:53Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "BANK REVAMP SHIPPED: heist rewired after the sewer move (stale BANKSEWER dupes renamed OLD_, live root set bound, INVAULTPARTT region rebuilt). NEW MECHANICS -- laser door hack now REQUIRES the RF Transmitter (NEED RF TRANSMITTER notice), hack jingle + lasers fade out over 1.5s; vault door is hold-E PLACE C4 (NEED C4 notice), 10s beep loop then explosion + breach (old crack minigame retired). C4 (.5k, consumable) + RF Transmitter (, reusable) sell at the Black Market dealer with GEAR tiles in the shop UI (image slots ready for art). Plus :cash admin command. Full flow verified in playtest.",
+      "ts": "2026-07-10T14:47:43Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "PROGRESSION PASS: hexagon LEVEL UP popup (center-top, gold for player level / green for stamina, queued CanvasGroup rig) + sprint stamina rework -- sprinting now earns 20 XP/s (walk stays 1/s), per-level XP scales 60*(N+1), hard cap at stamina 50 (PlayerStats clamps server-side; legacy over-cap saves keep their level). Also: Daily Rewards + Playtime reward GUNS now grant at MAX ammo (caliber pool topped to cap, duplicate daily gun days pay out as an ammo refill), and Playtime cash tiles reuse the Daily Rewards cash-stack textures.",
+      "ts": "2026-07-10T13:04:06Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "UI SUITE v2: proper open/close animations on every panel (screen dim + Back-overshoot pop-in, slide+shrink close, click-outside-to-close, panels snap shut on death) + NEW SETTINGS panel (Music / Hit Sounds / Streamer Mode -- Music+Streamer actually mute the POI station via player attributes, Hit Sounds gates the headshot ding in FPSClient). Dock raised above the dim so panel switching stays one click. Also: GUN DEALER + AMMO DEALER got bold white GothamBlack overhead nametags (default nameplates off). Verified in playtest.",
+      "ts": "2026-07-10T12:25:17Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "UI SUITE SHIPPED: SHOP + CREWS + FRIENDS+ + PLAYTIME REWARDS. New UISuiteConfig/UISuiteServer/UISuiteClient + UIEvent/UIFunction remotes; SideButtons stack w/ collapse arrow and live gift countdown. CREWS binds real Roblox groups (GroupService) to in-game teams via new CrewTeamBridge -- group crews are UNCAPPED (4-cap still applies to /invite), Team Damage inherits the leader-only gate. Server-authoritative claims, DataStore UISuiteV1 w/ pcall+retry+BindToClose.",
+      "ts": "2026-07-10T00:45:54Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "UI SUITE VERIFIED IN PLAY: playtime tile claim paid exactly +$500; REDEEM ALL bridge paid +$13,000 and granted 3 real guns; double-claim + locked-tile + spoofed-group-join all rejected server-side. Fixed 2 bugs found while testing: panels rendered UNDER DailyRewards (DisplayOrder 63 -> 70) and bundle price pill overlapped tile captions (card 170 -> 196px). Report: ServerStorage.UI_SUITE_REPORT.",
+      "ts": "2026-07-10T00:45:54Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "ACTION NEEDED: ShopConfig.products.PLAYTIME_UNLOCK_ALL is a placeholder id=0 -- create the 'Redeem All' dev product and paste the id, or the REDEEM ALL banner stays COMING SOON. Only placeholder in the whole catalog.",
+      "ts": "2026-07-10T00:45:54Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "SHOP UI LIVE (visual only): left-edge dock (SHOP / friend-invite / settings) + full shop panel listing all 14 products + 17 gamepasses with live store names/prices, ITEMS+GAMEPASSES tabs, category sections, hand-built neon glow engine (stacked UIStrokes w/ falloff + breathing pulse -- Roblox has no box-shadow), mythic cards get rotating iridescent borders. Invite wired to SocialService; purchases intentionally stubbed at promptPurchase() until Ian greenlights. Also: silent footsteps now silent for owner too; phone Garage button fully paywalled behind SPAWN CAR FROM PHONE.",
+      "ts": "2026-07-09T17:53:59Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "GRANTING CODE LIVE: ProcessReceipt + pass perks built in Studio via MCP. Airdrop tiers drop ON the buyer (basic/adv/mythical = 0/50/100% black-market gun + 500/1.5K/5K cash), Jail Skip (instant no-bond release, banks a charge if bought free), SPAWN CAR FROM PHONE now gates phone spawns >30 studs from pads, Silent Footsteps mutes steps on other clients, Extra Health 125HP every spawn. New: RS.ShopConfig + SSS.MonetizationServer; edits: BlackMarketJobs, PoliceSystem, PhoneServer, FootstepController.",
+      "ts": "2026-07-09T16:18:08Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "VERIFIED IN PLAY MODE: jail skip both paths (jailed=instant out, free=banked charge auto-used on next arrest), 3 paid crates landed 0.0 studs from buyer w/ correct tier loot, phone gate denied w/o pass + spawned with it, MaxHealth=125 live. Also fixed: stacked paid drops raycasting off each other's roofs (spawned 330 studs high).",
+      "ts": "2026-07-09T16:18:08Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "MONETIZATION CATALOG LIVE: 16 dev products + 18 gamepasses created & priced on HEADTAP via Open Cloud API -- airdrop tiers (149/399/999), cash packs up to $500K/4999 R$, loadouts, Turf Deed 2499, roles (Police/SWAT), 2x Cash/XP, watches/backpacks/kill FX. 3 legacy items renamed in place (Jail Skip 99, SWAT Access 699, Deep Pockets 449). ALL ON SALE -- granting code (ProcessReceipt + pass perks) is the next build. IDs: ~/.roblox/headtap_monetization_ids.md. Subscription on hold.",
+      "ts": "2026-07-09T15:15:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Loading screen overhauled: intro music, a 'WHAT'S NEW' changelog panel (auto version = V1.x.<PlaceVersion>, bumps on publish), camera bass-bop to the beat, inventory hidden until you spawn, and a PLAY transition -- logo slides up, the UI drops down, the dark border stays framing the view then deletes on spawn. Loading cameras now support start->END dolly moves (position-paired) + POI aims, and you must click PLAY (no auto-spawn). Also: TURF3 blue sign added, turf guns spawn half-ammo + are now droppable.",
+      "ts": "2026-07-09T00:30:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Loading screen now flies through the CP cameras (loadingcamera folder), each aimed at its POI's general direction. Cars phase through all exterior decor (collision groups) while players on foot still bump it. POI 'entering' redone as floor-pad detection (safezone-style) so balconies/canopies over doors stop false-triggering. Mineshaft overhead sign fixed -- Bangers font, pickaxe icon, world-scale so it shrinks with distance.",
+      "ts": "2026-07-08T05:00:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Big HEADTAP drop: hold-E dumpster looting (cash/gun rarity table), cargo missions now deliver to mailBoxes, a food store on the HDC1 hot-dog carts, and a MINESHAFT POI. Plus door-entry gating -- gun store / gas / dealership / turfs only count as 'entered' once you actually walk through their door (GSDOOR/GASDOOR/ddoor/TURFDOOR), so forecourts and pump canopies stop false-triggering.",
+      "ts": "2026-07-08T03:39:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "GUN STORE ambience gated to the GSDOOR: pulled the zone's front edge back to the door so the outside canopy no longer counts as inside. Verified checkmark finalized via an in-game tuner (base 0.99, angle 287).",
+      "ts": "2026-07-08T01:34:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Overhead nametag: verified checkmark + glimmer added to the left of yungsbruh's name; grouped 517 fences + fire hydrants into decoration folders",
+      "ts": "2026-07-07T19:55:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "FFA hardened â€” max-ammo caliber pools, fists in loadout, random spawn each match, wipe ALL player cars on start (even driven), storm now deep purple",
+      "ts": "2026-07-07T19:20:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "Security: killed 5 dormant LightConfig backdoors (glock/minecart/bank x2/walking-sounds) + an exploitable UpdateWalkspeed remote",
+      "ts": "2026-07-07T17:00:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "25-min day / 5-min night cycle (fixed ClockTime 1s-quantization) + gentle death-aware passive health regen (regen script was being auto-deleted on spawn)",
+      "ts": "2026-07-07T15:30:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Footsteps rebuilt: foot-plant-synced single-shot per material + road (Plaster) material fix; C63 AMG redline volume tamed; cops 40 -> 3",
+      "ts": "2026-07-07T13:00:00Z"
+    },
+    {
+      "who": "PRIME",
+      "cls": "shipx",
+      "msg": "v2.0 shipped â€” version stamp in topbar (live from feed), usage bar now = radio buffer fill",
+      "ts": "2026-07-05T02:08:58.697266Z"
+    },
+    {
+      "who": "CRON",
+      "cls": "out",
+      "msg": "heartbeat 2026-07-05 â€” 8 commits in last 24h",
+      "ts": "2026-07-05T02:01:53Z"
+    },
+    {
+      "who": "PRIME",
+      "cls": "shipx",
+      "msg": "ðŸ“¡ LIVE PUSH TEST â€” Fable committed this from the dev session. You touched nothing. The pipeline is real.",
+      "ts": "2026-07-05T00:17:56.443766Z"
+    },
+    {
+      "who": "PRIME",
+      "cls": "okx",
+      "msg": "GameSanitizer deployed â€” auto-strips SpeedEffect + anchors turf guns on paste",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "PRIME",
+      "cls": "shipx",
+      "msg": "live pipeline online â€” OS now fetches feed.json, no more re-downloads",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "out",
+      "msg": "all 18 POIs pulled from real workspace coords into city map",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "PRIME",
+      "cls": "shipx",
+      "msg": "MSOP mine operator + enter/leave cinematics shipped",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "QA",
+      "cls": "fx",
+      "msg": "OPEN: vaultâ†”loadout dupe â€” PlayerInventory snapshot not synced on deposit",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "PRIME",
+      "cls": "okx",
+      "msg": "turf gun economy: tagged, half reserve, vault-banned, no home-turf sales",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "out",
+      "msg": "TURF4 wired â€” 3 doors, 10 stations, 152 ARP parts anchored across turfs",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    },
+    {
+      "who": "PRIME",
+      "cls": "okx",
+      "msg": "wall-reach exploit killed server-side â€” body raycast, camera-proof",
+      "ts": "2026-07-04T19:52:11.868376Z"
+    }
+  ],
+  "tasks": [
+    {
+      "t": "vaultâ†”loadout dupe: sync PlayerInventory on Deposit/Withdraw",
+      "col": 0,
+      "pr": "high",
+      "tags": [
+        "exploit",
+        "server"
+      ]
+    },
+    {
+      "t": "dead-interaction lock (PPS off while dead + alive guards)",
+      "col": 0,
+      "pr": "high",
+      "tags": [
+        "exploit"
+      ]
+    },
+    {
+      "t": "turf membership persistence (DataStore)",
+      "col": 0,
+      "pr": "med",
+      "tags": [
+        "turf",
+        "data"
+      ]
+    },
+    {
+      "t": "TURF5 build + wire",
+      "col": 0,
+      "pr": "low",
+      "tags": [
+        "turf",
+        "map"
+      ]
+    },
+    {
+      "t": "confirm gun equip-bounce fix on real phone",
+      "col": 2,
+      "pr": "high",
+      "tags": [
+        "mobile",
+        "qa"
+      ]
+    },
+    {
+      "t": "MSOP cinematic feel-check on mobile",
+      "col": 2,
+      "pr": "med",
+      "tags": [
+        "mineshaft",
+        "qa"
+      ]
+    },
+    {
+      "t": "GameSanitizer â€” runtime auto-repair on paste",
+      "col": 3,
+      "pr": "med",
+      "tags": [
+        "infra"
+      ]
+    },
+    {
+      "t": "MSOP operator + camera cinematics",
+      "col": 3,
+      "pr": "high",
+      "tags": [
+        "mineshaft"
+      ]
+    },
+    {
+      "t": "TURF3 + TURF4 wired",
+      "col": 3,
+      "pr": "high",
+      "tags": [
+        "turf"
+      ]
+    },
+    {
+      "t": "wall-reach server LoS gate",
+      "col": 3,
+      "pr": "high",
+      "tags": [
+        "exploit"
+      ]
+    }
+  ],
+  "ship": [
+    {
+      "d": "2026-07-12",
+      "k": "feat",
+      "t": "Shop goes fully live: +Levels products + gun Spawner passes",
+      "s": "10 new Robux items created+wired+play-verified; every shop card now purchasable"
+    },
+    {
+      "d": "2026-07-12",
+      "k": "feat",
+      "t": "Levels-tab XP card icons wired",
+      "s": "4 decal ids resolved to image ids, all verified rendering; +40/+100 share Big art"
+    },
+    {
+      "d": "2026-07-11",
+      "k": "feat",
+      "t": "Shop UI square-card redesign + spawner/XP/2xCash catalog",
+      "s": "Grid cards on all 7 tabs, full-bleed art, no clipping; 10 new items pending pass/product ids"
+    },
+    {
+      "d": "2026-07-11",
+      "k": "fix",
+      "t": "FFA spectate/cops/zone-eye + passive C4/RF + airdrop 60s + dumpster EMPTY",
+      "s": "FFA deaths spectate properly; cops sit out matches; eye randomizes+despawns; heist gear unequippable; stamina floater gone"
+    },
+    {
+      "d": "2026-07-10",
+      "k": "fix",
+      "t": "Mobile UI fit + changelog V1.4 + bank rebind after second move",
+      "s": "Panels+dock scale properly on touch; heist scripts location-proof; changelog refreshed"
+    },
+    {
+      "d": "2026-07-10",
+      "k": "feat",
+      "t": "Bank heist revamp: C4 breach + RF transmitter hack + Black Market gear",
+      "s": "Laser hack gated on RF Transmitter, vault opens via 10s C4 fuse with beep/boom audio, lasers fade on hack; gear purchasable at the Black Market"
+    },
+    {
+      "d": "2026-07-10",
+      "k": "feat",
+      "t": "Level-up hexagon popups + stamina XP rework + max-ammo reward guns",
+      "s": "Hex popup for player + stamina levels; sprint XP 20/s with scaling curve capped at 50; daily/playtime reward guns arrive with full caliber pool"
+    },
+    {
+      "d": "2026-07-10",
+      "k": "feat",
+      "t": "UI open/close animations + Settings panel + dealer nametags",
+      "s": "Dim overlay + pop-in/out tweens on all 5 dock panels; new Settings toggles wired to real systems; Gun/Ammo Dealer billboard nametags"
+    },
+    {
+      "d": "2026-07-10",
+      "k": "feat",
+      "t": "UI Suite: shop, crews, invite rewards, playtime rewards",
+      "s": "Four server-authoritative UI systems w/ ribbon headers + diamond X + neon stroke identity; group-based crews ride the existing team/friendly-fire system via a new uncapped bridge"
+    },
+    {
+      "d": "2026-07-09",
+      "k": "feat",
+      "t": "In-game shop UI + side dock (SHOP/invite/settings)",
+      "s": "Neon-glow dock and full catalog shop panel (31 items, live store data), settings + invite; purchase wiring is a one-function stub away"
+    },
+    {
+      "d": "2026-07-09",
+      "k": "feat",
+      "t": "P2W granting code: purchases now actually deliver",
+      "s": "ProcessReceipt router + 3 pass perks wired into the real systems (airdrop crate, jail, phone garage, footsteps, health) and play-tested end to end; unwired products auto-retry so they grant retroactively when built"
+    },
+    {
+      "d": "2026-07-09",
+      "k": "feat",
+      "t": "Monetization catalog: 34 items live via Open Cloud",
+      "s": "16 dev products + 18 gamepasses created/renamed & priced through the API (airdrops, cash packs, loadouts, turf deed, roles, 2x boosts, cosmetics) -- all on sale; in-game granting code is the next build"
+    },
+    {
+      "d": "2026-07-08",
+      "k": "feat",
+      "t": "Loading screen: music + What's New panel + PLAY transition",
+      "s": "intro track, a WHAT'S NEW changelog panel (auto version V1.x.PlaceVersion), camera bass-bop, inventory hidden until spawn; PLAY slides the logo up + UI down while the dark border stays then deletes on spawn"
+    },
+    {
+      "d": "2026-07-08",
+      "k": "feat",
+      "t": "Loading cameras: dolly moves + must-click-PLAY",
+      "s": "start->END camera dolly moves (position-paired), POI aims, and no auto-spawn -- the player must click PLAY"
+    },
+    {
+      "d": "2026-07-08",
+      "k": "feat",
+      "t": "TURF3 sign + turf gun ammo/drop",
+      "s": "TURF3 got its blue overhead sign; turf guns now spawn half-ammo (full mag) and can be dropped + picked back up"
+    },
+    {
+      "d": "2026-07-08",
+      "k": "feat",
+      "t": "Loading-screen cinematic uses the CP cameras",
+      "s": "the join loading screen cycles the loadingcamera CP parts, each aimed toward its named POI's general direction"
+    },
+    {
+      "d": "2026-07-08",
+      "k": "feat",
+      "t": "Cars phase through exterior decor",
+      "s": "collision groups: Vehicles<->ExteriorDecor off; players on foot still collide, cars still hit roads/buildings"
+    },
+    {
+      "d": "2026-07-08",
+      "k": "fix",
+      "t": "POI entry redone as floor-pad (safezone-style) detection",
+      "s": "you register as inside only while standing over the POI's floor pad -- kills the balcony/canopy/forecourt false-triggers the box + door-touch had"
+    },
+    {
+      "d": "2026-07-08",
+      "k": "fix",
+      "t": "Mineshaft overhead sign + cargo markers",
+      "s": "sign uses Bangers font + pickaxe icon + world-stud scale (shrinks with distance); cargo drop markers now invisible"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "Door-entry gating for building POIs",
+      "s": "gun store / gas / dealership / turfs only register as entered after you walk through their named door (GSDOOR/GASDOOR/ddoor/TURFDOOR) -- kills forecourt/canopy false-triggers"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "MINESHAFT POI + overhead sign",
+      "s": "mineshaft top is now a labelled POI with a floating name/image billboard (icon id still a placeholder)"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "Dumpster looting (hold-E Search)",
+      "s": "50% nothing / 30% $0-500 / 14% $500-10k / 5% pistol / 0.9% 556 ARP / 0.1% G17DRUM, 90s per-dumpster cooldown"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "Cargo missions route to mailBoxes",
+      "s": "delivery drop spots now seed at the 11 mailBoxes instead of hardcoded map coords"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "Food store on the hot-dog carts",
+      "s": "Pizza + Burger buy prompts added to the 3 HDC1 hot dog trailers"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "fix",
+      "t": "Gun store 'entering' zone tightened to the door",
+      "s": "front edge of the GUN STORE ambience box moved back to the GSDOOR (Z -132) so the outside canopy area stops registering as inside the store"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "Verified checkmark badge (overhead nametag)",
+      "s": "yungsbruh gets a glimmering blue verified badge left of the username, shine synced to the level label"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "FFA overhaul",
+      "s": "max ammo + fists, random spawn each match, full player-car wipe on start, deep-purple storm, no money-drop or car-spawner during FFA"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "fix",
+      "t": "Purged 5 LightConfig backdoors + walkspeed exploit",
+      "s": "dormant code-loader hidden in free models (glock/minecart/bank x2/walking-sounds) and an UpdateWalkspeed remote, all removed"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "feat",
+      "t": "Day/night cycle + passive health regen",
+      "s": "25m day / 5m night; gentle death-aware regen (the regen script had been silently deleted on spawn)"
+    },
+    {
+      "d": "2026-07-07",
+      "k": "fix",
+      "t": "Footsteps, C63 audio, cop count",
+      "s": "foot-synced per-material footsteps + Plaster road fix, tamed C63 redline volume, cops 40 -> 3"
+    },
+    {
+      "d": "2026-07-05",
+      "k": "feat",
+      "t": "live push pipeline PROVEN",
+      "s": "this entry was committed by Fable via the GitHub API using your token â€” no manual edits."
+    },
+    {
+      "d": "2026-07-04",
+      "k": "feat",
+      "t": "live feed pipeline",
+      "s": "OS fetches feed.json every 15s. dev updates now appear without re-downloading."
+    },
+    {
+      "d": "2026-07-04",
+      "k": "feat",
+      "t": "GameSanitizer",
+      "s": "runtime auto-repair: strips SpeedEffect/blur from pasted cars, anchors turf display guns, on boot + DescendantAdded."
+    },
+    {
+      "d": "2026-07-04",
+      "k": "feat",
+      "t": "18 real POIs on city map",
+      "s": "pulled actual workspace coordinates â€” map geography now matches HEADTAP."
+    }
+  ]
 }
