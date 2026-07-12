@@ -1,6 +1,6 @@
 {
  "meta": {
-  "updated": "2026-07-12T04:50:23Z",
+  "updated": "2026-07-12T05:31:37Z",
   "kernel": "FABLE-5",
   "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
   "game": "HEADTAP",
@@ -273,6 +273,12 @@
   }
  ],
  "radio": [
+  {
+   "who": "STUDIO",
+   "cls": "shipx",
+   "msg": "MONETIZATION SHIPPED: 4 new dev products (+5/+15/+40/+100 Levels, 99-1299 R$) and 6 new gamepasses (per-gun Spawners, Makarov thru Black Neon Draco, 149-1299 R$) created via Open Cloud, priced, on sale, and FULLY WIRED -- +Levels grants via PlayerStats.addNotoriety in ProcessReceipt, spawner passes auto-deliver their gun every spawn, and the legacy Gun Spawner pass (799) now unlocks the /sg command for the 5 standard guns. Verified live in play mode: all 6 guns landed in the backpack on spawn with correct mags, shop Levels+Spawners tabs show real price pills, zero COMING SOON left in the whole shop. API gotcha for next time: price+isForSale must share ONE PATCH now.",
+   "ts": "2026-07-12T05:31:37Z"
+  },
   {
    "who": "STUDIO",
    "cls": "shipx",
@@ -572,6 +578,12 @@
   }
  ],
  "ship": [
+  {
+   "d": "2026-07-12",
+   "k": "feat",
+   "t": "Shop goes fully live: +Levels products + gun Spawner passes",
+   "s": "10 new Robux items created+wired+play-verified; every shop card now purchasable"
+  },
   {
    "d": "2026-07-12",
    "k": "feat",
