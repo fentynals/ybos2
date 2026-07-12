@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-12T18:53:50.737Z",
+    "updated": "2026-07-12T19:54:36Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -279,6 +279,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Spawner pass lineup finalized: legacy Gun Spawner retired (off sale), repriced Draco Fully 349 / G17 Ext Box 449 / G17 Drum 799 — live via Open Cloud + shop cards updated",
+      "ts": "2026-07-12T19:54:36Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
