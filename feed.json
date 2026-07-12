@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-12T19:54:36Z",
+    "updated": "2026-07-12T23:14:05Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -279,6 +279,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Minimap shipped: auto-captured 3000px top-down map of the whole city (12-tile stitch) + Fortnite-style north-fixed minimap UI, calibrated at 2 landmarks; draft PNG ready for Ian to restyle",
+      "ts": "2026-07-12T23:14:05Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -614,6 +620,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-12",
+      "k": "feat",
+      "t": "In-game minimap (draft art)",
+      "s": "North-fixed panning minimap w/ player arrow; map art is a swappable attribute"
+    },
     {
       "d": "2026-07-12",
       "k": "feat",
