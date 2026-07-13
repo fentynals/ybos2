@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-13T01:59:07.362Z",
+    "updated": "2026-07-13T02:01:30Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -285,6 +285,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "UI polish: dock rebuilt as editable StarterGui instances w/ Ian_s decal art + emblems, shop fully FredokaOne, card scale-pop vs text fade-in choreography, SHOP tile wiggle + purple glimmer",
+      "ts": "2026-07-13T02:01:30Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
