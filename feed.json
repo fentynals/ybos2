@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-13T06:42:49Z",
+    "updated": "2026-07-13T08:05:21Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -285,6 +285,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Backdrop finale: gold ring shop-only + tuned (0.65 base, tight breathe, 10 zone-spread ghost stars, faster twinkles); 15-gun display placed at the range; messaging app hidden; border-part rise unreproduced (watcher ran clean — likely lighting seam, TBD)",
+      "ts": "2026-07-13T08:05:21Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
