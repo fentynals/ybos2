@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-13T02:01:30Z",
+    "updated": "2026-07-13T05:07:15Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -285,6 +285,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "FIXED: welcome-kill spawn was dead — LoadingScreen gui + script had been disabled (dev-loop toggle); re-enabled, full PLAY->kill->city-spawn verified",
+      "ts": "2026-07-13T05:07:15Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Bundles rebuilt: full-width bars, square item tiles w/ daily-rewards colors, spinning HELLRAT + C63 AMG viewports w/ animated names, real cash art; moonlight boosted",
+      "ts": "2026-07-13T05:07:15Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -644,6 +656,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-13",
+      "k": "feat",
+      "t": "Shop bundles v2 + welcome-flow fix",
+      "s": "Bundle bars w/ car showcases + themed tiles; loading-screen kill flow restored"
+    },
     {
       "d": "2026-07-13",
       "k": "feat",
