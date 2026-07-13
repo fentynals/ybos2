@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-13T17:27:09Z",
+    "updated": "2026-07-13T18:38:21Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -285,6 +285,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Directional damage indicator shipped: victims see a red chevron ring pointing at the shooter (DamageDirClient, pooled, camera-tracking). Verified in play mode.",
+      "ts": "2026-07-13T18:38:21Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Shoot-lag diagnosed with live frame-time A/B: per-shot instance churn (tracer part + muzzle PointLight + casing/debris), NOT the commissioned aim system. Pooling fix proposed, not yet applied.",
+      "ts": "2026-07-13T18:38:21Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -674,6 +686,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-13",
+      "k": "feat",
+      "t": "Directional damage indicator",
+      "s": "Red chevron ring shows which way you got shot from; tracks camera, fades ~1.2s"
+    },
     {
       "d": "2026-07-13",
       "k": "feat",
