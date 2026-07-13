@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-12T23:14:05Z",
+    "updated": "2026-07-13T00:28:08Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -279,6 +279,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "MENU pill reworked: click expands emoji tray to the right (stats / team open individually, not all-at-once)",
+      "ts": "2026-07-13T00:28:08Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Minimap round 2: circular black frame, POI markers w/ sign-matched colors+icons, ocean art + 150-stud padding, death-spot skull marker (welcome-kill filtered)",
+      "ts": "2026-07-13T00:28:08Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -620,6 +632,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-13",
+      "k": "feat",
+      "t": "Minimap polish + MENU emoji tray",
+      "s": "Circle map w/ colored POIs, ocean, death marker; MENU expands to stats/team emoji options"
+    },
     {
       "d": "2026-07-12",
       "k": "feat",
