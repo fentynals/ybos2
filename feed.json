@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-13T14:11:44.298Z",
+    "updated": "2026-07-13T17:27:09Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -92,7 +92,7 @@
     },
     "contentAgent": {
       "status": "idle",
-      "note": "standing by â€” ask content-creator for ideas",
+      "note": "standing by \u00e2\u20ac\u201d ask content-creator for ideas",
       "updated": "2026-07-05T03:24:14Z"
     }
   },
@@ -104,7 +104,7 @@
       "sev": "high",
       "status": "open",
       "t": "Dupe glitch (ATM / vault)",
-      "note": "aksararara Â· PC. Open ATM (go to vault) â†’ put a gun in inventory â†’ reset â†’ collect own = duplicated guns.",
+      "note": "aksararara \u00c2\u00b7 PC. Open ATM (go to vault) \u00e2\u2020\u2019 put a gun in inventory \u00e2\u2020\u2019 reset \u00e2\u2020\u2019 collect own = duplicated guns.",
       "ts": "2026-06-13T00:00:00Z"
     },
     {
@@ -120,7 +120,7 @@
       "sev": "high",
       "status": "open",
       "t": "Off-duty cops keep the gun",
-      "note": "Umakevic (@thedominater_Raptor) Â· PC Â· sev 9/10. Become police â†’ go off duty â†’ store the pistol at an ATM and repeat to keep the gun.",
+      "note": "Umakevic (@thedominater_Raptor) \u00c2\u00b7 PC \u00c2\u00b7 sev 9/10. Become police \u00e2\u2020\u2019 go off duty \u00e2\u2020\u2019 store the pistol at an ATM and repeat to keep the gun.",
       "ts": "2026-06-20T00:00:00Z"
     },
     {
@@ -128,7 +128,7 @@
       "sev": "high",
       "status": "open",
       "t": "Vault resets gun ammo to 0",
-      "note": "Godspeed (@gopro5403) Â· mobile, affects all. Any gun placed in the vault comes back with 0 ammo after a rejoin.",
+      "note": "Godspeed (@gopro5403) \u00c2\u00b7 mobile, affects all. Any gun placed in the vault comes back with 0 ammo after a rejoin.",
       "ts": "2026-06-25T19:48:00Z"
     },
     {
@@ -136,7 +136,7 @@
       "sev": "med",
       "status": "open",
       "t": "Garage re-entry flings you skyward",
-      "note": "TahirDev (@poesdepro1) Â· PC Â· sev 8/10. Enter garage â†’ leave â†’ enter again â†’ leave = thrown randomly out of the sky.",
+      "note": "TahirDev (@poesdepro1) \u00c2\u00b7 PC \u00c2\u00b7 sev 8/10. Enter garage \u00e2\u2020\u2019 leave \u00e2\u2020\u2019 enter again \u00e2\u2020\u2019 leave = thrown randomly out of the sky.",
       "ts": "2026-06-27T05:07:00Z"
     },
     {
@@ -144,7 +144,7 @@
       "sev": "med",
       "status": "open",
       "t": "Bank rope flings you to your death",
-      "note": "TahirDev (@poesdepro1) Â· PC Â· sev 6/10. Get on the rope â†’ swing â†’ it tweaks â†’ flings you out of the building. Also reachable from the bank office.",
+      "note": "TahirDev (@poesdepro1) \u00c2\u00b7 PC \u00c2\u00b7 sev 6/10. Get on the rope \u00e2\u2020\u2019 swing \u00e2\u2020\u2019 it tweaks \u00e2\u2020\u2019 flings you out of the building. Also reachable from the bank office.",
       "ts": "2026-06-27T04:50:00Z"
     },
     {
@@ -152,7 +152,7 @@
       "sev": "med",
       "status": "watch",
       "t": "Hellcat exit: GUI stays + auto-move (mobile)",
-      "note": "KodaKen (@KodaDay) Â· mobile. After exiting the Hellcat the GUI stays and the player moves on their own. NOTE: thread tagged BOTH unfixed and fixed â€” needs confirm.",
+      "note": "KodaKen (@KodaDay) \u00c2\u00b7 mobile. After exiting the Hellcat the GUI stays and the player moves on their own. NOTE: thread tagged BOTH unfixed and fixed \u00e2\u20ac\u201d needs confirm.",
       "ts": "2026-06-08T23:16:00Z"
     },
     {
@@ -160,7 +160,7 @@
       "sev": "med",
       "status": "open",
       "t": "Bank door blocks the escape path",
-      "note": "Godspeed (@gopro5403) Â· all devices. When robbing the bank the door blocks the path to escape.",
+      "note": "Godspeed (@gopro5403) \u00c2\u00b7 all devices. When robbing the bank the door blocks the path to escape.",
       "ts": "2026-06-27T10:05:00Z"
     },
     {
@@ -168,7 +168,7 @@
       "sev": "med",
       "status": "open",
       "t": "Police don't chase properly",
-      "note": "LeChiffre (@Bedmed122) Â· phone. Have a gun out and shoot at the ground; the police should chase you but they don't.",
+      "note": "LeChiffre (@Bedmed122) \u00c2\u00b7 phone. Have a gun out and shoot at the ground; the police should chase you but they don't.",
       "ts": "2026-06-13T00:00:00Z"
     },
     {
@@ -176,7 +176,7 @@
       "sev": "med",
       "status": "open",
       "t": "Stamina UI doesn't reset (mobile)",
-      "note": "rayyan123617 Â· mobile. Drain stamina to zero â†’ reset / die â†’ the stamina UI doesn't reset.",
+      "note": "rayyan123617 \u00c2\u00b7 mobile. Drain stamina to zero \u00e2\u2020\u2019 reset / die \u00e2\u2020\u2019 the stamina UI doesn't reset.",
       "ts": "2026-06-15T00:00:00Z"
     },
     {
@@ -184,7 +184,7 @@
       "sev": "med",
       "status": "open",
       "t": "Gas UI disappears (mobile)",
-      "note": "Godspeed (@gopro5403) Â· mobile. At the gas station the UI disappears / can't be seen on mobile.",
+      "note": "Godspeed (@gopro5403) \u00c2\u00b7 mobile. At the gas station the UI disappears / can't be seen on mobile.",
       "ts": "2026-06-20T00:00:00Z"
     },
     {
@@ -192,7 +192,7 @@
       "sev": "med",
       "status": "open",
       "t": "Fists misbehave after tapping (mobile)",
-      "note": "LeChiffre (@Bedmed122) Â· mobile. Tap the fist button â†’ tap anywhere on screen and the fists glitch.",
+      "note": "LeChiffre (@Bedmed122) \u00c2\u00b7 mobile. Tap the fist button \u00e2\u2020\u2019 tap anywhere on screen and the fists glitch.",
       "ts": "2026-06-16T00:00:00Z"
     },
     {
@@ -200,7 +200,7 @@
       "sev": "med",
       "status": "open",
       "t": "iPhone pops the car / garage UI",
-      "note": "rayyan123617 Â· mobile. At a car spawner the garage UI opens; opening the in-game iPhone also pops the UI.",
+      "note": "rayyan123617 \u00c2\u00b7 mobile. At a car spawner the garage UI opens; opening the in-game iPhone also pops the UI.",
       "ts": "2026-07-03T00:00:00Z"
     },
     {
@@ -216,7 +216,7 @@
       "sev": "med",
       "status": "open",
       "t": "Flying / floating barn",
-      "note": "DJBuilder (Dj_andgirraffy2) Â· PC. The barn is floating.",
+      "note": "DJBuilder (Dj_andgirraffy2) \u00c2\u00b7 PC. The barn is floating.",
       "ts": "2026-06-20T00:00:00Z"
     },
     {
@@ -232,7 +232,7 @@
       "sev": "med",
       "status": "open",
       "t": "Aimlock bug",
-      "note": "LeChiffre (@Bedmed122). Aim-lock behaving wrong (no repro given â€” confirm whether it's an aim exploit).",
+      "note": "LeChiffre (@Bedmed122). Aim-lock behaving wrong (no repro given \u00e2\u20ac\u201d confirm whether it's an aim exploit).",
       "ts": "2026-06-21T00:00:00Z"
     },
     {
@@ -248,7 +248,7 @@
       "sev": "low",
       "status": "open",
       "t": "Ammo UI not scaled (mobile)",
-      "note": "Godspeed (@gopro5403) Â· mobile. Gunshop ammo UI isn't scaled for mobile.",
+      "note": "Godspeed (@gopro5403) \u00c2\u00b7 mobile. Gunshop ammo UI isn't scaled for mobile.",
       "ts": "2026-06-27T10:09:00Z"
     },
     {
@@ -256,7 +256,7 @@
       "sev": "low",
       "status": "open",
       "t": "Jewelry watch UI not scaled (mobile)",
-      "note": "Godspeed (@gopro5403) Â· mobile. Jewelry-store watches UI isn't scaled for mobile.",
+      "note": "Godspeed (@gopro5403) \u00c2\u00b7 mobile. Jewelry-store watches UI isn't scaled for mobile.",
       "ts": "2026-06-27T10:07:00Z"
     },
     {
@@ -264,7 +264,7 @@
       "sev": "low",
       "status": "open",
       "t": "Car front gets stuck",
-      "note": "DJBuilder (Dj_andgirraffy2) Â· PC Â· sev 3/10. Get the McLeasy â†’ drive a long straight road â†’ the front of the car gets stuck.",
+      "note": "DJBuilder (Dj_andgirraffy2) \u00c2\u00b7 PC \u00c2\u00b7 sev 3/10. Get the McLeasy \u00e2\u2020\u2019 drive a long straight road \u00e2\u2020\u2019 the front of the car gets stuck.",
       "ts": "2026-06-21T00:00:00Z"
     },
     {
@@ -272,7 +272,7 @@
       "sev": "low",
       "status": "open",
       "t": "Dealership NPC stands outside the dealership",
-      "note": "Godspeed (@gopro5403) Â· all devices. The dealership guy is positioned outside the dealership.",
+      "note": "Godspeed (@gopro5403) \u00c2\u00b7 all devices. The dealership guy is positioned outside the dealership.",
       "ts": "2026-06-18T00:00:00Z"
     },
     {
@@ -287,8 +287,14 @@
   "radio": [
     {
       "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "SHOP redesign: loadout bundles collapsed to single-rectangle cards (art directly on the bar, title top-left, gift beside the R$ pill) + category rail moved OUTSIDE the panel as bare buttons; dock auto-hides while shop is open. Verified in play mode.",
+      "ts": "2026-07-13T17:27:09Z"
+    },
+    {
+      "who": "STUDIO",
       "cls": "okx",
-      "msg": "Backdrop finale: gold ring shop-only + tuned (0.65 base, tight breathe, 10 zone-spread ghost stars, faster twinkles); 15-gun display placed at the range; messaging app hidden; border-part rise unreproduced (watcher ran clean — likely lighting seam, TBD)",
+      "msg": "Backdrop finale: gold ring shop-only + tuned (0.65 base, tight breathe, 10 zone-spread ghost stars, faster twinkles); 15-gun display placed at the range; messaging app hidden; border-part rise unreproduced (watcher ran clean \u2014 likely lighting seam, TBD)",
       "ts": "2026-07-13T08:05:21Z"
     },
     {
@@ -300,7 +306,7 @@
     {
       "who": "STUDIO",
       "cls": "fx",
-      "msg": "FIXED: welcome-kill spawn was dead — LoadingScreen gui + script had been disabled (dev-loop toggle); re-enabled, full PLAY->kill->city-spawn verified",
+      "msg": "FIXED: welcome-kill spawn was dead \u2014 LoadingScreen gui + script had been disabled (dev-loop toggle); re-enabled, full PLAY->kill->city-spawn verified",
       "ts": "2026-07-13T05:07:15Z"
     },
     {
@@ -336,7 +342,7 @@
     {
       "who": "STUDIO",
       "cls": "shipx",
-      "msg": "Spawner pass lineup finalized: legacy Gun Spawner retired (off sale), repriced Draco Fully 349 / G17 Ext Box 449 / G17 Drum 799 — live via Open Cloud + shop cards updated",
+      "msg": "Spawner pass lineup finalized: legacy Gun Spawner retired (off sale), repriced Draco Fully 349 / G17 Ext Box 449 / G17 Drum 799 \u2014 live via Open Cloud + shop cards updated",
       "ts": "2026-07-12T19:54:36Z"
     },
     {
@@ -492,7 +498,7 @@
     {
       "who": "STUDIO",
       "cls": "okx",
-      "msg": "FFA hardened â€” max-ammo caliber pools, fists in loadout, random spawn each match, wipe ALL player cars on start (even driven), storm now deep purple",
+      "msg": "FFA hardened \u00e2\u20ac\u201d max-ammo caliber pools, fists in loadout, random spawn each match, wipe ALL player cars on start (even driven), storm now deep purple",
       "ts": "2026-07-07T19:20:00Z"
     },
     {
@@ -516,31 +522,31 @@
     {
       "who": "PRIME",
       "cls": "shipx",
-      "msg": "v2.0 shipped â€” version stamp in topbar (live from feed), usage bar now = radio buffer fill",
+      "msg": "v2.0 shipped \u00e2\u20ac\u201d version stamp in topbar (live from feed), usage bar now = radio buffer fill",
       "ts": "2026-07-05T02:08:58.697266Z"
     },
     {
       "who": "CRON",
       "cls": "out",
-      "msg": "heartbeat 2026-07-05 â€” 8 commits in last 24h",
+      "msg": "heartbeat 2026-07-05 \u00e2\u20ac\u201d 8 commits in last 24h",
       "ts": "2026-07-05T02:01:53Z"
     },
     {
       "who": "PRIME",
       "cls": "shipx",
-      "msg": "ðŸ“¡ LIVE PUSH TEST â€” Fable committed this from the dev session. You touched nothing. The pipeline is real.",
+      "msg": "\u00f0\u0178\u201c\u00a1 LIVE PUSH TEST \u00e2\u20ac\u201d Fable committed this from the dev session. You touched nothing. The pipeline is real.",
       "ts": "2026-07-05T00:17:56.443766Z"
     },
     {
       "who": "PRIME",
       "cls": "okx",
-      "msg": "GameSanitizer deployed â€” auto-strips SpeedEffect + anchors turf guns on paste",
+      "msg": "GameSanitizer deployed \u00e2\u20ac\u201d auto-strips SpeedEffect + anchors turf guns on paste",
       "ts": "2026-07-04T19:52:11.868376Z"
     },
     {
       "who": "PRIME",
       "cls": "shipx",
-      "msg": "live pipeline online â€” OS now fetches feed.json, no more re-downloads",
+      "msg": "live pipeline online \u00e2\u20ac\u201d OS now fetches feed.json, no more re-downloads",
       "ts": "2026-07-04T19:52:11.868376Z"
     },
     {
@@ -558,7 +564,7 @@
     {
       "who": "QA",
       "cls": "fx",
-      "msg": "OPEN: vaultâ†”loadout dupe â€” PlayerInventory snapshot not synced on deposit",
+      "msg": "OPEN: vault\u00e2\u2020\u201dloadout dupe \u00e2\u20ac\u201d PlayerInventory snapshot not synced on deposit",
       "ts": "2026-07-04T19:52:11.868376Z"
     },
     {
@@ -570,19 +576,19 @@
     {
       "who": "STUDIO",
       "cls": "out",
-      "msg": "TURF4 wired â€” 3 doors, 10 stations, 152 ARP parts anchored across turfs",
+      "msg": "TURF4 wired \u00e2\u20ac\u201d 3 doors, 10 stations, 152 ARP parts anchored across turfs",
       "ts": "2026-07-04T19:52:11.868376Z"
     },
     {
       "who": "PRIME",
       "cls": "okx",
-      "msg": "wall-reach exploit killed server-side â€” body raycast, camera-proof",
+      "msg": "wall-reach exploit killed server-side \u00e2\u20ac\u201d body raycast, camera-proof",
       "ts": "2026-07-04T19:52:11.868376Z"
     }
   ],
   "tasks": [
     {
-      "t": "vaultâ†”loadout dupe: sync PlayerInventory on Deposit/Withdraw",
+      "t": "vault\u00e2\u2020\u201dloadout dupe: sync PlayerInventory on Deposit/Withdraw",
       "col": 0,
       "pr": "high",
       "tags": [
@@ -635,7 +641,7 @@
       ]
     },
     {
-      "t": "GameSanitizer â€” runtime auto-repair on paste",
+      "t": "GameSanitizer \u00e2\u20ac\u201d runtime auto-repair on paste",
       "col": 3,
       "pr": "med",
       "tags": [
@@ -668,6 +674,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-13",
+      "k": "feat",
+      "t": "Shop loadout cards + floating category rail",
+      "s": "Bundle bars are one clean rectangle w/ big item art; BUNDLES/MONEY/LEVELS... now float left of the panel"
+    },
     {
       "d": "2026-07-13",
       "k": "feat",
@@ -888,7 +900,7 @@
       "d": "2026-07-05",
       "k": "feat",
       "t": "live push pipeline PROVEN",
-      "s": "this entry was committed by Fable via the GitHub API using your token â€” no manual edits."
+      "s": "this entry was committed by Fable via the GitHub API using your token \u00e2\u20ac\u201d no manual edits."
     },
     {
       "d": "2026-07-04",
@@ -906,7 +918,7 @@
       "d": "2026-07-04",
       "k": "feat",
       "t": "18 real POIs on city map",
-      "s": "pulled actual workspace coordinates â€” map geography now matches HEADTAP."
+      "s": "pulled actual workspace coordinates \u00e2\u20ac\u201d map geography now matches HEADTAP."
     }
   ]
 }
