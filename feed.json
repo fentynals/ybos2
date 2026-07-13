@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-13T05:07:15Z",
+    "updated": "2026-07-13T06:42:49Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -285,6 +285,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Shop backdrop finale: full golden RING (8 custom radial glows, editor-tunable baselines, breathing) + sparse star twinkles; whole panel layer now authored in StarterGui for Ian to style",
+      "ts": "2026-07-13T06:42:49Z"
+    },
     {
       "who": "STUDIO",
       "cls": "fx",
