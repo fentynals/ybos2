@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-13T18:38:21Z",
+    "updated": "2026-07-13T19:06:43Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -285,6 +285,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Lag hunt concluded via kill-switch bisects: aim commission triple-cleared (unbind test, equip A/B), shop UI cleared; stutter = server scripts in aggregate (all-63 kill -> 17ms clean). Shipped: DISABLE_NEW_AIM toggle (commission off, scripts untouched) + pooled tracers/muzzle lights.",
+      "ts": "2026-07-13T19:06:43Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
