@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-15T17:47:20Z",
+    "updated": "2026-07-15T18:06:35Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -297,6 +297,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Binary ARP ghost-shots killed: clicking during a reload queued the 2-round burst, which then fired BY ITSELF the moment the reload ended. Burst now only arms when the opening shot actually fires + reload/empty cancels a pending burst. Verified with real-input clicks: mid-reload click = 0 shots, post-reload click = clean 2.",
+      "ts": "2026-07-15T18:06:35Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -728,6 +734,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-15",
+      "k": "fix",
+      "t": "Binary guns no longer fire by themselves after reloading",
+      "s": "Clicks during reload/empty/draw no longer queue a phantom 2-round burst that fired the instant the block lifted"
+    },
     {
       "d": "2026-07-15",
       "k": "feat",
