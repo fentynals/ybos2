@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-15T20:45:05Z",
+    "updated": "2026-07-15T23:15:15Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -297,6 +297,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Freecam hotkey moved to F4 (F9 is Roblox's dev-console key — it would pop the console over recordings). Admin-panel gun gives now come FULLY STOCKED: full mag + full reserve, incl. topping up the per-caliber ammo store the reload system actually reads. Verified give→fire→reload live.",
+      "ts": "2026-07-15T23:15:15Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -746,6 +752,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-15",
+      "k": "fix",
+      "t": "Freecam on F4 + fully-stocked admin gun gives",
+      "s": "F9 collided with Roblox's dev console; admin-given guns now arrive with full mag + full reserve that reloads can actually use"
+    },
     {
       "d": "2026-07-15",
       "k": "fix",
