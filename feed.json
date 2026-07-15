@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-15T20:11:45Z",
+    "updated": "2026-07-15T20:45:05Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -297,6 +297,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Zombie spawner resurrected: RigProtect was silently making the zombie IMMORTAL (excluded 'Zombie', rig is lowercase 'zombie'), and the free-model AI chased the FARTHEST player map-wide (inverted comparison). Now: killable, chases nearest player within 80 studs, wanders its pad when idle, 20 dmg touch w/ damage chevron, respawns 5s after death. Verified across 2 sessions incl. fresh-boot.",
+      "ts": "2026-07-15T20:45:05Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -740,6 +746,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-15",
+      "k": "fix",
+      "t": "Zombie spawner works",
+      "s": "Zombie was invisible-invincible via RigProtect name mismatch + chased the farthest player; now killable, chases nearest, respawns at its pad"
+    },
     {
       "d": "2026-07-15",
       "k": "feat",
