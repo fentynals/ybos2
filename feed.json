@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-15T18:58:11.350Z",
+    "updated": "2026-07-15T20:11:45Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -297,6 +297,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Admin panel gains FREECAM (detached fly-cam: WASD+QE, hold right-mouse to look, Shift fast, F9 hotkey, character stays put + fire/movement sunk) and REMOVE UI (one click hides every gui + coregui for clean recordings, exact restore, survives respawn). Header row repacked to fit 6 buttons. Both play-verified.",
+      "ts": "2026-07-15T20:11:45Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -734,6 +740,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-15",
+      "k": "feat",
+      "t": "Admin FREECAM + REMOVE UI",
+      "s": "Fly-cam for cinematics (WASD/right-mouse-look, F9) and a one-click hide-all-UI toggle for clean recordings"
+    },
     {
       "d": "2026-07-15",
       "k": "fix",
