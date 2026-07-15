@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-15T17:18:30Z",
+    "updated": "2026-07-15T17:47:20Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -297,6 +297,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Combat sound pass: near-miss whiz/crack system (throttled to ~1 per burst — 20-shot dump test played exactly 2), death sound at every corpse, loading screen now spins a random TURF track each load. Also cleared Ian's 4 city-ambience candidates as unused (816 sounds + 1134 scripts scanned).",
+      "ts": "2026-07-15T17:47:20Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -722,6 +728,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-15",
+      "k": "feat",
+      "t": "Near-miss bullet whizzes + death sound + turf loading music",
+      "s": "Close shots occasionally snap past your ear (rare/common/crack mix, anti-spam throttled); corpses play a death sting; loading screen shuffles the turf playlist"
+    },
     {
       "d": "2026-07-15",
       "k": "fix",
