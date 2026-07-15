@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-15T13:17:52.805Z",
+    "updated": "2026-07-15T17:18:30Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -297,6 +297,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Car occupants can no longer shoot their own ride: bullet raycasts (server + client tracers + cursor aim) now pass through the car you're seated in. Play-verified: seated shot = 0 CarHealth chip, outside shot still chips 25.",
+      "ts": "2026-07-15T17:18:30Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Silent Steps upgrade: pass owners now hear their OWN footsteps by default + a new Settings 'Own Footsteps' toggle to mute them; everyone else still never hears them. Row only shows for pass owners (live on mid-session buy). Play-verified both toggle states.",
+      "ts": "2026-07-15T17:18:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -710,6 +722,18 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-15",
+      "k": "fix",
+      "t": "No more shooting your own car from inside",
+      "s": "Passenger/driver bullets pass through the vehicle they're seated in; window shots no longer chip your own CarHealth"
+    },
+    {
+      "d": "2026-07-15",
+      "k": "feat",
+      "t": "Silent Steps own-footsteps toggle",
+      "s": "Pass owners hear their own steps by default + Settings toggle to mute; still fully silent to everyone else"
+    },
     {
       "d": "2026-07-13",
       "k": "feat",
