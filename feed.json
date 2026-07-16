@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-16T04:51:00Z",
+    "updated": "2026-07-16T05:59:25Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -303,6 +303,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Ownership caps: ONE house per player and ONE turf per player (independent — a turf doesn't block a house). Second purchase/claim gets rejected BEFORE any money moves. Verified live: turf #2 claim bounced with bank untouched; house #2 purchase bounced with cash untouched. HOME label also resized to POI-sign style (world-sized, shrinks with distance).",
+      "ts": "2026-07-16T05:59:25Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
