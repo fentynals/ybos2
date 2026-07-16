@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-16T04:11:30Z",
+    "updated": "2026-07-16T04:38:20Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -303,6 +303,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Item vault moved from the ATM to the HOUSE SAFE: buy the house, hold E on the safe to store guns/cards/parts/watches — ATMs are strictly cash now (VAULT button gone). Server-enforced: every vault op requires standing at YOUR OWN safe, which also slams the door on the reported ATM dupe + off-duty-cop gun-stash exploits. Door auto-closes 2s after opening too.",
+      "ts": "2026-07-16T04:38:20Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -764,6 +770,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-16",
+      "k": "feat",
+      "t": "House safe = the item vault; ATMs cash-only",
+      "s": "Store guns/cards/parts/watches at your house safe; ATM vault removed and server-enforced — kills the ATM dupe/stash exploit vectors"
+    },
     {
       "d": "2026-07-16",
       "k": "feat",
