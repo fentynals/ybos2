@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-16T04:38:20Z",
+    "updated": "2026-07-16T04:51:00Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -303,6 +303,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Owner-only HOME marker: a floating house icon + HOME tag hovers over your purchased house (visible from across the map, renders through buildings) — nobody else sees it, appears the second you buy. Also survives respawns (raw BillboardGuis in PlayerGui get wiped on death — parked it on a world anchor instead).",
+      "ts": "2026-07-16T04:51:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
