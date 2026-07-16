@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-16T01:52:05.034Z",
+    "updated": "2026-07-16T04:11:30Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -303,6 +303,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Big QoL batch: M opens a fullscreen map (POIs + player arrow + death marker); spawned cars get an owner-only orange outline + bobbing YOUR CAR arrow until you get in; HOUSEFORSALE is buyable (hold E, $5k) with a swivel door that swings open on its hinge; map art's stray top-right capture chunk painted out with ocean; level-up popup now level-green + stamina popup stamina-blue (also fixed a nil-color crash that silently killed ALL popups); zombie moans capped to 55 studs (were map-wide).",
+      "ts": "2026-07-16T04:11:30Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -758,6 +764,18 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-16",
+      "k": "feat",
+      "t": "Fullscreen map (M) + car spawn callout + buyable house",
+      "s": "M toggles the full map w/ POIs; your spawned car gets an outlined YOUR CAR arrow; HOUSEFORSALE sells for $5k with a working swivel door"
+    },
+    {
+      "d": "2026-07-16",
+      "k": "fix",
+      "t": "Popup colors + quiet zombies + clean map art",
+      "s": "Level popup = level green, stamina popup = stamina blue (and un-broke all popups); zombie moans audible 55 studs not map-wide; stray capture chunk removed from ocean"
+    },
     {
       "d": "2026-07-15",
       "k": "fix",
