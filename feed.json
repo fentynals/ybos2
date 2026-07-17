@@ -116,7 +116,7 @@
     },
     "contentAgent": {
       "status": "idle",
-      "note": "standing by â€” ask content-creator for ideas",
+      "note": "standing by Ã¢â‚¬â€ ask content-creator for ideas",
       "updated": "2026-07-05T03:24:14Z"
     }
   },
@@ -128,7 +128,7 @@
       "sev": "high",
       "status": "open",
       "t": "Dupe glitch (ATM / vault)",
-      "note": "aksararara Â· PC. Open ATM (go to vault) â†’ put a gun in inventory â†’ reset â†’ collect own = duplicated guns.",
+      "note": "aksararara · PC. Open ATM (go to vault) → put a gun in inventory → reset → collect own = duplicated guns.",
       "ts": "2026-06-13T00:00:00Z"
     },
     {
@@ -144,7 +144,7 @@
       "sev": "high",
       "status": "open",
       "t": "Off-duty cops keep the gun",
-      "note": "Umakevic (@thedominater_Raptor) Â· PC Â· sev 9/10. Become police â†’ go off duty â†’ store the pistol at an ATM and repeat to keep the gun.",
+      "note": "Umakevic (@thedominater_Raptor) · PC · sev 9/10. Become police → go off duty → store the pistol at an ATM and repeat to keep the gun.",
       "ts": "2026-06-20T00:00:00Z"
     },
     {
@@ -160,7 +160,7 @@
       "sev": "med",
       "status": "open",
       "t": "Garage re-entry flings you skyward",
-      "note": "TahirDev (@poesdepro1) Â· PC Â· sev 8/10. Enter garage â†’ leave â†’ enter again â†’ leave = thrown randomly out of the sky.",
+      "note": "TahirDev (@poesdepro1) · PC · sev 8/10. Enter garage → leave → enter again → leave = thrown randomly out of the sky.",
       "ts": "2026-06-27T05:07:00Z"
     },
     {
@@ -168,7 +168,7 @@
       "sev": "med",
       "status": "open",
       "t": "Bank rope flings you to your death",
-      "note": "TahirDev (@poesdepro1) Â· PC Â· sev 6/10. Get on the rope â†’ swing â†’ it tweaks â†’ flings you out of the building. Also reachable from the bank office.",
+      "note": "TahirDev (@poesdepro1) · PC · sev 6/10. Get on the rope → swing → it tweaks → flings you out of the building. Also reachable from the bank office.",
       "ts": "2026-06-27T04:50:00Z"
     },
     {
@@ -176,7 +176,7 @@
       "sev": "med",
       "status": "watch",
       "t": "Hellcat exit: GUI stays + auto-move (mobile)",
-      "note": "KodaKen (@KodaDay) Â· mobile. After exiting the Hellcat the GUI stays and the player moves on their own. NOTE: thread tagged BOTH unfixed and fixed â€” needs confirm.",
+      "note": "KodaKen (@KodaDay) · mobile. After exiting the Hellcat the GUI stays and the player moves on their own. NOTE: thread tagged BOTH unfixed and fixed — needs confirm.",
       "ts": "2026-06-08T23:16:00Z"
     },
     {
@@ -200,7 +200,7 @@
       "sev": "med",
       "status": "open",
       "t": "Stamina UI doesn't reset (mobile)",
-      "note": "rayyan123617 Â· mobile. Drain stamina to zero â†’ reset / die â†’ the stamina UI doesn't reset.",
+      "note": "rayyan123617 · mobile. Drain stamina to zero → reset / die → the stamina UI doesn't reset.",
       "ts": "2026-06-15T00:00:00Z"
     },
     {
@@ -216,7 +216,7 @@
       "sev": "med",
       "status": "open",
       "t": "Fists misbehave after tapping (mobile)",
-      "note": "LeChiffre (@Bedmed122) Â· mobile. Tap the fist button â†’ tap anywhere on screen and the fists glitch.",
+      "note": "LeChiffre (@Bedmed122) · mobile. Tap the fist button → tap anywhere on screen and the fists glitch.",
       "ts": "2026-06-16T00:00:00Z"
     },
     {
@@ -256,7 +256,7 @@
       "sev": "med",
       "status": "open",
       "t": "Aimlock bug",
-      "note": "LeChiffre (@Bedmed122). Aim-lock behaving wrong (no repro given â€” confirm whether it's an aim exploit).",
+      "note": "LeChiffre (@Bedmed122). Aim-lock behaving wrong (no repro given — confirm whether it's an aim exploit).",
       "ts": "2026-06-21T00:00:00Z"
     },
     {
@@ -288,7 +288,7 @@
       "sev": "low",
       "status": "open",
       "t": "Car front gets stuck",
-      "note": "DJBuilder (Dj_andgirraffy2) Â· PC Â· sev 3/10. Get the McLeasy â†’ drive a long straight road â†’ the front of the car gets stuck.",
+      "note": "DJBuilder (Dj_andgirraffy2) · PC · sev 3/10. Get the McLeasy → drive a long straight road → the front of the car gets stuck.",
       "ts": "2026-06-21T00:00:00Z"
     },
     {
@@ -309,6 +309,42 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Bank truck v2: now drives a hand-traced ROAD GRAPH (24 intersections + 32 edges lifted off the minimap art and raycast-validated, incl. the bridge + mineshaft island loop) instead of navmesh pathfinding -- no more alley cutting. Truck is now a ghost (CanCollide off) so it can't shove players or cars; bullets still land. Live test: 0-2 studs off-road through multiple 90-degree corners.",
+      "ts": "2026-07-17T01:33:32Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Gamepass correction: the 14-digit ids Ian sent were DECAL ids for shop card art, not pass ids -- the 19xx ids in ShopConfig were the real passes all along (verified via GetProductInfo). Reverted the id swaps, resolved all 7 decals to image ids, and set them on the UISuiteConfig shop cards (2x Cash, Police, SWAT, Silent Steps, Infinite Gas, both watches). Iced Watch grant switched W6->W8: Ian's icon is the W8 rainbow Cartier's exact image.",
+      "ts": "2026-07-17T01:33:32Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "INFINITE GAS pass wired (97645772087503): FuelServer now pins the tank at 100% for cars spawned by pass owners -- also revives a car that ran dry before the pass kicked in. Verified live: 40% tank snapped to 100% within one fuel tick with the attr on, untouched with it off.",
+      "ts": "2026-07-17T01:18:19Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "More pass ids wired: SILENT STEPS (104418189400631, consumer already live), GOLD WATCH (96838072300798 -> grants BUSSDOWN ROSE GOLD AP) + ICED WATCH (99081075414751 -> grants Iced Cartier). Watch grants are GRANT-ONLY on purpose -- OwnsWatch_ attrs are shared with cash-shop purchases and a false-stamp would wipe a cash-bought watch.",
+      "ts": "2026-07-17T01:15:01Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "BANK TRUCK EVENT: every 20-30 min an armored truck (Ian's BRUTE model) spawns at the bank corner and drives a pathfound route across the city streets with a countdown timer overhead. Shoot it down (3000 HP, real car explosion via CarCombat) and $50,000 in walk-over cash piles spills across the street. Escapes if the timer runs out. Manual trigger: admin F8 BANKTRUCK button or game.ServerStorage.ForceBankTruck:Invoke(). Fixed the model pivot (was 90 deg off -- drove sideways on first test).",
+      "ts": "2026-07-17T01:10:13Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Monetization wiring: 2x CASH gamepass (123636225790923) now doubles every positive cash/bank credit incl. kill money -- deposits/withdrawals/admin-sets/FFA-restores exempted via new raw param (closed an FFA money-printer + crew-bag inflation on restore). POLICE ACCESS (128994497529561) + SWAT ACCESS (123966613896176) wired: duty pad now gates on ownership and prompts the pass. Verified live: pickup paid 100 without pass, 200 with.",
+      "ts": "2026-07-17T01:10:13Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -612,7 +648,7 @@
     {
       "who": "STUDIO",
       "cls": "okx",
-      "msg": "FFA hardened â€” max-ammo caliber pools, fists in loadout, random spawn each match, wipe ALL player cars on start (even driven), storm now deep purple",
+      "msg": "FFA hardened — max-ammo caliber pools, fists in loadout, random spawn each match, wipe ALL player cars on start (even driven), storm now deep purple",
       "ts": "2026-07-07T19:20:00Z"
     },
     {
@@ -636,31 +672,31 @@
     {
       "who": "PRIME",
       "cls": "shipx",
-      "msg": "v2.0 shipped â€” version stamp in topbar (live from feed), usage bar now = radio buffer fill",
+      "msg": "v2.0 shipped — version stamp in topbar (live from feed), usage bar now = radio buffer fill",
       "ts": "2026-07-05T02:08:58.697266Z"
     },
     {
       "who": "CRON",
       "cls": "out",
-      "msg": "heartbeat 2026-07-05 â€” 8 commits in last 24h",
+      "msg": "heartbeat 2026-07-05 — 8 commits in last 24h",
       "ts": "2026-07-05T02:01:53Z"
     },
     {
       "who": "PRIME",
       "cls": "shipx",
-      "msg": "ðŸ“¡ LIVE PUSH TEST â€” Fable committed this from the dev session. You touched nothing. The pipeline is real.",
+      "msg": "📡 LIVE PUSH TEST — Fable committed this from the dev session. You touched nothing. The pipeline is real.",
       "ts": "2026-07-05T00:17:56.443766Z"
     },
     {
       "who": "PRIME",
       "cls": "okx",
-      "msg": "GameSanitizer deployed â€” auto-strips SpeedEffect + anchors turf guns on paste",
+      "msg": "GameSanitizer deployed — auto-strips SpeedEffect + anchors turf guns on paste",
       "ts": "2026-07-04T19:52:11.868376Z"
     },
     {
       "who": "PRIME",
       "cls": "shipx",
-      "msg": "live pipeline online â€” OS now fetches feed.json, no more re-downloads",
+      "msg": "live pipeline online — OS now fetches feed.json, no more re-downloads",
       "ts": "2026-07-04T19:52:11.868376Z"
     },
     {
@@ -678,7 +714,7 @@
     {
       "who": "QA",
       "cls": "fx",
-      "msg": "OPEN: vaultâ†”loadout dupe â€” PlayerInventory snapshot not synced on deposit",
+      "msg": "OPEN: vault↔loadout dupe — PlayerInventory snapshot not synced on deposit",
       "ts": "2026-07-04T19:52:11.868376Z"
     },
     {
@@ -690,19 +726,36 @@
     {
       "who": "STUDIO",
       "cls": "out",
-      "msg": "TURF4 wired â€” 3 doors, 10 stations, 152 ARP parts anchored across turfs",
+      "msg": "TURF4 wired — 3 doors, 10 stations, 152 ARP parts anchored across turfs",
       "ts": "2026-07-04T19:52:11.868376Z"
     },
     {
       "who": "PRIME",
       "cls": "okx",
-      "msg": "wall-reach exploit killed server-side â€” body raycast, camera-proof",
+      "msg": "wall-reach exploit killed server-side — body raycast, camera-proof",
       "ts": "2026-07-04T19:52:11.868376Z"
     }
   ],
   "tasks": [
     {
-      "t": "vaultâ†”loadout dupe: sync PlayerInventory on Deposit/Withdraw",
+      "t": "vaultÃ¢â€ â€loadout dupe: sync PlayerInventory on Deposit/Withdraw",
+      "col": 0,
+      "pr": "high",
+      "tags": [
+        "exploit",
+        "server"
+      ]
+    },
+    {
+      "t": "GameSanitizer Ã¢â‚¬â€ runtime auto-repair on paste",
+      "col": 3,
+      "pr": "med",
+      "tags": [
+        "infra"
+      ]
+    },
+    {
+      "t": "vault↔loadout dupe: sync PlayerInventory on Deposit/Withdraw",
       "col": 0,
       "pr": "high",
       "tags": [
@@ -755,7 +808,7 @@
       ]
     },
     {
-      "t": "GameSanitizer â€” runtime auto-repair on paste",
+      "t": "GameSanitizer — runtime auto-repair on paste",
       "col": 3,
       "pr": "med",
       "tags": [
@@ -788,6 +841,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-17",
+      "k": "feat",
+      "t": "Bank truck heist event + 2x Cash / Police / SWAT passes wired",
+      "s": "Armored truck drives an AI route across the city on a timer -- blow it up for $50k in street cash; 2x Cash doubles all earnings exploit-safe, Police/SWAT passes gate the duty pad"
+    },
     {
       "d": "2026-07-16",
       "k": "feat",
@@ -1080,7 +1139,7 @@
       "d": "2026-07-05",
       "k": "feat",
       "t": "live push pipeline PROVEN",
-      "s": "this entry was committed by Fable via the GitHub API using your token â€” no manual edits."
+      "s": "this entry was committed by Fable via the GitHub API using your token — no manual edits."
     },
     {
       "d": "2026-07-04",
@@ -1098,7 +1157,7 @@
       "d": "2026-07-04",
       "k": "feat",
       "t": "18 real POIs on city map",
-      "s": "pulled actual workspace coordinates â€” map geography now matches HEADTAP."
+      "s": "pulled actual workspace coordinates — map geography now matches HEADTAP."
     }
   ]
 }
