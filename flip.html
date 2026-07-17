@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0E13">
+<title>FLIP DESK — YUNGSBRUH.OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+:root{
+  --asphalt:#0B0E13; --steel:#131822; --steel2:#1A2130; --line:#232C3E;
+  --amber:#FFAA3C; --amber-dim:#8a5a1e; --red:#E23B3B; --tracer:#9FD1FF;
+  --concrete:#C9CDD6; --dust:#6B7385; --ok:#7BD88A;
+  --hazard:repeating-linear-gradient(-45deg,var(--amber) 0 10px,#151a24 10px 20px);
+  /* chart marks — darker steps of the site hues, validated (CVD + contrast)
+     against the card surface #131822; text/UI keep the raw tokens.
+     dot=data, line=fit (deliberately recessive), you=this car (accent). */
+  --chart-dot:#4682D2; --chart-line:#963C46; --chart-you:#C88200;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--asphalt); color:var(--concrete);
+  font-family:'Chakra Petch',sans-serif; font-size:16px; line-height:1.45;
+  -webkit-text-size-adjust:100%;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:99;pointer-events:none;
+  background:
+    radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.45) 100%),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+}
+header{
+  position:sticky;top:0;z-index:50;height:42px;
+  display:flex;align-items:center;gap:12px;padding:0 14px;
+  background:linear-gradient(180deg,rgba(19,24,34,.96),rgba(19,24,34,.85));
+  border-bottom:1px solid var(--line);backdrop-filter:blur(6px);
+  font-family:'IBM Plex Mono';font-size:11px;
+}
+header .brand{font-family:'Archivo Black';font-size:13px;color:var(--red);letter-spacing:.06em}
+header .brand em{font-style:normal;color:var(--amber)}
+header .grow{flex:1}
+header a{color:var(--dust);text-decoration:none;letter-spacing:.14em}
+header a:hover{color:var(--amber)}
+main{max-width:640px;margin:0 auto;padding:14px 12px 60px}
+.card{background:rgba(17,22,32,.93);border:1px solid var(--line);margin-bottom:14px;
+  box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.cardhead{display:flex;align-items:center;gap:10px;padding:8px 12px;
+  background:linear-gradient(180deg,#1B2231,#161C29);border-bottom:1px solid var(--line);
+  font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.18em;color:var(--dust)}
+.cardhead .tape{width:26px;height:8px;background:var(--hazard);opacity:.8;flex:none}
+.cardhead .t{color:var(--concrete)}
+.cardbody{padding:14px 12px}
+.eyebrow{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.3em;color:var(--amber);margin-bottom:6px}
+.dim{color:var(--dust)} .mono{font-family:'IBM Plex Mono'}
+.rule{height:1px;background:var(--line);margin:12px 0}
+.chip{display:inline-block;font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.12em;
+  border:1px solid var(--line);padding:2px 7px;color:var(--dust);margin:2px 3px 2px 0}
+.chip.amber{color:var(--amber);border-color:var(--amber-dim)}
+.chip.red{color:var(--red);border-color:#5c2424}
+.chip.blue{color:var(--tracer);border-color:#2c4358}
+.chip.ok{color:var(--ok);border-color:#2c5136}
+label.f{display:block;font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.22em;
+  color:var(--dust);margin:0 0 4px 1px}
+input[type=text]{
+  width:100%;height:46px;padding:0 12px;font:16px 'IBM Plex Mono';color:var(--concrete);
+  background:var(--steel2);border:1px solid var(--line);outline:none;border-radius:0;
+  -webkit-appearance:none;
+}
+input[type=text]:focus{border-color:var(--amber-dim)}
+input::placeholder{color:#414a5e}
+.btn{
+  height:46px;padding:0 16px;cursor:pointer;border:1px solid var(--line);
+  background:var(--steel);color:var(--concrete);font-family:'IBM Plex Mono';
+  font-size:11px;letter-spacing:.14em;transition:border-color .12s,color .12s;
+  -webkit-appearance:none;border-radius:0;
+}
+.btn:hover{border-color:var(--amber);color:var(--amber)}
+.btn.primary{border-color:var(--amber-dim);color:var(--amber)}
+.btn.slim{height:38px;font-size:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:380px){.grid2{grid-template-columns:1fr}}
+.vinrow{display:flex;gap:8px}
+.vinrow input{flex:1;letter-spacing:.06em;text-transform:uppercase}
+.status{font-family:'IBM Plex Mono';font-size:11px;color:var(--dust);margin-top:8px;min-height:1em}
+.status.err{color:var(--red)}
+.links a{display:inline-block;font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.1em;
+  border:1px solid var(--line);padding:7px 10px;color:var(--tracer);text-decoration:none;margin:3px 4px 3px 0}
+.links a:hover{border-color:var(--amber);color:var(--amber)}
+details.recall{border:1px solid var(--line);margin:6px 0;font-size:13px}
+details.recall summary{cursor:pointer;padding:8px 10px;font-family:'IBM Plex Mono';font-size:11px;color:var(--concrete);list-style:none}
+details.recall summary::before{content:"▸ ";color:var(--red)}
+details.recall[open] summary::before{content:"▾ "}
+details.recall .body{padding:0 10px 10px;color:var(--dust)}
+/* comps */
+.crow{display:flex;gap:8px;margin-bottom:8px}
+.crow input{flex:1}
+.crow .cdel{width:46px;flex:none;font-size:14px}
+.compbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.fitbox{margin-top:14px}
+.stat .lbl{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.22em;color:var(--dust);margin-bottom:2px}
+.stat .val{font-weight:700;font-size:26px;color:#EDEFF4}
+.fitline{font-size:14px;margin-top:8px}
+.fitline .mk{color:var(--amber)}
+.fitwarn{font-size:14px;margin-top:6px;color:var(--red)}
+/* chart */
+#chartWrap{position:relative;margin-top:12px}
+#chartWrap svg{display:block;width:100%;height:auto}
+.keyrow{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.08em;color:var(--dust)}
+.keyrow .k{display:flex;align-items:center;gap:6px}
+.keyrow i{display:inline-block;flex:none}
+.keyrow .sw-dot{width:9px;height:9px;border-radius:50%;background:var(--chart-dot)}
+.keyrow .sw-line{width:14px;height:2px;background:var(--chart-line)}
+.keyrow .sw-you{width:9px;height:9px;background:var(--chart-you);transform:rotate(45deg)}
+#tip{position:absolute;display:none;pointer-events:none;z-index:5;
+  background:#0d1119;border:1px solid var(--amber-dim);padding:5px 9px;
+  font-family:'IBM Plex Mono';font-size:11px;color:var(--concrete);white-space:nowrap}
+.tick{font-family:'IBM Plex Mono';font-size:9px;fill:var(--dust);font-variant-numeric:tabular-nums}
+/* deal */
+#heroWrap{text-align:center;padding:18px 0 6px}
+#hero{font-weight:700;font-size:clamp(44px,15vw,80px);line-height:1;color:var(--amber);
+  letter-spacing:.01em}
+#hero.walk{color:var(--red);font-size:clamp(36px,12vw,64px);letter-spacing:.04em}
+#hero.none{color:#414a5e}
+#heroSub{font-family:'IBM Plex Mono';font-size:11px;color:var(--dust);margin-top:8px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.duo .stat{border:1px solid var(--line);padding:10px 12px}
+.askbox{margin-top:12px;border:1px solid var(--line);padding:10px 12px;font-size:14px;display:none}
+.askbox .row{display:flex;justify-content:space-between;gap:10px;padding:3px 0}
+.askbox .row b{font-family:'IBM Plex Mono';font-weight:600}
+.pos{color:var(--ok)} .neg{color:var(--red)} .mid{color:var(--amber)}
+/* lead book */
+.lead{border:1px solid var(--line);padding:10px 12px;margin-bottom:8px}
+.lead .top{display:flex;align-items:baseline;gap:8px}
+.lead .veh{font-weight:600}
+.lead .when{font-family:'IBM Plex Mono';font-size:9px;color:var(--dust);margin-left:auto;flex:none}
+.lead .nums{font-family:'IBM Plex Mono';font-size:11px;color:var(--dust);margin-top:4px}
+.lead .nums b{color:var(--amber);font-weight:600}
+.lead .del{float:right;margin:-2px -4px 0 8px;width:34px;height:28px;border:1px solid var(--line);
+  background:transparent;color:var(--dust);cursor:pointer;font-family:'IBM Plex Mono';font-size:10px}
+.lead .del.arm{border-color:var(--red);color:var(--red)}
+footer{font-family:'IBM Plex Mono';font-size:9px;color:#3a4254;text-align:center;letter-spacing:.2em;margin-top:20px}
+</style>
+</head>
+<body>
+<header>
+  <span class="brand">YUNGSBRUH.<em>OS</em></span>
+  <span class="mono" style="color:var(--dust);letter-spacing:.18em">// FLIP DESK</span>
+  <span class="grow"></span>
+  <a href="./">&larr; OS</a>
+</header>
+<main>
+
+  <!-- ============ VIN ============ -->
+  <section class="card">
+    <div class="cardhead"><span class="tape"></span><span class="t">01 · VIN DECODE</span></div>
+    <div class="cardbody">
+      <div class="vinrow">
+        <input type="text" id="vin" placeholder="17-digit VIN" maxlength="17" autocapitalize="characters" autocomplete="off" spellcheck="false">
+        <button class="btn primary" id="decodeBtn">DECODE</button>
+      </div>
+      <div class="status" id="vinStatus"></div>
+      <div id="vinOut"></div>
+      <input type="text" id="vehicle" placeholder="year make model (auto-fills from VIN)" autocomplete="off" style="margin-top:10px">
+      <div id="recallOut"></div>
+      <div class="rule"></div>
+      <div class="eyebrow">FREE CHECKS</div>
+      <div class="links" id="deepLinks"></div>
+    </div>
+  </section>
+
+  <!-- ============ COMPS ============ -->
+  <section class="card">
+    <div class="cardhead"><span class="tape"></span><span class="t">02 · COMPS</span></div>
+    <div class="cardbody">
+      <label class="f" for="myMiles">THIS CAR'S MILEAGE</label>
+      <input type="text" id="myMiles" inputmode="numeric" placeholder="e.g. 142k or 142000" autocomplete="off">
+      <div class="rule"></div>
+      <div class="eyebrow">COMPS I FOUND — MILES / ASKING</div>
+      <div id="compRows"></div>
+      <div class="compbtns">
+        <button class="btn slim" id="addComp">+ ADD ANOTHER</button>
+        <button class="btn slim" id="prefill">PREFILL COMPS ↗</button>
+        <span id="apiSlot"></span>
+      </div>
+      <div class="status" id="compStatus">opens eBay sold listings + FB Marketplace for the decoded car (allow pop-ups)</div>
+      <div class="fitbox" id="fitBox" style="display:none">
+        <div class="rule"></div>
+        <div class="stat">
+          <div class="lbl">RESALE ESTIMATE</div>
+          <div class="val" id="resaleVal">—</div>
+        </div>
+        <div class="status" id="fitBasis"></div>
+        <div class="fitline" id="slopeLine"></div>
+        <div class="fitwarn" id="fitWarn"></div>
+        <div id="chartWrap"><div id="tip"></div><div id="chartBox"></div></div>
+        <div class="keyrow" id="chartKey" style="display:none">
+          <span class="k"><i class="sw-dot"></i>comps</span>
+          <span class="k"><i class="sw-line"></i>price-vs-miles fit</span>
+          <span class="k"><i class="sw-you"></i>this car</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEAL MATH ============ -->
+  <section class="card">
+    <div class="cardhead"><span class="tape"></span><span class="t">03 · DEAL MATH</span></div>
+    <div class="cardbody">
+      <div class="grid2">
+        <div><label class="f" for="parts">PARTS COST</label>
+          <input type="text" id="parts" inputmode="numeric" placeholder="$0" autocomplete="off"></div>
+        <div><label class="f" for="fees">TITLE / TAX / FEES</label>
+          <input type="text" id="fees" inputmode="numeric" placeholder="$0" autocomplete="off"></div>
+        <div><label class="f" for="profit">PROFIT I WANT</label>
+          <input type="text" id="profit" inputmode="numeric" value="1500" autocomplete="off"></div>
+        <div><label class="f" for="asking">SELLER'S ASKING PRICE</label>
+          <input type="text" id="asking" inputmode="numeric" placeholder="$0" autocomplete="off"></div>
+      </div>
+      <div id="heroWrap">
+        <div class="eyebrow" id="heroLabel">OFFER NO MORE THAN</div>
+        <div id="hero" class="none">$ —</div>
+        <div id="heroSub">enter comps above to get your number</div>
+      </div>
+      <div class="duo">
+        <div class="stat"><div class="lbl">LIST IT AT</div><div class="val" id="listAt">—</div></div>
+        <div class="stat"><div class="lbl">EXPECT TO SELL FOR</div><div class="val" id="expect">—</div></div>
+      </div>
+      <div class="askbox" id="askBox"></div>
+    </div>
+  </section>
+
+  <!-- ============ LEAD BOOK ============ -->
+  <section class="card">
+    <div class="cardhead"><span class="tape"></span><span class="t">04 · LEAD BOOK</span></div>
+    <div class="cardbody">
+      <div class="compbtns" style="margin-bottom:10px">
+        <button class="btn slim primary" id="saveLead">SAVE THIS LEAD</button>
+        <button class="btn slim" id="exportCsv">EXPORT CSV</button>
+      </div>
+      <div id="leadList"><div class="status">no saved leads yet</div></div>
+    </div>
+  </section>
+
+  <footer>FLIP DESK · LABOR IS FREE AT GRANDPA'S</footer>
+</main>
+
+<script>
+'use strict';
+/* =====================================================================
+   FLIP DESK — driveway car-flip calculator
+   VIN decode: NHTSA vPIC (free, CORS-open). Recalls: api.nhtsa.gov.
+   Comps: manual entry + least-squares price-vs-miles fit.
+   Deal math: target-profit solver. Labor is intentionally NOT a cost —
+   the work happens free at grandpa's shop. Do not add labor inputs.
+   ===================================================================== */
+var $ = function(s){ return document.querySelector(s); };
+
+function parseNum(v){
+  var s = String(v == null ? '' : v).trim().toLowerCase().replace(/[$,\s]/g,'');
+  if (!s) return 0;
+  var k = /^([0-9]*\.?[0-9]+)k$/.exec(s);
+  var n = k ? parseFloat(k[1]) * 1000 : parseFloat(s);
+  return isFinite(n) && n > 0 ? n : 0;
+}
+function money(n){
+  var r = Math.round(n);
+  return (r < 0 ? '-$' : '$') + Math.abs(r).toLocaleString('en-US');
+}
+function kfmt(v){
+  if (Math.abs(v) >= 1000){
+    var t = v / 1000;
+    return (Math.round(t * 10) / 10).toLocaleString('en-US') + 'k';
+  }
+  return String(Math.round(v));
+}
+function esc(s){
+  return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+  });
+}
+
+/* ============================================================
+   COMPS ADAPTERS — pluggable price-data sources.
+   'manual' (default) = the rows you type in. Always available.
+   'autodev' / 'marketcheck' are OFF unless you set the adapter
+   name AND paste a key. With no key, nothing renders — no dead
+   UI, no error states.
+   ⚠ WARNING: this is a static public site. Any key pasted here
+   ships to every visitor's browser. THROWAWAY FREE-TIER KEYS
+   ONLY — never a paid or account-linked key.
+   ============================================================ */
+var COMPS_CONFIG = {
+  adapter: 'manual',        // 'manual' | 'autodev' | 'marketcheck'
+  autodevKey: '',           // free tier: https://auto.dev
+  marketcheckKey: ''        // free tier: https://www.marketcheck.com
+};
+var ADAPTERS = {
+  manual: { ready: function(){ return true; } },
+  autodev: {
+    ready: function(){ return !!COMPS_CONFIG.autodevKey; },
+    label: 'FETCH COMPS (AUTO.DEV)',
+    fetchComps: function(veh){
+      // Stub — exercised only when a key is set. Shape per auto.dev /api/listings.
+      var u = new URL('https://auto.dev/api/listings');
+      u.searchParams.set('apikey', COMPS_CONFIG.autodevKey);
+      if (veh.year){ u.searchParams.set('year_min', veh.year); u.searchParams.set('year_max', veh.year); }
+      if (veh.make) u.searchParams.set('make', veh.make);
+      if (veh.model) u.searchParams.set('model', veh.model);
+      return fetch(u).then(function(r){ return r.json(); }).then(function(j){
+        return (j.records || []).map(function(r){
+          return { miles: +r.mileageUnformatted || 0, price: +r.priceUnformatted || 0 };
+        }).filter(function(c){ return c.miles > 0 && c.price > 0; });
+      });
+    }
+  },
+  marketcheck: {
+    ready: function(){ return !!COMPS_CONFIG.marketcheckKey; },
+    label: 'FETCH COMPS (MARKETCHECK)',
+    fetchComps: function(veh){
+      // Stub — exercised only when a key is set. Shape per MarketCheck v2 search.
+      var u = new URL('https://mc-api.marketcheck.com/v2/search/car/active');
+      u.searchParams.set('api_key', COMPS_CONFIG.marketcheckKey);
+      if (veh.year) u.searchParams.set('year', veh.year);
+      if (veh.make) u.searchParams.set('make', veh.make);
+      if (veh.model) u.searchParams.set('model', veh.model);
+      u.searchParams.set('rows', '25');
+      return fetch(u).then(function(r){ return r.json(); }).then(function(j){
+        return (j.listings || []).map(function(l){
+          return { miles: +l.miles || 0, price: +l.price || 0 };
+        }).filter(function(c){ return c.miles > 0 && c.price > 0; });
+      });
+    }
+  }
+};
+
+/* ================= VIN DECODE + RECALLS ================= */
+var decoded = { year:'', make:'', model:'' };
+
+function titleCase(s){
+  return String(s || '').toLowerCase().replace(/\b[a-z]/g, function(c){ return c.toUpperCase(); });
+}
+
+function decodeVin(){
+  var vin = $('#vin').value.trim().toUpperCase();
+  var st = $('#vinStatus');
+  if (vin.length !== 17){ st.textContent = 'VIN is 17 characters — got ' + vin.length; st.className = 'status err'; return; }
+  st.textContent = 'decoding…'; st.className = 'status';
+  $('#decodeBtn').disabled = true;
+  fetch('https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/' + encodeURIComponent(vin) + '?format=json')
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      var d = (j.Results && j.Results[0]) || {};
+      if (!d.Make){ st.textContent = 'vPIC could not decode that VIN'; st.className = 'status err'; return; }
+      decoded = { year: d.ModelYear || '', make: titleCase(d.Make), model: d.Model || '' };
+      var chips = [];
+      function chip(cls, v){ if (v) chips.push('<span class="chip ' + cls + '">' + esc(v) + '</span>'); }
+      chip('amber', decoded.year); chip('amber', decoded.make); chip('amber', decoded.model);
+      chip('', d.Trim || d.Series);
+      chip('', d.BodyClass);
+      chip('', d.EngineCylinders ? d.EngineCylinders + 'cyl ' + (d.DisplacementL ? (+(+d.DisplacementL).toFixed(1)) + 'L' : '') : '');
+      chip('', d.FuelTypePrimary);
+      chip('', d.DriveType);
+      chip('', d.TransmissionStyle);
+      $('#vinOut').innerHTML = '<div style="margin-top:10px">' + chips.join('') + '</div>';
+      $('#vehicle').value = [decoded.year, decoded.make, decoded.model].filter(Boolean).join(' ');
+      st.textContent = 'decoded ✓';
+      checkRecalls();
+      recompute();
+    })
+    .catch(function(){ st.textContent = 'decode failed — no signal? try again'; st.className = 'status err'; })
+    .then(function(){ $('#decodeBtn').disabled = false; });
+}
+
+function checkRecalls(){
+  var out = $('#recallOut');
+  if (!decoded.make || !decoded.model || !decoded.year){ out.innerHTML = ''; return; }
+  out.innerHTML = '<div class="status">checking recalls…</div>';
+  fetch('https://api.nhtsa.gov/recalls/recallsByVehicle?make=' + encodeURIComponent(decoded.make) +
+        '&model=' + encodeURIComponent(decoded.model) + '&modelYear=' + encodeURIComponent(decoded.year))
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      var rs = j.results || [];
+      if (!rs.length){ out.innerHTML = '<div class="status" style="color:var(--ok)">no open recalls on file ✓</div>'; return; }
+      var h = '<div class="status err">' + rs.length + ' recall' + (rs.length > 1 ? 's' : '') + ' on file — check they were done:</div>';
+      rs.slice(0, 5).forEach(function(r){
+        h += '<details class="recall"><summary>' + esc(r.Component || 'recall') +
+             (r.NHTSACampaignNumber ? ' · ' + esc(r.NHTSACampaignNumber) : '') + '</summary>' +
+             '<div class="body">' + esc(r.Summary || '') + '</div></details>';
+      });
+      if (rs.length > 5) h += '<div class="status">+' + (rs.length - 5) + ' more on NHTSA</div>';
+      out.innerHTML = h;
+    })
+    .catch(function(){
+      out.innerHTML = '<div class="status err">recall check failed — <a style="color:var(--tracer)" href="https://www.nhtsa.gov/recalls" target="_blank" rel="noopener">check on NHTSA ↗</a></div>';
+    });
+}
+
+function renderDeepLinks(){
+  var vin = $('#vin').value.trim().toUpperCase();
+  var links = [
+    ['NICB VINCHECK', 'https://www.nicb.org/vincheck'],
+    ['ISEECARS', vin ? 'https://www.iseecars.com/vin/' + encodeURIComponent(vin) : 'https://www.iseecars.com/vin'],
+    ['VEHICLEHISTORY', vin ? 'https://www.vehiclehistory.com/vin-report/' + encodeURIComponent(vin) : 'https://www.vehiclehistory.com'],
+    ['NHTSA RECALLS', 'https://www.nhtsa.gov/recalls'],
+    ['GOOGLE THE VIN', vin ? 'https://www.google.com/search?q=%22' + encodeURIComponent(vin) + '%22' : 'https://www.google.com']
+  ];
+  $('#deepLinks').innerHTML = links.map(function(l){
+    return '<a href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + ' ↗</a>';
+  }).join('');
+}
+
+/* ================= COMPS ================= */
+function addCompRow(miles, price){
+  var row = document.createElement('div');
+  row.className = 'crow';
+  row.innerHTML =
+    '<input type="text" class="cmiles" inputmode="numeric" placeholder="miles" autocomplete="off" value="' + esc(miles || '') + '">' +
+    '<input type="text" class="cprice" inputmode="numeric" placeholder="$ asking" autocomplete="off" value="' + esc(price || '') + '">' +
+    '<button class="btn slim cdel" aria-label="remove comp">×</button>';
+  row.querySelector('.cdel').addEventListener('click', function(){
+    var rows = document.querySelectorAll('#compRows .crow');
+    if (rows.length <= 1){ row.querySelector('.cmiles').value = ''; row.querySelector('.cprice').value = ''; }
+    else row.remove();
+    recompute();
+  });
+  $('#compRows').appendChild(row);
+}
+
+function getComps(){
+  var out = [];
+  document.querySelectorAll('#compRows .crow').forEach(function(r){
+    var x = parseNum(r.querySelector('.cmiles').value);
+    var y = parseNum(r.querySelector('.cprice').value);
+    if (x > 0 && y > 0) out.push({ x: x, y: y });
+  });
+  return out;
+}
+
+function regress(pts){
+  var n = pts.length, mx = 0, my = 0;
+  pts.forEach(function(p){ mx += p.x; my += p.y; });
+  mx /= n; my /= n;
+  var sxx = 0, sxy = 0, sst = 0;
+  pts.forEach(function(p){
+    sxx += (p.x - mx) * (p.x - mx);
+    sxy += (p.x - mx) * (p.y - my);
+    sst += (p.y - my) * (p.y - my);
+  });
+  if (sxx === 0) return { flat: true, mean: my };
+  var b = sxy / sxx, a = my - b * mx, sse = 0;
+  pts.forEach(function(p){ var e = p.y - (a + b * p.x); sse += e * e; });
+  return { a: a, b: b, mean: my, r2: sst === 0 ? 1 : 1 - sse / sst };
+}
+
+/* Comps model → { est, kind, fit, note } */
+function compsModel(){
+  var comps = getComps();
+  var mm = parseNum($('#myMiles').value);
+  if (comps.length === 0) return { comps: comps, est: null };
+  if (comps.length === 1){
+    return { comps: comps, est: comps[0].y, kind: 'single', myMiles: mm };
+  }
+  var f = regress(comps);
+  if (f.flat){
+    return { comps: comps, est: f.mean, kind: 'flat', myMiles: mm };
+  }
+  if (mm > 0){
+    var e = f.a + f.b * mm;
+    return { comps: comps, est: Math.max(0, e), kind: 'fit', fit: f, myMiles: mm, clamped: e < 0 };
+  }
+  return { comps: comps, est: f.mean, kind: 'mean', fit: f, myMiles: 0 };
+}
+
+function renderComps(m){
+  var box = $('#fitBox');
+  if (m.est == null){ box.style.display = 'none'; return; }
+  box.style.display = '';
+  $('#resaleVal').textContent = money(m.est);
+  var n = m.comps.length;
+  var basis = $('#fitBasis'), slope = $('#slopeLine'), warn = $('#fitWarn');
+  warn.textContent = ''; slope.innerHTML = '';
+  if (m.kind === 'single'){
+    basis.textContent = 'one comp — that is just that car’s price';
+    warn.textContent = 'weak estimate: one comp is an anecdote. Add more.';
+  } else if (m.kind === 'flat'){
+    basis.textContent = 'average of ' + n + ' comps (all at the same mileage — no slope to fit)';
+  } else if (m.kind === 'mean'){
+    basis.textContent = 'average of ' + n + ' comps — enter THIS car’s mileage above to fit it on the line';
+  } else {
+    basis.textContent = 'fitted at ' + kfmt(m.myMiles) + ' mi across ' + n + ' comps' +
+      (m.clamped ? ' (fit went below $0 — clamped)' : '');
+  }
+  if (m.fit && !m.fit.flat){
+    var per10k = m.fit.b * 10000;
+    if (per10k < -50){
+      slope.innerHTML = 'every 10k miles knocks about <span class="mk">' + money(-per10k) + '</span> off this model';
+    } else if (per10k > 50){
+      slope.innerHTML = 'heads up — these comps price <span class="mk">higher</span> with more miles. Something’s off with them.';
+    } else {
+      slope.innerHTML = 'mileage barely moves price on these comps';
+    }
+    if (n === 2){
+      warn.textContent = 'only two comps — the line fits them perfectly by definition. Take it loose.';
+    } else if (m.fit.r2 < 0.4){
+      warn.textContent = 'these comps disagree (R² ' + m.fit.r2.toFixed(2) + ') — the estimate is a guess.';
+    }
+  }
+  renderChart(m);
+}
+
+/* ================= CHART (hand-rolled SVG) ================= */
+function niceStep(range, n){
+  var raw = range / Math.max(1, n);
+  var mag = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10));
+  var norm = raw / mag;
+  return (norm >= 5 ? 10 : norm >= 2 ? 5 : norm >= 1 ? 2 : 1) * mag;
+}
+function ticks(min, max, n){
+  var step = niceStep(max - min, n), out = [];
+  for (var t = Math.ceil(min / step) * step; t <= max + step * 1e-9; t += step) out.push(t);
+  return out;
+}
+
+function renderChart(m){
+  var box = $('#chartBox'), key = $('#chartKey');
+  if (!m.comps.length){ box.innerHTML = ''; key.style.display = 'none'; return; }
+  key.style.display = '';
+  var W = 340, H = 215, ml = 46, mr = 14, mt = 14, mb = 32;
+  var xs = m.comps.map(function(p){ return p.x; });
+  var ys = m.comps.map(function(p){ return p.y; });
+  if (m.myMiles > 0) xs = xs.concat([m.myMiles]);
+  if (m.est != null) ys = ys.concat([m.est]);
+  var xmin = Math.min.apply(null, xs), xmax = Math.max.apply(null, xs);
+  var ymin = Math.min.apply(null, ys), ymax = Math.max.apply(null, ys);
+  var xpad = (xmax - xmin) * 0.09 || xmax * 0.1 || 5000;
+  var ypad = (ymax - ymin) * 0.14 || ymax * 0.15 || 500;
+  xmin = Math.max(0, xmin - xpad); xmax += xpad;
+  ymin = Math.max(0, ymin - ypad); ymax += ypad;
+  function X(v){ return ml + (v - xmin) / (xmax - xmin) * (W - ml - mr); }
+  function Y(v){ return H - mb - (v - ymin) / (ymax - ymin) * (H - mt - mb); }
+  var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="comp prices vs mileage">';
+  // grid + ticks (hairline, solid, recessive)
+  ticks(ymin, ymax, 4).forEach(function(t){
+    s += '<line x1="' + ml + '" y1="' + Y(t) + '" x2="' + (W - mr) + '" y2="' + Y(t) + '" stroke="#232C3E" stroke-width="1"/>';
+    s += '<text class="tick" x="' + (ml - 6) + '" y="' + (Y(t) + 3) + '" text-anchor="end">$' + kfmt(t) + '</text>';
+  });
+  ticks(xmin, xmax, 4).forEach(function(t){
+    s += '<text class="tick" x="' + X(t) + '" y="' + (H - mb + 14) + '" text-anchor="middle">' + kfmt(t) + ' mi</text>';
+  });
+  s += '<line x1="' + ml + '" y1="' + (H - mb) + '" x2="' + (W - mr) + '" y2="' + (H - mb) + '" stroke="#232C3E" stroke-width="1"/>';
+  // fit line (2px, round caps), drawn across the x-domain, y clamped to plot
+  if (m.fit && !m.fit.flat){
+    function yAt(x){ return Math.max(ymin, Math.min(ymax, m.fit.a + m.fit.b * x)); }
+    s += '<line x1="' + X(xmin) + '" y1="' + Y(yAt(xmin)) + '" x2="' + X(xmax) + '" y2="' + Y(yAt(xmax)) +
+         '" stroke="var(--chart-line)" stroke-width="2" stroke-linecap="round"/>';
+  }
+  // comp dots: r4.5 + 2px surface ring, oversized invisible hit target
+  m.comps.forEach(function(p, i){
+    s += '<circle cx="' + X(p.x) + '" cy="' + Y(p.y) + '" r="4.5" fill="var(--chart-dot)" stroke="#131822" stroke-width="2"/>';
+    s += '<circle class="hit" data-m="' + p.x + '" data-p="' + p.y + '" cx="' + X(p.x) + '" cy="' + Y(p.y) + '" r="13" fill="transparent"/>';
+  });
+  // this car: red diamond on the estimate, direct-labeled
+  if (m.myMiles > 0 && m.est != null){
+    var cx = X(m.myMiles), cy = Y(m.est);
+    s += '<path d="M ' + cx + ' ' + (cy - 7) + ' L ' + (cx + 7) + ' ' + cy + ' L ' + cx + ' ' + (cy + 7) +
+         ' L ' + (cx - 7) + ' ' + cy + ' Z" fill="var(--chart-you)" stroke="#131822" stroke-width="2"/>';
+    var lx = Math.max(ml + 18, Math.min(W - mr - 18, cx));
+    var ly = cy - 12 < mt + 8 ? cy + 20 : cy - 12;
+    s += '<text class="tick" x="' + lx + '" y="' + ly + '" text-anchor="middle" fill="#C9CDD6">YOURS</text>';
+    s += '<circle class="hit" data-m="' + m.myMiles + '" data-p="' + Math.round(m.est) + '" data-you="1" cx="' + cx + '" cy="' + cy + '" r="13" fill="transparent"/>';
+  }
+  s += '</svg>';
+  box.innerHTML = s;
+  // tooltip layer — enhances, never gates (values also live in the rows)
+  var tip = $('#tip'), wrap = $('#chartWrap');
+  box.querySelectorAll('.hit').forEach(function(h){
+    h.addEventListener('pointerenter', function(ev){ showTip(ev, h); });
+    h.addEventListener('pointerdown', function(ev){ showTip(ev, h); ev.stopPropagation(); });
+    h.addEventListener('pointerleave', function(){ tip.style.display = 'none'; });
+  });
+  function showTip(ev, h){
+    var r = wrap.getBoundingClientRect();
+    tip.textContent = (h.dataset.you ? 'this car · ' : '') +
+      (+h.dataset.m).toLocaleString('en-US') + ' mi · ' + money(+h.dataset.p);
+    tip.style.display = 'block';
+    var x = ev.clientX - r.left + 10, y = ev.clientY - r.top - 30;
+    tip.style.left = Math.max(0, Math.min(r.width - tip.offsetWidth - 4, x)) + 'px';
+    tip.style.top = Math.max(0, y) + 'px';
+  }
+}
+document.addEventListener('pointerdown', function(){ var t = $('#tip'); if (t) t.style.display = 'none'; });
+
+/* ================= DEAL MATH — target-profit solver ================= */
+var calc = { est: null, maxOffer: null, walk: false };
+
+function recompute(){
+  renderDeepLinks();
+  var m = compsModel();
+  renderComps(m);
+  var est = m.est;
+  var parts = parseNum($('#parts').value);
+  var fees = parseNum($('#fees').value);
+  var profit = parseNum($('#profit').value);
+  var asking = parseNum($('#asking').value);
+  var hero = $('#hero'), sub = $('#heroSub'), label = $('#heroLabel');
+  var askBox = $('#askBox');
+  calc = { est: est, maxOffer: null, walk: false, miles: m.myMiles || parseNum($('#myMiles').value),
+           parts: parts, fees: fees, profit: profit, asking: asking };
+  if (est == null){
+    hero.textContent = '$ —'; hero.className = 'none';
+    label.textContent = 'OFFER NO MORE THAN';
+    sub.textContent = 'enter comps above to get your number';
+    $('#listAt').textContent = '—'; $('#expect').textContent = '—';
+    askBox.style.display = 'none';
+    return;
+  }
+  var maxOffer = est - parts - fees - profit;
+  var walk = maxOffer <= 0 || (asking > 0 && maxOffer < 0.2 * asking);
+  calc.maxOffer = maxOffer; calc.walk = walk;
+  if (walk){
+    hero.textContent = 'WALK AWAY'; hero.className = 'walk';
+    label.textContent = 'THIS ONE DOESN’T WORK';
+    sub.textContent = maxOffer <= 0
+      ? 'you’d need it for ' + money(maxOffer) + ' to clear ' + money(profit) + ' — the math doesn’t math'
+      : 'your max (' + money(maxOffer) + ') is under 20% of asking — not worth the conversation';
+  } else {
+    hero.textContent = money(maxOffer); hero.className = '';
+    label.textContent = 'OFFER NO MORE THAN';
+    sub.textContent = 'pay ≤ this and you clear ' + money(profit) + ' after parts + fees';
+  }
+  $('#listAt').textContent = money(Math.round(est * 1.08 / 50) * 50);
+  $('#expect').textContent = money(est);
+  if (asking > 0){
+    var allIn = asking + parts + fees;
+    var pAtAsk = est - allIn;
+    var cls = pAtAsk >= profit ? 'pos' : pAtAsk > 0 ? 'mid' : 'neg';
+    var h = '<div class="row"><span class="dim">all-in if you pay asking</span><b>' + money(allIn) + '</b></div>' +
+            '<div class="row"><span class="dim">profit at asking</span><b class="' + cls + '">' + money(pAtAsk) + '</b></div>';
+    if (!walk && asking > maxOffer){
+      h += '<div class="row"><span class="dim">seller is above your number by</span><b class="neg">' + money(asking - maxOffer) + '</b></div>';
+    } else if (!walk && asking <= maxOffer){
+      h += '<div class="row"><span class="dim">asking is already under your max</span><b class="pos">go look at it</b></div>';
+    }
+    askBox.innerHTML = h; askBox.style.display = '';
+  } else {
+    askBox.style.display = 'none';
+  }
+}
+
+/* ================= PREFILL COMPS ================= */
+function prefillComps(){
+  var q = $('#vehicle').value.trim() ||
+          [decoded.year, decoded.make, decoded.model].filter(Boolean).join(' ');
+  var st = $('#compStatus');
+  if (!q){ st.textContent = 'decode a VIN (or type the vehicle) first'; return; }
+  window.open('https://www.ebay.com/sch/i.html?_nkw=' + encodeURIComponent(q) +
+              '&_sacat=6001&LH_Sold=1&LH_Complete=1', '_blank', 'noopener');
+  window.open('https://www.facebook.com/marketplace/search/?query=' + encodeURIComponent(q), '_blank', 'noopener');
+  st.textContent = 'opened eBay sold + Marketplace for “' + q + '” — pop-up blocker may eat the second tab';
+}
+
+/* API adapter button — renders ONLY when a non-manual adapter has a key */
+function mountAdapter(){
+  var a = ADAPTERS[COMPS_CONFIG.adapter];
+  if (!a || COMPS_CONFIG.adapter === 'manual' || !a.ready()) return;
+  var b = document.createElement('button');
+  b.className = 'btn slim'; b.textContent = a.label;
+  b.addEventListener('click', function(){
+    var veh = { year: decoded.year, make: decoded.make, model: decoded.model };
+    $('#compStatus').textContent = 'fetching comps…';
+    a.fetchComps(veh).then(function(comps){
+      comps.slice(0, 12).forEach(function(c){ addCompRow(String(c.miles), String(c.price)); });
+      $('#compStatus').textContent = comps.length + ' comps pulled — sanity-check them';
+      recompute();
+    }).catch(function(){ $('#compStatus').textContent = 'API fetch failed — manual comps still work'; });
+  });
+  $('#apiSlot').appendChild(b);
+}
+
+/* ================= LEAD BOOK ================= */
+var LS_KEY = 'flipdesk.leads.v2';
+function loadLeads(){
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch (e) { return []; }
+}
+function saveLeads(v){
+  try { localStorage.setItem(LS_KEY, JSON.stringify(v)); } catch (e) {}
+}
+function addLead(){
+  var leads = loadLeads();
+  leads.unshift({
+    ts: new Date().toISOString(),
+    vin: $('#vin').value.trim().toUpperCase(),
+    vehicle: $('#vehicle').value.trim(),
+    miles: calc.miles || 0,
+    resale: calc.est != null ? Math.round(calc.est) : '',
+    maxOffer: calc.maxOffer != null ? Math.round(calc.maxOffer) : '',
+    walk: calc.walk,
+    asking: calc.asking || '',
+    parts: calc.parts || 0,
+    fees: calc.fees || 0,
+    profit: calc.profit || 0
+  });
+  saveLeads(leads);
+  renderLeads();
+  var b = $('#saveLead'); b.textContent = 'SAVED ✓';
+  setTimeout(function(){ b.textContent = 'SAVE THIS LEAD'; }, 1200);
+}
+function renderLeads(){
+  var leads = loadLeads(), box = $('#leadList');
+  if (!leads.length){ box.innerHTML = '<div class="status">no saved leads yet</div>'; return; }
+  box.innerHTML = '';
+  leads.forEach(function(L, i){
+    var d = document.createElement('div');
+    d.className = 'lead';
+    var when = L.ts ? L.ts.slice(5, 10).replace('-', '/') : '';
+    d.innerHTML =
+      '<button class="del" aria-label="delete lead">×</button>' +
+      '<div class="top"><span class="veh">' + esc(L.vehicle || L.vin || 'unknown car') + '</span>' +
+      '<span class="when">' + esc(when) + '</span></div>' +
+      '<div class="nums">' + (L.miles ? kfmt(L.miles) + ' mi · ' : '') +
+      (L.resale !== '' ? 'resale ' + money(L.resale) + ' · ' : '') +
+      (L.walk ? '<b style="color:var(--red)">WALK</b>' :
+        (L.maxOffer !== '' ? 'max offer <b>' + money(L.maxOffer) + '</b>' : '')) +
+      (L.asking ? ' · ask ' + money(L.asking) : '') + '</div>';
+    var del = d.querySelector('.del');
+    del.addEventListener('click', function(){
+      if (!del.classList.contains('arm')){
+        del.classList.add('arm'); del.textContent = 'SURE?';
+        setTimeout(function(){ del.classList.remove('arm'); del.textContent = '×'; }, 1600);
+        return;
+      }
+      leads.splice(i, 1); saveLeads(leads); renderLeads();
+    });
+    box.appendChild(d);
+  });
+}
+function exportCsv(){
+  var leads = loadLeads();
+  var cell = function(v){
+    v = String(v == null ? '' : v);
+    return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+  };
+  var rows = [['saved', 'vehicle', 'vin', 'mileage', 'resale_estimate', 'max_offer', 'verdict', 'asking', 'parts', 'fees', 'target_profit']];
+  leads.forEach(function(L){
+    rows.push([L.ts, L.vehicle, L.vin, L.miles, L.resale, L.maxOffer,
+               L.walk ? 'walk away' : 'workable', L.asking, L.parts, L.fees, L.profit]);
+  });
+  var csv = rows.map(function(r){ return r.map(cell).join(','); }).join('\r\n');
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+  a.download = 'flip-leads-' + new Date().toISOString().slice(0, 10) + '.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+/* ================= INIT ================= */
+for (var i = 0; i < 4; i++) addCompRow();
+renderDeepLinks();
+renderLeads();
+mountAdapter();
+$('#decodeBtn').addEventListener('click', decodeVin);
+$('#vin').addEventListener('keydown', function(e){ if (e.key === 'Enter') decodeVin(); });
+$('#addComp').addEventListener('click', function(){ addCompRow(); });
+$('#prefill').addEventListener('click', prefillComps);
+$('#saveLead').addEventListener('click', addLead);
+$('#exportCsv').addEventListener('click', exportCsv);
+document.addEventListener('input', recompute);
+recompute();
+</script>
+</body>
+</html>
