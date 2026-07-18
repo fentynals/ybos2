@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-18T07:37:19Z",
+    "updated": "2026-07-18T07:52:35Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -315,6 +315,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Mission tracker UX v2 per Ian: killed the persistent on-screen objective text -- now a mission box SLIDES DOWN from the top for 10s on start/step-complete then slides away, and the path shows IN THE WORLD as amber neon chevrons marching along the floor from the player toward the target (fixed a backwards-V geometry bug live: lookAt forward is -Z, wing yaws were mirrored). Step texts cut to terse (GET A JOB / CLEAN FLOORS / BUY THE SNUBNOSE / SHOOT AN ATM AND TAKE THE MONEY...). ATM step now targets the nearest BREAKABLE atm (the gun-store one is excluded, 483 studs verified), rob step targets the nearest register.",
+      "ts": "2026-07-18T07:52:35Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Combat + QoL batch: cops now land 75 percent of shots (was 33); admin panel got a TP COP button (AdminFunction tpCop -> nearest living AI cop); the 1-pistol/1-rifle carry cap is GONE everywhere (GunDealer buy gate, FPSServer pickup gate, PlayerInventory restore dedupe -- exact-duplicate guards stay); cashier Talk prompt disables while the rig has hands up mid-robbery (GasStationRobbery publishes _HandsUp attr). Cop kills DO show the death shop (cop damage is a plain Health subtraction, verified) -- Ian not seeing it = the stale published version; publish from the wired Studio window.",
+      "ts": "2026-07-18T07:52:35Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
