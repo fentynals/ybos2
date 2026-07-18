@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-18T05:03:21Z",
+    "updated": "2026-07-18T05:09:20Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -315,6 +315,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Cashier dialog rolled out to gasstation2: its Jvcrxsh now sells food through the same talk-menu (BUY FOOD / EXIT -- no job there), floating pizza/burger prompts stripped at that counter too, CASHIER nametags now PERSISTENT instances on both rigs (visible in the editor, not just runtime). Verified live: gas2 buy -25 dollars, gas2 menu has no job button, AMIR keeps the full menu.",
+      "ts": "2026-07-18T05:09:20Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
