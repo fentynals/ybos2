@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-18T01:45:58.498Z",
+    "updated": "2026-07-18T04:49:09Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -315,6 +315,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Gas station CLEANUP job shipped: talk to the cashier (tap E, no hold) -> dialog UI: buy pizza/cheezburger (, FoodShop rules) or take the floor job. Job spawns 3-4 of the 9 authored stain pads at random; scrub each (hold E 2.5s) for \\ + 10 XP (notoriety); janitor gets safezone (attr + shield visual) while on duty; 45s cooldown, 4min expiry, owner-only scrubbing. Floating food Buy prompts stripped at THIS store only -- the dialog replaces them.",
+      "ts": "2026-07-18T04:49:09Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "AMIR wired as the gas-station cashier: GasStationRobbery now accepts AMIR rigs (robbery + hands-up survive the Jvcrxsh swap) and the talk prompt auto-migrates to AMIR the moment the rig lands in Workspace. Also fixed: authored CLEANUP pads shipped unanchored -- anchored at bank time. Verified live incl. Ian own playtest: bought both foods, ran a full 3-stain job (+\\ +30 XP), safezone dropped clean at finish.",
+      "ts": "2026-07-18T04:49:09Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -847,6 +859,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-18",
+      "k": "feat",
+      "t": "Gas station cleaning job + cashier dialog",
+      "s": "AMIR the cashier: one E-menu for food + floor wiping (/stain + XP, safezone while working)"
+    },
     {
       "d": "2026-07-17",
       "k": "feat",
