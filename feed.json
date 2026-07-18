@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-18T06:21:21Z",
+    "updated": "2026-07-18T06:52:40Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -315,6 +315,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "MISSION SYSTEM + TUTORIAL shipped: generic tracked-mission engine (MissionSystem.lua -- ordered steps w/ signal/attribute/arrive conditions, all advancement server-side, MissionSignal bindable bus for producers) + a MISSIONS panel with TRACK buttons and a tracker HUD: camera-relative rotating arrow + step text + distance + a world beacon that re-points every step. Tutorial = first chain: blue TUTORIAL button on the loading screen -> teleport -> 8 steps (get the cleanup job, earn to afford the cheapest gun+ammo -- goal read LIVE from store data, currently 724 dollars = Snubnose 700 + 9mm pack 24 -- buy gun, buy ammo, loot a dumpster, shoot an ATM, rob the gas register, rob the bank). Finish = tutorialDone DataStore flag + free G17 EXTBOX (first time only; replays allowed, button greys out).",
+      "ts": "2026-07-18T06:52:40Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Hooks wired into 7 existing systems via one-line MissionSignal fires: CleanupJobServer clockin, GunDealer buy, AmmoDealer buy, DumpsterSearchServer search, FPSServer ATM damage, GasStationRobbery register, BankHeist exchange cash-out. Verified live end-to-end: real button click -> exact spawn teleport (had to re-apply after the welcome-kill respawn stomped it), all 8 steps advanced incl. the 500-dollar-no/724-yes money gate, beacon re-pointing, MISSION COMPLETE banner, reward granted.",
+      "ts": "2026-07-18T06:52:40Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -895,6 +907,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-18",
+      "k": "feat",
+      "t": "Tracked mission system + tutorial chain",
+      "s": "Reusable mission engine (signals/attr/arrive steps, arrow+beacon tracker) with the 8-step tutorial as first user; G17 EXTBOX reward"
+    },
     {
       "d": "2026-07-18",
       "k": "feat",
