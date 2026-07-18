@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-18T06:52:40Z",
+    "updated": "2026-07-18T07:12:00Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -315,6 +315,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Tutorial + janitor tune-up per Ian: (1) tutorial now ENDS at the gas-station robbery -- reward 10K dollars (raw, no 2x-pass doubling) + 500 XP + the free G17 EXTBOX, first completion only; (2) ATM step split in two: shoot it til it BREAKS (atm:broken signal at the breaking-shot reward) then GRAB THE CASH (new generic cash:pickup signal on FPSServer ground-cash pickups -- reusable for any future mission); (3) janitor exit popup now has a 70-stud hard radius -- keep walking away and the shift just ends, popup closes itself. All three verified live.",
+      "ts": "2026-07-18T07:12:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
