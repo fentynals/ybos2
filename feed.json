@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-18T05:09:20Z",
+    "updated": "2026-07-18T06:21:21Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -315,6 +315,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "DEATH-SCREEN MONETIZATION shipped: on death (no coverage) a purchase panel rides the 5s respawn countdown -- Keep Inventory dev product (49 R$, one death, bag+cash never drop, items re-granted on spawn) and Go Get Back (100 R$, respawn with a G2C Binary Drum switch + 100 ammo). KEEP INVENTORY PERMANENT gamepass (999 R$, strikethrough-1499 LIMITED banner) auto-keeps every death with zero UI. All granting server-side via the one ProcessReceipt (now idempotent: handled PurchaseIds tracked); pass cached as attr + refreshed on purchase; late receipts BANK the keep for the next death.",
+      "ts": "2026-07-18T06:21:21Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Verified live: real-death default path (countdown -> DeathBag + cash drop), death screen UI w/ live countdown + card art text, pass path E2E (no drop, Makarov auto-restored on respawn). Found + explained a pre-existing spook: each death REPLACES your previous uncollected bag, so solo bag-count never grows. Products created via Open Cloud (price field renamed -- priceInRobux now, defaultPriceInRobux silently 204-noops).",
+      "ts": "2026-07-18T06:21:21Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -883,6 +895,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-18",
+      "k": "feat",
+      "t": "Death-screen shop: Keep Inventory + Go Get Back + PERMANENT pass",
+      "s": "2 dev products + 1 gamepass on the death countdown; idempotent receipts; keep = full bag restore on respawn"
+    },
     {
       "d": "2026-07-18",
       "k": "feat",
