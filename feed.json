@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-18T04:49:09Z",
+    "updated": "2026-07-18T05:01:04Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -315,6 +315,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Janitor shift v2: the gas-station cleanup job is now ENDLESS and open to everyone at once -- dirt respawns 8-18s after each scrub (3-4 stains active), 75 dollars + 10 XP per stain, no cooldown. Workers get the Janitor uniform (catalog shirt/pants + factory cap) on clock-in, originals restored on clock-out, uniform survives death.",
+      "ts": "2026-07-18T05:01:04Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Shift exit flow: walking out of the station pops would-you-like-to-end-your-shift -- NO teleports the janitor back to the counter, YES strips uniform/safezone/all worker-only stuff (25s no-answer = auto clock-out). END SHIFT also lives in the cashier menu. Verified live: clock-in/out, scrub pay, respawn, both exit answers, clothes restored to the exact originals.",
+      "ts": "2026-07-18T05:01:04Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -859,6 +871,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-18",
+      "k": "feat",
+      "t": "Endless janitor shift + uniform + exit prompt",
+      "s": "Cleanup job reworked: infinite respawning dirt, everyone can clock in, Janitor fit, leave-station end-shift confirm"
+    },
     {
       "d": "2026-07-18",
       "k": "feat",
