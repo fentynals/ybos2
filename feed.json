@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-18T12:55:48.690Z",
+    "updated": "2026-07-18T16:04:30Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -315,6 +315,24 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "death shop fixed — the death screen's disable-all-UI pass was hiding it; whitelisted + raised above the death tint, verified live mid-death",
+      "ts": "2026-07-18T16:04:30Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "tutorial click-spotlight shipped — screen dims + amber ring around WANT A JOB? / Snubnose / 9mm BUY, guidance-only (never blocks input)",
+      "ts": "2026-07-18T16:04:30Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "MISSION COMPLETED frost verified on the mission box + gas-clerk camera lock-on removed for register robbery",
+      "ts": "2026-07-18T16:04:30Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -931,6 +949,18 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-18",
+      "k": "fix",
+      "t": "death shop shows on death again",
+      "s": "death-UI suppress whitelisted the shop gui + DisplayOrder raised over the death tint"
+    },
+    {
+      "d": "2026-07-18",
+      "k": "feat",
+      "t": "tutorial click-spotlight",
+      "s": "dim + highlight the exact button to click on tutorial UI steps"
+    },
     {
       "d": "2026-07-18",
       "k": "feat",
