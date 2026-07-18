@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-18T16:04:30Z",
+    "updated": "2026-07-18T16:26:53Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -315,6 +315,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "tutorial entry rework — loading-screen click no longer teleports; the welcome-kill respawn lands you at the tutorial spawn (settings replay keeps instant TP)",
+      "ts": "2026-07-18T16:26:53Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "death shop converted to an authored StarterGui gui — all 3 monetization pieces are editor-movable now; verified live (panel up 0.1s after death)",
+      "ts": "2026-07-18T16:26:53Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -949,6 +961,18 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-18",
+      "k": "feat",
+      "t": "tutorial spawn-after-welcome-kill",
+      "s": "loading-screen start defers the teleport to the post-kill respawn"
+    },
+    {
+      "d": "2026-07-18",
+      "k": "fix",
+      "t": "death shop gui now authored/editable",
+      "s": "KeepCard / GgbCard / PassBar are real StarterGui instances, script is wiring-only"
+    },
     {
       "d": "2026-07-18",
       "k": "fix",
