@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-18T07:29:26.571Z",
+    "updated": "2026-07-18T07:37:19Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -315,6 +315,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "UI + economy pass per Ian: missions tab moved INTO the MENU pill tray (new target emoji option, standalone pill deleted, empty-state row); WATCHES converted from gamepasses to re-buyable DEV PRODUCTS (Gold 199 / Iced 399, old passes off sale, pass owners grandfathered on join) since watches drop on death; settings panel got a blue Replay the Tutorial row (60s cooldown both sides, 2s black screen-dip covers the teleport); tutorial step 1 is just GET A JOB; janitor clock-out toast is just SHIFT ENDED. Death-shop mystery solved: it works in the working copy -- the 07:26Z publish (v2576) likely went out from a second stale Studio window, so live is missing today AND first-death-of-session is always the welcome transition (never shows the shop).",
+      "ts": "2026-07-18T07:37:19Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
