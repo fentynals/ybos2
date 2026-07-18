@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-18T05:01:04Z",
+    "updated": "2026-07-18T05:03:21Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -315,6 +315,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "AMIR fully takes the gas station: overhead AMIR/CASHIER nametag (server-spawned, follows whichever rig hosts the counter), old Jvcrxsh rig deleted from THIS store only (the -30,-3 store keeps its cashier), robbery re-verified wiring AMIR to the gas register.",
+      "ts": "2026-07-18T05:03:21Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
