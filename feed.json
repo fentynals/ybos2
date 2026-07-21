@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-21T04:06:14Z",
+    "updated": "2026-07-21T04:21:57Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -333,6 +333,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "AMIR hands-up fixed — the gas-station robbery was manual-posing his loose constraint rig and the ball-sockets thrashed his whole body. GasStationRobbery now plays Ian's Moon-Animator handsup (AnimSaves KeyframeSequence registered at runtime, no upload needed); manual statue-pose kept as fallback for Jvcrxsh. Verified live: both hands raise above head and drop clean via the real robbery loop.",
+      "ts": "2026-07-21T04:21:57Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -985,6 +991,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-21",
+      "k": "fix",
+      "t": "AMIR hands-up animation",
+      "s": "Robbery surrender now plays the rig's authored Moon Animator pose; statue fallback for plain rigs"
+    },
     {
       "d": "2026-07-21",
       "k": "fix",
