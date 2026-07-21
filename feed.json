@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-21T04:21:57Z",
+    "updated": "2026-07-21T04:42:08Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -333,6 +333,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Jvcrxsh hands-up + cashier talk-cam fixed — the robbery anim path now force-unanchors constraint rigs at boot (an anchored rig played the track with zero visible motion), and NPCTalkCameraClient learned panel-based dialogs so hold-E on AMIR/Jvcrxsh locks the dialogue camera like every other NPC. Both verified live in play mode.",
+      "ts": "2026-07-21T04:42:08Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -991,6 +997,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-21",
+      "k": "fix",
+      "t": "Cashier talk camera + Jvcrxsh hands-up",
+      "s": "Dialogue camera now locks on cashiers; both cashiers play the authored surrender animation"
+    },
     {
       "d": "2026-07-21",
       "k": "fix",
