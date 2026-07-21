@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-21T16:52:48Z",
+    "updated": "2026-07-21T17:15:39Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -333,6 +333,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Dropped-gun fall-through fix: invisible physics shell (min 0.8 stud collider) around every physics pickup + watchdog tunnel guard that snaps a gun back to the drop-point ground if the map vanishes below it. 21/21 map pickups verified grounded in play.",
+      "ts": "2026-07-21T17:15:39Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1021,6 +1027,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-21",
+      "k": "fix",
+      "t": "Gun pickups can't fall through the floor",
+      "s": "Physics shell collider + tunnel guard on spawnPickup; thin gun parts no longer tunnel through thin floors or the map."
+    },
     {
       "d": "2026-07-21",
       "k": "fix",
