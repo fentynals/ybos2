@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-21T17:15:39Z",
+    "updated": "2026-07-21T17:21:07Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -333,6 +333,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Decor seat sweep pt2: the park benches + bus stops still had free-model hold-E sit rigs that bypassed Seat.Disabled via Seat:Sit(). Deleted all 70 prompts+scripts; exterior decor now fully unsittable. Play-verified, LightConfig re-scan clean.",
+      "ts": "2026-07-21T17:21:07Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1027,6 +1033,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-21",
+      "k": "fix",
+      "t": "Hold-E sit prompts stripped from exterior decor",
+      "s": "Park bench / bus stop free-model sit rigs bypassed the decor seat-disable sweep; 70 prompts+scripts removed."
+    },
     {
       "d": "2026-07-21",
       "k": "fix",
