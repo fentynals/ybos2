@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-21T04:42:08Z",
+    "updated": "2026-07-21T05:15:12Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -333,6 +333,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "out",
+      "msg": "Per Ian: cashier talk-cam removed again (TalkPrompt now stamps the _NoTalkCam opt-out, verified live on the prompt) and all 319 decor seats disabled map-wide (turfs, bank, house, picnic/swing, city model) — newmap's parked cars kept theirs, they're real drivable A-Chassis rides.",
+      "ts": "2026-07-21T05:15:12Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -997,6 +1003,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-21",
+      "k": "fix",
+      "t": "Decor seat sweep",
+      "s": "319 decor seats disabled so players stop snapping onto furniture; drivable cars untouched"
+    },
     {
       "d": "2026-07-21",
       "k": "fix",
