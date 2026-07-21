@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-21T01:54:15.993Z",
+    "updated": "2026-07-21T04:06:14Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -333,6 +333,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "IP scrub — renamed the iPhone 16 tool to Phone 16 (DMCA/trademark safety). Both Tool instances (Workspace + ServerStorage) plus PhoneApps/PhoneGiver refs patched; full-place scan shows zero iPhone strings left.",
+      "ts": "2026-07-21T04:06:14Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -979,6 +985,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-21",
+      "k": "fix",
+      "t": "Phone 16 rename",
+      "s": "Dropped Apple branding from the phone tool; all code refs updated, place scan clean"
+    },
     {
       "d": "2026-07-18",
       "k": "feat",
