@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-21T13:20:20.275Z",
+    "updated": "2026-07-21T16:52:48Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -333,6 +333,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "TUTORIAL button back on the loading screen for everyone — killed the TutorialDone hide + click guard (it had stopped showing for anyone). Replays open from the loading screen; $10k/500XP/G17 EXTBOX reward stays first-time-only. Verified in play.",
+      "ts": "2026-07-21T16:52:48Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1015,6 +1021,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-21",
+      "k": "fix",
+      "t": "Loading-screen TUTORIAL button always visible",
+      "s": "No longer hides after tutorial completion (it had vanished for everyone); rewards remain first-completion-only."
+    },
     {
       "d": "2026-07-21",
       "k": "fix",
