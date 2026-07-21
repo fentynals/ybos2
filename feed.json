@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-21T05:15:12Z",
+    "updated": "2026-07-21T05:31:41Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -333,6 +333,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Dropped guns are physical now — welded assembly tumbles to the ground and auto-anchors reachable (no more mid-air unreachable drops), pickup by click OR walk-over. All 22 map pickups verified settled + clickable in play.",
+      "ts": "2026-07-21T05:31:41Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Jail teleport verified + hardened — arrests land in a PDSPAWNS cell (in-cell by 0.9s, re-pin loop beats any competing spawn teleport for 5s). Found on the way: FIRSTDAYOUT part is missing so released prisoners skip their walk-out teleport.",
+      "ts": "2026-07-21T05:31:41Z"
+    },
     {
       "who": "STUDIO",
       "cls": "out",
@@ -1003,6 +1015,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-21",
+      "k": "fix",
+      "t": "Jail teleport + physical gun drops",
+      "s": "Arrests reliably land in PDSPAWNS cells; dropped guns fall to the ground and add click pickup"
+    },
     {
       "d": "2026-07-21",
       "k": "fix",
