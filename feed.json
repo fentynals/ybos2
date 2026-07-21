@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-21T17:21:07Z",
+    "updated": "2026-07-21T18:07:26Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -333,6 +333,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "AMIR cashier: WANT A JOB? now closes the dialog instantly on click (clock-in toast carries the instruction). Verified live at the station.",
+      "ts": "2026-07-21T18:07:26Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "out",
+      "msg": "Investigated 'players respawn with the gun from their corpse': NOT reproducible on the current build (controlled kill-respawn repro is clean — gun goes to the death bag only). Suspect the live publish predates the DeathBag rework, or victims respawn near their corpse and walk over their own bag.",
+      "ts": "2026-07-21T18:07:26Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1033,6 +1045,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-21",
+      "k": "fix",
+      "t": "AMIR job dialog closes on YES",
+      "s": "Clicking WANT A JOB? closes the cashier UI immediately; server reply is suppressed, ON THE CLOCK toast still fires."
+    },
     {
       "d": "2026-07-21",
       "k": "fix",
