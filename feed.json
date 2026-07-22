@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-22T18:59:53.879Z",
+    "updated": "2026-07-22T19:59:23Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -339,6 +339,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "ONE PLAYER PER GARAGE: chop-shop bays now reject a second car while occupied (GARAGE OCCUPIED toast, auto-enter when it frees) + live GarageOccupied attr for future signage. Verified full capture/exit cycle in play",
+      "ts": "2026-07-22T19:59:23Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1069,6 +1075,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-22",
+      "k": "feat",
+      "t": "One player per garage",
+      "s": "Busy chop-shop bays reject new captures with an OCCUPIED toast; waiting drivers auto-enter when the bay frees"
+    },
     {
       "d": "2026-07-22",
       "k": "feat",
