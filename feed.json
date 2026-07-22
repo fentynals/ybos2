@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-22T13:24:54.166Z",
+    "updated": "2026-07-22T16:39:38Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -339,6 +339,24 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "COMBAT-LOG LEAVE SHIPPED: quit while combat-tagged and your gun drops as a loot bag WITH its real mag + your reserve rounds, and 100% of on-hand cash hits the floor. Clean leavers lose NOTHING (guns, mags, reserve ammo, cash all persist)",
+      "ts": "2026-07-22T16:39:38Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "Found: every disconnect secretly ran the DEATH path - counted a fake death, wiped carried guns from the save, scheduled a ghost bag drop. Leaves are now snapshot-reconciled and death counters restored exactly",
+      "ts": "2026-07-22T16:39:38Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Vault guns keep their loaded mag across deposit/withdraw + ammo pools persist across sessions (welcome-kill no longer wipes them). Verified E2E in play: kick-leave drops, rejoin restores exact mags + reserve",
+      "ts": "2026-07-22T16:39:38Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1051,6 +1069,18 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-22",
+      "k": "feat",
+      "t": "Combat-log leave drops gun+ammo+cash",
+      "s": "Hostile quitters drop a lootable bag (real per-gun ammo) plus all on-hand cash; clean leavers keep everything including mags and reserve ammo"
+    },
+    {
+      "d": "2026-07-22",
+      "k": "fix",
+      "t": "Leave-teardown death bug",
+      "s": "Disconnects no longer count a death, eat saved guns, or spawn ghost bags; vault now preserves mag ammo"
+    },
     {
       "d": "2026-07-21",
       "k": "fix",
