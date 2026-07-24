@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-24T19:36:01Z",
+    "updated": "2026-07-24T19:52:28Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -351,6 +351,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "FOOD STANDS reworked: one Buy Food prompt per cart opens a chooser UI (pick pizza/burger, live cash readout, proper 'not enough cash' / carry-cap toasts) with server-side distance validation. Also: bank-truck explosion now camera-shakes nearby players, and car passengers no longer earn or drain stamina off the car's speed",
+      "ts": "2026-07-24T19:52:28Z"
+    },
     {
       "who": "STUDIO",
       "cls": "fx",
@@ -1129,6 +1135,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-24",
+      "k": "feat",
+      "t": "Food stand chooser UI + truck shake + stamina fix",
+      "s": "Single Buy Food prompt opens a pick-your-food panel; bank truck explosion shakes cameras; riding in cars no longer trains/drains stamina"
+    },
     {
       "d": "2026-07-24",
       "k": "fix",
