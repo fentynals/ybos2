@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-24T19:52:28Z",
+    "updated": "2026-07-24T20:09:40Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -351,6 +351,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "BANK TRUCK got a brain: routes now skip streets that gained buildings (blockcast-validated edges) and the truck brakes for walls/parked cars ahead instead of phasing through them - 6s of being blocked and the armored truck shoves through so it can't be griefed to a standstill. Verified live: dead stop at a wall, instant resume. Plus: cash drops show a fixed-size green $ amount tag (30-stud range), and dumpsters can now cough up 5-30 rounds of weighted-random ammo (15% roll)",
+      "ts": "2026-07-24T20:09:40Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1135,6 +1141,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-24",
+      "k": "feat",
+      "t": "Bank truck obstacle brain + cash tags + dumpster ammo",
+      "s": "Truck blockcasts ahead and brakes instead of ghosting through walls; dropped cash shows its amount; trash cans roll ammo finds"
+    },
     {
       "d": "2026-07-24",
       "k": "feat",
