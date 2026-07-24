@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-24T18:16:37Z",
+    "updated": "2026-07-24T18:34:29Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -351,6 +351,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "TESTER PANEL shipped: Celestial Studios Testers-role QA tool (rank-gated) - exact money/bank/level setters + reset, admin-grade fly + walkspeed slider + POI teleports, session-only toggles for every wired gamepass, and one-click dev-product grant tests that run the REAL purchase handlers",
+      "ts": "2026-07-24T18:34:29Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "REVENUE BUG (found while building the tester panel): the CASH 5K/25K/100K/500K dev products had NO grant handler - live purchases were held then auto-refunded by Roblox. Wired real cash grants. Loadouts/bounty/turf-deed/armor-plate products are STILL unwired and need grant design",
+      "ts": "2026-07-24T18:34:29Z"
+    },
     {
       "who": "STUDIO",
       "cls": "fx",
@@ -1111,6 +1123,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-24",
+      "k": "feat",
+      "t": "Tester panel for the Testers role",
+      "s": "Group-gated QA panel: stat setters, fly/walkspeed/teleports, gamepass toggles, dev-product grant tests; also fixed cash dev products never granting"
+    },
     {
       "d": "2026-07-24",
       "k": "fix",
