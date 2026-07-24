@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-24T13:20:34.785Z",
+    "updated": "2026-07-24T17:10:19Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -351,6 +351,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "MUTE MUSIC FIX: the Settings Music toggle now actually holds — entering a building used to restart the POI playlist at full volume even with Music OFF (fade-in path skipped the mute check). Gated both fade-ins; city ambience untouched. Verified in play: enter muted = silent, unmute mid-building = fades up, outdoors ambience normal",
+      "ts": "2026-07-24T17:10:19Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1087,6 +1093,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-24",
+      "k": "fix",
+      "t": "Music toggle holds through building entry",
+      "s": "Settings > Music OFF now stays silent when you walk into stores; city ambience unaffected"
+    },
     {
       "d": "2026-07-22",
       "k": "feat",
