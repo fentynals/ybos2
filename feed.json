@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-24T19:14:30.227Z",
+    "updated": "2026-07-24T19:36:01Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -351,6 +351,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "GUN-VANISH REPORT diagnosed: combat-log forfeiture fires on hostile tags players never notice (getting shot, NPC-cop fire, car hits, ATM shots, heist gear) AND a leftover /ht debug chat command let anyone self-tag - removed it, and hostile leaves now log the forfeited guns server-side. Also: /tp now opens the tester panel",
+      "ts": "2026-07-24T19:36:01Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1123,6 +1129,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-24",
+      "k": "fix",
+      "t": "Removed /ht hostile debug command + forfeit logging",
+      "s": "Any player could self-tag hostile and silently forfeit their guns on leave; combat-log forfeitures now print to server logs. /tp opens the tester panel"
+    },
     {
       "d": "2026-07-24",
       "k": "feat",
