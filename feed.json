@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-24T17:10:19Z",
+    "updated": "2026-07-24T17:53:32Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -351,6 +351,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "LOW GRAPHICS MODE shipped: new Settings toggle strips all building textures/materials to flat, kills shadows + Blur/DoF post FX, shuts ~600 static lights + particles, and adds 700-stud draw-distance culling with haze cover. Fully reversible client-side, +46% FPS verified in Studio at spawn (21.7 -> 31.7)",
+      "ts": "2026-07-24T17:53:32Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1093,6 +1099,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-24",
+      "k": "feat",
+      "t": "Low Graphics mode",
+      "s": "Settings toggle: flat textures, no shadows/post FX, static lights off, 700-stud draw distance; big FPS win on weak devices"
+    },
     {
       "d": "2026-07-24",
       "k": "fix",
