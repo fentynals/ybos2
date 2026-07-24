@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-24T17:53:32Z",
+    "updated": "2026-07-24T18:06:51Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -351,6 +351,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "LOW GFX v2 after live test: texture strip is now map/buildings only - NPC rigs, ATMs, gun props, trees/bushes (EXTERIOR DECORATION) and car-spawner decals all keep their look; baked mesh textures never blanked. Also stubbed the phone Messaging app (icon stays, opens a NOT AVAILABLE screen)",
+      "ts": "2026-07-24T18:06:51Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1099,6 +1105,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-24",
+      "k": "fix",
+      "t": "Low GFX scoped to buildings + Messaging stubbed",
+      "s": "Rigs/ATMs/foliage/props keep textures in low mode; phone Messaging shows NOT AVAILABLE for now"
+    },
     {
       "d": "2026-07-24",
       "k": "feat",
