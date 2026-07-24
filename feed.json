@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-24T18:06:51Z",
+    "updated": "2026-07-24T18:16:37Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -351,6 +351,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "TUTORIAL FIRST-CLICK BUG: fresh live servers gave every first-join TUTORIAL click a phantom 60s cooldown (cooldown timer seeded from server uptime), so players just died to the welcome-kill with a COOLDOWN toast. Fixed + verified: first click now lands at the tutorial spawn with TUTORIAL STARTED. Also removed the Streamer Mode setting per Ian",
+      "ts": "2026-07-24T18:16:37Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1105,6 +1111,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-24",
+      "k": "fix",
+      "t": "Tutorial button works on first join",
+      "s": "Phantom cooldown on fresh servers killed the loading-screen tutorial flow; first click now starts the tutorial properly. Streamer Mode setting removed"
+    },
     {
       "d": "2026-07-24",
       "k": "fix",
