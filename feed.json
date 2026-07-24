@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-24T20:09:40Z",
+    "updated": "2026-07-24T20:32:35Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -351,6 +351,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "POLISH BATCH: death 'ears ringing' is victim-only now (was a positional corpse sound everyone within 70 studs heard), tester reset also resets stamina level (two monotonic guards needed force paths), dumpster ammo bumped to 30%, :truckpath admin command draws the bank truck's live route for debugging. All play-verified",
+      "ts": "2026-07-24T20:32:35Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1141,6 +1147,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-24",
+      "k": "fix",
+      "t": "Victim-only death ring + stamina reset + truck path debug",
+      "s": "Death ringing no longer broadcasts to bystanders; tester stat reset covers stamina; :truckpath visualizes the armored truck route"
+    },
     {
       "d": "2026-07-24",
       "k": "feat",
