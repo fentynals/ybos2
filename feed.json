@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-24T20:32:35Z",
+    "updated": "2026-07-24T20:38:46Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -351,6 +351,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "DRIVER QOL + TRUCK ROUTE AUTHORING: passengers are now invisible to their driver (client-side only - everyone else still sees them), and the bank truck's road graph lives in Workspace.TRUCKPATH as draggable node parts with Links attributes - routes rebuild from the live parts every spawn, verified by nudging a node mid-session",
+      "ts": "2026-07-24T20:38:46Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1147,6 +1153,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-24",
+      "k": "feat",
+      "t": "Hide passengers from driver + editable truck routes",
+      "s": "Drivers get a clear view (passengers hidden locally); bank truck routes are now authored by dragging TRUCKPATH parts in the editor"
+    },
     {
       "d": "2026-07-24",
       "k": "fix",
