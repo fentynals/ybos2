@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T03:38:29Z",
+    "updated": "2026-07-25T04:27:21Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "LAUNDROMAT v2 + LOOT OVERHAUL: dirty cash is now an inventory item (tiered stack icons, hover shows the amount, display-only) - hold E at any washer to feed your whole stack in, 33% cut, claim the clean money from the drum with a 10s owner window before it turns stealable. Chased a 2-hour ghost to find the game-wide prompt-folder script silently reverting prompt text. Plus: duplicate guns fully legal (looted guns stamp the previous owner's name), bullets pass wall barriers, bank-truck hit numbers, tiered cash icon on the money HUD",
+      "ts": "2026-07-25T04:27:21Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1183,6 +1189,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-25",
+      "k": "feat",
+      "t": "Dirty-cash item + washer claim/steal + dup guns",
+      "s": "Laundering is an item-driven loop with a steal window; same-gun dupes work everywhere and looted guns carry the victim's name"
+    },
     {
       "d": "2026-07-25",
       "k": "feat",
