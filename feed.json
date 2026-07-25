@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T21:36:07Z",
+    "updated": "2026-07-25T21:46:10Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "MOBILE MINIMAP SOLVED: authored MinimapGui_Mobile + ImageRect windowing -- the map fills the ENTIRE circle on phones (no CanvasGroup). Verified on the device emulator: streets, POI labels, N badge all inside the ring. Ian can edit the mobile gui directly.",
+      "ts": "2026-07-25T21:46:10Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1291,6 +1297,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-25",
+      "k": "feat",
+      "t": "Mobile minimap (full circle) + editable mobile gui",
+      "s": "Phone minimap finally renders the real map filling the whole circle, with POIs tracking correctly; minimap and side dock both have authored _Mobile copies Ian can restyle in the editor."
+    },
     {
       "d": "2026-07-25",
       "k": "fix",
