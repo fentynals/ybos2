@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T22:02:09Z",
+    "updated": "2026-07-25T22:07:12Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Welcome-death UI gate: mobile shows NO player UI until after the welcome kill respawn; PC holds just the minimap. 15s failsafe so UI can never stay stuck hidden. Tab leaderboard also disabled game-wide.",
+      "ts": "2026-07-25T22:07:12Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
