@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T23:01:08Z",
+    "updated": "2026-07-25T23:12:43Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "HUD editor: PERSISTENCE PROVEN (save, rejoin, exact restore of both profiles to the pixel). Panel compacted to 470x92 with HIDE/SHOW chevron. Remaining: thumb-test drag on a real device.",
+      "ts": "2026-07-25T23:12:43Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
