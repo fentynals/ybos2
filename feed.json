@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T01:55:35.466Z",
+    "updated": "2026-07-25T02:28:04Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "TRUCKPATH v2: the route network is now authored as solid neon RAIL parts (the viz look Ian liked) - duplicate a rail, drag it so ends touch, and intersections derive automatically; rails hide from players at runtime. Round-trips the original graph exactly (24 intersections / 32 edges)",
+      "ts": "2026-07-25T02:28:04Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
