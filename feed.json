@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T21:46:10Z",
+    "updated": "2026-07-25T21:52:05Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Shop/Crew/Friends/Playtime bottom-cutoff on mobile root-caused (two stacked bugs: panels parked at y=0.56 + fit ignored the topbar inset) -- panels now re-center and fit the real gui space. Verified on the emulator: all four <=320px tall with margins.",
+      "ts": "2026-07-25T21:52:05Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
