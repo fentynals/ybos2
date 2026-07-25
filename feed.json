@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T16:02:22Z",
+    "updated": "2026-07-25T16:28:42Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "BIG SESSION: ATM/HOME vault split shipped (new empty ATM vault + ATM VAULT+ pass 449R$), settings now persist across rejoins, dirty-cash tap pops the laundromat hint (slide + fade), every car death gets the truck boom + shake, laundromat gate v2 (roof/floor raycast — wall leak dead). All E2E verified in play mode.",
+      "ts": "2026-07-25T16:28:42Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1219,6 +1225,24 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-25",
+      "k": "feat",
+      "t": "ATM vault split + ATM VAULT+ pass",
+      "s": "ATMs now host a separate, empty 2-slot vault (gamepass expands to 6); the old vault with everyone's stuff became the house-safe HOME vault."
+    },
+    {
+      "d": "2026-07-25",
+      "k": "feat",
+      "t": "Settings persist across rejoins",
+      "s": "Mute music (and every settings toggle) finally sticks — server-side store re-stamps on join."
+    },
+    {
+      "d": "2026-07-25",
+      "k": "fix",
+      "t": "Laundromat wall-leak v2 + polish",
+      "s": "Room check is now roof/floor raycasts (POI box overshot the walls). Dirty-cash tap slides in a CLEAN YOUR MONEY hint. Car deaths reuse the truck explosion FX."
+    },
     {
       "d": "2026-07-25",
       "k": "fix",
