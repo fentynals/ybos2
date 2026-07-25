@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T21:11:28Z",
+    "updated": "2026-07-25T21:21:25Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "Minimap blue-on-mobile: CanvasGroup rasterizer fails on phones (PC was fine, asset healthy) -- MinimapClient now swaps it for a plain clipping Frame on touch. Suite panels (shop/crew/friends/playtime) are now FULL-BLEED mobile sheets: fill the phone screen, upscale for touch instead of shrinking desktop layouts.",
+      "ts": "2026-07-25T21:21:25Z"
+    },
     {
       "who": "STUDIO",
       "cls": "fx",
