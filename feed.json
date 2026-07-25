@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T04:50:59Z",
+    "updated": "2026-07-25T05:20:17Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "ECONOMY OVERHAUL locked in: dirty cash only spends at the criminal vendors (black market, clone cards, gloves, food) - guns, ammo, houses and everything legit take BANK. ATM banking is deleted (the laundromat is now the ONLY door from dirty to clean), and ATMs became a robbery target + a tiny 2-slot item vault with a Deep Pockets gamepass upgrade to 6. Changelog bumped to V1.5",
+      "ts": "2026-07-25T05:20:17Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1195,6 +1201,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-25",
+      "k": "feat",
+      "t": "Dirty/clean economy split + ATM item vault",
+      "s": "Legit shops take bank only, laundromat is the sole cash-to-bank path, ATMs hold a 2-slot vault with a Robux size upgrade"
+    },
     {
       "d": "2026-07-25",
       "k": "feat",
