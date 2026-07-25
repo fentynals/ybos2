@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T16:28:42Z",
+    "updated": "2026-07-25T16:41:26Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Console inventory-lock fixed: dirty cash stays un-cyclable on gamepad (local disable, PC/mobile keep the tap hint). Money icon tiers reshuffled per Ian — old $10k icon now covers everything under $20k.",
+      "ts": "2026-07-25T16:41:26Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
