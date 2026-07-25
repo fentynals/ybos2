@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T22:13:50Z",
+    "updated": "2026-07-25T23:01:08Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Welcome death is SILENT now (default grunt muted on the first character only; real deaths keep it). HUD layout editor built end-to-end -- drag proxies, PVP/CAR tabs, undo/redo, scale, DataStore saves -- interactive verification continues.",
+      "ts": "2026-07-25T23:01:08Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
