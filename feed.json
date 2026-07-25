@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T16:56:26Z",
+    "updated": "2026-07-25T17:22:00Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "Found the REAL laundromat-hint stuck bug: parked spot y=-80 isn't off-screen (topbar inset) -- bottom 38px peeked at the top permanently. Now parked at -160 + full fade. Live still shows the old one until next publish.",
+      "ts": "2026-07-25T17:22:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
