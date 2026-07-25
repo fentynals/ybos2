@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T02:28:04Z",
+    "updated": "2026-07-25T02:47:07Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "IAN'S CUSTOM TRUCK ROUTE validated: cleaned a leftover disconnected rail dupe, then caught the truck cutting through the BANK on the spawn leg (old spawn point glided an unvalidated line to the rearranged network) - trucks now spawn ON the rail network itself. 15s test drive on the new layout: zero stalls, street level the whole way. Optional: name a rail START to pin where trucks appear",
+      "ts": "2026-07-25T02:47:07Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
