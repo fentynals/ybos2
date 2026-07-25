@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T21:21:25Z",
+    "updated": "2026-07-25T21:25:53Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Phone minimap RENDERS now (CanvasGroup swap confirmed by Ian) -- last drift bug was the auto-fitter scaling the map's pan image; self-managed UIs are now excluded. Ian got an editable SideButtons_Mobile dock copy in StarterGui (one-number MobileScale resize).",
+      "ts": "2026-07-25T21:25:53Z"
+    },
     {
       "who": "STUDIO",
       "cls": "fx",
