@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T02:47:07Z",
+    "updated": "2026-07-25T02:58:51Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "BANK TRUCK finale rework: routes are 3-minute runs now, and the REAL detonation moved to the despawn moment - the wreck burns, then erupts with an ULTRAKILL boom heard across the block, triple explosion visuals and a screen shake 2x the C4 breach, right as the $50k rains out. Verified end to end on Ian's custom rail route",
+      "ts": "2026-07-25T02:58:51Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1171,6 +1177,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-25",
+      "k": "feat",
+      "t": "3-minute bank truck + despawn detonation",
+      "s": "Longer chases; the big boom + shake now lands when the cash spills, not when the truck breaks"
+    },
     {
       "d": "2026-07-24",
       "k": "feat",
