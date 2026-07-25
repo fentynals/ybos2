@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T21:52:05Z",
+    "updated": "2026-07-25T22:02:09Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Mobile minimap polish: POI labels now clip to the CIRCLE (radial visibility -- no more GUN STORE poking outside the ring) and shrink to 55% on the small circle. Verified live on the emulator's touch path.",
+      "ts": "2026-07-25T22:02:09Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
