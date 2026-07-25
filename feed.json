@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T22:07:12Z",
+    "updated": "2026-07-25T22:13:50Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "LoadingScreen_Mobile shipped -- authored duplicate Ian can position for phones, device-picked at boot (unused twin destroyed). Verified on the emulator: mobile screen shows, Skip dismisses, HUD arrives after the welcome death.",
+      "ts": "2026-07-25T22:13:50Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
