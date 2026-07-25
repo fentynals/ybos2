@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T16:49:26Z",
+    "updated": "2026-07-25T16:56:26Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Laundromat hint polish: fades 1->0->1 while it slides (CanvasGroup), plus anti-stuck watchdog + hide-on-respawn. Spam-click verified clean.",
+      "ts": "2026-07-25T16:56:26Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
