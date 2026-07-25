@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T13:05:28.226Z",
+    "updated": "2026-07-25T15:50:18Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "HELLCAT ENGINE SOUND RESTORED — duplicate AC6_FE_Sounds remote was shadowing the real handler (no playSound, no volume). Patched handler, killed the dupe, added exit cleanup. Verified in play mode.",
+      "ts": "2026-07-25T15:50:18Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "Found: Hellcat Body.Exh 8-layer exhaust rig DELETED from template (sound ids unrecoverable in-place). Maybach + Z06 carry the same double-remote pattern with a broken idle layer.",
+      "ts": "2026-07-25T15:50:18Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1201,6 +1213,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-25",
+      "k": "fix",
+      "t": "Hellcat engine sound restored",
+      "s": "Two same-named sound remotes fought; crippled one won and the engine went mute (only redline pops survived). One handler now, plays + cleans up on exit."
+    },
     {
       "d": "2026-07-25",
       "k": "feat",
