@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T15:50:18Z",
+    "updated": "2026-07-25T16:02:22Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "LAUNDROMAT wall-peek killed — _InLaundromat PLAYERSTATUS (Ian's spec): outside the room = no LANDRY prompt, no panel, server rejects ops. ATMs got real line-of-sight too. E2E verified incl. exploit path.",
+      "ts": "2026-07-25T16:02:22Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1213,6 +1219,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-25",
+      "k": "fix",
+      "t": "Laundromat room gate + ATM prompt LOS",
+      "s": "Hold-E prompts no longer visible or usable through walls: laundromat gated on an in-room player status, ATMs on camera line-of-sight."
+    },
     {
       "d": "2026-07-25",
       "k": "fix",
