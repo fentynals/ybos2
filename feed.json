@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T20:46:11Z",
+    "updated": "2026-07-25T21:11:28Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "MINIMAP 'just blue' root cause: the map image asset NEVER cleared moderation (dead since 07-12, all platforms). Fresh re-encoded upload swapped in. Also: dock 0.50 on mobile w/ big visible arrow, minimap 25% smaller via direct resize (UIScale was corrupting the map math).",
+      "ts": "2026-07-25T21:11:28Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
