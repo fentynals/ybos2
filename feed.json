@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T16:41:26Z",
+    "updated": "2026-07-25T16:49:26Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Admin TP panel got a Car Part row — shows live pickup count, teleports to spawned car parts, cycles through them per click. Verified with real UI clicks.",
+      "ts": "2026-07-25T16:49:26Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
