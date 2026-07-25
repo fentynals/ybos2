@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T21:25:53Z",
+    "updated": "2026-07-25T21:36:07Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Mobile minimap now pans inside an inscribed window within the circle bezel (no more square poking out); collapse-arrow runtime styling removed -- Ian's authored SideButtons_Mobile fully owns the look.",
+      "ts": "2026-07-25T21:36:07Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
