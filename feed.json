@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T23:21:44Z",
+    "updated": "2026-07-25T23:36:16Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "HUD LAYOUT EDITOR SHIPPED and hand-confirmed by Ian: drag works. Authored HudEditGui in StarterGui (Ian restyles it, code wires it), bottom-left compact panel, left-edge vertical resize, HIDE tuck-away, per-profile undo/redo, DataStore persistence, inventory disabled while arranging.",
+      "ts": "2026-07-25T23:36:16Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1339,6 +1345,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-25",
+      "k": "feat",
+      "t": "HUD Layout Editor (drag your mobile buttons)",
+      "s": "Players drag, resize, and save their own PVP and CAR button layouts from Settings > UI ARRANGEMENT; layouts persist across sessions."
+    },
     {
       "d": "2026-07-25",
       "k": "feat",
