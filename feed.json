@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T18:55:36.711Z",
+    "updated": "2026-07-25T20:46:11Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "MOBILE SWEEP DONE (phone-shaped viewport 781x360): every shop/ATM/vault/laundry panel verified fitting; adapter deep-scan fixed nested panels (CloneCard/Burner/MaskGlove/Refuel); DEATH SHOP was overflowing the top on phones -- wrapped+fitted; dock starts collapsed w/ arrow; loading screen pins movement buttons hidden; every close button is now the original picture X.",
+      "ts": "2026-07-25T20:46:11Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1261,6 +1267,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-25",
+      "k": "fix",
+      "t": "Mobile sweep + unified close buttons",
+      "s": "All panels fit a phone screen (death shop was clipping off-screen), side dock starts collapsed with the slide arrow, movement buttons hidden during loading, and every UI shares the original picture X."
+    },
     {
       "d": "2026-07-25",
       "k": "fix",
