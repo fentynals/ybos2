@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T17:38:04Z",
+    "updated": "2026-07-25T17:51:12Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "UI polish round: tester button folded into the MENU pill, crew-panel double-scale reverted (makePanel already fits mobile), side dock at 0.75, Settings/Friends/Playtime lists now scroll, zombie groans capped to 90 studs, changelog bullets cut to feature names.",
+      "ts": "2026-07-25T17:51:12Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
