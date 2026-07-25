@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T23:12:43Z",
+    "updated": "2026-07-25T23:21:44Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "HUD editor polish per Ian: resize is a tall vertical slider on the left edge (hides with the panel), panel decluttered, grid snap off by default.",
+      "ts": "2026-07-25T23:21:44Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
