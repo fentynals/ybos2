@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T04:27:21Z",
+    "updated": "2026-07-25T04:50:59Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "LAUNDROMAT v3: all 17 washers live with floating status overhead (X:XX WASHING -> 10s WASHED -> WASHED), the wash panel is back - drag your dirty cash into the drum, slider for partial washes, and claiming is a 2-second hold with a fill bar. Owner-locked with reason popups until the steal window opens. Full cycle verified to the dollar",
+      "ts": "2026-07-25T04:50:59Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
