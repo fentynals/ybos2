@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T02:58:51Z",
+    "updated": "2026-07-25T03:38:29Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "LAUNDROMAT SHIPPED: full money-laundering loop - hold E at the machine, feed it dirty cash, the washer runs (real washing-machine sounds at the machine), and after the timer the wash takes its 33% cut and drops clean money in your BANK. Leave mid-wash = refund. Plus POI entry label, overhead sign with Ian's art, and a minimap marker. One catch: Ian's done-chime was a dead 2016 audio id - placeholder ding until he picks a new one",
+      "ts": "2026-07-25T03:38:29Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1177,6 +1183,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-25",
+      "k": "feat",
+      "t": "LAUNDROMAT money laundering",
+      "s": "Wash dirty cash into clean bank money for a 33% cut; washer sounds, timer, POI label, sign and map marker included"
+    },
     {
       "d": "2026-07-25",
       "k": "feat",
