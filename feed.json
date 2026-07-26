@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-25T23:36:16Z",
+    "updated": "2026-07-26T01:09:02Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -357,6 +357,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Garage: 20s same-bay re-entry cooldown (slow leavers were getting sucked back in). Editor safe-area border fixed, movement+inventory locked while arranging, daily X pinned to the gold box, sprint toggle outline.",
+      "ts": "2026-07-26T01:09:02Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
