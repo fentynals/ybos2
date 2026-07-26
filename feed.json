@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-26T01:59:55.672Z",
+    "updated": "2026-07-26T02:12:23Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -363,6 +363,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "DAILY REWARDS per-device chaos root-caused: TWO different device heuristics (gui pick vs fit math) gave touch-laptops/tablets/PCs each a different gui+scaling combo. Now ONE heuristic; PC renders the authored layout EXACTLY (no runtime scaling/repositioning). Verified: desktop gold position byte-identical to StarterGui.",
+      "ts": "2026-07-26T02:12:23Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
