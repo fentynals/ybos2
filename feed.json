@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-26T13:52:12Z",
+    "updated": "2026-07-26T14:19:52Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -363,6 +363,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "New ShopMenu built out to all 7 sections (36 items from the old UISuite catalog, display-only) + scroll-spy tab bump (15% UIScale, click-to-scroll). Play-verified. Purchase wiring pending.",
+      "ts": "2026-07-26T14:19:52Z"
+    },
     {
       "who": "STUDIO",
       "cls": "out",
