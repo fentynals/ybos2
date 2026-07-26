@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-26T18:59:22.256Z",
+    "updated": "2026-07-26T20:12:15Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -363,6 +363,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Big update day wrapped: new shop live-wired + art pass, tutorial forced-scrub + stain arrows, hold-M map + MENU pill map/daily buttons, prone inventory lock, car spawn overhaul (planted, blocked-pad refusal, wheels-on-ground), feet-trail car callout, REMOVE UI hides POI labels. ALL UNSAVED until Ian publishes.",
+      "ts": "2026-07-26T20:12:15Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1387,6 +1393,66 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-26",
+      "k": "feat",
+      "t": "Tutorial: must scrub 1+ stain before the gun step; arrows guide stain-to-stain",
+      "s": "cleanup:stain signal + dynamic mission targets"
+    },
+    {
+      "d": "2026-07-26",
+      "k": "feat",
+      "t": "MENU pill: daily-rewards calendar + full-map buttons; PC map = hold M 1s",
+      "s": "standalone DAILY pill removed; tap M closes"
+    },
+    {
+      "d": "2026-07-26",
+      "k": "feat",
+      "t": "PRONE disables inventory (unequips + hides hotbar until standing)",
+      "s": "covers keyboard/gamepad/mobile prone paths"
+    },
+    {
+      "d": "2026-07-26",
+      "k": "feat",
+      "t": "Car callout: mission-style feet chevron trail to your spawned car",
+      "s": "replaces YOUR CAR tag + bobbing arrow"
+    },
+    {
+      "d": "2026-07-26",
+      "k": "fix",
+      "t": "Car spawns: planted on pad (no air-drop), THERE'S ALREADY A CAR HERE on blocked pad, wheels touch ground exactly, enter prompt only when settled",
+      "s": "PhoneServer + CarDealer; fixes cars vanishing via overlap fling"
+    },
+    {
+      "d": "2026-07-26",
+      "k": "fix",
+      "t": "Laundromat leave rules: clean leavers auto-bank payout; combat-loggers' wash stays in the server",
+      "s": "verified both branches e2e"
+    },
+    {
+      "d": "2026-07-26",
+      "k": "feat",
+      "t": "New shop UI fully live: 7 sections, 36 items, real purchase prompts, PermanentMarker font, per-card color art (grey/green/purple/white/B&W/red/golden)",
+      "s": "dock SHOP button cutover; old panel kept as fallback; Robot Miner / Neon Kill / Personal Dealer / Place Bounty / Turf Deed removed"
+    },
+    {
+      "d": "2026-07-26",
+      "k": "feat",
+      "t": "Daily rewards Day-30 shows HELLRAT image (628-part spinning viewport removed)",
+      "s": "small perf win on the rewards screen"
+    },
+    {
+      "d": "2026-07-26",
+      "k": "feat",
+      "t": "Admin REMOVE UI also hides POI signs, dealer tags and all world labels",
+      "s": "clean recording mode"
+    },
+    {
+      "d": "2026-07-26",
+      "k": "feat",
+      "t": "Hellcat added to the dealership showroom row",
+      "s": "was missing from workspace entirely"
+    },
     {
       "d": "2026-07-26",
       "k": "feat",
