@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-26T14:19:52Z",
+    "updated": "2026-07-26T15:25:32Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -363,6 +363,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "New shop fully wired: dock SHOP tile cutover to ShopMenu, open/close + death-close, all 42 BUY buttons prompt real passes/products (grants already live in MonetizationServer), OWNED labels. Play-verified test purchase. Unsaved until Ian publishes.",
+      "ts": "2026-07-26T15:25:32Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1375,6 +1381,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-26",
+      "k": "feat",
+      "t": "Commissioned shop UI live-wired (7 sections, 36 items, scroll-spy tabs)",
+      "s": "Replaces UISuite ShopPanel; old panel kept as fallback"
+    },
     {
       "d": "2026-07-25",
       "k": "feat",
