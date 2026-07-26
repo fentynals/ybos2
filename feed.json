@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-26T13:02:21.873Z",
+    "updated": "2026-07-26T13:52:12Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -363,6 +363,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "out",
+      "msg": "Imported commissioned ShopMenu UI (Soulja.rbxm) into StarterGui via MCP content-folder bridge; verified script-free (381 descendants, no LightConfig). Wiring + reskin pending.",
+      "ts": "2026-07-26T13:52:12Z"
+    },
     {
       "who": "STUDIO",
       "cls": "fx",
