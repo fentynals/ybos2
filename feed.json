@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-26T15:25:32Z",
+    "updated": "2026-07-26T16:14:23Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -363,6 +363,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Laundromat leave rules per Ian: clean leavers auto-bank their wash payout (verified +$670 e2e); combat-loggers' loads stay in the server (spin on, stealable, pending-claim on same-server rejoin, die with the server -- verified no credit). Unsaved until publish.",
+      "ts": "2026-07-26T16:14:23Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
