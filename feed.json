@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-27T22:36:50Z",
+    "updated": "2026-07-27T22:53:02Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -369,6 +369,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "SHOP MYSTERY SOLVED — the commissioned shop gui shipped Enabled=false and every 'open' rendered invisible ('clicking it it just disappears'). Enabled in StarterGui + setOpen now force-enables. First time the shop has actually rendered in-game — screenshot confirmed",
+      "ts": "2026-07-27T22:53:02Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "cha-ching on claims: CLAIM/COLLECT/REDEEM buttons in any money UI now play a cash-register sound instead of the plain click (text matched at click time so runtime-built claim buttons count)",
+      "ts": "2026-07-27T22:53:02Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1495,6 +1507,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-27",
+      "k": "fix",
+      "t": "Shop UI finally renders (gui shipped disabled) + money claim sounds everywhere",
+      "s": "setOpen force-enables the gui as armor against suppressor sweeps"
+    },
     {
       "d": "2026-07-27",
       "k": "feat",
