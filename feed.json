@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-27T04:43:45Z",
+    "updated": "2026-07-27T08:47:32Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -369,6 +369,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "PUBLISHED to Roblox 08:46 UTC -- everything from the 2-day batch is now live: new shop (wired, art, juice, gifting), LOOTING pass, shields + mini potions, leaderboards, tutorial money loop + gift, quests, codes, hold-M map, street names, first-join graphics chooser.",
+      "ts": "2026-07-27T08:47:32Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1405,6 +1411,42 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-27",
+      "k": "fix",
+      "t": "Shop hover state no longer sticks after clicking BUY",
+      "s": "purchase prompt stole the mouse; forced reset"
+    },
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "Shop juice pass: bubble pops, sliding BEST DEAL ribbons, hover grow/tilt, 4 sounds",
+      "s": "PermanentMarker font, per-card color art"
+    },
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "First-join HIGH/LOW PERFORMANCE graphics chooser (persists, still in settings)",
+      "s": "black screen, two big cards"
+    },
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "Shields: mini shield potions (+25, drink anim) with a shield bar above health",
+      "s": "guns/fists/cars all spend shield first"
+    },
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "LOOTING pass (149 R$) -- owners can open other players' death bags",
+      "s": "server-gated at all 3 loot doors"
+    },
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "Gifting system live: pick a player in your server, buy the gift product, they get the pass",
+      "s": "20 Gift dev products created + persisted grants"
+    },
     {
       "d": "2026-07-27",
       "k": "feat",
