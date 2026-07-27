@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-27T16:59:28Z",
+    "updated": "2026-07-27T17:09:37Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -369,6 +369,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "blast polish: killed the running-in-place anims during ragdoll (Animate disabled + tracks stopped, restored on recovery — verified 0 tracks while down) + SHOW RADIUS visualizer in the tuner: live green/gold ground rings for blast + direct-impact radius",
+      "ts": "2026-07-27T17:09:37Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
