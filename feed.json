@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-27T14:13:36.477Z",
+    "updated": "2026-07-27T16:06:22Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -369,6 +369,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "SKATEBOARD SHIPPED — Ian's mesh is now a rideable board: Motor6D weld under the feet, HipHeight lift so you stand ON the deck, speed 24 vs sprint 16, :give board admin command",
+      "ts": "2026-07-27T16:06:22Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "board verified in play mode — weld orientation right (deck up, wheels down), Sprint hook holds 24 every frame, tool-swap/death/seat all clean up. Anim seam ready: SkateboardConfig ids land when the commissioned R15 anims arrive",
+      "ts": "2026-07-27T16:06:22Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1411,6 +1423,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "Rideable skateboard (custom weld system — classic Roblox boards are deprecated)",
+      "s": "Config-driven: ride speed + animation IDs in ReplicatedStorage.SkateboardConfig; animations being commissioned now"
+    },
     {
       "d": "2026-07-27",
       "k": "fix",
