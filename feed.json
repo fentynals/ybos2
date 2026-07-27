@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-27T16:18:20Z",
+    "updated": "2026-07-27T16:49:22Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -369,6 +369,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "EXPLOSION AOE SHIPPED — car/truck/C4 booms now hurt: falloff damage thru shields, blasted-away launch, leg-shot knockdown ragdoll (3s), 5s blur, 4s ear ring on direct impact",
+      "ts": "2026-07-27T16:49:22Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "found the ragdoll-rocketry trap: motor6d-detached ragdoll + launch velocity = bodies flying 500 studs (constraint solver). Fix: fly stiff, flop on landing — clean 45-stud arcs now",
+      "ts": "2026-07-27T16:49:22Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1435,6 +1447,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "Explosion AoE — car/truck/C4 blasts fling, damage, knock down, blur + ear-ring nearby players",
+      "s": "Shared ExplosionBlast module; reuses the leg-shot knockdown; _BlastDebug forensics baked in"
+    },
     {
       "d": "2026-07-27",
       "k": "fix",
