@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-27T02:07:30.230Z",
+    "updated": "2026-07-27T04:43:45Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -369,6 +369,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Evening batch: global leaderboards live (4 boards, verified vs DataStores), tutorial extended to a full money-loop finale (launder at LANDRY) + choose-a-gift reward, job wages now bank as legal money, neon glow borders on daily rewards (red + gold Day 30), mobile ROLL darker w/ cooldown countdown. Still all unsaved -- Ian needs to publish.",
+      "ts": "2026-07-27T04:43:45Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1399,6 +1405,42 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "Global leaderboards: TOP KILLS / MONEY / LEVEL / PLAYTIME boards now live",
+      "s": "OrderedDataStores, 2-min flush/render, broken free-model handlers replaced; verified e2e"
+    },
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "Tutorial finale: launder your robbery money at the LANDRY (10th step)",
+      "s": "teaches the full legal/dirty money loop"
+    },
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "Tutorial reward: CHOOSE A GIFT popup -- $5k bank, Draco Semi, or T1 Airdrop",
+      "s": "replaces the auto $10k+G17; leave-safe (auto-banks cash)"
+    },
+    {
+      "d": "2026-07-27",
+      "k": "fix",
+      "t": "Job wages (janitor, delivery) now deposit to BANK as legal money",
+      "s": "fixes tutorial being unbeatable since shops went bank-only 07-25; earn step watches Bank"
+    },
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "Daily rewards wears the shop's neon glow border -- red panel, golden Day 30",
+      "s": "9-sliced recolors of the ui dev's baked border art; reusable kit"
+    },
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "Mobile ROLL button: darker + live cooldown countdown",
+      "s": "counts 3-2-1 near-black, back to ROLL when ready"
+    },
     {
       "d": "2026-07-26",
       "k": "feat",
