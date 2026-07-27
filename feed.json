@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-27T17:09:37Z",
+    "updated": "2026-07-27T17:39:41Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -369,6 +369,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "blast v2 per Ian: two-tier stats (direct vs radius zone, each with own dmg/launch/flight sliders — 15-knob tuner), FULL-limp ragdoll from frame one (AnimationConstraints off — R15 rigs aren't Motor6D-posed), instant stand-up on recovery",
+      "ts": "2026-07-27T17:39:41Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "chased the 780-stud 'rocketry' to its real cause: bodies TUNNELING through the floating city floor and plunging to destroy-height. Fixed with Root-joint keep (camera anchor), BlastRagdoll collision group, launch-then-collide timing, velocity clamps + void-rescue net. Verified alive + clean recovery at the worst spawn",
+      "ts": "2026-07-27T17:39:41Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1465,6 +1477,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-27",
+      "k": "fix",
+      "t": "Blast ragdoll v2 — full-limp flight, two-tier direct/radius stats, floor-proof + instant stance recovery",
+      "s": "Six distinct physics traps found and documented; all live-tunable in the BLAST TUNER"
+    },
     {
       "d": "2026-07-27",
       "k": "feat",
