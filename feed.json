@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-27T22:09:12Z",
+    "updated": "2026-07-27T22:36:50Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -369,6 +369,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "polish pair: bullet holes no longer paint on cars (they're anchored decals that float mid-air when the car drives off — one client guard covers player + cop shots) and explosions now lock your inventory for the stun (DriverGunLock pattern, verified equip-blocked during ragdoll)",
+      "ts": "2026-07-27T22:36:50Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
