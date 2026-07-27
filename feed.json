@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-27T16:06:22Z",
+    "updated": "2026-07-27T16:18:20Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -369,6 +369,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "session pt2 — Red Grind Skateboard (classic 2013 gear, dead scripts stripped, mesh salvaged) rides the new board system as a second skin; :give redgrind",
+      "ts": "2026-07-27T16:18:20Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "car explosions retimed per Ian: boom now fires when the wreck DESPAWNS (5s burn first), matching the bank truck — verified t+0.5 no boom / t+5.7 boom+despawn. Also: healthbar EXTRA divider line removed, label stays",
+      "ts": "2026-07-27T16:18:20Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1423,6 +1435,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-27",
+      "k": "fix",
+      "t": "Car death boom moved to despawn (truck-style) + Red Grind board skin + EXTRA healthbar cleanup",
+      "s": "0 HP = break sound + burn only; detonation rides the despawn like the bank truck"
+    },
     {
       "d": "2026-07-27",
       "k": "feat",
