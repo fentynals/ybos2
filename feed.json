@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-27T16:49:22Z",
+    "updated": "2026-07-27T16:59:28Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -369,6 +369,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "BLAST TUNER shipped — owner-only in-game slider panel (10 knobs: damage/launch/radius/ragdoll/ring/blur/flight) + TEST BLAST button that detonates a real boom in front of you. Every blast number is now live-tunable, no restart",
+      "ts": "2026-07-27T16:59:28Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "explosion defaults cranked per Ian: 85 max damage, harder launch, 6s ear ring, 8s blur, faster full-limp ragdoll. Verified in play: slider click wrote Radius 55, test blast dealt 69 dmg + knockdown + all FX",
+      "ts": "2026-07-27T16:59:28Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1447,6 +1459,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "BLAST TUNER — live in-game tuning panel for the explosion system",
+      "s": "ReplicatedStorage.BlastTuning attrs read fresh per blast; server-clamped remote; TEST BLAST for instant feel"
+    },
     {
       "d": "2026-07-27",
       "k": "feat",
