@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-27T19:15:14.803Z",
+    "updated": "2026-07-27T22:09:12Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -369,6 +369,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "ragdoll v3 — body stays fully attached: head+arms were flying off (FPSClient's Neck/Shoulder camera motors hold nothing once dropped), now proximal joints stay rigid in flight, distal ones flop. 182-stud launch, 2.4-stud max drift, instant stand-up",
+      "ts": "2026-07-27T22:09:12Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "UISoundsClient — the shop's hover/click sounds on EVERY UI (475 buttons incl. daily rewards), auto-hooks future guis, ShopMenu excluded to avoid double juice",
+      "ts": "2026-07-27T22:09:12Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1477,6 +1489,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-27",
+      "k": "feat",
+      "t": "Global UI hover/click sounds + blast ragdoll body-integrity fix",
+      "s": "One client hooks all GuiButtons forever; ragdoll keeps proximal joints rigid in flight so nothing detaches"
+    },
     {
       "d": "2026-07-27",
       "k": "fix",
