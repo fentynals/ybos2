@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-27T22:53:02Z",
+    "updated": "2026-07-28T01:06:57Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -369,6 +369,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "out",
+      "msg": "blast tuner retired — tuning wrapped, panel/server/remote removed clean. Final numbers live in ReplicatedStorage.BlastTuning (still editable via Properties). Post-removal blast verified: 50 dmg direct hit, clean knockdown + recovery",
+      "ts": "2026-07-28T01:06:57Z"
+    },
     {
       "who": "STUDIO",
       "cls": "fx",
