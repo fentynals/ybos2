@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-28T03:27:06Z",
+    "updated": "2026-07-28T05:11:53Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -399,6 +399,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "PermanentMarker game-wide: one font enforcer converted 1,577 UI labels + 2,122 world labels (menus, HUD, NPC dialogs, signs) to the shop's marker font, side-dock pills excluded per Ian. Night lighting bake landed right before it (brightness 2.6, ambient 170, lamps x1.4/x1.6)",
+      "ts": "2026-07-28T05:11:53Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1573,6 +1579,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-28",
+      "k": "feat",
+      "t": "Game-wide PermanentMarker font + baked night lighting",
+      "s": "UIFontClient enforcer covers all current and future UI; nights are bright per Ian's tuner numbers"
+    },
     {
       "d": "2026-07-28",
       "k": "fix",
