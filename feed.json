@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-28T05:11:53Z",
+    "updated": "2026-07-28T05:31:36Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -399,6 +399,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "MY PASSES kill switch in /AP — one persistent button disables every gamepass perk on Ian's account for free-player testing (12 attrs off + max HP back to 100, DataStore-backed). Also un-buried TP COP and AIRDROP: the admin header had buttons stacked on top of each other",
+      "ts": "2026-07-28T05:31:36Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "/sg is a UI now — semi-transparent GUN SPAWNER list: owned guns green with click-to-spawn (server cooldown intact), locked guns red with lock icon + click-to-buy the pass. Verified both states live",
+      "ts": "2026-07-28T05:31:36Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1579,6 +1591,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-28",
+      "k": "feat",
+      "t": "/sg spawner UI + persistent pass kill switch in /AP",
+      "s": "Locked rows prompt the gamepass purchase; kill switch flips all pass attrs live and persists"
+    },
     {
       "d": "2026-07-28",
       "k": "feat",
