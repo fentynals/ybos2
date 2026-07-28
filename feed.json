@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-28T02:27:21Z",
+    "updated": "2026-07-28T03:27:06Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -399,6 +399,24 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "cars quieted for everyone — found the Idle engine template shipping RollOffMinDistance=1000 (full volume across the whole map); client governor caps volume + fades all car sounds by 250 studs",
+      "ts": "2026-07-28T03:27:06Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "panel padding pass: playtime cards were scale-height so their innards overlapped on smaller windows (now fixed 112px), crews list no longer buries rows under Team Damage, friends rows got margins",
+      "ts": "2026-07-28T03:27:06Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "NITE TUNER in the admin panel — force DAY/NITE locally + 5 sliders (night brightness/ambient/exposure, streetlight bright & range multipliers, all 45 lamps force-lit) with bake-ready numbers in the footer",
+      "ts": "2026-07-28T03:27:06Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1555,6 +1573,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-28",
+      "k": "fix",
+      "t": "Car sound governor + UISuite panel padding + admin NITE TUNER",
+      "s": "Engines no longer map-wide; playtime/crews/friends content fits; night lighting now tunable in-game"
+    },
     {
       "d": "2026-07-28",
       "k": "feat",
