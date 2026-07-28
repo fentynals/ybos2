@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-28T01:06:57Z",
+    "updated": "2026-07-28T01:09:09Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -9,13 +9,13 @@
       "placeId": 124673719670870,
       "universeId": 10194619622,
       "name": "HEAD TAP",
-      "playing": 0,
-      "visits": 1360,
-      "favorites": 7,
+      "playing": 1,
+      "visits": 2134,
+      "favorites": 12,
       "maxPlayers": 50,
-      "likes": 14,
-      "dislikes": 0,
-      "fetched": "2026-07-05T02:57:59Z"
+      "likes": 23,
+      "dislikes": 2,
+      "fetched": "2026-07-28T01:09:09Z"
     },
     "analytics": {
       "updated": "2026-07-27T19:15:12.869Z",
@@ -366,9 +366,39 @@
       "t": "Random guy at the dealership",
       "note": "Godspeed (@gopro5403). An unexpected NPC at the dealership.",
       "ts": "2026-06-20T00:00:00Z"
+    },
+    {
+      "id": "shop-gui-disabled",
+      "sev": "high",
+      "status": "killed",
+      "t": "Shop UI never rendered (gui shipped disabled)",
+      "note": "Commissioned ShopMenu ScreenGui arrived Enabled=false; every open was invisible ('clicking it it just disappears'). Enabled in StarterGui + setOpen force-enables.",
+      "ts": "2026-07-28T01:09:09Z"
+    },
+    {
+      "id": "blast-body-scatter",
+      "sev": "med",
+      "status": "killed",
+      "t": "Explosion ragdoll scattered body parts",
+      "note": "Head/arms detached (FPSClient camera-tilt motors held nothing) + BSC stretch at launch speed. Proximal joints stay rigid in flight; body max drift now 2.4 studs.",
+      "ts": "2026-07-28T01:09:09Z"
+    },
+    {
+      "id": "blast-floor-tunnel",
+      "sev": "med",
+      "status": "killed",
+      "t": "Blast victims fell through the map",
+      "note": "Bodies tunneled through floor slabs and died at destroy height (read as 500-stud rocketry). Root joint kept + limb collision + fall-speed cap + void rescue.",
+      "ts": "2026-07-28T01:09:09Z"
     }
   ],
   "radio": [
+    {
+      "who": "CRON",
+      "cls": "out",
+      "msg": "heartbeat 2026-07-28 — 19 commits in 24h, stats refreshed: 1 playing / 2134 visits, 3 bugs killed today (shop render, ragdoll scatter, floor tunnel)",
+      "ts": "2026-07-28T01:09:09Z"
+    },
     {
       "who": "STUDIO",
       "cls": "out",
