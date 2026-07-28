@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-28T05:31:36Z",
+    "updated": "2026-07-28T06:12:54Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -399,6 +399,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "PUBLISHED v2923 — the whole two-day sprint is live: skateboards, explosion AoE + tuner-baked values, shop render fix, global marker font + UI sounds, FOV slider, night lighting, car sound governor, SWAT event NPCs, /sg UI, gun slot system, pass kill switch",
+      "ts": "2026-07-28T06:12:54Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "night batch: SWAT NPCs respond to heists + the bank truck (black ARP, verified 25% accuracy), gun inventory = 3 slots with backpack passes finally wired (+3/+6), duplicates allowed, jail skip frees ALL jails, T3 749 R$, extra health 150, death shop closes at 4.9s",
+      "ts": "2026-07-28T06:12:54Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1591,6 +1603,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-28",
+      "k": "feat",
+      "t": "SWAT event NPCs + gun slot system + published v2923",
+      "s": "Everything from the sprint is live in the game"
+    },
     {
       "d": "2026-07-28",
       "k": "feat",
