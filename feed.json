@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-28T13:44:56.801Z",
+    "updated": "2026-07-28T17:42:55Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -399,6 +399,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "SWAT rebuilt on the cop brain: now a PoliceSystem squad member (anims incl. gun-hold, navmesh, tactics) - 1 unit, 400 HP, 50% hit, 30 dmg, 45 range, hostile-only targeting (bystanders safe), truck-shooter aggro, ground-snapped deploys. Old SwatUnitServer retired.",
+      "ts": "2026-07-28T17:42:55Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "MusicBrowser admin panel: every music track in the game (POI pools + turf/loading + city ambience) in one UI with play buttons so Ian can find-by-ear the song he wants removed.",
+      "ts": "2026-07-28T17:42:55Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1603,6 +1615,18 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-07-28",
+      "k": "fix",
+      "t": "SWAT joins the cop squad (cop brain/anims), nerfed + hostile-only",
+      "s": "1 unit, 400HP, 50%/30dmg/45rng; truck-aggro; no more bystander kills or midair spawns"
+    },
+    {
+      "d": "2026-07-28",
+      "k": "feat",
+      "t": "MusicBrowser admin panel (all 18 tracks, play/stop by source)",
+      "s": "for finding the song Ian wants removed"
+    },
     {
       "d": "2026-07-28",
       "k": "feat",
