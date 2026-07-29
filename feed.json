@@ -1,6 +1,6 @@
 {
  "meta": {
-  "updated": "2026-07-29T19:24:49Z",
+  "updated": "2026-07-29T20:35:48Z",
   "kernel": "FABLE-5",
   "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
   "game": "HEADTAP",
@@ -405,6 +405,12 @@
   }
  ],
  "radio": [
+  {
+   "who": "STUDIO",
+   "cls": "shipx",
+   "msg": ":shutdown pre-restart countdown (top banner + gun lock + washer payout, cancelable), tutorial ANALYTICS FUNNEL wired (11 onboarding steps -> Creator Hub Funnels), code RELEASE = G17 EXT BOX (codes now support gun rewards), toasts: 2 stacked + 2.5s purchases + queue cap, turf claim/join -90%, tester panel fly/speed removed, Robbery Pack grey tint + ammo tiles on bundle cards.",
+   "ts": "2026-07-29T20:35:48Z"
+  },
   {
    "who": "STUDIO",
    "cls": "okx",
@@ -1645,6 +1651,12 @@
   }
  ],
  "ship": [
+  {
+   "d": "2026-07-29",
+   "k": "feat",
+   "t": "Shutdown countdown + tutorial funnel analytics",
+   "s": ":shutdown banner/gun-lock/washer-refund; onboarding funnel logging; RELEASE code; toast flow rework"
+  },
   {
    "d": "2026-07-29",
    "k": "feat",
