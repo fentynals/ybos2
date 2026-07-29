@@ -1,6 +1,6 @@
 {
  "meta": {
-  "updated": "2026-07-29T20:35:48Z",
+  "updated": "2026-07-29T21:06:00Z",
   "kernel": "FABLE-5",
   "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
   "game": "HEADTAP",
@@ -405,6 +405,12 @@
   }
  ],
  "radio": [
+  {
+   "who": "STUDIO",
+   "cls": "okx",
+   "msg": "Shop perf + polish: Hellcat/C63 3D viewports baked into chroma-keyed PICTURES (596-part Hellcat was delaying shop load), Kingpin card rearranged to match Ian-style spread + 762 ammo tile, card spacers, car-part pickups levitate (client bob), food-stand floating price labels removed (hold-E prompt only), tester 232650864 added.",
+   "ts": "2026-07-29T21:06:00Z"
+  },
   {
    "who": "STUDIO",
    "cls": "shipx",
