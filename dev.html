@@ -10,7 +10,6 @@
 <style>
   :root {
     color-scheme: dark;
-    /* Roblox dark-theme tokens */
     --rbx-bg: #191b1d;
     --rbx-surface: #232527;
     --rbx-surface2: #2e3134;
@@ -19,7 +18,6 @@
     --rbx-dim: #bdbebe;
     --rbx-green: #00b06f;
     --rbx-blue: #0077ff;
-    /* ybos chrome */
     --y-bg: #0b0c10;
     --y-line: #22242c;
     --y-dim: #8b93a7;
@@ -53,7 +51,7 @@
     border-radius: 6px; padding: 5px 8px; font: inherit; font-size: 12px;
   }
   #devbar input[type=text] { width: 130px; }
-  #devbar input[type=number] { width: 78px; }
+  #devbar input[type=number] { width: 74px; }
   .ybtn {
     background: var(--y-green); color: #fff; border: 0; border-radius: 6px;
     padding: 7px 12px; font: inherit; font-size: 12px; font-weight: 700;
@@ -62,6 +60,8 @@
   .ybtn:hover { filter: brightness(1.15); }
   .ybtn.ghost { background: #1a1d26; border: 1px solid var(--y-line); color: #c9cfdd; }
   .ybtn.gold { background: var(--y-gold); color: #14161c; }
+  #modes { display: flex; gap: 6px; }
+  .ybtn.mode.on { background: var(--y-gold); color: #14161c; border-color: var(--y-gold); }
   .toggle {
     display: flex; align-items: center; gap: 5px; cursor: pointer;
     background: #1a1d26; border: 1px solid var(--y-line); border-radius: 6px;
@@ -69,17 +69,16 @@
   }
   .toggle.on { background: #1f2a20; border-color: #2f6b3c; color: #b8f5c4; }
   .toggle input { display: none; }
-  #modes { display: flex; gap: 6px; }
-  .ybtn.mode.on { background: var(--y-gold); color: #14161c; border-color: var(--y-gold); }
-
-  /* thumbnail tray */
   #tray { display: flex; align-items: center; gap: 6px; }
   #tray .slot {
-    width: 46px; height: 46px; border-radius: 6px; border: 2px solid var(--y-line);
-    background: #101218 center/cover no-repeat; cursor: pointer; position: relative;
-    flex: 0 0 auto;
+    width: 52px; height: 40px; border-radius: 6px; border: 2px solid var(--y-line);
+    background: #101218 center/cover no-repeat; cursor: pointer; position: relative; flex: 0 0 auto;
   }
   #tray .slot.active { border-color: var(--y-gold); }
+  #tray .slot .tag {
+    position: absolute; bottom: -1px; left: -1px; right: -1px; font-size: 8px; text-align: center;
+    background: rgba(0,0,0,.72); color: #c9cfdd; letter-spacing: .5px; border-radius: 0 0 4px 4px;
+  }
   #tray .slot .x {
     position: absolute; top: -6px; right: -6px; width: 16px; height: 16px;
     border-radius: 50%; background: #c0392b; color: #fff; font-size: 11px; line-height: 16px;
@@ -92,92 +91,120 @@
   }
   #drop:hover { border-color: var(--y-gold); color: var(--y-gold); }
   #hint { color: var(--y-dim); font-size: 11.5px; }
-  #showbar {
-    position: fixed; top: 8px; right: 8px; z-index: 600; display: none;
-  }
+  #showbar { position: fixed; top: 8px; right: 8px; z-index: 600; display: none; }
   body.barhidden #showbar { display: block; }
 
-  /* ============================ roblox page ============================ */
-  #page { filter: none; transition: filter .15s; }
+  /* ============================ roblox chrome ============================ */
+  #page { }
   body.squint #page { filter: blur(3.5px); }
   body.gray #page { filter: grayscale(1); }
   body.squint.gray #page { filter: blur(3.5px) grayscale(1); }
 
-  /* top nav */
   .rbx-top {
-    position: sticky; top: 0; z-index: 300; height: 48px; background: var(--rbx-surface);
-    display: flex; align-items: center; gap: 14px; padding: 0 14px;
-    border-bottom: 1px solid rgba(0,0,0,.4);
+    height: 44px; background: #1b1d1e; display: flex; align-items: center; gap: 0;
+    padding: 0 16px; position: relative; z-index: 300;
   }
-  body:not(.barhidden) .rbx-top { top: 0; }
-  .rbx-logo { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
-  .rbx-logo svg { display: block; }
-  .rbx-search {
-    flex: 0 1 320px; height: 32px; background: var(--rbx-bg); border: 1px solid var(--rbx-line);
-    border-radius: 6px; display: flex; align-items: center; gap: 8px; padding: 0 10px;
-    color: #8f9295; font-size: 13px;
+  .wordmark {
+    font-weight: 700; font-size: 17px; letter-spacing: -.4px; color: #fff; margin-right: 34px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .topnav { display: flex; align-items: center; gap: 0; }
+  .topnav a { color: #fff; font-size: 13.5px; font-weight: 500; text-decoration: none; padding: 0 30px; }
+  .topsearch {
+    flex: 0 1 340px; margin-left: 26px; height: 30px; background: #2e3134; border-radius: 6px;
+    display: flex; align-items: center; gap: 8px; padding: 0 10px; color: #9a9d9f; font-size: 13px;
   }
   .rbx-top .grow { flex: 1 1 auto; }
-  .rbx-icons { display: flex; align-items: center; gap: 16px; flex: 0 0 auto; }
-  .rbx-icons .ic { color: #d5d6d7; display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; }
-  .rbx-av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(140deg,#4a4d50,#2b2e30); }
-  .rbx-buy {
-    background: var(--rbx-blue); color: #fff; font-size: 12px; font-weight: 700;
-    border-radius: 6px; padding: 6px 10px;
-  }
+  .topicons { display: flex; align-items: center; gap: 17px; }
+  .topicons .rbx-badge { display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; color: #fff; }
+  .topav { width: 26px; height: 26px; border-radius: 5px; background: linear-gradient(140deg,#5a5d60,#303335); }
 
-  /* shell */
   .rbx-shell { display: flex; align-items: flex-start; }
   .rbx-side {
-    position: sticky; top: 48px; flex: 0 0 176px; height: calc(100vh - 48px);
-    background: var(--rbx-surface); padding: 12px 0; overflow-y: auto;
-    border-right: 1px solid rgba(0,0,0,.35);
+    position: sticky; top: 0; flex: 0 0 195px; height: calc(100vh - 44px);
+    background: var(--rbx-bg); padding: 10px 10px; overflow-y: auto;
   }
   .rbx-side::-webkit-scrollbar { width: 6px; }
   .rbx-side::-webkit-scrollbar-thumb { background: #3b3f43; border-radius: 3px; }
   .nav-item {
-    display: flex; align-items: center; gap: 11px; padding: 9px 16px;
-    color: #d5d6d7; font-size: 13.5px; font-weight: 500; cursor: default;
+    display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 8px;
+    color: #fff; font-size: 13.5px; font-weight: 500; cursor: default;
   }
-  .nav-item.active { background: var(--rbx-surface2); color: #fff; font-weight: 600; }
-  .nav-item:hover { background: #2a2d30; }
-  .nav-item .glyph { width: 18px; height: 18px; flex: 0 0 18px; opacity: .85; }
-  .nav-sep { height: 1px; background: var(--rbx-line); margin: 10px 16px; }
-  .nav-head { padding: 6px 16px; color: #8f9295; font-size: 11px; font-weight: 700; letter-spacing: .6px; }
-
-  .rbx-main { flex: 1 1 auto; min-width: 0; padding: 18px 22px 60px; }
-
-  /* rows */
-  .row { margin-bottom: 26px; }
-  .row-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
-  .row-head h2 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: .1px; }
-  .row-head .see { color: var(--rbx-dim); font-size: 12.5px; font-weight: 600; }
-  .tiles { display: grid; grid-auto-flow: column; grid-auto-columns: var(--tile); gap: 12px; overflow: hidden; }
-
-  .tile { width: var(--tile); cursor: default; }
-  .tile .art {
-    width: 100%; aspect-ratio: 1/1; border-radius: 8px; overflow: hidden;
-    background: #2b2e30; position: relative;
+  .nav-item .glyph { width: 17px; height: 17px; flex: 0 0 17px; opacity: .9; }
+  .nav-item.active { background: var(--rbx-surface2); }
+  .nav-item:hover { background: #26292b; }
+  .nav-item .badge {
+    margin-left: auto; background: #6e7274; color: #fff; font-size: 10.5px; font-weight: 700;
+    border-radius: 9px; padding: 1px 7px;
   }
-  .tile .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .tile .name {
-    margin-top: 7px; font-size: 13px; font-weight: 600; line-height: 1.25; color: #fff;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    max-height: 2.5em;
-  }
-  .tile .meta { margin-top: 3px; display: flex; align-items: center; gap: 4px; color: var(--rbx-dim); font-size: 12px; font-weight: 500; }
-  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--rbx-green); flex: 0 0 7px; }
-  .tile.mine.flagged .art { outline: 3px solid var(--y-gold); outline-offset: 2px; }
-  .tile.mine.flagged .name { color: var(--y-gold); }
+  .rbx-main { flex: 1 1 auto; min-width: 0; padding: 16px 26px 70px; position: relative; }
+  .rbx-main h1.page { margin: 0 0 14px; font-size: 26px; font-weight: 700; }
 
-  /* wide 16:9 carousel */
-  .wide { display: grid; grid-auto-flow: column; grid-auto-columns: var(--wide); gap: 14px; overflow: hidden; }
-  .wcard { width: var(--wide); }
-  .wcard .art { width: 100%; aspect-ratio: 16/9; border-radius: 10px; overflow: hidden; background: #2b2e30; }
-  .wcard .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .wcard .name { margin-top: 8px; font-size: 14px; font-weight: 600; }
-  .wcard .meta { margin-top: 3px; display: flex; align-items: center; gap: 4px; color: var(--rbx-dim); font-size: 12px; }
-  .wcard.mine.flagged .art { outline: 3px solid var(--y-gold); outline-offset: 2px; }
+  /* section heads */
+  .sec { margin-bottom: 26px; }
+  .sec-head { display: flex; align-items: center; gap: 7px; margin-bottom: 11px; }
+  .sec-head h2 { margin: 0; font-size: 16.5px; font-weight: 700; }
+  .sec-head .arrow { font-size: 15px; color: #fff; }
+  .sec-head .info { margin-left: auto; color: #8f9295; font-size: 13px; }
+  .sec-head .seeall { margin-left: auto; color: #fff; font-size: 13px; font-weight: 600; }
+  .sub { color: #8f9295; font-size: 11.5px; margin: -7px 0 10px; }
+
+  /* filter pills (charts) */
+  .pills { display: flex; gap: 9px; margin-bottom: 18px; }
+  .pill {
+    background: var(--rbx-surface2); border-radius: 16px; padding: 6px 14px;
+    font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px;
+  }
+
+  /* ---- stat line: thumbs-up % + player count (this is what Roblox shows) ---- */
+  .stats { display: flex; align-items: center; gap: 10px; margin-top: 4px; color: var(--rbx-dim); font-size: 11.5px; font-weight: 500; }
+  .stats .s { display: flex; align-items: center; gap: 3px; }
+  .stats svg { opacity: .85; }
+
+  /* ---- CHARTS: square icon tiles ---- */
+  .icons { display: grid; grid-auto-flow: column; grid-auto-columns: var(--icw); gap: 10px; overflow: hidden; }
+  .icard { width: var(--icw); }
+  .icard .art { width: 100%; aspect-ratio: 1/1; border-radius: 10px; overflow: hidden; background: #2b2e30; }
+  .icard .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .icard .name {
+    margin-top: 6px; font-size: 12.5px; font-weight: 600; line-height: 1.28; color: #fff;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.56em;
+  }
+
+  /* ---- HOME: big 16:9 recommendation cards ---- */
+  .bigs { display: grid; grid-template-columns: repeat(var(--bigcols), minmax(0,1fr)); gap: 14px 14px; }
+  .bcard { min-width: 0; }
+  .bcard .art { width: 100%; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; background: #2b2e30; }
+  .bcard .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bcard .name {
+    margin-top: 7px; font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  /* continue row: same 16:9 card, denser */
+  .strip169 { display: grid; grid-auto-flow: column; grid-auto-columns: var(--contw); gap: 11px; overflow: hidden; }
+
+  .mine.flagged .art { outline: 3px solid var(--y-gold); outline-offset: 2px; }
+  .mine.flagged .name { color: var(--y-gold); }
+
+  /* friends row */
+  .friends { display: grid; grid-auto-flow: column; grid-auto-columns: 74px; gap: 12px; overflow: hidden; }
+  .fr { text-align: center; }
+  .fr .av { width: 66px; height: 66px; border-radius: 50%; margin: 0 auto; position: relative; }
+  .fr .nm { margin-top: 6px; font-size: 11.5px; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fr .st { font-size: 10px; color: #8f9295; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fr .dotg { position: absolute; right: 2px; bottom: 2px; width: 15px; height: 15px; border-radius: 4px; background: var(--rbx-green); border: 2px solid var(--rbx-bg); }
+
+  /* most-played panel */
+  .mostplayed {
+    position: absolute; top: 16px; right: 26px; width: 400px; background: var(--rbx-surface);
+    border-radius: 10px; padding: 10px 12px;
+  }
+  .mostplayed .t { font-size: 12.5px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .mostplayed .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .mostplayed .it .a { width: 100%; aspect-ratio: 16/9; border-radius: 6px; overflow: hidden; background: #2b2e30; }
+  .mostplayed .it img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .mostplayed .it .n { font-size: 10px; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mostplayed .it .h { font-size: 9.5px; color: #8f9295; }
 
   /* ===================== experience (game detail) page ===================== */
   .exp-head { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
@@ -228,15 +255,14 @@
   .exp-tabs span.on { color: #fff; box-shadow: inset 0 -2px 0 #fff; }
   .exp-desc { color: #d5d6d7; font-size: 13.5px; line-height: 1.6; max-width: 760px; white-space: pre-wrap; }
   @media (max-width: 900px) { .exp-grid { grid-template-columns: minmax(0,1fr); } }
-  body.mobile .exp-grid { grid-template-columns: minmax(0,1fr); }
 
-  /* fallback art when a CDN icon 404s */
   .fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 15px; color: #fff; text-align: center; padding: 8px; line-height: 1.15; }
+    font-weight: 700; font-size: 14px; color: #fff; text-align: center; padding: 8px; line-height: 1.15; }
 
-  /* mobile sim */
   body.mobile .rbx-side { display: none; }
   body.mobile .rbx-main { padding: 14px 12px 60px; }
+  body.mobile .mostplayed { display: none; }
+  body.mobile .exp-grid { grid-template-columns: minmax(0,1fr); }
 </style>
 </head>
 <body>
@@ -245,56 +271,62 @@
   <h1>YBOS DEV &middot; THUMBNAIL TESTER</h1>
   <div class="sep"></div>
   <div id="modes">
-    <button class="ybtn ghost mode on" data-mode="home">HOME PAGE</button>
-    <button class="ybtn ghost mode" data-mode="exp">EXPERIENCE PAGE</button>
+    <button class="ybtn ghost mode on" data-mode="home">HOME</button>
+    <button class="ybtn ghost mode" data-mode="charts">CHARTS</button>
+    <button class="ybtn ghost mode" data-mode="exp">EXPERIENCE</button>
   </div>
   <div class="sep"></div>
   <div id="tray"></div>
-  <div id="drop">+ add thumbnail <span style="opacity:.6">(click / drop / paste)</span></div>
+  <div id="drop">+ add art <span style="opacity:.6">(click / drop / paste)</span></div>
   <input type="file" id="file" accept="image/*" multiple hidden>
   <div class="sep"></div>
   <label>name <input type="text" id="gname" value="HEAD TAP" spellcheck="false"></label>
   <label>playing <input type="number" id="gplaying" value="1200" min="0" step="1"></label>
+  <label>like% <input type="number" id="glike" value="92" min="0" max="100" step="1"></label>
   <div class="sep"></div>
   <button class="ybtn gold" id="rand">RANDOMIZE</button>
   <label class="toggle" id="t-flag"><input type="checkbox">find mine</label>
   <label class="toggle" id="t-squint"><input type="checkbox">squint</label>
   <label class="toggle" id="t-gray"><input type="checkbox">gray</label>
   <label class="toggle" id="t-mobile"><input type="checkbox">mobile</label>
-  <div class="sep"></div>
   <button class="ybtn ghost" id="hide">HIDE BAR (H)</button>
   <span id="hint"></span>
 </div>
 <button class="ybtn gold" id="showbar">SHOW DEV BAR (H)</button>
 
 <div id="page">
-  <!-- ============ top nav ============ -->
   <div class="rbx-top">
-    <div class="rbx-logo">
-      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+    <div class="wordmark">
+      <svg width="19" height="19" viewBox="0 0 32 32" aria-hidden="true">
         <rect x="4.6" y="0" width="23" height="23" rx="1.4" transform="rotate(14 16 16)" fill="#fff"/>
-        <rect x="12.4" y="11.2" width="8" height="8" rx=".8" transform="rotate(14 16 16)" fill="#191b1d"/>
+        <rect x="12.4" y="11.2" width="8" height="8" rx=".8" transform="rotate(14 16 16)" fill="#1b1d1e"/>
       </svg>
-      <span style="font-weight:700;font-size:15px;letter-spacing:.2px">Roblox</span>
+      ROBLOX
     </div>
-    <div class="rbx-search">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8f9295" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <div class="topnav">
+      <a href="#" data-nav="home">Home</a>
+      <a href="#" data-nav="charts">Charts</a>
+      <a href="#">Marketplace</a>
+      <a href="#">Create</a>
+    </div>
+    <div class="topsearch">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9a9d9f" stroke-width="2.6"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       <span>Search</span>
     </div>
     <div class="grow"></div>
-    <div class="rbx-icons">
-      <span class="ic">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="#d5d6d7"><path d="M5 3h10l4 4v10l-4 4H5L1 17V7z" opacity=".9"/></svg>
-        0
+    <div class="topicons">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M12 22a2.2 2.2 0 0 0 2.2-2.2H9.8A2.2 2.2 0 0 0 12 22zm7-6v-5a7 7 0 0 0-5.3-6.8V3a1.7 1.7 0 1 0-3.4 0v1.2A7 7 0 0 0 5 11v5l-2 2v1h18v-1z"/></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 20c0-3 3.5-5 7-5s7 2 7 5v1H2zm15.5-4.6c2.6.6 4.5 2.2 4.5 4.6v1h-4z"/></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+      <span class="rbx-badge">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M5 3h10l4 4v10l-4 4H5L1 17V7z"/></svg>
+        23K
       </span>
-      <span class="rbx-buy">Get Robux</span>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="#d5d6d7"><path d="M12 22a2.2 2.2 0 0 0 2.2-2.2H9.8A2.2 2.2 0 0 0 12 22zm7-6v-5a7 7 0 0 0-5.3-6.8V3a1.7 1.7 0 1 0-3.4 0v1.2A7 7 0 0 0 5 11v5l-2 2v1h18v-1z"/></svg>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="#d5d6d7"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
-      <div class="rbx-av"></div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm9.4 4c0-.6-.1-1.2-.2-1.8l2-1.5-2-3.4-2.3 1a7.7 7.7 0 0 0-3-1.8L15.5 2h-4l-.4 2.5a7.7 7.7 0 0 0-3 1.8l-2.3-1-2 3.4 2 1.5a7.6 7.6 0 0 0 0 3.6l-2 1.5 2 3.4 2.3-1a7.7 7.7 0 0 0 3 1.8l.4 2.5h4l.4-2.5a7.7 7.7 0 0 0 3-1.8l2.3 1 2-3.4-2-1.5c.1-.6.2-1.2.2-1.8z"/></svg>
+      <div class="topav"></div>
     </div>
   </div>
 
-  <!-- ============ shell ============ -->
   <div class="rbx-shell">
     <nav class="rbx-side" id="side"></nav>
     <main class="rbx-main" id="main"></main>
@@ -306,13 +338,16 @@
 "use strict";
 
 /* =====================================================================
-   YBOS DEV — Roblox front-page thumbnail tester
-   The page below is a faithful rebuild of the Roblox home screen. The only
-   difference: one tile is YOURS. Drop a thumbnail in, hit RANDOMIZE, and it
-   lands in a different slot on the page every time so you can judge it in
-   real context, next to the games it will actually sit beside.
-   Game data (names / icons / live player counts) pulled from Roblox's own
-   explore + thumbnails APIs.
+   YBOS DEV — thumbnail tester
+   Rebuilds the three Roblox surfaces that show your art, in the formats
+   Roblox actually uses (checked against the live site):
+     HOME       — "Recommended For You" grid of BIG 16:9 thumbnails,
+                  plus a "Continue" strip of 16:9 cards.
+     CHARTS     — the sort rows (Top Trending, Up-and-Coming, ...) as
+                  SQUARE ICON tiles with a  thumbs-up % + player count line.
+     EXPERIENCE — the game page, where the 16:9 art is shown full size.
+   Data (names / icons / 16:9 art / players / votes) is real, pulled from
+   Roblox's explore + thumbnails APIs.
    ===================================================================== */
 
 var DATA = JSON.parse(document.getElementById("gamedata").textContent);
@@ -324,14 +359,16 @@ var LS_CFG = "ybos.dev.cfg";
 var MAX_IMGS = 8;
 
 var state = {
-  imgs: [],
+  imgs: [],        // { src, w, h }
   active: 0,
   name: "HEAD TAP",
   playing: 1200,
+  like: 92,
   seed: 1,
-  myRow: 0,
-  myPos: 3,
-  mode: "home",   // "home" = front page tiles, "exp" = experience page big art
+  mode: "home",
+  myRow: 0,        // charts: which sort row
+  myPos: 3,        // charts: slot in that row
+  myBig: 4,        // home: index in the Recommended grid
   expHero: 0
 };
 
@@ -339,26 +376,32 @@ var state = {
 function loadState() {
   try {
     var i = JSON.parse(localStorage.getItem(LS_IMGS) || "[]");
-    if (Array.isArray(i)) state.imgs = i.slice(0, MAX_IMGS);
-  } catch (e) { /* corrupt entry — start clean */ }
+    if (Array.isArray(i)) {
+      state.imgs = i.slice(0, MAX_IMGS).map(function (v) {
+        return typeof v === "string" ? { src: v, w: 0, h: 0 } : v;
+      });
+    }
+  } catch (e) { /* corrupt entry -- start clean */ }
   try {
     var c = JSON.parse(localStorage.getItem(LS_CFG) || "{}");
     if (c && typeof c === "object") {
       if (typeof c.name === "string") state.name = c.name;
       if (typeof c.playing === "number") state.playing = c.playing;
+      if (typeof c.like === "number") state.like = c.like;
       if (typeof c.active === "number") state.active = c.active;
-      if (c.mode === "home" || c.mode === "exp") state.mode = c.mode;
+      if (c.mode === "home" || c.mode === "charts" || c.mode === "exp") state.mode = c.mode;
     }
   } catch (e) { /* ignore */ }
 }
 function saveImgs() {
   try { localStorage.setItem(LS_IMGS, JSON.stringify(state.imgs)); }
-  catch (e) { setHint("storage full — remove a thumbnail"); }
+  catch (e) { setHint("storage full — remove an image"); }
 }
 function saveCfg() {
   try {
     localStorage.setItem(LS_CFG, JSON.stringify({
-      name: state.name, playing: state.playing, active: state.active, mode: state.mode
+      name: state.name, playing: state.playing, like: state.like,
+      active: state.active, mode: state.mode
     }));
   } catch (e) { /* ignore */ }
 }
@@ -387,51 +430,71 @@ function fmtCount(n) {
   if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, "") + "K";
   return String(n);
 }
+function likePct(g) {
+  if (g.rating && g.down !== null && g.down !== undefined && (g.rating + g.down) > 0) {
+    return Math.round(g.rating / (g.rating + g.down) * 100);
+  }
+  var h = 0, s = String(g.name || "");
+  for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 1000;
+  return 76 + (h % 22);
+}
 
 /* ----------------------------------------------------------- image import */
 function downscale(dataUrl, cb) {
   var im = new Image();
   im.onload = function () {
-    var max = 512;
+    var max = 640;
     var w = im.width, h = im.height;
     var scale = Math.min(1, max / Math.max(w, h));
     var c = document.createElement("canvas");
     c.width = Math.max(1, Math.round(w * scale));
     c.height = Math.max(1, Math.round(h * scale));
     c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
-    try { cb(c.toDataURL("image/jpeg", 0.86)); }
-    catch (e) { cb(dataUrl); }
+    var out;
+    try { out = c.toDataURL("image/jpeg", 0.88); } catch (e) { out = dataUrl; }
+    cb({ src: out, w: w, h: h });
   };
-  im.onerror = function () { cb(dataUrl); };
+  im.onerror = function () { cb({ src: dataUrl, w: 0, h: 0 }); };
   im.src = dataUrl;
 }
 function addFile(file) {
   if (!file || !/^image\//.test(file.type)) return;
   var fr = new FileReader();
   fr.onload = function () {
-    downscale(String(fr.result), function (small) {
-      state.imgs.unshift(small);
+    downscale(String(fr.result), function (rec) {
+      state.imgs.unshift(rec);
       if (state.imgs.length > MAX_IMGS) state.imgs.length = MAX_IMGS;
       state.active = 0;
       saveImgs(); saveCfg(); renderTray(); render();
-      setHint("thumbnail added — hit RANDOMIZE");
+      setHint("added " + kindOf(rec) + " — hit RANDOMIZE");
     });
   };
   fr.readAsDataURL(file);
+}
+function kindOf(rec) {
+  if (!rec || !rec.w || !rec.h) return "art";
+  var r = rec.w / rec.h;
+  if (r > 1.45) return "16:9";
+  if (r < 1.15) return "icon";
+  return "art";
 }
 
 /* ------------------------------------------------------------------- tray */
 function renderTray() {
   var tray = document.getElementById("tray");
   tray.textContent = "";
-  state.imgs.forEach(function (src, i) {
+  state.imgs.forEach(function (rec, i) {
     var d = document.createElement("div");
     d.className = "slot" + (i === state.active ? " active" : "");
-    d.style.backgroundImage = "url(" + src + ")";
-    d.title = "use this thumbnail";
+    d.style.backgroundImage = "url(" + rec.src + ")";
+    d.title = "use this image";
     d.addEventListener("click", function () {
       state.active = i; saveCfg(); renderTray(); render();
     });
+    var tg = document.createElement("div");
+    tg.className = "tag";
+    tg.textContent = kindOf(rec);
+    d.appendChild(tg);
     var x = document.createElement("button");
     x.className = "x"; x.textContent = "×"; x.title = "remove";
     x.addEventListener("click", function (e) {
@@ -444,54 +507,54 @@ function renderTray() {
     tray.appendChild(d);
   });
 }
-function myImage() { return state.imgs[state.active] || null; }
+/* the active image is used on every surface; object-fit crops it to whatever
+   shape that surface needs, exactly like Roblox does to a wrong-ratio upload */
+function myImage() { return state.imgs[state.active] ? state.imgs[state.active].src : null; }
 
 /* ------------------------------------------------------------------- nav */
 var NAV = [
-  ["Home", "M3 11l9-8 9 8v9a2 2 0 0 1-2 2h-4v-6H9v6H5a2 2 0 0 1-2-2z", true],
-  ["Discover", "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.2 5.8l-2.4 6-6 2.4 2.4-6z", false],
-  ["Marketplace", "M4 7h16l-1.2 12.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8zM8 7a4 4 0 0 1 8 0", false],
-  ["Create", "M3 17.2V21h3.8L18 9.8 14.2 6zM20.7 7.1a1 1 0 0 0 0-1.4l-2.4-2.4a1 1 0 0 0-1.4 0l-1.9 1.9L18.8 9z", false],
-  ["Robux", "M5 3h10l4 4v10l-4 4H5L1 17V7z", false]
+  ["Home", "M3 11l9-8 9 8v9a2 2 0 0 1-2 2h-4v-6H9v6H5a2 2 0 0 1-2-2z", null],
+  ["Profile", "M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0 2c-4 0-8 2-8 5v2h16v-2c0-3-4-5-8-5z", null],
+  ["Roblox Plus", "M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z", null],
+  ["Messages", "M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z", "500"],
+  ["Friends", "M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 20c0-3 3.5-5 7-5s7 2 7 5v1H2zm15.5-4.6c2.6.6 4.5 2.2 4.5 4.6v1h-4z", "143"],
+  ["Avatar", "M12 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8zM6 12h12v6H6zm2 8h2v2H8zm6 0h2v2h-2z", null],
+  ["Inventory", "M4 6h16v14H4zm4-4h8v4H8z", null],
+  ["Sandbox", "M3 20h18L12 4z", null],
+  ["Trade", "M7 7h11l-3-3m3 13H7l3 3", null],
+  ["Communities", "M12 3l9 5-9 5-9-5zm0 8l9 5-9 5-9-5z", null],
+  ["Themes", "M12 3a9 9 0 1 0 0 18c1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.1 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-3.9-4-7.1-9-7.1zM6.5 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z", null],
+  ["Blog", "M4 4h16v3H4zm0 5h16v3H4zm0 5h11v3H4z", null],
+  ["Official Store", "M4 7h16l-1.2 12.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8zM8 7a4 4 0 0 1 8 0", null],
+  ["Buy Gift Cards", "M2 8h20v12H2zm0-4h20v3H2z", null]
 ];
-var NAV2 = [
-  ["My Feed", "M4 4h16v4H4zm0 6h16v4H4zm0 6h10v4H4z"],
-  ["Profile", "M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0 2c-4 0-8 2-8 5v2h16v-2c0-3-4-5-8-5z"],
-  ["Messages", "M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"],
-  ["Friends", "M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 20c0-3 3.5-5 7-5s7 2 7 5v1H2zm15.5-4.6c2.6.6 4.5 2.2 4.5 4.6v1h-4z"],
-  ["Avatar", "M12 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8zM6 12h12v6H6zm2 8h2v2H8zm6 0h2v2h-2z"],
-  ["Inventory", "M4 6h16v14H4zm4-4h8v4H8z"],
-  ["Trade", "M7 7h11l-3-3m3 13H7l3 3"],
-  ["Groups", "M12 3l9 5-9 5-9-5zm0 8l9 5-9 5-9-5z"]
-];
-function svgGlyph(path) {
-  return '<svg class="glyph" viewBox="0 0 24 24" fill="#d5d6d7"><path d="' + path + '"/></svg>';
-}
 function renderNav() {
   var side = document.getElementById("side");
-  var html = "";
+  side.textContent = "";
+  // account row
+  var me = document.createElement("div");
+  me.className = "nav-item";
+  me.innerHTML = '<span class="glyph" style="border-radius:50%;background:linear-gradient(140deg,#5a5d60,#303335);display:inline-block"></span>'
+    + '<span>yungbruh</span>';
+  side.appendChild(me);
   NAV.forEach(function (n) {
-    html += '<div class="nav-item' + (n[2] ? " active" : "") + '">' + svgGlyph(n[1]) + "<span>" + n[0] + "</span></div>";
+    var d = document.createElement("div");
+    d.className = "nav-item" + ((n[0] === "Home" && state.mode !== "charts") ? " active" : "");
+    d.innerHTML = '<svg class="glyph" viewBox="0 0 24 24" fill="#fff"><path d="' + n[1] + '"/></svg><span>' + n[0] + "</span>"
+      + (n[2] ? '<span class="badge">' + n[2] + "</span>" : "");
+    side.appendChild(d);
   });
-  html += '<div class="nav-sep"></div>';
-  NAV2.forEach(function (n) {
-    html += '<div class="nav-item">' + svgGlyph(n[1]) + "<span>" + n[0] + "</span></div>";
-  });
-  html += '<div class="nav-sep"></div><div class="nav-head">RECENTLY VISITED</div>';
-  side.innerHTML = html;
 }
 
-/* ------------------------------------------------------------------ tiles */
-function artNode(src, label, isMine) {
+/* ------------------------------------------------------------------- art */
+function artNode(src, label, cls) {
   var wrap = document.createElement("div");
   wrap.className = "art";
   if (src) {
     var img = document.createElement("img");
     img.src = src;
     img.alt = label;
-    img.loading = "lazy";
     img.addEventListener("error", function () {
-      // CDN url rotated / offline — never show a broken tile
       wrap.textContent = "";
       wrap.appendChild(fallbackNode(label));
     });
@@ -510,87 +573,113 @@ function fallbackNode(label) {
   f.textContent = label.slice(0, 18);
   return f;
 }
-function tileNode(game, isMine, wide) {
+/* Roblox's stat line: thumbs-up percentage, then player count */
+function statsNode(pct, playing) {
+  var s = document.createElement("div");
+  s.className = "stats";
+  var a = document.createElement("span");
+  a.className = "s";
+  a.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="#bdbebe"><path d="M2 21h3V9H2zM22 10a2 2 0 0 0-2-2h-5.6l.9-4.1v-.3a1.5 1.5 0 0 0-.4-1L13.8 1 7.6 7.2A2 2 0 0 0 7 8.6V19a2 2 0 0 0 2 2h9a2 2 0 0 0 1.8-1.2l3-7a2 2 0 0 0 .2-.8z"/></svg>'
+    + "<span>" + pct + "%</span>";
+  s.appendChild(a);
+  var b = document.createElement("span");
+  b.className = "s";
+  b.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="#bdbebe"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0 2c-4 0-8 2-8 5v2h16v-2c0-3-4-5-8-5z"/></svg>'
+    + "<span>" + fmtCount(playing) + "</span>";
+  s.appendChild(b);
+  return s;
+}
+function cardNode(game, isMine, shape) {
+  // shape: "icon" (square, charts) | "big" (16:9, home recommended/continue)
   var el = document.createElement("div");
-  el.className = (wide ? "wcard" : "tile") + (isMine ? " mine" : "") + (isMine && flagOn() ? " flagged" : "");
-  var src = isMine ? myImage() : (wide ? (game.thumb || game.icon) : game.icon);
+  el.className = (shape === "icon" ? "icard" : "bcard") + (isMine ? " mine" : "") + (isMine && flagOn() ? " flagged" : "");
+  var src = isMine ? myImage() : (shape === "icon" ? game.icon : (game.thumb || game.icon));
   var label = isMine ? state.name : game.name;
-  el.appendChild(artNode(src, label, isMine));
+  el.appendChild(artNode(src, label));
   var n = document.createElement("div");
   n.className = "name";
   n.textContent = label;
   el.appendChild(n);
-  var m = document.createElement("div");
-  m.className = "meta";
-  var dot = document.createElement("span");
-  dot.className = "dot";
-  m.appendChild(dot);
-  var cnt = document.createElement("span");
-  cnt.textContent = fmtCount(isMine ? state.playing : game.playing);
-  m.appendChild(cnt);
-  el.appendChild(m);
+  el.appendChild(statsNode(isMine ? state.like : likePct(game), isMine ? state.playing : game.playing));
   return el;
 }
 function flagOn() { return document.getElementById("t-flag").querySelector("input").checked; }
 
 /* ----------------------------------------------------------------- render */
-function tilesPerRow() {
+function render() {
+  renderNav();
+  if (state.mode === "exp") renderExperience();
+  else if (state.mode === "charts") renderCharts();
+  else renderHome();
+  if (!myImage()) setHint("add an image to place it on the page");
+}
+
+function colsFor(target, gap) {
   var main = document.getElementById("main");
   var w = main.clientWidth || 1000;
-  var target = document.body.classList.contains("mobile") ? 132 : 150;
-  return Math.max(2, Math.floor((w + 12) / (target + 12)));
-}
-function render() {
-  if (state.mode === "exp") renderExperience();
-  else renderHome();
-  if (!myImage()) setHint("add a thumbnail to place it on the page");
+  return Math.max(2, Math.floor((w + gap) / (target + gap)));
 }
 
-function renderHome() {
+/* ---- CHARTS: square icons, exactly the rows Roblox shows ---- */
+function renderCharts() {
   var main = document.getElementById("main");
-  var per = tilesPerRow();
-  var tileW = Math.floor((main.clientWidth - (per - 1) * 12) / per);
-  main.style.setProperty("--tile", tileW + "px");
-  var widePer = Math.max(1, Math.min(4, Math.floor(per / 2)));
-  main.style.setProperty("--wide", Math.floor((main.clientWidth - (widePer - 1) * 14) / widePer) + "px");
+  main.textContent = "";
+  var per = colsFor(document.body.classList.contains("mobile") ? 104 : 116, 10);
+  main.style.setProperty("--icw", Math.floor((main.clientWidth - (per - 1) * 10) / per) + "px");
+
+  var h1 = document.createElement("h1");
+  h1.className = "page";
+  h1.textContent = "Charts";
+  main.appendChild(h1);
+
+  var pills = document.createElement("div");
+  pills.className = "pills";
+  ["Computer", "United States"].forEach(function (t) {
+    var p = document.createElement("div");
+    p.className = "pill";
+    p.textContent = t + " ⌄";
+    pills.appendChild(p);
+  });
+  main.appendChild(pills);
 
   var rand = rng(state.seed);
-  main.textContent = "";
-
   DATA.rows.forEach(function (row, ri) {
     var sec = document.createElement("section");
-    sec.className = "row";
+    sec.className = "sec";
     var head = document.createElement("div");
-    head.className = "row-head";
+    head.className = "sec-head";
     var h2 = document.createElement("h2");
     h2.textContent = row.title;
     head.appendChild(h2);
-    var see = document.createElement("span");
-    see.className = "see";
-    see.textContent = "See All ›";
-    head.appendChild(see);
+    var ar = document.createElement("span");
+    ar.className = "arrow";
+    ar.textContent = "→";
+    head.appendChild(ar);
+    var inf = document.createElement("span");
+    inf.className = "info";
+    inf.textContent = "ⓘ";
+    head.appendChild(inf);
     sec.appendChild(head);
+    if (row.title === "Top Playing Now") {
+      var sub = document.createElement("div");
+      sub.className = "sub";
+      sub.textContent = "Results for all devices and locations";
+      sec.appendChild(sub);
+    }
 
-    // row 1 renders as the wide 16:9 carousel, like Roblox's picks shelf
-    var wide = (ri === 1);
     var strip = document.createElement("div");
-    strip.className = wide ? "wide" : "tiles";
-    var slots = wide ? widePer : per;
-
+    strip.className = "icons";
     var ids = shuffled(row.ids, rand);
-    // modulo, not clamp: clamping would pin it to the last slot on the
-    // short 16:9 shelf every time instead of spreading across it
     var mineHere = (ri === state.myRow) && myImage();
-    var minePos = mineHere ? (state.myPos % slots) : -1;
-
+    var minePos = mineHere ? (state.myPos % per) : -1;
     var k = 0;
-    for (var i = 0; i < slots; i++) {
+    for (var i = 0; i < per; i++) {
       if (i === minePos) {
-        strip.appendChild(tileNode(null, true, wide));
+        strip.appendChild(cardNode(null, true, "icon"));
       } else {
         var g = GAMES[ids[k % ids.length]];
         k++;
-        if (g) strip.appendChild(tileNode(g, false, wide));
+        if (g) strip.appendChild(cardNode(g, false, "icon"));
       }
     }
     sec.appendChild(strip);
@@ -598,14 +687,150 @@ function renderHome() {
   });
 }
 
-/* ------------------------------------------------- experience (game) page */
-/* The big images: this is the media carousel at the top of a Roblox
-   experience page, where a 16:9 thumbnail is shown at full size. Every
-   thumbnail in your tray goes into the carousel; real games' art fills the
-   rest, so the strip reads like a real listing. */
+/* ---- HOME: Recommended For You = BIG 16:9 grid, plus Continue strip ---- */
+function renderHome() {
+  var main = document.getElementById("main");
+  main.textContent = "";
+  var mobile = document.body.classList.contains("mobile");
+  var bigCols = Math.max(2, Math.min(6, colsFor(mobile ? 170 : 210, 14)));
+  main.style.setProperty("--bigcols", bigCols);
+  var contPer = colsFor(mobile ? 130 : 148, 11);
+  main.style.setProperty("--contw", Math.floor((main.clientWidth - (contPer - 1) * 11) / contPer) + "px");
+
+  var h1 = document.createElement("h1");
+  h1.className = "page";
+  h1.textContent = "Home";
+  main.appendChild(h1);
+
+  var rand = rng(state.seed);
+  var pool = shuffled(DATA.games.filter(function (g) { return g.thumb; }), rand);
+
+  // ---- Your Most Played (top-right panel) ----
+  var mp = document.createElement("div");
+  mp.className = "mostplayed";
+  var mt = document.createElement("div");
+  mt.className = "t";
+  mt.textContent = "Your Most Played";
+  mp.appendChild(mt);
+  var mrow = document.createElement("div");
+  mrow.className = "row";
+  for (var m = 0; m < 4; m++) {
+    var it = document.createElement("div");
+    it.className = "it";
+    var a = document.createElement("div");
+    a.className = "a";
+    var mi = document.createElement("img");
+    var mine0 = (m === 0) && myImage();
+    mi.src = mine0 ? myImage() : pool[m].thumb;
+    a.appendChild(mi);
+    it.appendChild(a);
+    var nn = document.createElement("div");
+    nn.className = "n";
+    nn.textContent = mine0 ? state.name : pool[m].name;
+    it.appendChild(nn);
+    var hh = document.createElement("div");
+    hh.className = "h";
+    hh.textContent = [83, 2, 14, 12][m] + (m === 0 ? " hours" : (m === 1 ? " hours" : " minutes"));
+    it.appendChild(hh);
+    mrow.appendChild(it);
+  }
+  mp.appendChild(mrow);
+  main.appendChild(mp);
+
+  // ---- Friends ----
+  var fs = document.createElement("section");
+  fs.className = "sec";
+  fs.style.maxWidth = "calc(100% - 430px)";
+  var fh = document.createElement("div");
+  fh.className = "sec-head";
+  var fh2 = document.createElement("h2");
+  fh2.textContent = "Friends (184)";
+  fh.appendChild(fh2);
+  var sa = document.createElement("span");
+  sa.className = "seeall";
+  sa.textContent = "See All →";
+  fh.appendChild(sa);
+  fs.appendChild(fh);
+  var frow = document.createElement("div");
+  frow.className = "friends";
+  var FRIENDS = ["CRMYHAK3", "Gaster", "crusaderz", "ar8tsyy", "rip_bacon", "Noah", "Cambodia_War", "Energetic_Espen", "Natedoggy1989", "shalalalaboom", "Viben_Shotz", "ippo"];
+  FRIENDS.forEach(function (nm, i) {
+    var fr = document.createElement("div");
+    fr.className = "fr";
+    var av = document.createElement("div");
+    av.className = "av";
+    var hue = (i * 47) % 360;
+    av.style.background = "linear-gradient(150deg,hsl(" + hue + ",18%,34%),hsl(" + hue + ",14%,20%))";
+    var dg = document.createElement("div");
+    dg.className = "dotg";
+    av.appendChild(dg);
+    fr.appendChild(av);
+    var n2 = document.createElement("div");
+    n2.className = "nm";
+    n2.textContent = nm;
+    fr.appendChild(n2);
+    var s2 = document.createElement("div");
+    s2.className = "st";
+    s2.textContent = pool[(i + 7) % pool.length].name;
+    fr.appendChild(s2);
+    frow.appendChild(fr);
+  });
+  fs.appendChild(frow);
+  main.appendChild(fs);
+
+  // ---- Recommended For You: the BIG thumbnails ----
+  var rs = document.createElement("section");
+  rs.className = "sec";
+  var rh = document.createElement("div");
+  rh.className = "sec-head";
+  var rh2 = document.createElement("h2");
+  rh2.textContent = "Recommended For You";
+  rh.appendChild(rh2);
+  rs.appendChild(rh);
+  var grid = document.createElement("div");
+  grid.className = "bigs";
+  var slots = bigCols * 2;                      // Roblox shows two rows here
+  var myBig = myImage() ? (state.myBig % slots) : -1;
+  var k = 0;
+  for (var i = 0; i < slots; i++) {
+    if (i === myBig) {
+      grid.appendChild(cardNode(null, true, "big"));
+    } else {
+      grid.appendChild(cardNode(pool[k % pool.length], false, "big"));
+      k++;
+    }
+  }
+  rs.appendChild(grid);
+  main.appendChild(rs);
+
+  // ---- Continue ----
+  var cs = document.createElement("section");
+  cs.className = "sec";
+  var ch = document.createElement("div");
+  ch.className = "sec-head";
+  var ch2 = document.createElement("h2");
+  ch2.textContent = "Continue";
+  ch.appendChild(ch2);
+  var ca = document.createElement("span");
+  ca.className = "arrow";
+  ca.textContent = "→";
+  ch.appendChild(ca);
+  cs.appendChild(ch);
+  var cstrip = document.createElement("div");
+  cstrip.className = "strip169";
+  var pool2 = shuffled(pool, rng(state.seed ^ 0x9e3));
+  for (var c = 0; c < contPer; c++) {
+    if (c === 0 && myImage()) cstrip.appendChild(cardNode(null, true, "big"));
+    else cstrip.appendChild(cardNode(pool2[c % pool2.length], false, "big"));
+  }
+  cs.appendChild(cstrip);
+  main.appendChild(cs);
+}
+
+/* ---- EXPERIENCE: the big art at full size ---- */
 function expMedia() {
   var out = [];
-  state.imgs.forEach(function (src) { out.push({ src: src, mine: true }); });
+  state.imgs.forEach(function (rec) { out.push({ src: rec.src, mine: true }); });
   var rand = rng(state.seed ^ 0x5f3a);
   var pool = shuffled(DATA.games.filter(function (g) { return g.thumb; }), rand);
   for (var i = 0; i < pool.length && out.length < 6; i++) {
@@ -613,7 +838,6 @@ function expMedia() {
   }
   return out;
 }
-
 function renderExperience() {
   var main = document.getElementById("main");
   main.textContent = "";
@@ -623,7 +847,6 @@ function renderExperience() {
   var hero = media[heroIdx];
   var flag = flagOn();
 
-  // ---- title block ----
   var head = document.createElement("div");
   head.className = "exp-head";
   var ic = document.createElement("div");
@@ -652,36 +875,32 @@ function renderExperience() {
   head.appendChild(titles);
   main.appendChild(head);
 
-  // ---- media + side panel ----
   var grid = document.createElement("div");
   grid.className = "exp-grid";
-
   var left = document.createElement("div");
   var heroBox = document.createElement("div");
   heroBox.className = "exp-hero" + (hero.mine ? " mine" : "") + (hero.mine && flag ? " flagged" : "");
   var hImg = document.createElement("img");
   hImg.src = hero.src;
-  hImg.alt = hero.mine ? state.name : (hero.name || "");
   heroBox.appendChild(hImg);
-  ["l", "r"].forEach(function (side) {
+  ["l", "r"].forEach(function (sd) {
     var b = document.createElement("button");
-    b.className = "navb " + side;
-    b.textContent = side === "l" ? "‹" : "›";
+    b.className = "navb " + sd;
+    b.textContent = sd === "l" ? "‹" : "›";
     b.addEventListener("click", function () {
-      state.expHero = (heroIdx + (side === "l" ? -1 : 1) + media.length) % media.length;
+      state.expHero = (heroIdx + (sd === "l" ? -1 : 1) + media.length) % media.length;
       render();
     });
     heroBox.appendChild(b);
   });
   left.appendChild(heroBox);
-
   var strip = document.createElement("div");
   strip.className = "exp-strip";
-  media.forEach(function (m, i) {
+  media.forEach(function (mm, i) {
     var th = document.createElement("div");
-    th.className = "th" + (i === heroIdx ? " active" : "") + (m.mine ? " mine" : "") + (m.mine && flag ? " flagged" : "");
+    th.className = "th" + (i === heroIdx ? " active" : "") + (mm.mine ? " mine" : "") + (mm.mine && flag ? " flagged" : "");
     var ti = document.createElement("img");
-    ti.src = m.src;
+    ti.src = mm.src;
     th.appendChild(ti);
     th.addEventListener("click", function () { state.expHero = i; render(); });
     strip.appendChild(th);
@@ -690,7 +909,6 @@ function renderExperience() {
   grid.appendChild(left);
 
   var side = document.createElement("div");
-  side.className = "exp-side";
   var play = document.createElement("button");
   play.className = "play-btn";
   play.innerHTML = '<svg width="17" height="19" viewBox="0 0 17 19" fill="#fff"><path d="M0 0l17 9.5L0 19z"/></svg> Play';
@@ -704,7 +922,6 @@ function renderExperience() {
     srow.appendChild(s);
   });
   side.appendChild(srow);
-
   var playing = state.playing;
   var stats = document.createElement("div");
   stats.className = "exp-stats";
@@ -717,17 +934,16 @@ function renderExperience() {
   ].forEach(function (p) {
     var r = document.createElement("div");
     r.className = "r";
-    var k = document.createElement("span"); k.className = "k"; k.textContent = p[0];
+    var k2 = document.createElement("span"); k2.className = "k"; k2.textContent = p[0];
     var v = document.createElement("span"); v.className = "v"; v.textContent = p[1];
-    r.appendChild(k); r.appendChild(v);
+    r.appendChild(k2); r.appendChild(v);
     stats.appendChild(r);
   });
   side.appendChild(stats);
-
   var lb = document.createElement("div");
   lb.className = "likebar";
   var track = document.createElement("div"); track.className = "track";
-  var fill = document.createElement("div"); fill.className = "fill"; fill.style.width = "94%";
+  var fill = document.createElement("div"); fill.className = "fill"; fill.style.width = state.like + "%";
   track.appendChild(fill); lb.appendChild(track);
   var lbl = document.createElement("div"); lbl.className = "lbl";
   var up = document.createElement("span"); up.textContent = "👍 " + fmtCount(Math.round(playing * 9.4));
@@ -737,7 +953,6 @@ function renderExperience() {
   grid.appendChild(side);
   main.appendChild(grid);
 
-  // ---- tabs + description ----
   var tabs = document.createElement("div");
   tabs.className = "exp-tabs";
   ["About", "Store", "Servers"].forEach(function (t, i) {
@@ -752,29 +967,6 @@ function renderExperience() {
   desc.textContent = "Rob, shoot, drive and run the block. Hit the bank, wash your money at the "
     + "laundromat, buy a house and take the whole city.\n\nUse code RELEASE for a free G17.";
   main.appendChild(desc);
-
-  // ---- recommended row, like the real page ----
-  var per = tilesPerRow();
-  main.style.setProperty("--tile", Math.floor((main.clientWidth - (per - 1) * 12) / per) + "px");
-  var sec = document.createElement("section");
-  sec.className = "row";
-  sec.style.marginTop = "28px";
-  var rh = document.createElement("div");
-  rh.className = "row-head";
-  var h2 = document.createElement("h2");
-  h2.textContent = "Recommended";
-  rh.appendChild(h2);
-  sec.appendChild(rh);
-  var tiles = document.createElement("div");
-  tiles.className = "tiles";
-  var rand2 = rng(state.seed ^ 0x77);
-  var ids = shuffled(DATA.rows[0].ids, rand2);
-  for (var i = 0; i < per; i++) {
-    var g = GAMES[ids[i % ids.length]];
-    if (g) tiles.appendChild(tileNode(g, false, false));
-  }
-  sec.appendChild(tiles);
-  main.appendChild(sec);
 }
 
 /* ------------------------------------------------------------------ hint */
@@ -791,20 +983,22 @@ function randomize() {
   state.seed = (Math.random() * 4294967295) >>> 0;
   var r = rng(state.seed);
   if (state.mode === "exp") {
-    // put a different one of YOUR thumbnails in the big slot and reshuffle
-    // the rest of the carousel + the recommended row around it
     state.expHero = state.imgs.length ? Math.floor(r() * state.imgs.length) : 0;
     render();
-    setHint(myImage()
-      ? ("big slot: thumbnail " + (state.expHero + 1) + " of " + state.imgs.length)
-      : "add a thumbnail first");
+    setHint(myImage() ? ("big slot: image " + (state.expHero + 1) + " of " + state.imgs.length) : "add an image first");
     return;
   }
-  state.myRow = Math.floor(r() * DATA.rows.length);
-  state.myPos = Math.floor(r() * tilesPerRow());
+  if (state.mode === "charts") {
+    state.myRow = Math.floor(r() * DATA.rows.length);
+    state.myPos = Math.floor(r() * 12);
+    render();
+    var rowName = DATA.rows[state.myRow] ? DATA.rows[state.myRow].title : "";
+    setHint(myImage() ? ("icon placed in “" + rowName + "”") : "add an image first");
+    return;
+  }
+  state.myBig = Math.floor(r() * 12);
   render();
-  var rowName = DATA.rows[state.myRow] ? DATA.rows[state.myRow].title : "";
-  setHint(myImage() ? ("placed in “" + rowName + "”, slot " + (state.myPos + 1)) : "add a thumbnail first");
+  setHint(myImage() ? "thumbnail moved in Recommended For You" : "add an image first");
 }
 
 function setMode(m) {
@@ -820,9 +1014,9 @@ function setMode(m) {
 function wireToggle(id, cls) {
   var el = document.getElementById(id);
   var input = el.querySelector("input");
-  // listen to the INPUT's change, never the label's click: the checkbox is
-  // inside the label, so a label click already toggles it natively -- doing
-  // it again by hand cancels itself out and the toggle does nothing.
+  // bind the INPUT's change, never the label's click: the checkbox lives
+  // inside the label, so a label click already toggles it natively --
+  // doing it again by hand cancels out and the toggle does nothing.
   input.addEventListener("change", function () {
     el.classList.toggle("on", input.checked);
     if (cls) document.body.classList.toggle(cls, input.checked);
@@ -834,9 +1028,8 @@ function init() {
   loadState();
   document.getElementById("gname").value = state.name;
   document.getElementById("gplaying").value = state.playing;
-  renderNav();
+  document.getElementById("glike").value = state.like;
   renderTray();
-  render();
 
   document.getElementById("rand").addEventListener("click", randomize);
   var modeBtns = document.querySelectorAll("#modes .mode");
@@ -845,7 +1038,14 @@ function init() {
       b.addEventListener("click", function () { setMode(b.getAttribute("data-mode")); });
     })(modeBtns[mi]);
   }
-  setMode(state.mode);
+  // the real top nav switches surfaces too
+  var navs = document.querySelectorAll(".topnav a[data-nav]");
+  for (var ni = 0; ni < navs.length; ni++) {
+    (function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); setMode(a.getAttribute("data-nav")); });
+    })(navs[ni]);
+  }
+
   wireToggle("t-flag", null);
   wireToggle("t-squint", "squint");
   wireToggle("t-gray", "gray");
@@ -857,6 +1057,9 @@ function init() {
   document.getElementById("gplaying").addEventListener("input", function (e) {
     state.playing = Math.max(0, parseInt(e.target.value, 10) || 0); saveCfg(); render();
   });
+  document.getElementById("glike").addEventListener("input", function (e) {
+    state.like = Math.min(100, Math.max(0, parseInt(e.target.value, 10) || 0)); saveCfg(); render();
+  });
 
   var file = document.getElementById("file");
   document.getElementById("drop").addEventListener("click", function () { file.click(); });
@@ -864,8 +1067,6 @@ function init() {
     Array.prototype.slice.call(e.target.files).forEach(addFile);
     file.value = "";
   });
-
-  // drag + drop anywhere
   window.addEventListener("dragover", function (e) { e.preventDefault(); });
   window.addEventListener("drop", function (e) {
     e.preventDefault();
@@ -873,13 +1074,10 @@ function init() {
       Array.prototype.slice.call(e.dataTransfer.files).forEach(addFile);
     }
   });
-  // paste straight from a screenshot / photoshop
   window.addEventListener("paste", function (e) {
     var items = (e.clipboardData && e.clipboardData.items) || [];
     for (var i = 0; i < items.length; i++) {
-      if (items[i].type && items[i].type.indexOf("image") === 0) {
-        addFile(items[i].getAsFile());
-      }
+      if (items[i].type && items[i].type.indexOf("image") === 0) addFile(items[i].getAsFile());
     }
   });
 
@@ -902,6 +1100,8 @@ function init() {
     if (rt) clearTimeout(rt);
     rt = setTimeout(render, 120);
   });
+
+  setMode(state.mode);
 }
 init();
 </script>
