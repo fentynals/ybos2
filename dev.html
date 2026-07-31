@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YBOS DEV — Thumbnail Tester</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    /* Roblox dark-theme tokens */
+    --rbx-bg: #191b1d;
+    --rbx-surface: #232527;
+    --rbx-surface2: #2e3134;
+    --rbx-line: #3b3f43;
+    --rbx-text: #ffffff;
+    --rbx-dim: #bdbebe;
+    --rbx-green: #00b06f;
+    --rbx-blue: #0077ff;
+    /* ybos chrome */
+    --y-bg: #0b0c10;
+    --y-line: #22242c;
+    --y-dim: #8b93a7;
+    --y-gold: #ffd23e;
+    --y-green: #1d9b4e;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--rbx-bg); color: var(--rbx-text);
+    font-family: Montserrat, "Builder Sans", "Segoe UI", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============================ ybos dev bar ============================ */
+  #devbar {
+    position: sticky; top: 0; z-index: 500;
+    background: var(--y-bg); border-bottom: 1px solid var(--y-line);
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    padding: 9px 14px; font-size: 12.5px; color: #e8ecf4;
+  }
+  #devbar.hidden { display: none; }
+  #devbar h1 {
+    margin: 0; font-size: 13px; letter-spacing: 1.5px; color: var(--y-gold);
+    font-weight: 700; white-space: nowrap;
+  }
+  #devbar .sep { width: 1px; height: 22px; background: var(--y-line); }
+  #devbar label { color: var(--y-dim); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  #devbar input[type=text], #devbar input[type=number] {
+    background: #101218; color: #e8ecf4; border: 1px solid var(--y-line);
+    border-radius: 6px; padding: 5px 8px; font: inherit; font-size: 12px;
+  }
+  #devbar input[type=text] { width: 130px; }
+  #devbar input[type=number] { width: 78px; }
+  .ybtn {
+    background: var(--y-green); color: #fff; border: 0; border-radius: 6px;
+    padding: 7px 12px; font: inherit; font-size: 12px; font-weight: 700;
+    cursor: pointer; letter-spacing: .4px; white-space: nowrap;
+  }
+  .ybtn:hover { filter: brightness(1.15); }
+  .ybtn.ghost { background: #1a1d26; border: 1px solid var(--y-line); color: #c9cfdd; }
+  .ybtn.gold { background: var(--y-gold); color: #14161c; }
+  .toggle {
+    display: flex; align-items: center; gap: 5px; cursor: pointer;
+    background: #1a1d26; border: 1px solid var(--y-line); border-radius: 6px;
+    padding: 6px 9px; color: #c9cfdd; user-select: none; font-size: 12px;
+  }
+  .toggle.on { background: #1f2a20; border-color: #2f6b3c; color: #b8f5c4; }
+  .toggle input { display: none; }
+
+  /* thumbnail tray */
+  #tray { display: flex; align-items: center; gap: 6px; }
+  #tray .slot {
+    width: 46px; height: 46px; border-radius: 6px; border: 2px solid var(--y-line);
+    background: #101218 center/cover no-repeat; cursor: pointer; position: relative;
+    flex: 0 0 auto;
+  }
+  #tray .slot.active { border-color: var(--y-gold); }
+  #tray .slot .x {
+    position: absolute; top: -6px; right: -6px; width: 16px; height: 16px;
+    border-radius: 50%; background: #c0392b; color: #fff; font-size: 11px; line-height: 16px;
+    text-align: center; display: none; border: 0; cursor: pointer; padding: 0;
+  }
+  #tray .slot:hover .x { display: block; }
+  #drop {
+    border: 1px dashed #39404f; border-radius: 6px; padding: 6px 10px;
+    color: var(--y-dim); cursor: pointer; font-size: 12px; white-space: nowrap;
+  }
+  #drop:hover { border-color: var(--y-gold); color: var(--y-gold); }
+  #hint { color: var(--y-dim); font-size: 11.5px; }
+  #showbar {
+    position: fixed; top: 8px; right: 8px; z-index: 600; display: none;
+  }
+  body.barhidden #showbar { display: block; }
+
+  /* ============================ roblox page ============================ */
+  #page { filter: none; transition: filter .15s; }
+  body.squint #page { filter: blur(3.5px); }
+  body.gray #page { filter: grayscale(1); }
+  body.squint.gray #page { filter: blur(3.5px) grayscale(1); }
+
+  /* top nav */
+  .rbx-top {
+    position: sticky; top: 0; z-index: 300; height: 48px; background: var(--rbx-surface);
+    display: flex; align-items: center; gap: 14px; padding: 0 14px;
+    border-bottom: 1px solid rgba(0,0,0,.4);
+  }
+  body:not(.barhidden) .rbx-top { top: 0; }
+  .rbx-logo { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+  .rbx-logo svg { display: block; }
+  .rbx-search {
+    flex: 0 1 320px; height: 32px; background: var(--rbx-bg); border: 1px solid var(--rbx-line);
+    border-radius: 6px; display: flex; align-items: center; gap: 8px; padding: 0 10px;
+    color: #8f9295; font-size: 13px;
+  }
+  .rbx-top .grow { flex: 1 1 auto; }
+  .rbx-icons { display: flex; align-items: center; gap: 16px; flex: 0 0 auto; }
+  .rbx-icons .ic { color: #d5d6d7; display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; }
+  .rbx-av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(140deg,#4a4d50,#2b2e30); }
+  .rbx-buy {
+    background: var(--rbx-blue); color: #fff; font-size: 12px; font-weight: 700;
+    border-radius: 6px; padding: 6px 10px;
+  }
+
+  /* shell */
+  .rbx-shell { display: flex; align-items: flex-start; }
+  .rbx-side {
+    position: sticky; top: 48px; flex: 0 0 176px; height: calc(100vh - 48px);
+    background: var(--rbx-surface); padding: 12px 0; overflow-y: auto;
+    border-right: 1px solid rgba(0,0,0,.35);
+  }
+  .rbx-side::-webkit-scrollbar { width: 6px; }
+  .rbx-side::-webkit-scrollbar-thumb { background: #3b3f43; border-radius: 3px; }
+  .nav-item {
+    display: flex; align-items: center; gap: 11px; padding: 9px 16px;
+    color: #d5d6d7; font-size: 13.5px; font-weight: 500; cursor: default;
+  }
+  .nav-item.active { background: var(--rbx-surface2); color: #fff; font-weight: 600; }
+  .nav-item:hover { background: #2a2d30; }
+  .nav-item .glyph { width: 18px; height: 18px; flex: 0 0 18px; opacity: .85; }
+  .nav-sep { height: 1px; background: var(--rbx-line); margin: 10px 16px; }
+  .nav-head { padding: 6px 16px; color: #8f9295; font-size: 11px; font-weight: 700; letter-spacing: .6px; }
+
+  .rbx-main { flex: 1 1 auto; min-width: 0; padding: 18px 22px 60px; }
+
+  /* rows */
+  .row { margin-bottom: 26px; }
+  .row-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
+  .row-head h2 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: .1px; }
+  .row-head .see { color: var(--rbx-dim); font-size: 12.5px; font-weight: 600; }
+  .tiles { display: grid; grid-auto-flow: column; grid-auto-columns: var(--tile); gap: 12px; overflow: hidden; }
+
+  .tile { width: var(--tile); cursor: default; }
+  .tile .art {
+    width: 100%; aspect-ratio: 1/1; border-radius: 8px; overflow: hidden;
+    background: #2b2e30; position: relative;
+  }
+  .tile .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .tile .name {
+    margin-top: 7px; font-size: 13px; font-weight: 600; line-height: 1.25; color: #fff;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    max-height: 2.5em;
+  }
+  .tile .meta { margin-top: 3px; display: flex; align-items: center; gap: 4px; color: var(--rbx-dim); font-size: 12px; font-weight: 500; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--rbx-green); flex: 0 0 7px; }
+  .tile.mine.flagged .art { outline: 3px solid var(--y-gold); outline-offset: 2px; }
+  .tile.mine.flagged .name { color: var(--y-gold); }
+
+  /* wide 16:9 carousel */
+  .wide { display: grid; grid-auto-flow: column; grid-auto-columns: var(--wide); gap: 14px; overflow: hidden; }
+  .wcard { width: var(--wide); }
+  .wcard .art { width: 100%; aspect-ratio: 16/9; border-radius: 10px; overflow: hidden; background: #2b2e30; }
+  .wcard .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .wcard .name { margin-top: 8px; font-size: 14px; font-weight: 600; }
+  .wcard .meta { margin-top: 3px; display: flex; align-items: center; gap: 4px; color: var(--rbx-dim); font-size: 12px; }
+  .wcard.mine.flagged .art { outline: 3px solid var(--y-gold); outline-offset: 2px; }
+
+  /* fallback art when a CDN icon 404s */
+  .fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; color: #fff; text-align: center; padding: 8px; line-height: 1.15; }
+
+  /* mobile sim */
+  body.mobile .rbx-side { display: none; }
+  body.mobile .rbx-main { padding: 14px 12px 60px; }
+</style>
+</head>
+<body>
+
+<div id="devbar">
+  <h1>YBOS DEV &middot; THUMBNAIL TESTER</h1>
+  <div class="sep"></div>
+  <div id="tray"></div>
+  <div id="drop">+ add thumbnail <span style="opacity:.6">(click / drop / paste)</span></div>
+  <input type="file" id="file" accept="image/*" multiple hidden>
+  <div class="sep"></div>
+  <label>name <input type="text" id="gname" value="HEAD TAP" spellcheck="false"></label>
+  <label>playing <input type="number" id="gplaying" value="1200" min="0" step="1"></label>
+  <div class="sep"></div>
+  <button class="ybtn gold" id="rand">RANDOMIZE</button>
+  <label class="toggle" id="t-flag"><input type="checkbox">find mine</label>
+  <label class="toggle" id="t-squint"><input type="checkbox">squint</label>
+  <label class="toggle" id="t-gray"><input type="checkbox">gray</label>
+  <label class="toggle" id="t-mobile"><input type="checkbox">mobile</label>
+  <div class="sep"></div>
+  <button class="ybtn ghost" id="hide">HIDE BAR (H)</button>
+  <span id="hint"></span>
+</div>
+<button class="ybtn gold" id="showbar">SHOW DEV BAR (H)</button>
+
+<div id="page">
+  <!-- ============ top nav ============ -->
+  <div class="rbx-top">
+    <div class="rbx-logo">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="4.6" y="0" width="23" height="23" rx="1.4" transform="rotate(14 16 16)" fill="#fff"/>
+        <rect x="12.4" y="11.2" width="8" height="8" rx=".8" transform="rotate(14 16 16)" fill="#191b1d"/>
+      </svg>
+      <span style="font-weight:700;font-size:15px;letter-spacing:.2px">Roblox</span>
+    </div>
+    <div class="rbx-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8f9295" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <span>Search</span>
+    </div>
+    <div class="grow"></div>
+    <div class="rbx-icons">
+      <span class="ic">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#d5d6d7"><path d="M5 3h10l4 4v10l-4 4H5L1 17V7z" opacity=".9"/></svg>
+        0
+      </span>
+      <span class="rbx-buy">Get Robux</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#d5d6d7"><path d="M12 22a2.2 2.2 0 0 0 2.2-2.2H9.8A2.2 2.2 0 0 0 12 22zm7-6v-5a7 7 0 0 0-5.3-6.8V3a1.7 1.7 0 1 0-3.4 0v1.2A7 7 0 0 0 5 11v5l-2 2v1h18v-1z"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#d5d6d7"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+      <div class="rbx-av"></div>
+    </div>
+  </div>
+
+  <!-- ============ shell ============ -->
+  <div class="rbx-shell">
+    <nav class="rbx-side" id="side"></nav>
+    <main class="rbx-main" id="main"></main>
+  </div>
+</div>
+
+<script id="gamedata" type="application/json">{"rows":[{"title":"Top Trending","ids":[66654135,9584852943,994732206,7613921865,8292068736,383310974,703124385,2619619496,6739698191,10454554751,8420907710,1202096104,5995470825,6324644175,2440500124,4777817887,9534705677,1511883870,9312646406,10144280947,9855761734,10261267004,7529591378,2668101271]},{"title":"Up-and-Coming","ids":[10454554751,10508637145,10518836988,10123059921,10456832990,10440833423,10514087900,10505651236,10439925935,10463661508,10448083800,10502841145,10404766693,10395261977,10441199872,10241000620,8813969120,10204207151,10457124059,10455462279,10272975313]},{"title":"Top Playing Now","ids":[1686885941,10200395747,66654135,994732206,10148749921,7326934954,9584852943,6035872082,383310974,7613921865,3508322461,3317771874,7709344486,6701277882,5203828273,2711375305,6739698191,6331902150,4839802560,3808081382,3240075297,5750914919,7529591378,10144280947]},{"title":"Fun with Friends","ids":[3359505957,1000233041,5580972377,6726637224,4652005960,9898409899,6619936488,1008451066,8524572339,1686885941,7178032757,7414497778,4019583467,3990106548,2668101271,6061766680,6739698191,1494262959,10329995185,4839802560,1278035280,972475338,1718755273,66654135]},{"title":"Top Revisited","ids":[9931749389,6945584306,9844129216,1946714362,9229146348,4260784961,5578556129,5039839070,7613921865,3837114739,1087859240,3508322461,7934320560,578392296,371263894,2640407187,6190071862,3359505957,994732206,10202515720,10491385664,6375110339,10196600502,10502841145]}],"games":[{"id":66654135,"name":"Murder Mystery 2","playing":559082,"rating":10154386,"down":1021600,"icon":"https://tr.rbxcdn.com/180DAY-313f1416cd5e4335a97d054183743fdd/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-fe7335c3ad752e84323cd81ae38de69a/768/432/Image/Png/noFilter"},{"id":9584852943,"name":"[💲]+1 Speed Keyboard Escape | Candy \u0026 Chocolate","playing":320608,"rating":8619093,"down":224598,"icon":"https://tr.rbxcdn.com/180DAY-85c55fb673386f3fb1464bbf4e3de638/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-9c367a6529b84f4f199fd85dd8ad83bd/768/432/Image/Png/noFilter"},{"id":994732206,"name":"Blox Fruits","playing":378353,"rating":12381490,"down":1048979,"icon":"https://tr.rbxcdn.com/180DAY-a64f70da20fc1e80ee76fe5d49c1be0a/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-65f8caa6b19f89964141f27c1e3b7fa0/768/432/Image/Png/noFilter"},{"id":7613921865,"name":"Anime Expeditions [UPDATE 😈]","playing":208391,"rating":206712,"down":6236,"icon":"https://tr.rbxcdn.com/180DAY-ff30bfc6dff778cfc9fec04606670eaa/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-3906a8c21bcf21a57115fb2175304ac7/768/432/Image/Png/noFilter"},{"id":8292068736,"name":"[RIA26] The Block","playing":24888,"rating":308705,"down":23032,"icon":"https://tr.rbxcdn.com/180DAY-cbd878abdb88c126942ffeb01e5957a7/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-6a0b2305d5297f669f0fe41eda68bfce/768/432/Image/Png/noFilter"},{"id":383310974,"name":"[🐶] Adopt Me!","playing":207627,"rating":9308293,"down":1506918,"icon":"https://tr.rbxcdn.com/180DAY-f5dc501881f5a8128689b14eab0213e5/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-a67aae79dcef8f1b79f7b13cbf920c1e/768/432/Image/Png/noFilter"},{"id":703124385,"name":"Tower of Hell","playing":42926,"rating":4277417,"down":1537840,"icon":"https://tr.rbxcdn.com/180DAY-9704151d9c8a70e7ebe0ced8cb2b95c1/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-30df204e4a0188e05ea2dcd225dab32d/768/432/Image/Png/noFilter"},{"id":2619619496,"name":"BedWars [🎃 JACK]","playing":41827,"rating":2438564,"down":527007,"icon":"https://tr.rbxcdn.com/180DAY-64d005f239236e7f3577ec996d9ade4b/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-9e34b6ee9e93b7840f82d1381d14c641/768/432/Image/Png/noFilter"},{"id":6739698191,"name":"[CURE] Violence District","playing":84961,"rating":652680,"down":47685,"icon":"https://tr.rbxcdn.com/180DAY-24a7fe15374c20384a33ba2f9d4dc362/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-2864a58c935a65e12f5c662fa877c21a/768/432/Image/Png/noFilter"},{"id":10454554751,"name":"[🍯] Unbox ASMR!","playing":41177,"rating":87491,"down":2723,"icon":"https://tr.rbxcdn.com/180DAY-5700032f440a15e09bf5d89861dcbca6/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-f3e8650dab7fb73cff8e9228616e25e1/768/432/Image/Png/noFilter"},{"id":8420907710,"name":"[UPD💣] Drift Tag","playing":14645,"rating":83066,"down":16293,"icon":"https://tr.rbxcdn.com/180DAY-760bb36c652818ad2865ba5da743d308/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-bfe1a632778783ebcfbed302e1c7e963/768/432/Image/Png/noFilter"},{"id":1202096104,"name":"[LAMBORGHINI UPD] Driving Empire🏎️ Car Racing📦RP","playing":49406,"rating":2473422,"down":182128,"icon":"https://tr.rbxcdn.com/180DAY-ade06af846e8d002a1766253a522c616/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-d41b3f952d9087e2d35d367d87f5e6d2/768/432/Image/Png/noFilter"},{"id":5995470825,"name":"[🔥SLIME BUNDLE] Hypershot","playing":33904,"rating":1699651,"down":94010,"icon":"https://tr.rbxcdn.com/180DAY-bc489982beca9961de428e7f4b73fb01/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-e640b4e4d607ef8db910b23b7adc09f4/768/432/Image/Png/noFilter"},{"id":6324644175,"name":"Death Order: Simon Says","playing":13993,"rating":62927,"down":9012,"icon":"https://tr.rbxcdn.com/180DAY-39852867c4973f9fdf1d52b442fc149c/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-bd2e1f3dfcbced61064e05b099a58015/768/432/Image/Png/noFilter"},{"id":2440500124,"name":"DOORS 👁️","playing":24670,"rating":4586559,"down":348283,"icon":"https://tr.rbxcdn.com/180DAY-53f81a48fb348823169b97fd42a1094a/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-09f0d9b97f35839568ec129016b18485/768/432/Image/Png/noFilter"},{"id":4777817887,"name":"Blade Ball","playing":20174,"rating":8325887,"down":577423,"icon":"https://tr.rbxcdn.com/180DAY-b7317d44fd85c141d154cede4aacf4b0/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-be150ba07c74cd57deb31791c2675323/768/432/Image/Png/noFilter"},{"id":9534705677,"name":"[🔥CASE UPDATE] Sniper Arena","playing":11347,"rating":213945,"down":19902,"icon":"https://tr.rbxcdn.com/180DAY-3a172e6020f01fb6b91e154d3842c852/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-1395a362b1a49eb19c04c85e5817b7d3/768/432/Image/Png/noFilter"},{"id":1511883870,"name":"Shindo Life [249]","playing":39005,"rating":2215702,"down":145099,"icon":"https://tr.rbxcdn.com/180DAY-030f4336c59bd4c2f29dc3d21724c75a/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-2b9bb8a7d7aa1cc9bd659fc6e2540d3a/768/432/Image/Png/noFilter"},{"id":9312646406,"name":"Land or Die! 🔥 [SUPERSONIC]","playing":14347,"rating":109179,"down":7368,"icon":"https://tr.rbxcdn.com/180DAY-75d0776e6b4406eeb1c042554b9dc833/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-b970e7ba15b29649b9bb38b11d2ee544/768/432/Image/Png/noFilter"},{"id":10144280947,"name":"🐒 +1 Speed Monkey Escape","playing":58816,"rating":633225,"down":9383,"icon":"https://tr.rbxcdn.com/180DAY-bc9fb41517b201b805fe7e01b722839a/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-d292a81a46bbec79c01f8de030d4c76f/768/432/Image/Png/noFilter"},{"id":9855761734,"name":"San Diego Border Roleplay","playing":29662,"rating":59128,"down":11142,"icon":"https://tr.rbxcdn.com/180DAY-8b4b8abf39aab23b2adf152b33e2f15d/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-7dd99b41a626294f448a509569d1a834/768/432/Image/Png/noFilter"},{"id":10261267004,"name":"Storage Hunters: Open World","playing":34700,"rating":69773,"down":4033,"icon":"https://tr.rbxcdn.com/180DAY-8e07578731973362ba8db2efc2b1b079/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-03760010d55285753fa05552ecf8851a/768/432/Image/Png/noFilter"},{"id":7529591378,"name":"[STRESS TEST 3! 🚧] Practical Basketball","playing":59886,"rating":48867,"down":2974,"icon":"https://tr.rbxcdn.com/180DAY-86f2d09bf0d8a7e11ea2027ba271740c/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-e8fbc77745e935ed18e655a6cbd79d0f/768/432/Image/Png/noFilter"},{"id":2668101271,"name":"Fling Things and People","playing":44634,"rating":902247,"down":222530,"icon":"https://tr.rbxcdn.com/180DAY-298897e01eeb244af09a923c7c0cdbcc/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-20254f91c5043de87f6cc8adb218c624/768/432/Image/Png/noFilter"},{"id":10508637145,"name":"Clark (EARLY ACCESS) - Huss rooms","playing":5414,"rating":45690,"down":2732,"icon":"https://tr.rbxcdn.com/180DAY-ae6b492ef1c6736966149113e2b34b86/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-05f6a4dfe137fdfe5e6f8350e86bd479/768/432/Image/Png/noFilter"},{"id":10518836988,"name":"[🎠] Garden Cleaner Evolution","playing":8684,"rating":13464,"down":450,"icon":"https://tr.rbxcdn.com/180DAY-85f29e06e81dd6aba92c679e776cb921/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-f72d2e71c8b2197b44d4c14aa564ddf4/768/432/Image/Png/noFilter"},{"id":10123059921,"name":"Home Alone (Anomaly)","playing":22411,"rating":61266,"down":3271,"icon":"https://tr.rbxcdn.com/180DAY-1c1d2040448e80e56c3f89331c13f3fe/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-fd3fb66a9b7a7f7beacec204fd702721/768/432/Image/Png/noFilter"},{"id":10456832990,"name":"+1 Pickaxe Swing Escape","playing":25004,"rating":40946,"down":3452,"icon":"https://tr.rbxcdn.com/180DAY-85ddef9a428b9d41c2090cbc52ff63cc/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-601a95fdefbb4d8b772467edcafd0ed2/768/432/Image/Png/noFilter"},{"id":10440833423,"name":"Greedy Growers","playing":8885,"rating":92036,"down":3417,"icon":"https://tr.rbxcdn.com/180DAY-e99126be5883fd8920491d92ed56b0f9/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-b4930d2799640a77f94e81198c5f4fce/768/432/Image/Png/noFilter"},{"id":10514087900,"name":"[UPD]Brisket Survival","playing":1002,"rating":1188,"down":265,"icon":"https://tr.rbxcdn.com/180DAY-a6582bfc5fd42de93cb07c8a394a8baf/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-1e105b3dc05e7932feb36cef7b5ad029/768/432/Image/Png/noFilter"},{"id":10505651236,"name":"Shred the Secrets","playing":5941,"rating":18060,"down":3060,"icon":"https://tr.rbxcdn.com/180DAY-da96bf9d2751d0d26f82ac3cafc6368e/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-33b1c809d3297cdf4a1112691d14e501/768/432/Image/Png/noFilter"},{"id":10439925935,"name":"[NEW!] Idle Balls 🔴","playing":2550,"rating":3912,"down":1160,"icon":"https://tr.rbxcdn.com/180DAY-f03f3befcb7444a9a5afa40b0720e8d2/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-07d9741dad009b1a20778c674ef4db3b/768/432/Image/Png/noFilter"},{"id":10463661508,"name":"Minecraft 1.20.6","playing":2565,"rating":3266,"down":874,"icon":"https://tr.rbxcdn.com/180DAY-7ee902df30017595b350340d4292ba76/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-ca588084db390e4d598425914fee4ff4/768/432/Image/Png/noFilter"},{"id":10448083800,"name":"Bid for Anime!","playing":6452,"rating":29891,"down":614,"icon":"https://tr.rbxcdn.com/180DAY-94ac1010fafc6bbf4667425ab71d81df/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-83cf9629b57fc8f86ea00d78acf85bf7/768/432/Image/Png/noFilter"},{"id":10502841145,"name":"[MINI 7.5] Anime Astral Simulator","playing":23242,"rating":14784,"down":393,"icon":"https://tr.rbxcdn.com/180DAY-af3f6b1a56cfe27f896ea908aba7752f/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-3ef85bd61023b859060144635055bd45/768/432/Image/Png/noFilter"},{"id":10404766693,"name":"Make an Army 🚩 : Red VS Blue [Beta]","playing":5474,"rating":5314,"down":670,"icon":"https://tr.rbxcdn.com/180DAY-a61dd4832f9781829e8ad2d59d87443a/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-f9eb24600eab004ae83e3bc4e67b5d5a/768/432/Image/Png/noFilter"},{"id":10395261977,"name":"Super Power Tycoon [NEW]","playing":3299,"rating":9655,"down":882,"icon":"https://tr.rbxcdn.com/180DAY-29cdf43ceaac37c3b28e409ef3af3fb6/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-8fce1c6031c9eb517f73023ef72dd207/768/432/Image/Png/noFilter"},{"id":10441199872,"name":"Find and Mark!","playing":7322,"rating":38901,"down":3014,"icon":"https://tr.rbxcdn.com/180DAY-20e93eb01364314e22740f87188d1cab/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-718876e99de0e8342dc22e90de54b559/768/432/Image/Png/noFilter"},{"id":10241000620,"name":"Airport Tycoon✈️","playing":4397,"rating":8494,"down":460,"icon":"https://tr.rbxcdn.com/180DAY-c053883c9eedb3d46e27f0810965a95f/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-12c0af924b611570d626f41512fbdb65/768/432/Image/Png/noFilter"},{"id":8813969120,"name":"[RELEASE!] TR Legacy","playing":5373,"rating":27879,"down":967,"icon":"https://tr.rbxcdn.com/180DAY-fbda5fc2cbeaeaae28839683263c8b07/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-f0af1eba548aa1ac906c2e8726d61bab/768/432/Image/Png/noFilter"},{"id":10204207151,"name":"Catch a Brainrot","playing":5854,"rating":26800,"down":3030,"icon":"https://tr.rbxcdn.com/180DAY-5a158c74e3b225391474860c741f1062/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-9428f650446f2c64b0ec99be47b6281e/768/432/Image/Png/noFilter"},{"id":10457124059,"name":"[UPD3.5] Clean the Golf Yard","playing":3992,"rating":19343,"down":884,"icon":"https://tr.rbxcdn.com/180DAY-81dc828d6f67ddd2411018e222594042/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-902cc69cb8253fd21eb93e6fa1c1eb8f/768/432/Image/Png/noFilter"},{"id":10455462279,"name":"[CRUELTY SOON]🚪Survive Verity in Area 51🔦","playing":9284,"rating":5437,"down":1621,"icon":"https://tr.rbxcdn.com/180DAY-d9ba82eaef601627ee27b8fe90709cc5/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-9c46ffc29a12db53da71949b682f1918/768/432/Image/Png/noFilter"},{"id":10272975313,"name":"Dino Hunters[UPD]","playing":10065,"rating":30113,"down":2368,"icon":"https://tr.rbxcdn.com/180DAY-ceb87cdc30795c4b2138878b85650b27/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-7ba85ee66526473fdb053c139ebdc28c/768/432/Image/Png/noFilter"},{"id":1686885941,"name":"Brookhaven 🏡RP","playing":619358,"rating":8366447,"down":1374886,"icon":"https://tr.rbxcdn.com/180DAY-f52be549a738cb3248bafa63cbee37eb/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-ce61f51811eb56841d78189b184573f8/768/432/Image/Png/noFilter"},{"id":10200395747,"name":"Grow a Garden 2","playing":590260,"rating":696231,"down":90048,"icon":"https://tr.rbxcdn.com/180DAY-873b8a69aca4db8da134eff8dcb7e07c/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-4d023b36ace24ced73efbaadcb66b37c/768/432/Image/Png/noFilter"},{"id":10148749921,"name":"Animal Hospital (Anomaly) 🧪","playing":370948,"rating":949590,"down":55702,"icon":"https://tr.rbxcdn.com/180DAY-4061a6ecfbe3aafe7a049fb24507eede/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-db27bdc698b088f2d8352327f7dc64f6/768/432/Image/Png/noFilter"},{"id":7326934954,"name":"[🐝] 99 Nights in the Forest 🔦","playing":341499,"rating":5207508,"down":549452,"icon":"https://tr.rbxcdn.com/180DAY-a198d6613f29d09c503e41f1357ab002/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-982ec75ffeb376d3e08abecf81c5811d/768/432/Image/Png/noFilter"},{"id":6035872082,"name":"RIVALS","playing":260174,"rating":10177940,"down":663185,"icon":"https://tr.rbxcdn.com/180DAY-e162b9799dc941a9d132ac0dee2b79e7/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-99ae7910dac324d824e934988d8200d4/768/432/Image/Png/noFilter"},{"id":3508322461,"name":"[REGISTER] Jujutsu Shenanigans","playing":177076,"rating":2451299,"down":374397,"icon":"https://tr.rbxcdn.com/180DAY-e27277bbda2ba2efdb47a1863df2da3d/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-decec85a41b80e4ac0beca8bc2952a7f/768/432/Image/Png/noFilter"},{"id":3317771874,"name":"🌻 [PETS vs COINS] Pet Simulator 99! ⚔️","playing":160665,"rating":3051147,"down":168992,"icon":"https://tr.rbxcdn.com/180DAY-dcb7c04f00d1ca1a77735a536c188c75/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-b6735ea9adb1bb7ad4a0a941abc092e6/768/432/Image/Png/noFilter"},{"id":7709344486,"name":"Steal a Brainrot","playing":130645,"rating":15290349,"down":2618336,"icon":"https://tr.rbxcdn.com/180DAY-9cc9362f1923ac24033ef787a3db9d31/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-85c688808cd001f633554b2085059ded/768/432/Image/Png/noFilter"},{"id":6701277882,"name":"[💫UPD] Fish It! 🐟","playing":119784,"rating":1334738,"down":276369,"icon":"https://tr.rbxcdn.com/180DAY-ad3e5dd4cd9b48ec0a93d1ba77aa8c64/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-153278a8b8bfc1513acaa1b73ed1f45b/768/432/Image/Png/noFilter"},{"id":5203828273,"name":"[🌴] Dress To Impress","playing":107349,"rating":3878896,"down":406301,"icon":"https://tr.rbxcdn.com/180DAY-2b3c147ddf485ca9fbbb390803c51eee/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-cddb2bc85941cdc8cef1303f3a9da4c0/768/432/Image/Png/noFilter"},{"id":2711375305,"name":"Catalog Avatar Creator","playing":92771,"rating":2883719,"down":193211,"icon":"https://tr.rbxcdn.com/180DAY-4091747afd807e31c643fac0b3ad3448/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-5a15ba0ed027dcc40139746a9c870880/768/432/Image/Png/noFilter"},{"id":6331902150,"name":"Forsaken","playing":80052,"rating":2315986,"down":417070,"icon":"https://tr.rbxcdn.com/180DAY-d617c6321e19ca67bd096866ed2136ac/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-1a65dfa73cc5b20e035999e4c697cf3f/768/432/Image/Png/noFilter"},{"id":4839802560,"name":"LifeTogether 🏠 RP ","playing":78540,"rating":891935,"down":93035,"icon":"https://tr.rbxcdn.com/180DAY-7797064846090391f2217bdf7c7485d9/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-1644076c191d509e83a565834721a74c/768/432/Image/Png/noFilter"},{"id":3808081382,"name":"The Strongest Battlegrounds","playing":77423,"rating":5217993,"down":1000341,"icon":"https://tr.rbxcdn.com/180DAY-68c92fc62a8753793f7963e146b5197f/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-c947df5b221c30672c3591247a8c6495/768/432/Image/Png/noFilter"},{"id":3240075297,"name":"Berry Avenue 🏠 RP","playing":73537,"rating":1109478,"down":181271,"icon":"https://tr.rbxcdn.com/180DAY-0ad132d9a875993bc0c73af94dcebddb/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-e030e58aa55b5b540b4d373a25b652f5/768/432/Image/Png/noFilter"},{"id":5750914919,"name":"Fisch 🐟 [CHAPEL]","playing":67827,"rating":2935083,"down":305008,"icon":"https://tr.rbxcdn.com/180DAY-0e27d7331e80b64dc1d9b7b25105499f/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-e46628f3c69fa9808e96391c23953360/768/432/Image/Png/noFilter"},{"id":3359505957,"name":"Collect All Pets!","playing":3298,"rating":125540,"down":9832,"icon":"https://tr.rbxcdn.com/180DAY-a7277fa886df53ea513646c35ba588d3/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-fd1e94b615800a6821d0a9b788e5a299/768/432/Image/Png/noFilter"},{"id":1000233041,"name":"3008 [2.74]","playing":20382,"rating":1984899,"down":179215,"icon":"https://tr.rbxcdn.com/180DAY-d64adc40cb8a0c4369839f5002a5e4af/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-1393cf4ea0d2cb4e97bc0a05938822e6/768/432/Image/Png/noFilter"},{"id":5580972377,"name":"💥 BUCKSHOT","playing":4384,"rating":623498,"down":22152,"icon":"https://tr.rbxcdn.com/180DAY-e7bc34324a6d44e513daac6b30e3c68b/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-edeb1df3707352173c6fbe2c0601b733/768/432/Image/Png/noFilter"},{"id":6726637224,"name":"[🏖️] Street Life Remastered 🔥","playing":2604,"rating":158184,"down":23889,"icon":"https://tr.rbxcdn.com/180DAY-d33a174ed36d0e85c216ef8c3bd0d163/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-05c506ff30dcbfbda6e46905c65ad9e3/768/432/Image/Png/noFilter"},{"id":4652005960,"name":"[UPDATE!] Asura","playing":1398,"rating":27272,"down":4869,"icon":"https://tr.rbxcdn.com/180DAY-ac77c352d4050624c93bf85f6f8df115/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-cbbc2a3cdd5e8b1c4b5e465f42abacc9/768/432/Image/Png/noFilter"},{"id":9898409899,"name":"🏔️[UPD] K2 CLIMBING SIMULATOR","playing":1488,"rating":61366,"down":14290,"icon":"https://tr.rbxcdn.com/180DAY-e451b63b06fddd4b77da51370c83f780/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-d478bc3a179c98bcbcfa2739b6d0cb67/768/432/Image/Png/noFilter"},{"id":6619936488,"name":"San Aurie","playing":6814,"rating":29952,"down":4158,"icon":"https://tr.rbxcdn.com/180DAY-6ecbd6080269181acff632109af92840/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-ed6e589852964789fe3f143725c1a464/768/432/Image/Png/noFilter"},{"id":1008451066,"name":"Da Hood ⚽","playing":2828,"rating":1292768,"down":540514,"icon":"https://tr.rbxcdn.com/180DAY-ae6cda2dcf44b42ebf33fd1f24578e42/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-655a8b7fc990b48f595db9bcfd7ea70b/768/432/Image/Png/noFilter"},{"id":8524572339,"name":"bridger: WESTERN (NEW UPDATE)","playing":2529,"rating":76075,"down":20507,"icon":"https://tr.rbxcdn.com/180DAY-923a4450126c0deae78f79dfc435edd1/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-d1946d974a11c37a2df4ecf9f0a766b4/768/432/Image/Png/noFilter"},{"id":7178032757,"name":"[✨] Rebirth Champions: Ultimate","playing":5118,"rating":230049,"down":5778,"icon":"https://tr.rbxcdn.com/180DAY-f77b81f11f0c978b588e98565cf7f23b/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-911748368591c70531d4d48e67258e99/768/432/Image/Png/noFilter"},{"id":7414497778,"name":"[MTC] Multicrew Tank Combat","playing":4618,"rating":63982,"down":12005,"icon":"https://tr.rbxcdn.com/180DAY-2372c9091bd99dc4b572c0068d48efb6/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-42e9f136b8383cf0034883939377acaf/768/432/Image/Png/noFilter"},{"id":4019583467,"name":"NPC or DIE! 💢","playing":3964,"rating":623353,"down":47458,"icon":"https://tr.rbxcdn.com/180DAY-fe48e81d8ef346219d5a3d2fe08ead58/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-3255187e10da1d7af9a8e421c4ecd4ba/768/432/Image/Png/noFilter"},{"id":3990106548,"name":"Baddies 💅","playing":8607,"rating":459462,"down":93559,"icon":"https://tr.rbxcdn.com/180DAY-d0eb16597c618f16cb83c360289e6e53/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-aa231abe7069f4bbfa9c4d620bef3c6b/768/432/Image/Png/noFilter"},{"id":6061766680,"name":"fight in a school","playing":3224,"rating":306862,"down":78521,"icon":"https://tr.rbxcdn.com/180DAY-d09ff94c287939ee053ce596a9615cf1/512/512/Image/Png/noFilter","thumb":""},{"id":1494262959,"name":"[🦅] Criminality","playing":2932,"rating":366248,"down":119691,"icon":"https://tr.rbxcdn.com/180DAY-5345668386aab28e81b5f18f39ac18ef/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-9d3fef6387917830f3b5d24d2dcb2571/768/432/Image/Png/noFilter"},{"id":10329995185,"name":"Puzzle Duels 🧠","playing":7691,"rating":34261,"down":844,"icon":"https://tr.rbxcdn.com/180DAY-c953c29a032619ef76406edd4c251a15/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-da0dc644514c338a613f24e8327ea6f6/768/432/Image/Png/noFilter"},{"id":1278035280,"name":"Warrior Cats: Ultimate Edition","playing":7096,"rating":486386,"down":36420,"icon":"https://tr.rbxcdn.com/180DAY-8a4d45fdd024e3e0ed597a270effe470/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-b8fd153ca92d761fd322afbfda231bba/768/432/Image/Png/noFilter"},{"id":972475338,"name":"🚩Expedition Antarctica","playing":4852,"rating":493217,"down":80219,"icon":"https://tr.rbxcdn.com/180DAY-a8b48aeb8db5561affbab310807f9a13/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-275ac819a6cce58beccb7ba9da56796c/768/432/Image/Png/noFilter"},{"id":1718755273,"name":"town","playing":1245,"rating":133758,"down":44198,"icon":"https://tr.rbxcdn.com/180DAY-778eb2c16f0897c57bb585184486d9e8/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-6f7989b622e1a1d5a8fbfb3838df41d1/768/432/Image/Png/noFilter"},{"id":9931749389,"name":"Dungeon Quest (OG)","playing":1047,"rating":3010,"down":77,"icon":"https://tr.rbxcdn.com/180DAY-28e6fcf69631781ff8ccf664ea41ddec/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-70c1d4c8beaf4aa7f463b9556abfe4c9/768/432/Image/Png/noFilter"},{"id":6945584306,"name":"[🐍AIKU] Azure Latch","playing":12970,"rating":1567127,"down":50832,"icon":"https://tr.rbxcdn.com/180DAY-f3d49fbcbcd626413190454d223ba469/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-7d414da0849fb6100489d49e9c5083fb/768/432/Image/Png/noFilter"},{"id":9844129216,"name":"[UPD 1.5 ⚽] Anime Card Chronicles","playing":2233,"rating":6252,"down":743,"icon":"https://tr.rbxcdn.com/180DAY-bd55e39f1f4763c136e9125dee519aeb/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-903bb5ba75075ae6b5364d451bdc810e/768/432/Image/Png/noFilter"},{"id":1946714362,"name":"[🐢] Bloodlines","playing":1445,"rating":41350,"down":9174,"icon":"https://tr.rbxcdn.com/180DAY-9a98cffae819c173c4491d7bf8faa288/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-5870e7d6a0829f9064330db66028e25b/768/432/Image/Png/noFilter"},{"id":9229146348,"name":"JUST ONE MORE ASYM [Ardent Aegis]","playing":802,"rating":12242,"down":2981,"icon":"https://tr.rbxcdn.com/180DAY-30da2522586a0698e549bb623627ecbe/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-4756ecb5dd2af1494bcf82adc99f58ad/768/432/Image/Png/noFilter"},{"id":4260784961,"name":"Napoleonic Wars","playing":144,"rating":26942,"down":4851,"icon":"https://tr.rbxcdn.com/180DAY-5895ea23897e543fa077de248e62d46c/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-41a660cca0dab06b63f129c7b011248f/768/432/Image/Png/noFilter"},{"id":5578556129,"name":"Anime Vanguards: Extermination Event Pt. 2","playing":19722,"rating":2580359,"down":86780,"icon":"https://tr.rbxcdn.com/180DAY-1654ac5b562fac20b1a2ca7ccdf3e3b1/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-485192e0bded1665874a3853f4e9c92b/768/432/Image/Png/noFilter"},{"id":5039839070,"name":"Outcome Memories v0.2","playing":5685,"rating":292227,"down":39229,"icon":"https://tr.rbxcdn.com/180DAY-1df5cbccb05c948f36e06aa80352f650/512/512/Image/Png/noFilter","thumb":""},{"id":3837114739,"name":"The Vampire Legends 2","playing":464,"rating":42093,"down":3744,"icon":"https://tr.rbxcdn.com/180DAY-bb874a62b7b8b2de39d7811a3f75dc94/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-8283ec469f3a971c437283f860fb904a/768/432/Image/Png/noFilter"},{"id":1087859240,"name":"[☀️] Rogue Lineage","playing":1124,"rating":118113,"down":23208,"icon":"https://tr.rbxcdn.com/180DAY-e4f7aff307d47645c43eafae4a45d7c5/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-37169702250332a4115718026b6b4d7b/768/432/Image/Png/noFilter"},{"id":7934320560,"name":"Five Nights TD 2 [PIRATE EVENT]","playing":5853,"rating":156433,"down":7566,"icon":"https://tr.rbxcdn.com/180DAY-2ab334eb48da65d55d65ca416bc54f16/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-0ecfe7246a12c2dc229328122939d141/768/432/Image/Png/noFilter"},{"id":578392296,"name":"ABA","playing":5925,"rating":504850,"down":119633,"icon":"https://tr.rbxcdn.com/180DAY-c2b77ee661ff761161dfa889fbb02cb5/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-d0b9833176bb62c2421b1be07d044d49/768/432/Image/Png/noFilter"},{"id":371263894,"name":"(🦅LICENSED FORDS!) Greenville","playing":14876,"rating":1038641,"down":144562,"icon":"https://tr.rbxcdn.com/180DAY-a1c5915881068e2d04397655b90043d6/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-efa26511447e942566a8a2a1a5d96b5f/768/432/Image/Png/noFilter"},{"id":2640407187,"name":"(Nostalgia!) Car Driving Indonesia","playing":6216,"rating":164184,"down":25919,"icon":"https://tr.rbxcdn.com/180DAY-4f45bb0e955c14dc5e3aedc604bf548b/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-d051293deb069dd98f3f11a6af6113b7/768/432/Image/Png/noFilter"},{"id":6190071862,"name":"Grave/Digger","playing":2421,"rating":77061,"down":10471,"icon":"https://tr.rbxcdn.com/180DAY-63a397bc87999523ee4cb4502227a2db/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-050a34e7adac103b4694a01e48d46367/768/432/Image/Png/noFilter"},{"id":10202515720,"name":"Undertale Multiverse Simulator 1.5","playing":1095,"rating":1210,"down":130,"icon":"https://tr.rbxcdn.com/180DAY-8e422cec826bee3991bf099b86f1a1e6/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-92b9fee72f5acc4a4fc7b3f4a8e43ef1/768/432/Image/Png/noFilter"},{"id":10491385664,"name":"Da Uphill (MOBILE MACRO)","playing":156,"rating":125,"down":50,"icon":"https://tr.rbxcdn.com/180DAY-1249c00eb8558d21b3653e85706f0489/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-23639e301fec7e08931b55f47529d7b2/768/432/Image/Png/noFilter"},{"id":6375110339,"name":"[Zombie V2] ST : Blockade Battlefront","playing":3664,"rating":65644,"down":5680,"icon":"https://tr.rbxcdn.com/180DAY-9e92d1228134cdf88a0abc0f9ae889fc/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-ef9ff505e9353025edaea02d3e849081/768/432/Image/Png/noFilter"},{"id":10196600502,"name":"[RAINBOW LAZER] CL: Streets [Under Development]","playing":1686,"rating":6341,"down":613,"icon":"https://tr.rbxcdn.com/180DAY-bdcfcb85b67588a2fc2b6fceade331c8/512/512/Image/Png/noFilter","thumb":"https://tr.rbxcdn.com/180DAY-e4962d8b0d56e7ba301a500f84bc449b/768/432/Image/Png/noFilter"}]}</script>
+<script>
+"use strict";
+
+/* =====================================================================
+   YBOS DEV — Roblox front-page thumbnail tester
+   The page below is a faithful rebuild of the Roblox home screen. The only
+   difference: one tile is YOURS. Drop a thumbnail in, hit RANDOMIZE, and it
+   lands in a different slot on the page every time so you can judge it in
+   real context, next to the games it will actually sit beside.
+   Game data (names / icons / live player counts) pulled from Roblox's own
+   explore + thumbnails APIs.
+   ===================================================================== */
+
+var DATA = JSON.parse(document.getElementById("gamedata").textContent);
+var GAMES = {};
+DATA.games.forEach(function (g) { GAMES[g.id] = g; });
+
+var LS_IMGS = "ybos.dev.thumbs";
+var LS_CFG = "ybos.dev.cfg";
+var MAX_IMGS = 8;
+
+var state = {
+  imgs: [],
+  active: 0,
+  name: "HEAD TAP",
+  playing: 1200,
+  seed: 1,
+  myRow: 0,
+  myPos: 3
+};
+
+/* ---------------------------------------------------------------- storage */
+function loadState() {
+  try {
+    var i = JSON.parse(localStorage.getItem(LS_IMGS) || "[]");
+    if (Array.isArray(i)) state.imgs = i.slice(0, MAX_IMGS);
+  } catch (e) { /* corrupt entry — start clean */ }
+  try {
+    var c = JSON.parse(localStorage.getItem(LS_CFG) || "{}");
+    if (c && typeof c === "object") {
+      if (typeof c.name === "string") state.name = c.name;
+      if (typeof c.playing === "number") state.playing = c.playing;
+      if (typeof c.active === "number") state.active = c.active;
+    }
+  } catch (e) { /* ignore */ }
+}
+function saveImgs() {
+  try { localStorage.setItem(LS_IMGS, JSON.stringify(state.imgs)); }
+  catch (e) { setHint("storage full — remove a thumbnail"); }
+}
+function saveCfg() {
+  try {
+    localStorage.setItem(LS_CFG, JSON.stringify({
+      name: state.name, playing: state.playing, active: state.active
+    }));
+  } catch (e) { /* ignore */ }
+}
+
+/* ------------------------------------------------------------- seeded rng */
+function rng(seed) {
+  var s = seed >>> 0;
+  return function () {
+    s = (s * 1664525 + 1013904223) >>> 0;
+    return s / 4294967296;
+  };
+}
+function shuffled(arr, rand) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(rand() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+/* ------------------------------------------------------------- formatting */
+function fmtCount(n) {
+  n = Number(n) || 0;
+  if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
+  if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, "") + "K";
+  return String(n);
+}
+
+/* ----------------------------------------------------------- image import */
+function downscale(dataUrl, cb) {
+  var im = new Image();
+  im.onload = function () {
+    var max = 512;
+    var w = im.width, h = im.height;
+    var scale = Math.min(1, max / Math.max(w, h));
+    var c = document.createElement("canvas");
+    c.width = Math.max(1, Math.round(w * scale));
+    c.height = Math.max(1, Math.round(h * scale));
+    c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+    try { cb(c.toDataURL("image/jpeg", 0.86)); }
+    catch (e) { cb(dataUrl); }
+  };
+  im.onerror = function () { cb(dataUrl); };
+  im.src = dataUrl;
+}
+function addFile(file) {
+  if (!file || !/^image\//.test(file.type)) return;
+  var fr = new FileReader();
+  fr.onload = function () {
+    downscale(String(fr.result), function (small) {
+      state.imgs.unshift(small);
+      if (state.imgs.length > MAX_IMGS) state.imgs.length = MAX_IMGS;
+      state.active = 0;
+      saveImgs(); saveCfg(); renderTray(); render();
+      setHint("thumbnail added — hit RANDOMIZE");
+    });
+  };
+  fr.readAsDataURL(file);
+}
+
+/* ------------------------------------------------------------------- tray */
+function renderTray() {
+  var tray = document.getElementById("tray");
+  tray.textContent = "";
+  state.imgs.forEach(function (src, i) {
+    var d = document.createElement("div");
+    d.className = "slot" + (i === state.active ? " active" : "");
+    d.style.backgroundImage = "url(" + src + ")";
+    d.title = "use this thumbnail";
+    d.addEventListener("click", function () {
+      state.active = i; saveCfg(); renderTray(); render();
+    });
+    var x = document.createElement("button");
+    x.className = "x"; x.textContent = "×"; x.title = "remove";
+    x.addEventListener("click", function (e) {
+      e.stopPropagation();
+      state.imgs.splice(i, 1);
+      if (state.active >= state.imgs.length) state.active = Math.max(0, state.imgs.length - 1);
+      saveImgs(); saveCfg(); renderTray(); render();
+    });
+    d.appendChild(x);
+    tray.appendChild(d);
+  });
+}
+function myImage() { return state.imgs[state.active] || null; }
+
+/* ------------------------------------------------------------------- nav */
+var NAV = [
+  ["Home", "M3 11l9-8 9 8v9a2 2 0 0 1-2 2h-4v-6H9v6H5a2 2 0 0 1-2-2z", true],
+  ["Discover", "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.2 5.8l-2.4 6-6 2.4 2.4-6z", false],
+  ["Marketplace", "M4 7h16l-1.2 12.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8zM8 7a4 4 0 0 1 8 0", false],
+  ["Create", "M3 17.2V21h3.8L18 9.8 14.2 6zM20.7 7.1a1 1 0 0 0 0-1.4l-2.4-2.4a1 1 0 0 0-1.4 0l-1.9 1.9L18.8 9z", false],
+  ["Robux", "M5 3h10l4 4v10l-4 4H5L1 17V7z", false]
+];
+var NAV2 = [
+  ["My Feed", "M4 4h16v4H4zm0 6h16v4H4zm0 6h10v4H4z"],
+  ["Profile", "M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0 2c-4 0-8 2-8 5v2h16v-2c0-3-4-5-8-5z"],
+  ["Messages", "M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"],
+  ["Friends", "M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 20c0-3 3.5-5 7-5s7 2 7 5v1H2zm15.5-4.6c2.6.6 4.5 2.2 4.5 4.6v1h-4z"],
+  ["Avatar", "M12 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8zM6 12h12v6H6zm2 8h2v2H8zm6 0h2v2h-2z"],
+  ["Inventory", "M4 6h16v14H4zm4-4h8v4H8z"],
+  ["Trade", "M7 7h11l-3-3m3 13H7l3 3"],
+  ["Groups", "M12 3l9 5-9 5-9-5zm0 8l9 5-9 5-9-5z"]
+];
+function svgGlyph(path) {
+  return '<svg class="glyph" viewBox="0 0 24 24" fill="#d5d6d7"><path d="' + path + '"/></svg>';
+}
+function renderNav() {
+  var side = document.getElementById("side");
+  var html = "";
+  NAV.forEach(function (n) {
+    html += '<div class="nav-item' + (n[2] ? " active" : "") + '">' + svgGlyph(n[1]) + "<span>" + n[0] + "</span></div>";
+  });
+  html += '<div class="nav-sep"></div>';
+  NAV2.forEach(function (n) {
+    html += '<div class="nav-item">' + svgGlyph(n[1]) + "<span>" + n[0] + "</span></div>";
+  });
+  html += '<div class="nav-sep"></div><div class="nav-head">RECENTLY VISITED</div>';
+  side.innerHTML = html;
+}
+
+/* ------------------------------------------------------------------ tiles */
+function artNode(src, label, isMine) {
+  var wrap = document.createElement("div");
+  wrap.className = "art";
+  if (src) {
+    var img = document.createElement("img");
+    img.src = src;
+    img.alt = label;
+    img.loading = "lazy";
+    img.addEventListener("error", function () {
+      // CDN url rotated / offline — never show a broken tile
+      wrap.textContent = "";
+      wrap.appendChild(fallbackNode(label));
+    });
+    wrap.appendChild(img);
+  } else {
+    wrap.appendChild(fallbackNode(label));
+  }
+  return wrap;
+}
+function fallbackNode(label) {
+  var f = document.createElement("div");
+  f.className = "fallback";
+  var h = 0;
+  for (var i = 0; i < label.length; i++) h = (h * 31 + label.charCodeAt(i)) % 360;
+  f.style.background = "linear-gradient(140deg,hsl(" + h + ",62%,42%),hsl(" + ((h + 40) % 360) + ",62%,26%))";
+  f.textContent = label.slice(0, 18);
+  return f;
+}
+function tileNode(game, isMine, wide) {
+  var el = document.createElement("div");
+  el.className = (wide ? "wcard" : "tile") + (isMine ? " mine" : "") + (isMine && flagOn() ? " flagged" : "");
+  var src = isMine ? myImage() : (wide ? (game.thumb || game.icon) : game.icon);
+  var label = isMine ? state.name : game.name;
+  el.appendChild(artNode(src, label, isMine));
+  var n = document.createElement("div");
+  n.className = "name";
+  n.textContent = label;
+  el.appendChild(n);
+  var m = document.createElement("div");
+  m.className = "meta";
+  var dot = document.createElement("span");
+  dot.className = "dot";
+  m.appendChild(dot);
+  var cnt = document.createElement("span");
+  cnt.textContent = fmtCount(isMine ? state.playing : game.playing);
+  m.appendChild(cnt);
+  el.appendChild(m);
+  return el;
+}
+function flagOn() { return document.getElementById("t-flag").querySelector("input").checked; }
+
+/* ----------------------------------------------------------------- render */
+function tilesPerRow() {
+  var main = document.getElementById("main");
+  var w = main.clientWidth || 1000;
+  var target = document.body.classList.contains("mobile") ? 132 : 150;
+  return Math.max(2, Math.floor((w + 12) / (target + 12)));
+}
+function render() {
+  var main = document.getElementById("main");
+  var per = tilesPerRow();
+  var tileW = Math.floor((main.clientWidth - (per - 1) * 12) / per);
+  main.style.setProperty("--tile", tileW + "px");
+  var widePer = Math.max(1, Math.min(4, Math.floor(per / 2)));
+  main.style.setProperty("--wide", Math.floor((main.clientWidth - (widePer - 1) * 14) / widePer) + "px");
+
+  var rand = rng(state.seed);
+  main.textContent = "";
+
+  DATA.rows.forEach(function (row, ri) {
+    var sec = document.createElement("section");
+    sec.className = "row";
+    var head = document.createElement("div");
+    head.className = "row-head";
+    var h2 = document.createElement("h2");
+    h2.textContent = row.title;
+    head.appendChild(h2);
+    var see = document.createElement("span");
+    see.className = "see";
+    see.textContent = "See All ›";
+    head.appendChild(see);
+    sec.appendChild(head);
+
+    // row 1 renders as the wide 16:9 carousel, like Roblox's picks shelf
+    var wide = (ri === 1);
+    var strip = document.createElement("div");
+    strip.className = wide ? "wide" : "tiles";
+    var slots = wide ? widePer : per;
+
+    var ids = shuffled(row.ids, rand);
+    // modulo, not clamp: clamping would pin it to the last slot on the
+    // short 16:9 shelf every time instead of spreading across it
+    var mineHere = (ri === state.myRow) && myImage();
+    var minePos = mineHere ? (state.myPos % slots) : -1;
+
+    var k = 0;
+    for (var i = 0; i < slots; i++) {
+      if (i === minePos) {
+        strip.appendChild(tileNode(null, true, wide));
+      } else {
+        var g = GAMES[ids[k % ids.length]];
+        k++;
+        if (g) strip.appendChild(tileNode(g, false, wide));
+      }
+    }
+    sec.appendChild(strip);
+    main.appendChild(sec);
+  });
+
+  if (!myImage()) setHint("add a thumbnail to place it on the page");
+}
+
+/* ------------------------------------------------------------------ hint */
+var hintTimer = null;
+function setHint(t) {
+  var h = document.getElementById("hint");
+  h.textContent = t || "";
+  if (hintTimer) clearTimeout(hintTimer);
+  if (t) hintTimer = setTimeout(function () { h.textContent = ""; }, 3200);
+}
+
+/* --------------------------------------------------------------- controls */
+function randomize() {
+  state.seed = (Math.random() * 4294967295) >>> 0;
+  var r = rng(state.seed);
+  state.myRow = Math.floor(r() * DATA.rows.length);
+  state.myPos = Math.floor(r() * tilesPerRow());
+  render();
+  var rowName = DATA.rows[state.myRow] ? DATA.rows[state.myRow].title : "";
+  setHint(myImage() ? ("placed in “" + rowName + "”, slot " + (state.myPos + 1)) : "add a thumbnail first");
+}
+
+function wireToggle(id, cls) {
+  var el = document.getElementById(id);
+  var input = el.querySelector("input");
+  // listen to the INPUT's change, never the label's click: the checkbox is
+  // inside the label, so a label click already toggles it natively -- doing
+  // it again by hand cancels itself out and the toggle does nothing.
+  input.addEventListener("change", function () {
+    el.classList.toggle("on", input.checked);
+    if (cls) document.body.classList.toggle(cls, input.checked);
+    render();
+  });
+}
+
+function init() {
+  loadState();
+  document.getElementById("gname").value = state.name;
+  document.getElementById("gplaying").value = state.playing;
+  renderNav();
+  renderTray();
+  render();
+
+  document.getElementById("rand").addEventListener("click", randomize);
+  wireToggle("t-flag", null);
+  wireToggle("t-squint", "squint");
+  wireToggle("t-gray", "gray");
+  wireToggle("t-mobile", "mobile");
+
+  document.getElementById("gname").addEventListener("input", function (e) {
+    state.name = e.target.value || "HEAD TAP"; saveCfg(); render();
+  });
+  document.getElementById("gplaying").addEventListener("input", function (e) {
+    state.playing = Math.max(0, parseInt(e.target.value, 10) || 0); saveCfg(); render();
+  });
+
+  var file = document.getElementById("file");
+  document.getElementById("drop").addEventListener("click", function () { file.click(); });
+  file.addEventListener("change", function (e) {
+    Array.prototype.slice.call(e.target.files).forEach(addFile);
+    file.value = "";
+  });
+
+  // drag + drop anywhere
+  window.addEventListener("dragover", function (e) { e.preventDefault(); });
+  window.addEventListener("drop", function (e) {
+    e.preventDefault();
+    if (e.dataTransfer && e.dataTransfer.files) {
+      Array.prototype.slice.call(e.dataTransfer.files).forEach(addFile);
+    }
+  });
+  // paste straight from a screenshot / photoshop
+  window.addEventListener("paste", function (e) {
+    var items = (e.clipboardData && e.clipboardData.items) || [];
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].type && items[i].type.indexOf("image") === 0) {
+        addFile(items[i].getAsFile());
+      }
+    }
+  });
+
+  function toggleBar() {
+    document.body.classList.toggle("barhidden");
+    document.getElementById("devbar").classList.toggle("hidden");
+    render();
+  }
+  document.getElementById("hide").addEventListener("click", toggleBar);
+  document.getElementById("showbar").addEventListener("click", toggleBar);
+  window.addEventListener("keydown", function (e) {
+    var t = e.target.tagName;
+    if (t === "INPUT" || t === "TEXTAREA") return;
+    if (e.key === "h" || e.key === "H") toggleBar();
+    if (e.key === "r" || e.key === "R") randomize();
+  });
+
+  var rt = null;
+  window.addEventListener("resize", function () {
+    if (rt) clearTimeout(rt);
+    rt = setTimeout(render, 120);
+  });
+}
+init();
+</script>
+</body>
+</html>
