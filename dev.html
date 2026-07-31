@@ -69,6 +69,8 @@
   }
   .toggle.on { background: #1f2a20; border-color: #2f6b3c; color: #b8f5c4; }
   .toggle input { display: none; }
+  #modes { display: flex; gap: 6px; }
+  .ybtn.mode.on { background: var(--y-gold); color: #14161c; border-color: var(--y-gold); }
 
   /* thumbnail tray */
   #tray { display: flex; align-items: center; gap: 6px; }
@@ -177,6 +179,57 @@
   .wcard .meta { margin-top: 3px; display: flex; align-items: center; gap: 4px; color: var(--rbx-dim); font-size: 12px; }
   .wcard.mine.flagged .art { outline: 3px solid var(--y-gold); outline-offset: 2px; }
 
+  /* ===================== experience (game detail) page ===================== */
+  .exp-head { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+  .exp-icon { width: 62px; height: 62px; border-radius: 12px; overflow: hidden; background: #2b2e30; flex: 0 0 62px; }
+  .exp-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .exp-titles h1 { margin: 0; font-size: 25px; font-weight: 700; line-height: 1.15; }
+  .exp-by { margin-top: 6px; color: var(--rbx-dim); font-size: 13.5px; display: flex; align-items: center; gap: 5px; }
+  .verified { width: 15px; height: 15px; border-radius: 50%; background: var(--rbx-blue); display: inline-flex;
+    align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: 700; }
+  .exp-grid { display: grid; grid-template-columns: minmax(0, 1fr) 316px; gap: 22px; align-items: start; }
+  .exp-hero { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: #2b2e30; position: relative; }
+  .exp-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .exp-hero .navb {
+    position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(0,0,0,.55); color: #fff; border: 0; font-size: 17px; cursor: pointer; line-height: 36px;
+  }
+  .exp-hero .navb.l { left: 10px; } .exp-hero .navb.r { right: 10px; }
+  .exp-hero.mine.flagged { outline: 3px solid var(--y-gold); outline-offset: 2px; }
+  .exp-strip { display: flex; gap: 8px; margin-top: 10px; flex-wrap: nowrap; overflow: hidden; }
+  .exp-strip .th {
+    width: 104px; flex: 0 0 104px; aspect-ratio: 16/9; border-radius: 6px; overflow: hidden;
+    cursor: pointer; opacity: .55; border: 2px solid transparent; background: #2b2e30;
+  }
+  .exp-strip .th img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .exp-strip .th.active { opacity: 1; border-color: #fff; }
+  .exp-strip .th.mine.flagged { border-color: var(--y-gold); opacity: 1; }
+  .play-btn {
+    width: 100%; background: var(--rbx-green); color: #fff; border: 0; border-radius: 8px;
+    padding: 14px 0; font: inherit; font-size: 17px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 9px;
+  }
+  .side-row { display: flex; gap: 8px; margin-top: 10px; }
+  .side-row .sq {
+    flex: 1 1 0; background: var(--rbx-surface2); border-radius: 8px; padding: 10px 0;
+    text-align: center; color: #d5d6d7; font-size: 13px; font-weight: 600;
+  }
+  .exp-stats { margin-top: 16px; background: var(--rbx-surface); border-radius: 10px; padding: 4px 14px; }
+  .exp-stats .r { display: flex; justify-content: space-between; padding: 9px 0; font-size: 13.5px; border-bottom: 1px solid var(--rbx-line); }
+  .exp-stats .r:last-child { border-bottom: 0; }
+  .exp-stats .k { color: var(--rbx-dim); }
+  .exp-stats .v { font-weight: 600; }
+  .likebar { margin-top: 14px; }
+  .likebar .track { height: 5px; border-radius: 3px; background: #e0453e; overflow: hidden; }
+  .likebar .fill { height: 100%; background: var(--rbx-green); }
+  .likebar .lbl { display: flex; justify-content: space-between; color: var(--rbx-dim); font-size: 12.5px; margin-top: 6px; }
+  .exp-tabs { display: flex; gap: 22px; margin: 22px 0 12px; border-bottom: 1px solid var(--rbx-line); }
+  .exp-tabs span { padding-bottom: 9px; font-size: 14px; font-weight: 600; color: var(--rbx-dim); }
+  .exp-tabs span.on { color: #fff; box-shadow: inset 0 -2px 0 #fff; }
+  .exp-desc { color: #d5d6d7; font-size: 13.5px; line-height: 1.6; max-width: 760px; white-space: pre-wrap; }
+  @media (max-width: 900px) { .exp-grid { grid-template-columns: minmax(0,1fr); } }
+  body.mobile .exp-grid { grid-template-columns: minmax(0,1fr); }
+
   /* fallback art when a CDN icon 404s */
   .fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
     font-weight: 700; font-size: 15px; color: #fff; text-align: center; padding: 8px; line-height: 1.15; }
@@ -190,6 +243,11 @@
 
 <div id="devbar">
   <h1>YBOS DEV &middot; THUMBNAIL TESTER</h1>
+  <div class="sep"></div>
+  <div id="modes">
+    <button class="ybtn ghost mode on" data-mode="home">HOME PAGE</button>
+    <button class="ybtn ghost mode" data-mode="exp">EXPERIENCE PAGE</button>
+  </div>
   <div class="sep"></div>
   <div id="tray"></div>
   <div id="drop">+ add thumbnail <span style="opacity:.6">(click / drop / paste)</span></div>
@@ -272,7 +330,9 @@ var state = {
   playing: 1200,
   seed: 1,
   myRow: 0,
-  myPos: 3
+  myPos: 3,
+  mode: "home",   // "home" = front page tiles, "exp" = experience page big art
+  expHero: 0
 };
 
 /* ---------------------------------------------------------------- storage */
@@ -287,6 +347,7 @@ function loadState() {
       if (typeof c.name === "string") state.name = c.name;
       if (typeof c.playing === "number") state.playing = c.playing;
       if (typeof c.active === "number") state.active = c.active;
+      if (c.mode === "home" || c.mode === "exp") state.mode = c.mode;
     }
   } catch (e) { /* ignore */ }
 }
@@ -297,7 +358,7 @@ function saveImgs() {
 function saveCfg() {
   try {
     localStorage.setItem(LS_CFG, JSON.stringify({
-      name: state.name, playing: state.playing, active: state.active
+      name: state.name, playing: state.playing, active: state.active, mode: state.mode
     }));
   } catch (e) { /* ignore */ }
 }
@@ -480,6 +541,12 @@ function tilesPerRow() {
   return Math.max(2, Math.floor((w + 12) / (target + 12)));
 }
 function render() {
+  if (state.mode === "exp") renderExperience();
+  else renderHome();
+  if (!myImage()) setHint("add a thumbnail to place it on the page");
+}
+
+function renderHome() {
   var main = document.getElementById("main");
   var per = tilesPerRow();
   var tileW = Math.floor((main.clientWidth - (per - 1) * 12) / per);
@@ -529,8 +596,185 @@ function render() {
     sec.appendChild(strip);
     main.appendChild(sec);
   });
+}
 
-  if (!myImage()) setHint("add a thumbnail to place it on the page");
+/* ------------------------------------------------- experience (game) page */
+/* The big images: this is the media carousel at the top of a Roblox
+   experience page, where a 16:9 thumbnail is shown at full size. Every
+   thumbnail in your tray goes into the carousel; real games' art fills the
+   rest, so the strip reads like a real listing. */
+function expMedia() {
+  var out = [];
+  state.imgs.forEach(function (src) { out.push({ src: src, mine: true }); });
+  var rand = rng(state.seed ^ 0x5f3a);
+  var pool = shuffled(DATA.games.filter(function (g) { return g.thumb; }), rand);
+  for (var i = 0; i < pool.length && out.length < 6; i++) {
+    out.push({ src: pool[i].thumb, mine: false, name: pool[i].name });
+  }
+  return out;
+}
+
+function renderExperience() {
+  var main = document.getElementById("main");
+  main.textContent = "";
+  var media = expMedia();
+  if (!media.length) return;
+  var heroIdx = Math.min(state.expHero, media.length - 1);
+  var hero = media[heroIdx];
+  var flag = flagOn();
+
+  // ---- title block ----
+  var head = document.createElement("div");
+  head.className = "exp-head";
+  var ic = document.createElement("div");
+  ic.className = "exp-icon";
+  var icImg = document.createElement("img");
+  icImg.src = myImage() || (DATA.games[0] && DATA.games[0].icon) || "";
+  ic.appendChild(icImg);
+  head.appendChild(ic);
+  var titles = document.createElement("div");
+  titles.className = "exp-titles";
+  var h1 = document.createElement("h1");
+  h1.textContent = state.name;
+  titles.appendChild(h1);
+  var by = document.createElement("div");
+  by.className = "exp-by";
+  by.appendChild(document.createTextNode("By "));
+  var who = document.createElement("span");
+  who.style.color = "#fff";
+  who.textContent = "yungsbruh";
+  by.appendChild(who);
+  var vb = document.createElement("span");
+  vb.className = "verified";
+  vb.textContent = "✓";
+  by.appendChild(vb);
+  titles.appendChild(by);
+  head.appendChild(titles);
+  main.appendChild(head);
+
+  // ---- media + side panel ----
+  var grid = document.createElement("div");
+  grid.className = "exp-grid";
+
+  var left = document.createElement("div");
+  var heroBox = document.createElement("div");
+  heroBox.className = "exp-hero" + (hero.mine ? " mine" : "") + (hero.mine && flag ? " flagged" : "");
+  var hImg = document.createElement("img");
+  hImg.src = hero.src;
+  hImg.alt = hero.mine ? state.name : (hero.name || "");
+  heroBox.appendChild(hImg);
+  ["l", "r"].forEach(function (side) {
+    var b = document.createElement("button");
+    b.className = "navb " + side;
+    b.textContent = side === "l" ? "‹" : "›";
+    b.addEventListener("click", function () {
+      state.expHero = (heroIdx + (side === "l" ? -1 : 1) + media.length) % media.length;
+      render();
+    });
+    heroBox.appendChild(b);
+  });
+  left.appendChild(heroBox);
+
+  var strip = document.createElement("div");
+  strip.className = "exp-strip";
+  media.forEach(function (m, i) {
+    var th = document.createElement("div");
+    th.className = "th" + (i === heroIdx ? " active" : "") + (m.mine ? " mine" : "") + (m.mine && flag ? " flagged" : "");
+    var ti = document.createElement("img");
+    ti.src = m.src;
+    th.appendChild(ti);
+    th.addEventListener("click", function () { state.expHero = i; render(); });
+    strip.appendChild(th);
+  });
+  left.appendChild(strip);
+  grid.appendChild(left);
+
+  var side = document.createElement("div");
+  side.className = "exp-side";
+  var play = document.createElement("button");
+  play.className = "play-btn";
+  play.innerHTML = '<svg width="17" height="19" viewBox="0 0 17 19" fill="#fff"><path d="M0 0l17 9.5L0 19z"/></svg> Play';
+  side.appendChild(play);
+  var srow = document.createElement("div");
+  srow.className = "side-row";
+  ["☆ Favorite", "⋯ More"].forEach(function (t) {
+    var s = document.createElement("div");
+    s.className = "sq";
+    s.textContent = t;
+    srow.appendChild(s);
+  });
+  side.appendChild(srow);
+
+  var playing = state.playing;
+  var stats = document.createElement("div");
+  stats.className = "exp-stats";
+  [
+    ["Active", fmtCount(playing)],
+    ["Favorites", fmtCount(Math.round(playing * 21.6))],
+    ["Visits", fmtCount(Math.round(playing * 1840))],
+    ["Server Size", "30"],
+    ["Updated", "today"]
+  ].forEach(function (p) {
+    var r = document.createElement("div");
+    r.className = "r";
+    var k = document.createElement("span"); k.className = "k"; k.textContent = p[0];
+    var v = document.createElement("span"); v.className = "v"; v.textContent = p[1];
+    r.appendChild(k); r.appendChild(v);
+    stats.appendChild(r);
+  });
+  side.appendChild(stats);
+
+  var lb = document.createElement("div");
+  lb.className = "likebar";
+  var track = document.createElement("div"); track.className = "track";
+  var fill = document.createElement("div"); fill.className = "fill"; fill.style.width = "94%";
+  track.appendChild(fill); lb.appendChild(track);
+  var lbl = document.createElement("div"); lbl.className = "lbl";
+  var up = document.createElement("span"); up.textContent = "👍 " + fmtCount(Math.round(playing * 9.4));
+  var dn = document.createElement("span"); dn.textContent = fmtCount(Math.round(playing * 0.6)) + " 👎";
+  lbl.appendChild(up); lbl.appendChild(dn); lb.appendChild(lbl);
+  side.appendChild(lb);
+  grid.appendChild(side);
+  main.appendChild(grid);
+
+  // ---- tabs + description ----
+  var tabs = document.createElement("div");
+  tabs.className = "exp-tabs";
+  ["About", "Store", "Servers"].forEach(function (t, i) {
+    var s = document.createElement("span");
+    s.className = i === 0 ? "on" : "";
+    s.textContent = t;
+    tabs.appendChild(s);
+  });
+  main.appendChild(tabs);
+  var desc = document.createElement("div");
+  desc.className = "exp-desc";
+  desc.textContent = "Rob, shoot, drive and run the block. Hit the bank, wash your money at the "
+    + "laundromat, buy a house and take the whole city.\n\nUse code RELEASE for a free G17.";
+  main.appendChild(desc);
+
+  // ---- recommended row, like the real page ----
+  var per = tilesPerRow();
+  main.style.setProperty("--tile", Math.floor((main.clientWidth - (per - 1) * 12) / per) + "px");
+  var sec = document.createElement("section");
+  sec.className = "row";
+  sec.style.marginTop = "28px";
+  var rh = document.createElement("div");
+  rh.className = "row-head";
+  var h2 = document.createElement("h2");
+  h2.textContent = "Recommended";
+  rh.appendChild(h2);
+  sec.appendChild(rh);
+  var tiles = document.createElement("div");
+  tiles.className = "tiles";
+  var rand2 = rng(state.seed ^ 0x77);
+  var ids = shuffled(DATA.rows[0].ids, rand2);
+  for (var i = 0; i < per; i++) {
+    var g = GAMES[ids[i % ids.length]];
+    if (g) tiles.appendChild(tileNode(g, false, false));
+  }
+  sec.appendChild(tiles);
+  main.appendChild(sec);
 }
 
 /* ------------------------------------------------------------------ hint */
@@ -546,11 +790,31 @@ function setHint(t) {
 function randomize() {
   state.seed = (Math.random() * 4294967295) >>> 0;
   var r = rng(state.seed);
+  if (state.mode === "exp") {
+    // put a different one of YOUR thumbnails in the big slot and reshuffle
+    // the rest of the carousel + the recommended row around it
+    state.expHero = state.imgs.length ? Math.floor(r() * state.imgs.length) : 0;
+    render();
+    setHint(myImage()
+      ? ("big slot: thumbnail " + (state.expHero + 1) + " of " + state.imgs.length)
+      : "add a thumbnail first");
+    return;
+  }
   state.myRow = Math.floor(r() * DATA.rows.length);
   state.myPos = Math.floor(r() * tilesPerRow());
   render();
   var rowName = DATA.rows[state.myRow] ? DATA.rows[state.myRow].title : "";
   setHint(myImage() ? ("placed in “" + rowName + "”, slot " + (state.myPos + 1)) : "add a thumbnail first");
+}
+
+function setMode(m) {
+  state.mode = m;
+  saveCfg();
+  var btns = document.querySelectorAll("#modes .mode");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].classList.toggle("on", btns[i].getAttribute("data-mode") === m);
+  }
+  render();
 }
 
 function wireToggle(id, cls) {
@@ -575,6 +839,13 @@ function init() {
   render();
 
   document.getElementById("rand").addEventListener("click", randomize);
+  var modeBtns = document.querySelectorAll("#modes .mode");
+  for (var mi = 0; mi < modeBtns.length; mi++) {
+    (function (b) {
+      b.addEventListener("click", function () { setMode(b.getAttribute("data-mode")); });
+    })(modeBtns[mi]);
+  }
+  setMode(state.mode);
   wireToggle("t-flag", null);
   wireToggle("t-squint", "squint");
   wireToggle("t-gray", "gray");

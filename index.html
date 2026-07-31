@@ -106,6 +106,8 @@ body::after{
 .dockbtn.open::after{content:"";position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);
   width:4px;height:4px;background:var(--amber);border-radius:50%}
 .dockbtn .ic{font-size:14px}
+a.dockbtn.devbtn{text-decoration:none;color:var(--amber);border-color:var(--amber-dim)}
+a.dockbtn.devbtn:hover{color:var(--concrete);border-color:var(--amber)}
 /* ===== shared bits ===== */
 .eyebrow{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.3em;color:var(--amber);margin-bottom:6px}
 .h1{font-family:'Archivo Black';font-size:22px;letter-spacing:.02em;color:#EDEFF4;line-height:1.1}
@@ -652,6 +654,13 @@ function renderDock(){
     b.onclick=()=>toggleWin(id);
     dock.appendChild(b);
   });
+  /* DEV — standalone tool pages (not windows): straight link out */
+  const dev=document.createElement('a');
+  dev.className='dockbtn devbtn';
+  dev.href='dev.html';
+  dev.title='thumbnail tester — your thumbnail on the Roblox home + experience page';
+  dev.innerHTML='<span class="ic">\u{1F5BC}</span>DEV';
+  dock.appendChild(dev);
 }
 
 /* =====================  BG CANVAS: patrol grid  ===================== */
