@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-31T19:10:53.897Z",
+    "updated": "2026-08-01T01:22:04Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -8,14 +8,14 @@
     "stats": {
       "placeId": 124673719670870,
       "universeId": 10194619622,
-      "name": "HEAD TAP",
-      "playing": 1,
-      "visits": 2134,
-      "favorites": 12,
+      "name": "[FREE SWITCH] HEAD TAP🔫",
+      "playing": 8,
+      "visits": 5353,
+      "favorites": 184,
       "maxPlayers": 50,
-      "likes": 23,
-      "dislikes": 2,
-      "fetched": "2026-07-28T01:09:09Z"
+      "likes": 26,
+      "dislikes": 5,
+      "fetched": "2026-08-01T01:20:33Z"
     },
     "analytics": {
       "updated": "2026-07-31T19:10:51.855Z",
@@ -417,6 +417,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "PRIME",
+      "cls": "okx",
+      "msg": "GAME HEALTH is live again: the window said 'LIVE - ROBLOX PUBLIC API' while showing numbers frozen since 07-28 (2,134 visits vs a real 5,353; 12 favorites vs 184). CLAUDE.md described a stats heartbeat but no job was ever built for it. index.html now pulls Roblox's public API in the browser on every open (Roblox sends no CORS headers, so it goes via a relay); if the relay is down it falls back to feed.json and honestly labels itself CACHED - Nd ago instead of claiming LIVE.",
+      "ts": "2026-08-01T01:22:04Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1687,6 +1693,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-01",
+      "k": "fix",
+      "t": "GAME HEALTH refreshes on every dashboard open",
+      "s": "Live Roblox stats pulled client-side each time ybos2 is opened/refocused, with a cached fallback that labels its own age instead of pretending to be live."
+    },
     {
       "d": "2026-07-30",
       "k": "feat",

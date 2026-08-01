@@ -15,9 +15,17 @@ It has exactly two files that matter:
 `meta`:
 - `updated` — ISO-8601 UTC. Set to now on every commit.
 - `version` — dashboard version string shown in the topbar.
-- `stats` — live Roblox stats for HEADTAP, shown in the GAME HEALTH window. `null` until first fetched.
+- `stats` — Roblox stats for HEADTAP, shown in the GAME HEALTH window. `null` until first fetched.
   Shape: { "placeId":124673719670870, "universeId":10194619622, "name":"HEAD TAP", "playing":N, "visits":N,
   "favorites":N, "maxPlayers":N, "likes":N, "dislikes":N, "fetched":ISO }
+  **This is now only the FALLBACK.** Since 2026-07-31 `index.html` pulls these numbers itself on every
+  page open / refocus (and every 60s while open), so the window is live without anyone writing feed.json.
+  Roblox sends no CORS headers — verified from the real origin, `games.roblox.com` and `apis.roblox.com`
+  both throw "Failed to fetch" — so the page goes through a CORS relay (`corsproxy.io`). If that relay is
+  unreachable the window falls back to this `meta.stats` copy and labels itself `CACHED · Nd ago` rather
+  than claiming LIVE. Keep `meta.stats` reasonably fresh anyway: it is what renders on first paint and
+  whenever the relay is down. **Do not "fix" the GAME HEALTH window by deleting the relay call because
+  this file used to say the browser can't reach Roblox — it can, through a relay, and that is deliberate.**
 - `contentAgent` — status of the content-creator agent, shown live in the CONTENT studio bar.
   Shape: { "status":"idle"|"working", "note":"short status", "updated":ISO }
 - `analytics` — social stats shown in the ANALYTICS window. `null` until the analytics sync first runs.
@@ -50,6 +58,10 @@ When run as the daily update:
    (`GET apis.roblox.com/universes/v1/places/124673719670870/universe`), then
    `GET games.roblox.com/v1/games?universeIds=10194619622` (playing/visits/favorites) and
    `/v1/games/votes?universeIds=10194619622` (likes/dislikes). Write into `meta.stats` with `fetched`=now.
-   These calls work server-side only (no CORS) — the browser can't make them. Skip silently if unreachable.
+   Server-side these need no relay (CORS only applies in a browser) — plain curl / Invoke-RestMethod works.
+   Skip silently if unreachable. NOTE: no scheduled job has ever existed for this step — only `analytics.yml`
+   is wired up — so `meta.stats` moves only when an agent runs this by hand. That is why it sat frozen from
+   07-28 to 07-31 while the window advertised "LIVE". The client-side pull added 2026-07-31 is what actually
+   keeps GAME HEALTH current; this step just keeps the fallback honest.
 3. Append ONE radio line from who:"CRON", cls:"out": a short status — date, commit count in last 24h,
    and the refreshed playing/visits.

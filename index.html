@@ -778,8 +778,52 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   const b = mkWin('health','GAME HEALTH','◉', W*.74, 56, Math.min(420,W*.24), 300, true);
   const g = DATA.game;
   const fmt = n => n>=1e6 ? (n/1e6).toFixed(n>=1e7?0:1)+'M' : n>=1e3 ? (n/1e3).toFixed(n>=1e4?0:1)+'k' : (''+n);
+  const ago = iso => { const ms = Date.now()-new Date(iso).getTime();
+    if(!isFinite(ms)||ms<0) return '';
+    const m=ms/6e4; if(m<1.5) return 'just now';
+    if(m<60) return Math.round(m)+'m ago';
+    const h=m/60; if(h<24) return Math.round(h)+'h ago';
+    return Math.round(h/24)+'d ago'; };
+
+  /* ---- LIVE PULL (2026-07-31 per Ian: "game health needs to update every
+     time i open ybos2 up") ---------------------------------------------------
+     feed.json's meta.stats is only as fresh as whoever last wrote it. CLAUDE.md
+     describes a scheduled "heartbeat" that refreshes it, but no job was ever
+     built for it, so it only moved when an agent did it by hand -- it had been
+     frozen for 3 days showing 2,134 visits against a real 5,331.
+     So we now pull Roblox's public API in the browser on every open.
+     Roblox sends no CORS headers (verified from this exact origin: both
+     games.roblox.com and apis.roblox.com throw "Failed to fetch"), so it goes
+     through a CORS relay. If the relay is down we silently keep feed.json's
+     copy and label it CACHED -- the window must never blank or lie. */
+  const RELAY = u => 'https://corsproxy.io/?url=' + encodeURIComponent(u);
+  let live = null, pulling = false;
+  async function pullLive(){
+    if(pulling) return; pulling = true;
+    try{
+      const uni = (DATA.stats && DATA.stats.universeId) || 10194619622;
+      const [gj, vj] = await Promise.all([
+        fetch(RELAY('https://games.roblox.com/v1/games?universeIds='+uni), {cache:'no-store'}).then(r=>r.json()),
+        fetch(RELAY('https://games.roblox.com/v1/games/votes?universeIds='+uni), {cache:'no-store'}).then(r=>r.json()),
+      ]);
+      const d = gj && gj.data && gj.data[0];
+      const v = vj && vj.data && vj.data[0];
+      if(d && typeof d.playing === 'number'){
+        live = {
+          placeId: d.rootPlaceId, universeId: d.id, name: d.name,
+          playing: d.playing, visits: d.visits, favorites: d.favoritedCount,
+          maxPlayers: d.maxPlayers,
+          likes: v ? v.upVotes : null, dislikes: v ? v.downVotes : null,
+          fetched: new Date().toISOString(), fresh: true,
+        };
+        render();
+      }
+    }catch(e){ /* relay unreachable -> keep the cached copy */ }
+    pulling = false;
+  }
+
   function render(){
-    const s = DATA.stats;
+    const s = live || DATA.stats;
     let body = `
       <div class="gamecard" style="padding:14px 16px">
         <div class="eyebrow">ACTIVE OPERATION · ROBLOX</div>
@@ -791,20 +835,26 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
       body += `<div class="ghwait"><b>Live stats not wired yet.</b><br>Give me HEADTAP's place ID (or game URL) and the heartbeat pulls real players / visits / likes into <span class="mono" style="color:var(--amber)">feed.json</span> — no proxy, no secrets.</div>`;
     } else {
       const ratio = (s.likes+s.dislikes)>0 ? Math.round(s.likes/(s.likes+s.dislikes)*100) : null;
-      body += `<div class="eyebrow">LIVE · ROBLOX PUBLIC API</div>
+      body += `<div class="eyebrow">${s.fresh ? 'LIVE · ROBLOX PUBLIC API' : 'CACHED · ' + (ago(s.fetched)||'age unknown')}</div>
         <div class="kpi">
           <div class="cell live"><div class="n hot">${typeof s.playing==='number'?fmt(s.playing):'—'}</div><div class="l">PLAYING NOW</div></div>
           <div class="cell"><div class="n">${s.visits!=null?fmt(s.visits):'—'}</div><div class="l">VISITS</div></div>
           <div class="cell"><div class="n">${s.favorites!=null?fmt(s.favorites):'—'}</div><div class="l">FAVORITES</div></div>
           <div class="cell"><div class="n">${ratio!=null?ratio+'%':'—'}</div><div class="l">LIKE RATIO</div><div class="s">${s.likes!=null?fmt(s.likes)+' likes':''}</div></div>
         </div>
-        <div class="dim mono" style="font-size:9px;letter-spacing:.1em;margin-top:10px">${s.name?('“'+s.name+'” · '):''}place ${s.placeId||'?'} · updated ${s.fetched? new Date(s.fetched).toLocaleString('en-US',{hour12:false}) : '—'}</div>`;
+        <div class="dim mono" style="font-size:9px;letter-spacing:.1em;margin-top:10px">${s.name?('“'+s.name+'” · '):''}place ${s.placeId||'?'} · ${s.fetched? ago(s.fetched)+' · '+new Date(s.fetched).toLocaleString('en-US',{hour12:false}) : '—'}</div>`;
     }
     b.innerHTML = body;
     const on=document.getElementById('tb-online'); if(on) on.textContent = (s&&typeof s.playing==='number')? fmt(s.playing) : '—';
   }
   render();
   window.addEventListener('feed:update', render);
+
+  /* every open, every refocus, and a slow tick while it sits open */
+  pullLive();
+  setInterval(pullLive, 60000);
+  window.addEventListener('focus', pullLive);
+  document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) pullLive(); });
 })();
 
 /* ---- TASK BOARD (persistent, local-first) ---- */
