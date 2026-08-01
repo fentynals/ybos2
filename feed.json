@@ -426,6 +426,12 @@
     {
       "who": "STUDIO",
       "cls": "okx",
+      "msg": "Tutorial objective panel no longer covers the shop BUY buttons on mobile. MissionsGui sits at DisplayOrder 70 while every shop dialog is 60-66, so the tutorial's own instruction was rendering on top of the purchase it was asking the player to make. It now ducks to 59 whenever any shop/dealer/laundry panel is open and returns to 70 on close - above the HUD and toasts, under every shop. Worth knowing: the panel frame is Active=false so it only covered the button visually, but the mission rows carry live TRACKING TextButtons that DO sink taps where they overlap - ducking fixes both, since Roblox hit-tests in the order it draws. Verified live: 70 at rest, 59 with the ammo shop open, 70 again after closing.",
+      "ts": "2026-08-01T16:10:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
       "msg": "Two tutorial killers fixed. (1) Robbing the register dropped nothing: the 07-31 cash floor-guard raycast started 8 studs ABOVE the spawn point, so INDOORS it hit the CEILING first and treated it as the floor - every wad was teleported 8.8 studs up onto the gas-station ROOF, through the slab. Covered ATMs were lifted 6.1-9.4 studs the same way. Probe is now 3 studs with a 4-stud lift cap; verified live, $250 wads land on the shop floor at Y=46.0 instead of Y=60.3. (2) No 'where to click' spotlight when buying AMMO: the resolver looked for a ScrollingFrame, but the ammo shop's row container is a plain static Frame, so it returned nil every time and the dim+ring+finger only ever appeared for the pistol - the exact half of GEAR UP the funnel loses players on. It now matches on content, not class; verified live, the ring frames the 9x19mm BUY button with the CLICK hint.",
       "ts": "2026-08-01T15:05:00Z"
     },
