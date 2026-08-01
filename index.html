@@ -1459,14 +1459,45 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
     const head = ytLive
       ? `YOUTUBE LIVE · TIKTOK/IG SYNCED ${ago(A.updated).toUpperCase()}`
       : `SOCIAL ANALYTICS · SYNCED ${ago(A.updated).toUpperCase()}`;
-    b.innerHTML=`<div class="eyebrow">${head}</div>
+    b.innerHTML=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <span class="eyebrow" style="margin:0">${head}</span><span style="flex:1"></span>
+        <button class="tbbtn" id="anrefresh" ${refreshing?'disabled':''}
+          title="re-pull feed.json and the live YouTube numbers right now. TikTok/Instagram can only move when the hourly server-side sync runs — no button can force them from a browser.">${refreshing?'↻ PULLING…':'↻ REFRESH'}</button>
+      </div>
+      ${anMsg?`<div class="dim mono" style="font-size:9px;letter-spacing:.1em;margin-bottom:6px;color:var(--ok)">${esc(anMsg)}</div>`:''}
       ${ytErr?`<div class="dim mono" style="font-size:9px;letter-spacing:.1em;margin-bottom:6px;color:var(--red)">youtube live pull: ${esc(ytErr)} — showing the last synced numbers</div>`:''}
       <div class="an-grid">${kpis}</div>
-      <div class="publabel" style="margin:14px 0 0">VIEWS · LAST ${(a.series||[]).length} DAYS</div>
+      <div class="publabel" style="margin:14px 0 0">VIEWS · LAST ${(A.series||[]).length} DAYS</div>
       <canvas id="anchart"></canvas>
       <div class="an-leg"><span><i style="background:#9FD1FF"></i>TIKTOK</span><span><i style="background:#E23B3B"></i>YOUTUBE</span><span><i style="background:#B784F0"></i>INSTAGRAM</span></div>
       ${top?`<div class="publabel" style="margin-top:14px">TOP POSTS</div>${top}`:''}`;
+    const rb=b.querySelector('#anrefresh');
+    if(rb) rb.onclick=manualRefresh;
     drawChart(A.series||[]);
+  }
+
+  /* MANUAL REFRESH (2026-08-01 per Ian). Honest about its own reach: it re-pulls
+     feed.json (cache-busted) and the live YouTube stats immediately. It CANNOT
+     make TikTok/Instagram fetch anything — those numbers only move when the
+     hourly GitHub Action runs, because their APIs need OAuth tokens that must
+     never reach a public page. So the status line reports what actually
+     happened, including "unchanged", rather than implying a full re-sync. */
+  let refreshing=false, anMsg='';
+  async function manualRefresh(){
+    if(refreshing) return;
+    refreshing=true; anMsg=''; render();
+    const beforeSync = (DATA.analytics||{}).updated;
+    const beforeYT = ytLive && ytLive.views;
+    try{ await Promise.all([ pullFeed(), pullYouTube() ]); }catch(e){}
+    refreshing=false;
+    const a2 = DATA.analytics||{};
+    const bits=[];
+    bits.push(ytLive ? ((beforeYT!=null && ytLive.views!==beforeYT) ? 'youtube updated' : 'youtube live, unchanged')
+                     : 'youtube not wired');
+    bits.push(a2.updated!==beforeSync ? 'new sync pulled' : 'tiktok/ig unchanged — last sync ' + ago(a2.updated));
+    anMsg = '↻ ' + new Date().toLocaleTimeString('en-US',{hour12:false}) + ' · ' + bits.join(' · ');
+    render();
+    setTimeout(()=>{ if(anMsg){ anMsg=''; render(); } }, 6000);
   }
   render();
   window.addEventListener('feed:update', render);
