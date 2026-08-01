@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-01T13:02:10.573Z",
+    "updated": "2026-08-01T16:46:15.084Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,27 +18,49 @@
       "fetched": "2026-08-01T01:20:33Z"
     },
     "analytics": {
-      "updated": "2026-08-01T13:02:08.762Z",
+      "updated": "2026-08-01T16:46:13.280Z",
       "tiktok": {
         "followers": 0,
-        "views": 0,
-        "likes": 0,
-        "comments": 0,
+        "views": 314,
+        "likes": 4,
+        "comments": 1,
         "shares": 0
       },
       "youtube": {
         "subscribers": 7,
         "views": 23,
-        "likes": null,
-        "comments": null
+        "likes": 2,
+        "comments": 2
       },
       "instagram": {
         "followers": 0,
         "views": null,
-        "likes": 0,
+        "likes": 3,
         "comments": 0
       },
-      "top": [],
+      "top": [
+        {
+          "t": "Then VS Now #roblox #thenvsnow #robloxedit game's link is in my bio!",
+          "plat": "tiktok",
+          "views": 314,
+          "likes": 4,
+          "url": "https://www.tiktok.com/@me/video/7669070531433467150"
+        },
+        {
+          "t": "HOW HEADTAPS GOING NOW",
+          "plat": "youtube",
+          "views": 164,
+          "likes": 2,
+          "url": "https://youtu.be/iDTvx7cWNPw"
+        },
+        {
+          "t": "Then VS Now #roblox #thenvsnow #robloxedit game's link is in",
+          "plat": "instagram",
+          "views": 0,
+          "likes": 3,
+          "url": "https://www.instagram.com/reel/DbgDfYjNVJ5/"
+        }
+      ],
       "series": [
         {
           "d": "07-05",
@@ -198,7 +220,7 @@
         },
         {
           "d": "08-01",
-          "tiktok": 0,
+          "tiktok": 314,
           "youtube": 23,
           "instagram": 0
         }
