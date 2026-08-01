@@ -424,6 +424,12 @@
   ],
   "radio": [
     {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "CLIPS window shipped. Drop a gameplay cut into the dashboard and it keeps the file (in-browser, IndexedDB), grabs a preview frame + duration, builds a separate caption for TikTok / YT Shorts / Reels off one title+hook, and tracks which platforms it actually went out on. Pull a title straight off the pipeline board and the card moves itself to POSTED once all 3 are done. Real auto-upload is still blocked on the TikTok/IG app registrations in UPLOAD_ANALYTICS_PLAN.md - this opens each uploader with the caption already on your clipboard.",
+      "ts": "2026-08-01T14:40:00Z"
+    },
+    {
       "who": "PRIME",
       "cls": "okx",
       "msg": "GAME HEALTH is live again: the window said 'LIVE - ROBLOX PUBLIC API' while showing numbers frozen since 07-28 (2,134 visits vs a real 5,353; 12 favorites vs 184). CLAUDE.md described a stats heartbeat but no job was ever built for it. index.html now pulls Roblox's public API in the browser on every open (Roblox sends no CORS headers, so it goes via a relay); if the relay is down it falls back to feed.json and honestly labels itself CACHED - Nd ago instead of claiming LIVE.",
@@ -1699,6 +1705,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-01",
+      "k": "feat",
+      "t": "CLIPS window - one clip, three platforms",
+      "s": "Drop a video into ybos2: it stores the file in-browser with a preview frame, writes per-platform captions from one title+hook, opens each uploader with the caption copied, and tracks posted state per platform."
+    },
     {
       "d": "2026-08-01",
       "k": "fix",

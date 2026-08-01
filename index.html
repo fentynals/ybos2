@@ -336,6 +336,62 @@ a.dockbtn.devbtn:hover{color:var(--concrete);border-color:var(--amber)}
 .pb-week .d{font-family:'IBM Plex Mono';font-size:9px;color:var(--amber);min-width:34px;padding-top:2px}
 .pb-week .pl{font-family:'IBM Plex Mono';font-size:8px;padding:1px 5px;border:1px solid var(--line);height:fit-content;margin-top:1px;color:var(--dust)}
 .pb-week .body{flex:1} .pb-week .body .idea{color:var(--concrete);line-height:1.4} .pb-week .body .hk{color:var(--dust);font-size:10.5px;margin-top:2px;line-height:1.4}
+/* clips — one clip, three platforms */
+.clip-drop{border:1px dashed var(--amber-dim);background:rgba(255,170,60,.04);padding:16px 12px;text-align:center;cursor:pointer;
+  font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.16em;color:var(--dust);margin-bottom:10px;transition:border-color .12s,background .12s}
+.clip-drop:hover,.clip-drop.over{border-color:var(--amber);color:var(--amber);background:rgba(255,170,60,.09)}
+.clip-drop b{display:block;font-family:'IBM Plex Mono';font-size:12px;letter-spacing:.22em;color:var(--amber);margin-bottom:5px}
+.clip-row{display:flex;gap:10px;border:1px solid var(--line);background:var(--steel);padding:8px;margin-bottom:8px;position:relative}
+.clip-row.done{border-color:#2c5136}
+.clip-row.busy{border-color:var(--amber-dim)}
+.clip-th{width:106px;height:60px;flex:none;background:#0A0D13;border:1px solid var(--line);object-fit:cover;display:block;cursor:grab}
+.clip-th:active{cursor:grabbing}
+.clip-ph{width:106px;height:60px;flex:none;background:#0A0D13;border:1px solid var(--line);display:grid;place-items:center;
+  color:#3E4658;font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.14em;cursor:grab}
+.clip-b{flex:1;min-width:0;display:flex;flex-direction:column}
+.clip-n{font-size:12px;color:var(--concrete);line-height:1.35;word-break:break-word;cursor:pointer}
+.clip-n:hover{color:var(--amber)}
+.clip-m{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.1em;color:var(--dust);margin-top:4px}
+.clip-p{display:flex;gap:5px;margin-top:auto;padding-top:7px;flex-wrap:wrap;align-items:center}
+.clip-pill{font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.12em;border:1px solid var(--line);color:var(--dust);padding:2px 6px;cursor:pointer}
+.clip-pill:hover{border-color:var(--amber);color:var(--amber)}
+.clip-pill.on{color:var(--ok);border-color:#2c5136;background:rgba(123,216,138,.1)}
+.clip-pill.on:hover{color:var(--ok);border-color:#2c5136}
+.clip-open{margin-left:auto;font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.14em;border:1px solid var(--amber-dim);color:var(--amber);
+  background:transparent;padding:3px 8px;cursor:pointer}
+.clip-open:hover{background:rgba(255,170,60,.12)}
+.clip-x{position:absolute;top:4px;right:6px;color:#3E4658;cursor:pointer;font-size:13px;line-height:1;opacity:0}
+.clip-row:hover .clip-x{opacity:1} .clip-x:hover{color:var(--red)}
+.clip-foot{display:flex;gap:8px;align-items:center;font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.12em;color:var(--dust);
+  border-top:1px solid var(--line);margin-top:10px;padding-top:8px}
+.clip-empty{border:1px dashed var(--line);padding:14px;text-align:center;font-size:11.5px;color:var(--dust);line-height:1.6}
+/* clip sheet */
+#clipsheet{position:fixed;inset:0;z-index:906;background:rgba(5,7,11,.66);display:none;align-items:flex-start;justify-content:center;padding-top:5vh;backdrop-filter:blur(3px)}
+#clipsheet.show{display:flex}
+#clipbox{width:min(600px,94vw);max-height:90vh;overflow:auto;background:var(--steel);border:1px solid var(--amber-dim);box-shadow:0 30px 80px rgba(0,0,0,.8);scrollbar-width:thin}
+#clipbox .ph{position:sticky;top:0;background:var(--steel);font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.18em;color:var(--amber);
+  padding:12px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;z-index:2}
+#clipbox .ph .pt{color:var(--concrete);letter-spacing:.02em;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#clipbox .ph .x{margin-left:auto;cursor:pointer;color:var(--dust);font-size:14px}
+#clipbox .ph .x:hover{color:var(--red)}
+#clipbody{padding:14px}
+#clipvid{width:100%;max-height:38vh;background:#000;border:1px solid var(--line);display:block}
+.cs-in{width:100%;background:#0A0D13;border:1px solid var(--line);color:var(--concrete);font-family:'IBM Plex Mono';font-size:11px;
+  padding:7px 9px;margin-bottom:6px;user-select:text}
+.cs-in:focus{outline:none;border-color:var(--amber-dim)}
+.cs-tabs{display:flex;gap:5px}
+.cs-tab{flex:1;font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.14em;padding:8px 4px;border:1px solid var(--line);
+  background:var(--steel2);color:var(--dust);cursor:pointer;text-align:center;line-height:1.5}
+.cs-tab.on{color:var(--amber);border-color:var(--amber-dim);background:rgba(255,170,60,.08)}
+.cs-tab .k{display:block;font-size:8px;letter-spacing:.1em;color:#4b5365}
+.cs-tab.posted .k{color:var(--ok)}
+#cscap{width:100%;min-height:112px;background:#0A0D13;border:1px solid var(--line);color:var(--concrete);font-family:'IBM Plex Mono';
+  font-size:12px;line-height:1.6;padding:10px;resize:vertical;caret-color:var(--amber);user-select:text}
+.cs-drag{display:flex;align-items:center;gap:10px;border:1px dashed var(--line);background:rgba(11,14,19,.5);padding:9px 11px;margin-top:6px;
+  font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.1em;color:var(--dust);cursor:grab}
+.cs-drag:hover{border-color:var(--amber-dim);color:var(--concrete)}
+.cs-drag:active{cursor:grabbing}
+.cs-drag .g{font-size:14px;color:var(--amber);line-height:1}
 /* palette */
 #pal{position:fixed;inset:0;z-index:900;background:rgba(5,7,11,.6);display:none;align-items:flex-start;justify-content:center;padding-top:14vh;backdrop-filter:blur(3px)}
 #pal.show{display:flex}
@@ -397,6 +453,32 @@ a.dockbtn.devbtn:hover{color:var(--concrete);border-color:var(--amber)}
     <div class="pubrow2">
       <button class="pubbtn go" id="pub-posted">MARK POSTED →</button>
       <button class="pubbtn" id="pub-close">CLOSE</button>
+    </div>
+  </div>
+</div></div>
+
+<!-- CLIP SHEET — one clip, three platforms -->
+<div id="clipsheet"><div id="clipbox">
+  <div class="ph">CLIP · <span class="pt" id="cs-title"></span><span class="x" id="cs-x">×</span></div>
+  <div id="clipbody">
+    <video id="clipvid" controls preload="metadata" playsinline></video>
+    <div class="publabel">TITLE / HOOK — FEEDS EVERY CAPTION</div>
+    <select class="cs-in" id="cs-idea"></select>
+    <input class="cs-in" id="cs-t" placeholder="what is this clip? (e.g. 4 rushed my turf)" autocomplete="off">
+    <input class="cs-in" id="cs-h" placeholder="hook — the first line / on-screen text" autocomplete="off">
+    <div class="publabel">PLATFORM — CAPTION IS SAVED PER PLATFORM</div>
+    <div class="cs-tabs" id="cs-tabs"></div>
+    <div class="publabel">CAPTION <b id="cs-plat"></b> · TAP TO EDIT</div>
+    <textarea id="cscap" spellcheck="false"></textarea>
+    <div class="pubrow2" style="margin-top:8px">
+      <button class="pubbtn" id="cs-copy">⧉ COPY CAPTION</button>
+      <button class="pubbtn" id="cs-open">↗ OPEN UPLOADER</button>
+    </div>
+    <div class="cs-drag" id="cs-drag" draggable="true"><span class="g">⠿</span><span id="cs-dragl">DRAG THE FILE OUT — TO YOUR DESKTOP OR THE UPLOADER WINDOW</span></div>
+    <div class="pubrow2">
+      <button class="pubbtn go" id="cs-posted">MARK POSTED HERE →</button>
+      <button class="pubbtn" id="cs-save">⤓ SAVE FILE</button>
+      <button class="pubbtn" id="cs-close">CLOSE</button>
     </div>
   </div>
 </div></div>
@@ -561,7 +643,7 @@ function toggleMax(id){ const w=WINS[id], el=w.el;
 function unmax(id){ const w=WINS[id]; if(w.max){ w.max=false; setMaxBtn(w); } }
 
 /* tile every window edge-to-edge to fill the desktop (no overlap) */
-const LAYOUT_VER='tile1';
+const LAYOUT_VER='tile2';
 function tileWindows(){
   const W=desk.clientWidth, H=desk.clientHeight, g=6;
   const set=(id,x,y,w,h)=>{ const win=WINS[id]; if(!win) return; const el=win.el;
@@ -570,17 +652,21 @@ function tileWindows(){
     el.style.width=Math.round(Math.max(MINW,w))+'px'; el.style.height=Math.round(Math.max(MINH,h))+'px';
     setMaxBtn(win); saveGeom(id); };
   if(W>=1080){ // 3 columns, filling the desktop
-    const c1=W*0.27, c2=W*0.40, c3=W-c1-c2-g*2;
-    const x1=0, x2=c1+g, x3=c1+c2+g*2, half=(H-g)/2;
-    const cTop=(H-g)*0.60, rTop=(H-g)*0.55;
-    set('agents', x1,0, c1,half);       set('health', x1,half+g, c1,H-half-g);
-    set('content', x2,0, c2,cTop);      set('tasks',  x2,cTop+g, c2,H-cTop-g);
-    set('bugs',   x3,0, c3,rTop);       set('analytics', x3,rTop+g, c3,H-rTop-g);
-  } else { // narrow: 2 columns x 3 rows
-    const cw=(W-g)/2, x2=cw+g, rh=(H-2*g)/3;
-    set('content', 0,0, cw,rh);         set('bugs',      x2,0,        cw,rh);
-    set('tasks',   0,rh+g, cw,rh);      set('analytics', x2,rh+g,     cw,rh);
-    set('agents',  0,2*(rh+g), cw,rh);  set('health',    x2,2*(rh+g), cw,rh);
+    const c1=W*0.26, c2=W*0.40, c3=W-c1-c2-g*2;
+    const x1=0, x2=c1+g, x3=c1+c2+g*2;
+    const aTop=(H-g)*0.46;                        // col 1: agents / health
+    const cTop=(H-g)*0.56;                        // col 2: content / clips
+    const bTop=(H-2*g)*0.42, tMid=(H-2*g)*0.26;   // col 3: bugs / tasks / analytics
+    set('agents', x1,0, c1,aTop);        set('health',    x1,aTop+g, c1,H-aTop-g);
+    set('content',x2,0, c2,cTop);        set('clips',     x2,cTop+g, c2,H-cTop-g);
+    set('bugs',   x3,0, c3,bTop);        set('tasks',     x3,bTop+g, c3,tMid);
+    set('analytics', x3,bTop+tMid+2*g, c3, H-bTop-tMid-2*g);
+  } else { // narrow: 2 columns x 4 rows
+    const cw=(W-g)/2, x2=cw+g, rh=(H-3*g)/4;
+    set('content', 0,0,          cw,rh);  set('clips',     x2,0,          cw,rh);
+    set('bugs',    0,rh+g,       cw,rh);  set('tasks',     x2,rh+g,       cw,rh);
+    set('analytics',0,2*(rh+g),  cw,rh);  set('agents',    x2,2*(rh+g),   cw,rh);
+    set('health',  0,3*(rh+g),   W,rh);
   }
   renderDock(); winResized('analytics');
 }
@@ -1182,6 +1268,8 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
     document.addEventListener('click',e=>{ if(!e.target.closest('.rejmenu')&&!e.target.closest('.del')) document.querySelectorAll('#body-content .rejmenu').forEach(m=>m.remove()); });
     renderTop(); render(); updateTeach();
     window.addEventListener('feed:update', renderTop);
+    /* CLIPS moves a card to POSTED when a clip goes out on all 3 platforms */
+    window.addEventListener('content:refresh', ()=>{ ideas=load(); render(); renderTop(); });
   })();
 
   /* ===================== PLANS ===================== */
@@ -1340,6 +1428,333 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
   render();
   window.addEventListener('feed:update', render);
   window.addEventListener('win:resize', e=>{ if(e.detail && e.detail.id==='analytics') render(); });
+})();
+
+/* ---- CLIPS — one clip → three platforms. Files live in this browser (IndexedDB), never uploaded by us. ---- */
+(function(){
+  const b = mkWin('clips','CLIPS','▩', Math.min(400,W*.32), Math.min(H*.44,430), Math.min(560,W*.40), Math.min(420,H*.5), true);
+  const esc=s=>(''+s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const PLATS=[
+    {key:'tiktok', label:'TIKTOK',    ic:'♪', post:'tiktok',  url:'https://www.tiktok.com/tiktokstudio/upload',
+     tags:['#roblox','#headtap','#robloxfps','#fyp','#robloxedit','#gaming']},
+    {key:'yt',     label:'YT SHORTS', ic:'▶', post:'shorts',  url:'https://www.youtube.com/upload',
+     tags:['#roblox','#headtap','#shorts','#robloxfps','#robloxedit']},
+    {key:'ig',     label:'REELS',     ic:'◎', post:'ig',      url:'https://www.instagram.com/',
+     tags:['#roblox','#headtap','#reels','#robloxreels','#robloxfps','#gaming']}
+  ];
+  const PMAP={}; PLATS.forEach(p=>{ PMAP[p.key]=p; });
+  const POSTKEY='ybos.posts.v1', IDEAKEY='ybos.content.v1';
+  const fsize=n=> !n?'0 KB' : n>=1073741824?(n/1073741824).toFixed(1)+' GB' : n>=1048576?(n/1048576).toFixed(n>=104857600?0:1)+' MB' : Math.max(1,Math.round(n/1024))+' KB';
+  const fdur=s=>{ if(!s||!isFinite(s)) return '—'; const m=Math.floor(s/60), r=Math.round(s%60); return m? m+':'+String(r).padStart(2,'0') : r+'s'; };
+  const stripExt=n=>(''+n).replace(/\.[a-z0-9]+$/i,'').replace(/[_-]+/g,' ').trim();
+
+  /* ---- store ---- */
+  const DBN='ybos-clips', STORE='clips';
+  let dbp=null;
+  function db(){
+    if(dbp) return dbp;
+    dbp=new Promise((res,rej)=>{
+      const r=indexedDB.open(DBN,1);
+      r.onupgradeneeded=()=>{ const d=r.result; if(!d.objectStoreNames.contains(STORE)) d.createObjectStore(STORE,{keyPath:'id'}); };
+      r.onsuccess=()=>res(r.result);
+      r.onerror=()=>rej(r.error);
+    });
+    return dbp;
+  }
+  function txn(mode,fn){
+    return db().then(d=>new Promise((res,rej)=>{
+      const t=d.transaction(STORE,mode), req=fn(t.objectStore(STORE));
+      t.oncomplete=()=>res(req?req.result:null);
+      t.onerror=()=>rej(t.error); t.onabort=()=>rej(t.error);
+    }));
+  }
+  const putClip=c=>txn('readwrite',s=>s.put(c));
+  const dropClip=id=>txn('readwrite',s=>s.delete(id));
+
+  let clips=[];
+  const urls={};
+  const blobURL=c=>{ if(!urls[c.id]) urls[c.id]=URL.createObjectURL(c.blob); return urls[c.id]; };
+
+  b.innerHTML=`<div class="eyebrow">ONE CLIP → 3 PLATFORMS · FILES STAY IN THIS BROWSER</div>
+    <div class="clip-drop" id="cdrop"><b>DROP A CLIP</b>drag a video in — or click to pick one</div>
+    <input type="file" id="cfile" accept="video/*" multiple style="display:none">
+    <div id="clist"></div>
+    <div class="clip-foot"><span id="cstore">—</span><span style="flex:1"></span>
+      <button class="tbbtn" id="cclear" title="delete clips already marked posted on all 3">CLEAR POSTED</button></div>
+    <div class="dim mono" id="cmsg" style="font-size:9px;letter-spacing:.1em;margin-top:6px;min-height:12px"></div>`;
+  const list=b.querySelector('#clist'), drop=b.querySelector('#cdrop'), fileIn=b.querySelector('#cfile'), msg=b.querySelector('#cmsg');
+  const flash=m=>{ msg.textContent=m; setTimeout(()=>{ if(msg.textContent===m) msg.textContent=''; },3200); };
+
+  /* ---- captions ---- */
+  function capFor(c,pk){
+    if(c.caps && c.caps[pk]) return c.caps[pk];
+    const p=PMAP[pk]||PLATS[0], parts=[c.title||stripExt(c.name)];
+    if(c.hook) parts.push(c.hook);
+    parts.push(p.tags.join(' '));
+    return parts.join('\n\n');
+  }
+  const doneAll=c=>PLATS.every(p=>c.posted && c.posted[p.key]);
+
+  /* ---- render ---- */
+  function render(){
+    if(!clips.length){
+      list.innerHTML=`<div class="clip-empty">No clips yet. Drop one gameplay cut in — YBOS builds the caption for
+        TikTok, Shorts and Reels, keeps the file with a preview, and tracks which platforms it went out on.</div>`;
+      return;
+    }
+    list.innerHTML='';
+    clips.forEach(c=>{
+      const row=document.createElement('div');
+      row.className='clip-row'+(doneAll(c)?' done':'');
+      const thumb = c.poster
+        ? `<img class="clip-th" src="${c.poster}" draggable="true" title="drag out to your desktop / the uploader">`
+        : `<div class="clip-ph" draggable="true" title="drag out to your desktop / the uploader">NO FRAME</div>`;
+      row.innerHTML=`<span class="clip-x" title="delete clip">×</span>${thumb}
+        <div class="clip-b">
+          <div class="clip-n">${esc(c.title||stripExt(c.name))}</div>
+          <div class="clip-m">${fdur(c.dur)} · ${fsize(c.size)} · ${esc(c.name)}</div>
+          <div class="clip-p">${PLATS.map(p=>`<span class="clip-pill${(c.posted&&c.posted[p.key])?' on':''}" data-p="${p.key}"
+            title="${(c.posted&&c.posted[p.key])?'posted — click to undo':'mark posted on '+p.label}">${p.ic} ${p.label}</span>`).join('')}
+            <button class="clip-open">OPEN →</button></div>
+        </div>`;
+      const th=row.querySelector('.clip-th, .clip-ph');
+      th.addEventListener('dragstart',e=>dragOut(e,c));
+      th.addEventListener('click',()=>openSheet(c));
+      row.querySelector('.clip-n').addEventListener('click',()=>openSheet(c));
+      row.querySelector('.clip-open').addEventListener('click',()=>openSheet(c));
+      row.querySelector('.clip-x').addEventListener('click',()=>removeClip(c));
+      row.querySelectorAll('.clip-pill').forEach(el=>el.addEventListener('click',()=>togglePosted(c,el.dataset.p)));
+      list.appendChild(row);
+    });
+  }
+  async function usage(){
+    const el=b.querySelector('#cstore'); if(!el) return;
+    const bytes=clips.reduce((n,c)=>n+(c.size||0),0);
+    let extra='';
+    try{
+      if(navigator.storage && navigator.storage.estimate){
+        const e=await navigator.storage.estimate();
+        if(e && e.quota) extra=' · browser quota '+(e.quota/1073741824).toFixed(1)+' GB';
+      }
+    }catch(e){}
+    el.textContent=clips.length+' CLIP'+(clips.length===1?'':'S')+' · '+fsize(bytes)+extra;
+  }
+
+  /* ---- drag the real file out (desktop / a file dialog) ---- */
+  function dragOut(ev,c){
+    try{
+      const url=blobURL(c);
+      ev.dataTransfer.effectAllowed='copy';
+      ev.dataTransfer.setData('DownloadURL',(c.type||'video/mp4')+':'+c.name+':'+url);
+      ev.dataTransfer.setData('text/uri-list',url);
+    }catch(e){}
+  }
+
+  /* ---- ingest ---- */
+  function isVideo(f){ return /^video\//.test(f.type||'') || /\.(mp4|mov|m4v|webm|mkv|avi)$/i.test(f.name||''); }
+  async function ingest(files){
+    const vids=Array.from(files).filter(isVideo);
+    if(!vids.length){ flash('that is not a video file'); return; }
+    for(const f of vids){
+      flash('reading '+f.name+' …');
+      const rec={ id:'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,7),
+        name:f.name, size:f.size, type:f.type||'video/mp4', blob:f,
+        added:new Date().toISOString(), title:stripExt(f.name), hook:'', idea:'',
+        caps:{}, posted:{}, poster:'', dur:0 };
+      const meta=await probe(f);
+      rec.dur=meta.dur; rec.poster=meta.poster;
+      try{ await putClip(rec); }
+      catch(e){ flash('could not store '+f.name+' — browser storage full or file too big'); continue; }
+      clips.unshift(rec); render(); usage();
+      flash('added '+f.name+(meta.poster?'':' (no preview frame — codec the browser can’t decode)'));
+    }
+  }
+  function frameOf(v){
+    const w=200, h=Math.max(1,Math.round(w*(v.videoHeight||9)/(v.videoWidth||16)));
+    const cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+    cv.getContext('2d').drawImage(v,0,0,w,h);
+    return cv.toDataURL('image/jpeg',0.72);
+  }
+  function probe(file){
+    return new Promise(res=>{
+      const url=URL.createObjectURL(file), v=document.createElement('video');
+      let done=false;
+      const finish=grab=>{
+        if(done) return; done=true;
+        let poster='';
+        if(grab){ try{ poster=frameOf(v); }catch(e){} }
+        const dur=isFinite(v.duration)?v.duration:0;
+        v.removeAttribute('src'); URL.revokeObjectURL(url);
+        res({dur,poster});
+      };
+      v.muted=true; v.playsInline=true; v.preload='auto';
+      v.onerror=()=>finish(false);
+      v.onseeked=()=>finish(true);
+      v.onloadeddata=()=>{
+        const t=Math.min(1.2,(isFinite(v.duration)?v.duration:2)*0.3);
+        try{ v.currentTime=t; }catch(e){ finish(true); }
+        setTimeout(()=>finish(true),2500);   // seek never fired — take whatever frame is decoded
+      };
+      setTimeout(()=>finish(false),15000);
+      v.src=url;
+    });
+  }
+
+  /* ---- posted state ---- */
+  function logPost(c,pk){
+    const p=PMAP[pk];
+    try{
+      let log=JSON.parse(localStorage.getItem(POSTKEY)||'[]');
+      log.unshift({t:c.title||stripExt(c.name), plat:(p&&p.post)||pk, fmt:'short', postedAt:new Date().toISOString(), clip:c.name});
+      localStorage.setItem(POSTKEY,JSON.stringify(log.slice(0,300)));
+    }catch(e){}
+  }
+  function markIdeaPosted(c){
+    if(!c.idea) return;
+    try{
+      const arr=ideaList();
+      const i=arr.findIndex(x=>(''+x.t).trim().toLowerCase()===(''+c.idea).trim().toLowerCase());
+      if(i>=0 && arr[i].col!==3){
+        arr[i].col=3; localStorage.setItem(IDEAKEY,JSON.stringify(arr));
+        window.dispatchEvent(new CustomEvent('content:refresh'));
+        flash('“'+arr[i].t+'” moved to POSTED on the pipeline board');
+      }
+    }catch(e){}
+  }
+  async function togglePosted(c,pk){
+    c.posted=c.posted||{};
+    const was=!!c.posted[pk];
+    if(was) delete c.posted[pk]; else c.posted[pk]=new Date().toISOString();
+    await putClip(c);
+    if(!was){ logPost(c,pk); flash('marked posted on '+(PMAP[pk]?PMAP[pk].label:pk)); if(doneAll(c)) markIdeaPosted(c); }
+    render(); if(cur===c) paintSheet();
+  }
+  async function removeClip(c){
+    await dropClip(c.id);
+    if(urls[c.id]){ URL.revokeObjectURL(urls[c.id]); delete urls[c.id]; }
+    clips=clips.filter(x=>x!==c);
+    if(cur===c) closeSheet();
+    render(); usage(); flash('deleted '+c.name);
+  }
+
+  /* ---- the sheet ---- */
+  const sheet=document.getElementById('clipsheet');
+  const vid=document.getElementById('clipvid'), capEl=document.getElementById('cscap');
+  const tEl=document.getElementById('cs-t'), hEl=document.getElementById('cs-h'), ideaEl=document.getElementById('cs-idea');
+  const tabsEl=document.getElementById('cs-tabs'), platEl=document.getElementById('cs-plat'), titleEl=document.getElementById('cs-title');
+  let cur=null, curPlat='tiktok';
+
+  /* the pipeline board only writes localStorage once you touch it — fall back to the same
+     feed source it seeds itself from, so the picker is never empty */
+  function seedIdeas(){
+    return (DATA.feedContent && DATA.feedContent.length ? DATA.feedContent : (DATA.content||[]))
+      .map(c=>({t:c.t,hook:c.hook||'',fmt:c.fmt||'short',plat:c.plat||'tiktok',col:c.col|0}));
+  }
+  function ideaList(){
+    let arr=null; try{ arr=JSON.parse(localStorage.getItem(IDEAKEY)); }catch(e){}
+    return (arr && arr.length) ? arr : seedIdeas();
+  }
+  function loadIdeas(){
+    const arr=ideaList();
+    const opts=['<option value="">— pull a title from the pipeline board —</option>']
+      .concat(arr.filter(x=>x&&x.t).map((x,i)=>`<option value="${i}">${esc((x.col===3?'✓ ':'')+x.t)}</option>`));
+    ideaEl.innerHTML=opts.join('');
+    ideaEl._arr=arr;
+  }
+  function paintSheet(){
+    if(!cur) return;
+    titleEl.textContent=cur.title||stripExt(cur.name);
+    tabsEl.innerHTML=PLATS.map(p=>{
+      const on=p.key===curPlat, posted=cur.posted && cur.posted[p.key];
+      return `<div class="cs-tab${on?' on':''}${posted?' posted':''}" data-p="${p.key}">${p.ic} ${p.label}<span class="k">${posted?'POSTED':'NOT POSTED'}</span></div>`;
+    }).join('');
+    tabsEl.querySelectorAll('.cs-tab').forEach(el=>el.onclick=()=>{ saveCaption(); curPlat=el.dataset.p; paintSheet(); });
+    platEl.textContent='· '+(PMAP[curPlat]?PMAP[curPlat].label:'');
+    capEl.value=capFor(cur,curPlat);
+    const posted=!!(cur.posted && cur.posted[curPlat]);
+    const pb=document.getElementById('cs-posted');
+    pb.textContent=posted?'✓ POSTED — CLICK TO UNDO':'MARK POSTED HERE →';
+    pb.classList.toggle('go',!posted);
+    document.getElementById('cs-dragl').textContent='DRAG '+cur.name.toUpperCase()+' OUT — TO YOUR DESKTOP OR A FILE DIALOG';
+  }
+  function saveCaption(){
+    if(!cur) return;
+    const v=capEl.value;
+    cur.caps=cur.caps||{};
+    if(v===capFor({...cur,caps:{}},curPlat)) delete cur.caps[curPlat]; else cur.caps[curPlat]=v;
+    putClip(cur);
+  }
+  function openSheet(c){
+    cur=c; curPlat=PLATS.find(p=>!(c.posted&&c.posted[p.key])) ? PLATS.find(p=>!(c.posted&&c.posted[p.key])).key : 'tiktok';
+    vid.src=blobURL(c); vid.poster=c.poster||'';
+    tEl.value=c.title||stripExt(c.name); hEl.value=c.hook||'';
+    loadIdeas();
+    ideaEl.value='';
+    paintSheet();
+    sheet.classList.add('show');
+  }
+  function closeSheet(){
+    saveCaption();
+    try{ vid.pause(); vid.removeAttribute('src'); vid.load(); }catch(e){}
+    sheet.classList.remove('show'); cur=null;
+  }
+  tEl.addEventListener('input',()=>{ if(!cur) return; cur.title=tEl.value; putClip(cur); titleEl.textContent=cur.title||stripExt(cur.name); capEl.value=capFor(cur,curPlat); render(); });
+  hEl.addEventListener('input',()=>{ if(!cur) return; cur.hook=hEl.value; putClip(cur); capEl.value=capFor(cur,curPlat); });
+  capEl.addEventListener('input',saveCaption);
+  ideaEl.addEventListener('change',()=>{
+    if(!cur) return;
+    const arr=ideaEl._arr||[], x=arr[+ideaEl.value];
+    if(!x) return;
+    cur.title=x.t; cur.hook=x.hook||''; cur.idea=x.t; cur.caps={};
+    tEl.value=cur.title; hEl.value=cur.hook;
+    putClip(cur); paintSheet(); render();
+    flash('linked to “'+x.t+'” — it moves to POSTED when all 3 are done');
+  });
+  document.getElementById('cs-copy').onclick=async()=>{
+    saveCaption();
+    try{ await navigator.clipboard.writeText(capEl.value); flash('caption copied — paste it in the uploader'); }
+    catch(e){ capEl.focus(); capEl.select(); flash('select + copy the caption (clipboard blocked)'); }
+  };
+  document.getElementById('cs-open').onclick=async()=>{
+    saveCaption();
+    try{ await navigator.clipboard.writeText(capEl.value); }catch(e){}
+    const p=PMAP[curPlat]; if(p) window.open(p.url,'_blank','noopener');
+    flash('caption on your clipboard · drop the clip in the tab that just opened');
+  };
+  document.getElementById('cs-posted').onclick=()=>{ if(cur) togglePosted(cur,curPlat); };
+  document.getElementById('cs-save').onclick=()=>{
+    if(!cur) return;
+    const a=document.createElement('a'); a.href=blobURL(cur); a.download=cur.name;
+    document.body.appendChild(a); a.click(); a.remove();
+    flash('saved '+cur.name+' to your downloads');
+  };
+  document.getElementById('cs-drag').addEventListener('dragstart',e=>{ if(cur) dragOut(e,cur); });
+  document.getElementById('cs-x').onclick=closeSheet;
+  document.getElementById('cs-close').onclick=closeSheet;
+  sheet.addEventListener('click',e=>{ if(e.target===sheet) closeSheet(); });
+  addEventListener('keydown',e=>{ if(e.key==='Escape'&&sheet.classList.contains('show')) closeSheet(); });
+
+  /* ---- drop zone ---- */
+  drop.addEventListener('click',()=>fileIn.click());
+  fileIn.addEventListener('change',()=>{ ingest(fileIn.files); fileIn.value=''; });
+  ['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{ e.preventDefault(); e.stopPropagation(); drop.classList.add('over'); }));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{ e.preventDefault(); e.stopPropagation(); drop.classList.remove('over'); }));
+  drop.addEventListener('drop',e=>{ if(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) ingest(e.dataTransfer.files); });
+  b.addEventListener('dragover',e=>{ if(e.dataTransfer && Array.from(e.dataTransfer.types||[]).includes('Files')) e.preventDefault(); });
+  b.addEventListener('drop',e=>{ if(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length){ e.preventDefault(); ingest(e.dataTransfer.files); } });
+  b.querySelector('#cclear').onclick=async()=>{
+    const gone=clips.filter(doneAll);
+    if(!gone.length){ flash('nothing is posted on all 3 yet'); return; }
+    for(const c of gone) await removeClip(c);
+    flash('cleared '+gone.length+' finished clip'+(gone.length===1?'':'s'));
+  };
+
+  /* ---- boot ---- */
+  txn('readonly',s=>s.getAll()).then(rows=>{
+    clips=(rows||[]).sort((a,c)=>(c.added||'').localeCompare(a.added||''));
+    render(); usage();
+  }).catch(()=>{ list.innerHTML='<div class="clip-empty">Browser storage is blocked, so clips can’t be saved here. Allow site data for this page and reload.</div>'; });
+  render();
 })();
 
 renderDock();
