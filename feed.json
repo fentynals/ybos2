@@ -425,6 +425,12 @@
   "radio": [
     {
       "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Two tutorial killers fixed. (1) Robbing the register dropped nothing: the 07-31 cash floor-guard raycast started 8 studs ABOVE the spawn point, so INDOORS it hit the CEILING first and treated it as the floor - every wad was teleported 8.8 studs up onto the gas-station ROOF, through the slab. Covered ATMs were lifted 6.1-9.4 studs the same way. Probe is now 3 studs with a 4-stud lift cap; verified live, $250 wads land on the shop floor at Y=46.0 instead of Y=60.3. (2) No 'where to click' spotlight when buying AMMO: the resolver looked for a ScrollingFrame, but the ammo shop's row container is a plain static Frame, so it returned nil every time and the dim+ring+finger only ever appeared for the pistol - the exact half of GEAR UP the funnel loses players on. It now matches on content, not class; verified live, the ring frames the 9x19mm BUY button with the CLICK hint.",
+      "ts": "2026-08-01T15:05:00Z"
+    },
+    {
+      "who": "STUDIO",
       "cls": "shipx",
       "msg": "CLIPS window shipped. Drop a gameplay cut into the dashboard and it keeps the file (in-browser, IndexedDB), grabs a preview frame + duration, builds a separate caption for TikTok / YT Shorts / Reels off one title+hook, and tracks which platforms it actually went out on. Pull a title straight off the pipeline board and the card moves itself to POSTED once all 3 are done. Real auto-upload is still blocked on the TikTok/IG app registrations in UPLOAD_ANALYTICS_PLAN.md - this opens each uploader with the caption already on your clipboard.",
       "ts": "2026-08-01T14:40:00Z"
@@ -1705,6 +1711,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-01",
+      "k": "fix",
+      "t": "Register robs drop cash again + the ammo spotlight finally shows",
+      "s": "Indoor cash drops were being teleported onto the gas-station roof by the floor guard's overhead raycast, and the tutorial's click-here spotlight could never resolve the ammo shop because it required a ScrollingFrame. Both verified live."
+    },
     {
       "d": "2026-08-01",
       "k": "feat",
