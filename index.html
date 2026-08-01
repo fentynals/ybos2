@@ -1400,9 +1400,46 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
       const li=series.length-1; ctx.fillStyle=c; ctx.beginPath(); ctx.arc(X(li),Y(series[li][k]),2.2,0,7); ctx.fill();
     });
   }
+  /* ---------------- LIVE YOUTUBE (2026-08-01 per Ian: "needs to refresh upon
+     every time i open it") ----------------------------------------------------
+     googleapis.com sends CORS headers, so unlike GAME HEALTH this needs no relay
+     — the browser reads the channel's PUBLIC statistics directly on every open,
+     every refocus, and a 60s tick while the window sits open.
+
+     THE KEY BELOW IS DELIBERATELY PUBLIC. It is a read-only YouTube Data API key
+     that can only see public data; lock it to this site with an HTTP-referrer
+     restriction in Google Cloud. Cost is 1 quota unit per pull out of 10,000/day.
+
+     TIKTOK AND INSTAGRAM CANNOT BE DONE THIS WAY AT ANY CADENCE and nobody should
+     try: both require OAuth tokens that can POST as the account, so shipping one
+     to the browser is a credential leak, not a CORS problem. They stay in the
+     hourly server-side sync and render from feed.json — which is why the header
+     labels the two halves separately instead of calling the whole window LIVE. */
+  const YT_PUBLIC_KEY = "";                 // YT_API_KEY  (referrer-restricted)
+  const YT_CHANNEL_ID = "";                 // starts with UC...
+  let ytLive = null, ytErr = null, ytPulling = false;
+  async function pullYouTube(){
+    if(!YT_PUBLIC_KEY || !YT_CHANNEL_ID || ytPulling) return;
+    ytPulling = true;
+    try{
+      const r = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${YT_CHANNEL_ID}&key=${YT_PUBLIC_KEY}`, {cache:'no-store'});
+      const j = await r.json();
+      const it = j && j.items && j.items[0];
+      if(it && it.statistics){
+        const s = it.statistics;
+        ytLive = { subscribers:+s.subscriberCount||0, views:+s.viewCount||0, fetched:new Date().toISOString() };
+        ytErr = null;
+      } else {
+        ytErr = (j && j.error && j.error.message) || 'channel not found — check YT_CHANNEL_ID';
+      }
+      render();
+    }catch(e){ ytErr='youtube unreachable'; }
+    ytPulling = false;
+  }
+
   function render(){
     const a=DATA.analytics;
-    if(!a){
+    if(!a && !ytLive){
       b.innerHTML=`<div class="eyebrow">SOCIAL ANALYTICS · TIKTOK · YOUTUBE · INSTAGRAM</div>
         <div class="ghwait"><b>Analytics not wired yet.</b><br>Auto-pull runs as a scheduled sync that authorizes each
         account and writes numbers into <span class="mono" style="color:var(--amber)">feed.json → meta.analytics</span>.
@@ -1410,24 +1447,38 @@ const W = Math.max(innerWidth, 900), H = Math.max(innerHeight, 640);
         followers, views and your top posts land here live — same pipeline as GAME HEALTH.</div>`;
       return;
     }
-    const kpis=PMETA.map(p=>{ const d=a[p.key]||{};
-      return `<div class="an-plat ${p.cls}"><div class="pn">${p.name}</div>
+    const A = a || {};
+    const kpis=PMETA.map(p=>{ let d=A[p.key]||{}; let live=false;
+      if(p.key==='youtube' && ytLive){ d=Object.assign({}, d, {subscribers:ytLive.subscribers, views:ytLive.views}); live=true; }
+      return `<div class="an-plat ${p.cls}"><div class="pn">${p.name}${live?' <span style="color:var(--ok)">● LIVE</span>':''}</div>
         <div class="pf">${fmt(d[p.foll])}</div><div class="pl">${p.fl}</div>
         <div class="pv">${fmt(d.views)} views · ${fmt(d.likes)} likes</div></div>`; }).join('');
-    const top=(a.top||[]).slice(0,6).map((x,i)=>{ const pc=NP[(x.plat||'').toLowerCase()]||'tiktok';
+    const top=(A.top||[]).slice(0,6).map((x,i)=>{ const pc=NP[(x.plat||'').toLowerCase()]||'tiktok';
       return `<div class="an-top"><span class="rk">${i+1}</span><span class="pill ${pc}">${pc.toUpperCase()}</span>
         <span class="tt">${esc(x.t||'')}</span><span class="vv">${fmt(x.views)} views</span></div>`; }).join('');
-    b.innerHTML=`<div class="eyebrow">SOCIAL ANALYTICS · SYNCED ${ago(a.updated).toUpperCase()}</div>
+    const head = ytLive
+      ? `YOUTUBE LIVE · TIKTOK/IG SYNCED ${ago(A.updated).toUpperCase()}`
+      : `SOCIAL ANALYTICS · SYNCED ${ago(A.updated).toUpperCase()}`;
+    b.innerHTML=`<div class="eyebrow">${head}</div>
+      ${ytErr?`<div class="dim mono" style="font-size:9px;letter-spacing:.1em;margin-bottom:6px;color:var(--red)">youtube live pull: ${esc(ytErr)} — showing the last synced numbers</div>`:''}
       <div class="an-grid">${kpis}</div>
       <div class="publabel" style="margin:14px 0 0">VIEWS · LAST ${(a.series||[]).length} DAYS</div>
       <canvas id="anchart"></canvas>
       <div class="an-leg"><span><i style="background:#9FD1FF"></i>TIKTOK</span><span><i style="background:#E23B3B"></i>YOUTUBE</span><span><i style="background:#B784F0"></i>INSTAGRAM</span></div>
       ${top?`<div class="publabel" style="margin-top:14px">TOP POSTS</div>${top}`:''}`;
-    drawChart(a.series||[]);
+    drawChart(A.series||[]);
   }
   render();
   window.addEventListener('feed:update', render);
   window.addEventListener('win:resize', e=>{ if(e.detail && e.detail.id==='analytics') render(); });
+
+  /* every open, every refocus, and a slow tick while it sits open — same
+     contract as GAME HEALTH. feed.json itself is already re-pulled cache-busted
+     every 15s, so TikTok/IG are never staler than the last hourly sync. */
+  pullYouTube();
+  setInterval(pullYouTube, 60000);
+  window.addEventListener('focus', pullYouTube);
+  document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) pullYouTube(); });
 })();
 
 /* ---- CLIPS — one clip → three platforms. Files live in this browser (IndexedDB), never uploaded by us. ---- */
