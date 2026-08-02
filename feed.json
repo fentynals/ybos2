@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-02T01:44:05.259Z",
+    "updated": "2026-08-02T05:16:00.065Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,10 +18,10 @@
       "fetched": "2026-08-01T01:20:33Z"
     },
     "analytics": {
-      "updated": "2026-08-02T01:44:03.023Z",
+      "updated": "2026-08-02T05:15:58.151Z",
       "tiktok": {
         "followers": 0,
-        "views": 316,
+        "views": 317,
         "likes": 4,
         "comments": 1,
         "shares": 0
@@ -42,7 +42,7 @@
         {
           "t": "Then VS Now #roblox #thenvsnow #robloxedit game's link is in my bio!",
           "plat": "tiktok",
-          "views": 316,
+          "views": 317,
           "likes": 4,
           "url": "https://www.tiktok.com/@me/video/7669070531433467150"
         },
@@ -226,7 +226,7 @@
         },
         {
           "d": "08-02",
-          "tiktok": 316,
+          "tiktok": 317,
           "youtube": 23,
           "instagram": 0
         }
