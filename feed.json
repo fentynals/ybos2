@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-02T16:45:00.335Z",
+    "updated": "2026-08-02T17:52:28.774Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,7 +18,7 @@
       "fetched": "2026-08-01T01:20:33Z"
     },
     "analytics": {
-      "updated": "2026-08-02T16:44:58.780Z",
+      "updated": "2026-08-02T17:52:27.556Z",
       "tiktok": {
         "followers": 0,
         "views": 319,
@@ -49,7 +49,7 @@
         {
           "t": "HOW HEADTAPS GOING NOW",
           "plat": "youtube",
-          "views": 217,
+          "views": 216,
           "likes": 4,
           "url": "https://youtu.be/iDTvx7cWNPw"
         },
