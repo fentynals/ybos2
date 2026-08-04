@@ -1,0 +1,57 @@
+name: game-stats-sync
+
+# Refreshes feed.json -> meta.stats (GAME HEALTH fallback) from the public
+# Roblox endpoints. No secrets: these are unauthenticated and need no relay
+# server-side (CORS only applies in a browser).
+#
+# WHY 6h AND NOT HOURLY like analytics.yml: since 2026-07-31 index.html pulls
+# these numbers itself on every page open and every 60s, so the window is
+# already live. This job only keeps the FALLBACK honest -- the copy that renders
+# on first paint and whenever the CORS relay is down. It had never been wired at
+# all, so on 2026-08-04 the fallback was 3.7 days and ~13k visits behind.
+# Hourly would just cost 24 bot commits/day for a value nobody normally reads.
+on:
+  schedule:
+    - cron: '17 */6 * * *'   # :17 to avoid colliding with analytics-sync on the hour
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Fetch + print only, do not commit'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: game-stats-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync game stats
+        env:
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+        run: node tools/sync-game-stats.mjs
+
+      - name: Commit + push if changed
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name  "ybos-gamestats[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed.json
+          if git diff --staged --quiet; then
+            echo "no stat changes"
+          else
+            git commit -m "chore(stats): refresh GAME HEALTH fallback"
+            # other agents push here too -- rebase rather than clobber
+            git pull --rebase --autostash origin ${GITHUB_REF_NAME} || true
+            git push
+          fi

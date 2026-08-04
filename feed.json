@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-04T18:22:00.132Z",
+    "updated": "2026-08-04T19:16:19.992566Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -9,13 +9,13 @@
       "placeId": 124673719670870,
       "universeId": 10194619622,
       "name": "[FREE SWITCH] HEAD TAP🔫",
-      "playing": 8,
-      "visits": 5353,
-      "favorites": 184,
-      "maxPlayers": 50,
-      "likes": 26,
-      "dislikes": 5,
-      "fetched": "2026-08-01T01:20:33Z"
+      "playing": 16,
+      "visits": 18307,
+      "favorites": 1107,
+      "maxPlayers": 25,
+      "likes": 79,
+      "dislikes": 21,
+      "fetched": "2026-08-04T18:56:20Z"
     },
     "analytics": {
       "updated": "2026-08-04T18:21:58.451Z",
@@ -248,6 +248,28 @@
       "status": "idle",
       "note": "standing by Ã¢â‚¬â€ ask content-creator for ideas",
       "updated": "2026-07-05T03:24:14Z"
+    },
+    "feedback": {
+      "updated": "2026-08-04T19:14:20Z",
+      "count": 2,
+      "items": [
+        {
+          "t": "asss",
+          "who": "yungbruh",
+          "name": "yungsbruh",
+          "uid": 410460188,
+          "at": "2026-08-04T17:25:59Z",
+          "v": 3285
+        },
+        {
+          "t": "this shit ass",
+          "who": "yungbruh",
+          "name": "yungsbruh",
+          "uid": 410460188,
+          "at": "2026-08-04T16:09:12Z",
+          "v": 0
+        }
+      ]
     }
   },
   "content": [],
@@ -463,6 +485,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "HEADTAP: dirty/clean money split shipped (DirtyCash item + clean wallet + ATM banking back), telemetry layer wired, TeamServer extracted from FPSServer at the 200k ceiling. PLAYER FEEDBACK window added here.",
+      "ts": "2026-08-04T19:16:19Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1757,6 +1785,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-04",
+      "k": "feat",
+      "t": "PLAYER FEEDBACK window",
+      "s": "In-game SEND FEEDBACK panel -> Feedback_v1 DataStore -> Open Cloud -> feed.meta.feedback -> new OS window."
+    },
     {
       "d": "2026-08-01",
       "k": "fix",

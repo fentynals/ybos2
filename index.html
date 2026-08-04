@@ -1854,5 +1854,43 @@ window.addEventListener('feed:update', ()=>{
   const sh=document.getElementById('tb-shipped'); if(sh) sh.textContent = DATA.ship.length;
 });
 </script>
+<script>
+/* ---- PLAYER FEEDBACK (in-game SEND FEEDBACK panel -> Feedback_v1 DataStore
+   -> Open Cloud puller -> feed.meta.feedback). Deliberately its OWN <script>
+   block: a syntax error here can only kill this window, not the OS shell. ---- */
+(function(){
+  const b = mkWin('feedback','PLAYER FEEDBACK','✉', 24, H*.30, Math.min(560,W*.40), Math.min(340,H*.38), true);
+  const esc=s=>(''+s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const ago=ts=>{ if(!ts) return ''; const s=(Date.now()-new Date(ts).getTime())/1000;
+    if(s<60) return 'just now'; if(s<3600) return Math.round(s/60)+'m ago';
+    if(s<86400) return Math.round(s/3600)+'h ago'; return Math.round(s/86400)+'d ago'; };
+
+  function render(){
+    const F = (DATA.meta && DATA.meta.feedback) || null;
+    if(!F || !F.items || !F.items.length){
+      b.innerHTML = '<div class="eyebrow">PLAYER FEEDBACK · NONE YET</div>'
+        + '<div class="ins-note">Nothing submitted yet. Players reach this from the '
+        + '<span class="mono">MENU</span> tray &rarr; the speaking-head icon. '
+        + 'Entries land in the <span class="mono">Feedback_v1</span> DataStore and are pulled in by Open Cloud.</div>';
+      return;
+    }
+    const rows = F.items.map(function(x){
+      // version is what makes an old complaint readable -- "already fixed in a
+      // later build" is only knowable if you know which build it came from
+      const ver = (x.v!=null && x.v!==0) ? '<span class="tag">v'+esc(x.v)+'</span>' : '';
+      return '<div class="bug watch">'
+        + '<div class="bh"><span class="bt">'+esc(x.who||x.name||'player')+'</span>'
+        + '<span class="grow"></span>'+ver+'<span class="st">'+esc(ago(x.at))+'</span></div>'
+        + '<div class="bn">'+esc(x.t)+'</div>'
+        + '</div>';
+    }).join('');
+    b.innerHTML = '<div class="eyebrow">PLAYER FEEDBACK · '+F.count+' TOTAL · SYNCED '
+      + esc(ago(F.updated).toUpperCase())+'</div>' + rows;
+  }
+
+  render();
+  window.addEventListener('feed:update', render);
+})();
+</script>
 </body>
 </html>
