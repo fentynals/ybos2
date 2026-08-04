@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-04T19:26:44.262395Z",
+    "updated": "2026-08-04T20:17:32.397Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,7 +18,7 @@
       "fetched": "2026-08-04T18:56:20Z"
     },
     "analytics": {
-      "updated": "2026-08-04T18:21:58.451Z",
+      "updated": "2026-08-04T20:17:30.655Z",
       "tiktok": {
         "followers": 0,
         "views": 321,
@@ -276,20 +276,20 @@
       "days": [
         {
           "d": "2026-08-04",
-          "dirtyIn": 4500.0,
+          "dirtyIn": 4500,
           "dirtyOut": 0,
           "cashIn": 0,
           "cashOut": 0,
           "bankIn": 0,
           "bankOut": 0,
-          "tx": 3.0
+          "tx": 3
         }
       ],
       "sources": [
         {
           "cur": "DirtyCash",
           "reason": "GAMEPLAY",
-          "v": 4500.0
+          "v": 4500
         }
       ],
       "sinks": []
