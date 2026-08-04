@@ -1892,5 +1892,59 @@ window.addEventListener('feed:update', ()=>{
   window.addEventListener('feed:update', render);
 })();
 </script>
+<script>
+/* ---- ECONOMY (HEADTAP money flow: EconomyDaily_v1 -> Open Cloud -> feed.meta.economy).
+   Own <script> block on purpose: a fault here can only kill this window. ---- */
+(function(){
+  const b = mkWin('economy','ECONOMY','$', Math.min(600,W*.44), H*.30, Math.min(560,W*.40), Math.min(360,H*.40), true);
+  const esc=s=>(''+s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const fmt=n=> n==null?'—' : n>=1e9?(n/1e9).toFixed(1)+'B' : n>=1e6?(n/1e6).toFixed(1)+'M'
+             : n>=1e3?(n/1e3).toFixed(n>=1e4?0:1)+'k' : (''+Math.round(n));
+  const ago=ts=>{ if(!ts) return 'never'; const s=(Date.now()-new Date(ts).getTime())/1000;
+    if(s<60) return 'just now'; if(s<3600) return Math.round(s/60)+'m ago';
+    if(s<86400) return Math.round(s/3600)+'h ago'; return Math.round(s/86400)+'d ago'; };
+
+  function render(){
+    const E = (DATA.meta && DATA.meta.economy) || null;
+    if(!E || !E.days || !E.days.length){
+      b.innerHTML = '<div class="eyebrow">ECONOMY · AWAITING SYNC</div>'
+        + '<div class="ins-note">No economy data yet. The game rolls every money movement into '
+        + '<span class="mono">EconomyDaily_v1</span> and the <span class="mono">headtap-sync</span> job pulls it here. '
+        + 'It only counts from the day the rollup shipped — it cannot backfill.</div>';
+      return;
+    }
+    const last = E.days[E.days.length-1] || {};
+    // dirty IN vs OUT is the headline: how much crime money is being created
+    // versus how much is actually reaching the laundromat
+    const laundered = last.dirtyIn>0 ? Math.round(100*last.dirtyOut/last.dirtyIn) : 0;
+
+    const cell=(label,val,cls)=>'<div class="ins-card"><div class="ins-k">'+label+'</div>'
+      +'<div class="ins-v '+(cls||'')+'">'+val+'</div></div>';
+
+    const rows=(arr,sign)=> (arr&&arr.length)
+      ? arr.map(function(x){
+          return '<div class="bug watch"><div class="bh">'
+            + '<span class="bt">'+esc(x.reason)+'</span><span class="grow"></span>'
+            + '<span class="tag">'+esc(x.cur)+'</span>'
+            + '<span class="st">'+sign+fmt(x.v)+'</span></div></div>';
+        }).join('')
+      : '<div class="ins-note">none yet</div>';
+
+    b.innerHTML = '<div class="eyebrow">HEADTAP ECONOMY · '+E.days.length+'D · SYNCED '
+        + esc(ago(E.updated).toUpperCase())+'</div>'
+      + '<div class="ins-cards">'
+      + cell('DIRTY IN',  fmt(last.dirtyIn))
+      + cell('LAUNDERED', laundered+'%')
+      + cell('CLEAN IN',  fmt(last.cashIn))
+      + cell('TX TODAY',  fmt(last.tx))
+      + '</div>'
+      + '<div class="ins-sec"><div class="ins-h">TOP SOURCES</div>'+rows(E.sources,'+')+'</div>'
+      + '<div class="ins-sec"><div class="ins-h">TOP SINKS</div>'+rows(E.sinks,'-')+'</div>';
+  }
+
+  render();
+  window.addEventListener('feed:update', render);
+})();
+</script>
 </body>
 </html>

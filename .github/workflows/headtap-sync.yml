@@ -1,0 +1,69 @@
+name: headtap-sync
+
+# Pulls HEADTAP's in-game data into feed.json:
+#   meta.feedback -> PLAYER FEEDBACK window   (Feedback_v1 DataStore)
+#   meta.economy  -> ECONOMY window           (EconomyDaily_v1 DataStore)
+#
+# Both come from the same DataStore key, so they share one job -- one checkout,
+# one commit, instead of two bots racing each other on feed.json.
+#
+# SECRET: ROBLOX_DATASTORE_KEY -- an Open Cloud key scoped to
+# `universe-datastores` READ + LIST on universe 10194619622 and NOTHING ELSE.
+# Deliberately NOT the key on Ian's machine: that one also carries monetization
+# scopes (create/update dev products and game passes) and THIS REPO IS PUBLIC.
+# Least privilege -- a worst-case leak here reads feedback, it does not mint
+# paid products.
+on:
+  schedule:
+    - cron: '37 */2 * * *'   # :37 so it never lands on analytics-sync (:00) or game-stats (:17)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Fetch + print only, do not commit'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: headtap-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync player feedback
+        env:
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+          ROBLOX_DATASTORE_KEY: ${{ secrets.ROBLOX_DATASTORE_KEY }}
+        run: node tools/sync-feedback.mjs
+
+      # continue-on-error: economy is the newer of the two. A failure here must
+      # not throw away a successful feedback pull that already wrote feed.json.
+      - name: Sync economy
+        continue-on-error: true
+        env:
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+          ROBLOX_DATASTORE_KEY: ${{ secrets.ROBLOX_DATASTORE_KEY }}
+        run: node tools/sync-economy.mjs
+
+      - name: Commit + push if changed
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name  "ybos-headtap[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed.json
+          if git diff --staged --quiet; then
+            echo "nothing new"
+          else
+            git commit -m "chore(headtap): sync feedback + economy"
+            git pull --rebase --autostash origin ${GITHUB_REF_NAME} || true
+            git push
+          fi

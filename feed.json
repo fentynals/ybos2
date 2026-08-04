@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-04T19:16:19.992566Z",
+    "updated": "2026-08-04T19:26:44.262395Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -270,6 +270,29 @@
           "v": 0
         }
       ]
+    },
+    "economy": {
+      "updated": "2026-08-04T19:26:44Z",
+      "days": [
+        {
+          "d": "2026-08-04",
+          "dirtyIn": 4500.0,
+          "dirtyOut": 0,
+          "cashIn": 0,
+          "cashOut": 0,
+          "bankIn": 0,
+          "bankOut": 0,
+          "tx": 3.0
+        }
+      ],
+      "sources": [
+        {
+          "cur": "DirtyCash",
+          "reason": "GAMEPLAY",
+          "v": 4500.0
+        }
+      ],
+      "sinks": []
     }
   },
   "content": [],
