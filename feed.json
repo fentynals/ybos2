@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-06T15:05:44.454Z",
+    "updated": "2026-08-06T23:48:16.068Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,40 +18,54 @@
       "fetched": "2026-08-06T14:36:46Z"
     },
     "analytics": {
-      "updated": "2026-08-06T15:05:42.843Z",
+      "updated": "2026-08-06T23:48:14.101Z",
       "tiktok": {
         "followers": 0,
-        "views": 322,
-        "likes": 4,
-        "comments": 1,
+        "views": 397,
+        "likes": 7,
+        "comments": 4,
         "shares": 0
       },
       "youtube": {
-        "subscribers": 8,
+        "subscribers": 9,
         "views": 242,
-        "likes": 4,
-        "comments": 2
+        "likes": 5,
+        "comments": 3
       },
       "instagram": {
         "followers": 0,
         "views": null,
-        "likes": 3,
-        "comments": 0
+        "likes": 4,
+        "comments": 1
       },
       "top": [
         {
           "t": "Then VS Now #roblox #thenvsnow #robloxedit game's link is in my bio!",
           "plat": "tiktok",
-          "views": 322,
-          "likes": 4,
+          "views": 323,
+          "likes": 5,
           "url": "https://www.tiktok.com/@me/video/7669070531433467150"
         },
         {
           "t": "HOW HEADTAPS GOING NOW",
           "plat": "youtube",
-          "views": 219,
+          "views": 220,
           "likes": 4,
           "url": "https://youtu.be/iDTvx7cWNPw"
+        },
+        {
+          "t": "It turned out pretty good #roblox #headtap #robloxfps #fyp #robloxedit #gaming",
+          "plat": "tiktok",
+          "views": 74,
+          "likes": 3,
+          "url": "https://www.tiktok.com/@me/video/7670945628750433549"
+        },
+        {
+          "t": "SHOULD I QUIT?",
+          "plat": "youtube",
+          "views": 5,
+          "likes": 1,
+          "url": "https://youtu.be/2ie3LydWofY"
         },
         {
           "t": "Then VS Now #roblox #thenvsnow #robloxedit game's link is in",
@@ -59,6 +73,13 @@
           "views": 0,
           "likes": 3,
           "url": "https://www.instagram.com/reel/DbgDfYjNVJ5/"
+        },
+        {
+          "t": "It turned out pretty good\n\n#roblox #headtap #reels #robloxre",
+          "plat": "instagram",
+          "views": 0,
+          "likes": 1,
+          "url": "https://www.instagram.com/reel/DbtFtwIgHCY/"
         }
       ],
       "series": [
@@ -238,7 +259,7 @@
         },
         {
           "d": "08-06",
-          "tiktok": 322,
+          "tiktok": 397,
           "youtube": 242,
           "instagram": 0
         }
