@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-07T00:17:00.796Z",
+    "updated": "2026-08-07T02:03:18.833Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,10 +18,10 @@
       "fetched": "2026-08-07T00:17:00Z"
     },
     "analytics": {
-      "updated": "2026-08-06T23:48:14.101Z",
+      "updated": "2026-08-07T02:03:13.184Z",
       "tiktok": {
         "followers": 0,
-        "views": 397,
+        "views": 400,
         "likes": 7,
         "comments": 4,
         "shares": 0
@@ -30,7 +30,7 @@
         "subscribers": 9,
         "views": 242,
         "likes": 5,
-        "comments": 3
+        "comments": 4
       },
       "instagram": {
         "followers": 0,
@@ -56,14 +56,14 @@
         {
           "t": "It turned out pretty good #roblox #headtap #robloxfps #fyp #robloxedit #gaming",
           "plat": "tiktok",
-          "views": 74,
+          "views": 77,
           "likes": 3,
           "url": "https://www.tiktok.com/@me/video/7670945628750433549"
         },
         {
           "t": "SHOULD I QUIT?",
           "plat": "youtube",
-          "views": 5,
+          "views": 10,
           "likes": 1,
           "url": "https://youtu.be/2ie3LydWofY"
         },
@@ -83,12 +83,6 @@
         }
       ],
       "series": [
-        {
-          "d": "07-07",
-          "tiktok": 0,
-          "youtube": 23,
-          "instagram": 0
-        },
         {
           "d": "07-08",
           "tiktok": 0,
@@ -260,6 +254,12 @@
         {
           "d": "08-06",
           "tiktok": 397,
+          "youtube": 242,
+          "instagram": 0
+        },
+        {
+          "d": "08-07",
+          "tiktok": 400,
           "youtube": 242,
           "instagram": 0
         }
