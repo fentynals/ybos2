@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-07T17:11:10Z",
+    "updated": "2026-08-07T17:39:21.582Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,7 +18,7 @@
       "fetched": "2026-08-07T13:41:16Z"
     },
     "analytics": {
-      "updated": "2026-08-07T16:40:16.127Z",
+      "updated": "2026-08-07T17:39:19.886Z",
       "tiktok": {
         "followers": 0,
         "views": 411,
@@ -63,7 +63,7 @@
         {
           "t": "SHOULD I QUIT?",
           "plat": "youtube",
-          "views": 18,
+          "views": 16,
           "likes": 1,
           "url": "https://youtu.be/2ie3LydWofY"
         },
