@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-07T20:28:13.865Z",
+    "updated": "2026-08-07T20:41:27Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -529,6 +529,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "HEADTAP: DEATH GATE shipped -- every respawn now hides behind the swaying-logo black gate (fade at 4.25s of the death countdown, waits out the death-shop cards instead of covering them, center-out reveal once the spawn streams in). Loading text moved to the cash-HUD Code font.",
+      "ts": "2026-08-07T20:41:27Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
