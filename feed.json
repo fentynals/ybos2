@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-07T16:40:17.433Z",
+    "updated": "2026-08-07T17:11:10Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -529,6 +529,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "HEADTAP: STREAM GATE shipped -- the post-welcome-death streaming lag (~100k parts) now hides behind a black logo gate that holds until net+framerate settle, then the game opens through a hole from screen center. Verified across tutorial and welcome-death paths (7-21s holds).",
+      "ts": "2026-08-07T17:11:10Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1841,6 +1847,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-07",
+      "k": "fix",
+      "t": "Stream gate over first-load lag",
+      "s": "LoadingScreen dismiss now holds a branded black gate through the welcome-death respawn until streaming settles, center-out reveal after."
+    },
     {
       "d": "2026-08-07",
       "k": "feat",
