@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-07T03:20:54.002Z",
+    "updated": "2026-08-07T04:46:36.422Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,10 +18,10 @@
       "fetched": "2026-08-07T03:20:54Z"
     },
     "analytics": {
-      "updated": "2026-08-07T02:03:13.184Z",
+      "updated": "2026-08-07T04:46:33.447Z",
       "tiktok": {
         "followers": 0,
-        "views": 400,
+        "views": 408,
         "likes": 7,
         "comments": 4,
         "shares": 0
@@ -42,14 +42,14 @@
         {
           "t": "Then VS Now #roblox #thenvsnow #robloxedit game's link is in my bio!",
           "plat": "tiktok",
-          "views": 323,
+          "views": 331,
           "likes": 5,
           "url": "https://www.tiktok.com/@me/video/7669070531433467150"
         },
         {
           "t": "HOW HEADTAPS GOING NOW",
           "plat": "youtube",
-          "views": 220,
+          "views": 222,
           "likes": 4,
           "url": "https://youtu.be/iDTvx7cWNPw"
         },
@@ -63,7 +63,7 @@
         {
           "t": "SHOULD I QUIT?",
           "plat": "youtube",
-          "views": 10,
+          "views": 17,
           "likes": 1,
           "url": "https://youtu.be/2ie3LydWofY"
         },
@@ -259,7 +259,7 @@
         },
         {
           "d": "08-07",
-          "tiktok": 400,
+          "tiktok": 408,
           "youtube": 242,
           "instagram": 0
         }
