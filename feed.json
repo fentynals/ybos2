@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-07T15:43:08.828Z",
+    "updated": "2026-08-07T16:13:48Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -529,6 +529,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "HEADTAP: CREW panel reworked into a TURF picker -- the 4 turfs (BLOODHOUND/60C/SLIME/EBK) with color chips, owner + member count, click-to-join with a two-click price confirm; claim/join fees pull from BANK via the same TurfService flow as the doors.",
+      "ts": "2026-08-07T16:13:48Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Turf claim prices halved (37.5k/25k/37.5k/50k, join fee 10% follows) + TURF-not-GANG wording pass per Ian. E2E click-test in Studio: $25k claim deducted, row flipped to YOUR TURF / JOINED.",
+      "ts": "2026-08-07T16:13:48Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1829,6 +1841,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-07",
+      "k": "feat",
+      "t": "CREW panel = turf picker",
+      "s": "Roblox-groups list replaced by the 4 turfs; click-to-join with SURE? price confirm, GetTurfs/JoinTurf ops riding TurfService.requestJoin/summary. Claim prices halved."
+    },
     {
       "d": "2026-08-04",
       "k": "feat",
