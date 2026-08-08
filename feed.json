@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-08T04:03:02.059Z",
+    "updated": "2026-08-08T04:41:10Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -529,6 +529,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "HEADTAP: HOME INVASION shipped e2e -- BREAK IN job at the Black Market dealer, kick-down door (3 hits + kick anim), TUMBLER SWEEP safe-crack dial minigame, weighted loot spills on the floor (guns to NeonBlackDraco, T4-T9 car parts, clean+dirty cash). Houses unbuyable mid-robbery.",
+      "ts": "2026-08-08T04:41:10Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Also today: loading screen v2 (logo storm intro, live LOADINGMAN scene w/ animated rig, PLAY/CHANGELOG/TUTORIAL stack, Code font), red [OWNER] chat tag, $10k wallet cap, seated-blast fling fix, phone: pad equips handset + new app slot.",
+      "ts": "2026-08-08T04:41:10Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1853,6 +1865,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-08",
+      "k": "feat",
+      "t": "HOME INVASION + safe-crack minigame",
+      "s": "Black Market BREAK IN: kick the door in, crack the tumbler dial, loot guns/parts/cash off the floor."
+    },
     {
       "d": "2026-08-07",
       "k": "fix",
