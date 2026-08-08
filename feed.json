@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-08T06:32:25.415Z",
+    "updated": "2026-08-08T06:44:22Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -529,6 +529,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "HEADTAP: BREAK IN is now a real QUEST -- MissionSystem tracker (door/crack/get-out steps, chevron trail), 250 XP paid when the rob countdown ends on a cracked safe, MISSION COMPLETED frost. Plus: 1s pickup arm on every loot drop, TIME'S UP notice only for players actually dragged out, loading-screen camera keeps a slow drift (mouse-deaf but not frozen).",
+      "ts": "2026-08-08T06:44:22Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
