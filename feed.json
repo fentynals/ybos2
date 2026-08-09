@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-09T06:36:18.467Z",
+    "updated": "2026-08-09T07:18:31.871Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -9,13 +9,13 @@
       "placeId": 124673719670870,
       "universeId": 10194619622,
       "name": "[NOW] HEAD TAP🔫",
-      "playing": 55,
-      "visits": 41223,
-      "favorites": 3440,
+      "playing": 16,
+      "visits": 42930,
+      "favorites": 3558,
       "maxPlayers": 25,
-      "likes": 364,
+      "likes": 380,
       "dislikes": 37,
-      "fetched": "2026-08-09T02:30:32Z"
+      "fetched": "2026-08-09T07:18:31Z"
     },
     "analytics": {
       "updated": "2026-08-09T06:36:16.923Z",
