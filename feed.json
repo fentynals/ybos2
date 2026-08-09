@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-09T22:18:34.727Z",
+    "updated": "2026-08-09T23:19:20.597Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,7 +18,7 @@
       "fetched": "2026-08-09T19:03:01Z"
     },
     "analytics": {
-      "updated": "2026-08-09T22:18:32.204Z",
+      "updated": "2026-08-09T23:19:18.202Z",
       "tiktok": {
         "followers": 0,
         "views": 411,
@@ -35,8 +35,8 @@
       "instagram": {
         "followers": 0,
         "views": null,
-        "likes": 4,
-        "comments": 1
+        "likes": 5,
+        "comments": 2
       },
       "top": [
         {
@@ -75,18 +75,18 @@
           "url": "https://www.instagram.com/reel/DbgDfYjNVJ5/"
         },
         {
+          "t": "HUGE HEADTAP UPDATE LEAKED\n\n#roblox #headtap #robloxfps #fyp",
+          "plat": "instagram",
+          "views": 0,
+          "likes": 1,
+          "url": "https://www.instagram.com/reel/Db1e6DhOyu1/"
+        },
+        {
           "t": "It turned out pretty good\n\n#roblox #headtap #reels #robloxre",
           "plat": "instagram",
           "views": 0,
           "likes": 1,
           "url": "https://www.instagram.com/reel/DbtFtwIgHCY/"
-        },
-        {
-          "t": "HUGE HEADTAP UPDATE LEAKED\n\n#roblox #headtap #robloxfps #fyp",
-          "plat": "instagram",
-          "views": 0,
-          "likes": 0,
-          "url": "https://www.instagram.com/reel/Db1e6DhOyu1/"
         }
       ],
       "series": [
