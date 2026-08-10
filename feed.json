@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-10T16:15:00Z",
+    "updated": "2026-08-10T17:35:00Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -536,6 +536,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Shop cinematic round 2: UIWatchdog was re-enabling the HUD buttons 2s after the sweep (Ian: goes out, comes back), fixed both sides + enforcement watchers; stars reworked to slow-in / one shine / slow-out.",
+      "ts": "2026-08-10T17:35:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "50KVISITS code: 15 min of 2x cash + 2x xp riding the pass attributes, rejoin-safe, pass-owner-safe expiry. Bag batch: TAKE OFF button in the bag panel, stuck toolnone arm fixed (UnequipTools before every bag-tool destroy), vault bag tiles now render real model viewports.",
+      "ts": "2026-08-10T17:35:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1884,6 +1896,24 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-10",
+      "k": "feat",
+      "t": "50KVISITS promo code",
+      "s": "15 minutes of 2x cash + 2x XP; persists across rejoin, never strips paid/gifted passes on expiry."
+    },
+    {
+      "d": "2026-08-10",
+      "k": "feat",
+      "t": "Backpack QoL batch",
+      "s": "TAKE OFF button in bag panel, stuck tool-arm animation fixed, bag vault tiles show 3D model viewports."
+    },
+    {
+      "d": "2026-08-10",
+      "k": "fix",
+      "t": "Shop cinematic comeback bug",
+      "s": "UIWatchdog no longer re-enables swept UI while the shop is open; star twinkle retuned per feedback."
+    },
     {
       "d": "2026-08-10",
       "k": "feat",
