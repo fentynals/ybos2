@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-10T00:53:10.182Z",
+    "updated": "2026-08-10T02:36:09.436Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -9,13 +9,13 @@
       "placeId": 124673719670870,
       "universeId": 10194619622,
       "name": "[2X WEEKEND] HEAD TAP🔫",
-      "playing": 41,
-      "visits": 45292,
-      "favorites": 3756,
+      "playing": 35,
+      "visits": 47334,
+      "favorites": 3887,
       "maxPlayers": 25,
-      "likes": 387,
+      "likes": 393,
       "dislikes": 38,
-      "fetched": "2026-08-09T19:03:01Z"
+      "fetched": "2026-08-10T02:36:09Z"
     },
     "analytics": {
       "updated": "2026-08-10T00:53:08.802Z",
