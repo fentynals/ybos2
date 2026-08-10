@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-10T19:55:00Z",
+    "updated": "2026-08-10T20:30:00Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -536,6 +536,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Boost banners: while a 15-min 2x code boost runs, the 2X MONEY + 2X XP banners now show with a live MM:SS countdown and clean themselves up at zero (timed global events get the countdown too).",
+      "ts": "2026-08-10T20:30:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1914,6 +1920,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-10",
+      "k": "feat",
+      "t": "2x boost banner countdown",
+      "s": "Personal 15-min code boosts show the 2X banners with a live countdown; timed global events count down too."
+    },
     {
       "d": "2026-08-10",
       "k": "fix",
