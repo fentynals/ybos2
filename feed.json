@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-10T15:48:57.031Z",
+    "updated": "2026-08-10T16:15:00Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -536,6 +536,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "SHOP CINEMATIC: opening the Robux shop now slides every other UI element off its nearest screen edge, drops a blur+star backdrop (stars twinkle/sway 1-2 at a time), pushes world blur, and loops quiet shop music. Verified in Studio play both directions.",
+      "ts": "2026-08-10T16:15:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1878,6 +1884,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-10",
+      "k": "feat",
+      "t": "Robux shop open cinematic",
+      "s": "All other UI animates off-screen; blurred star backdrop with staggered twinkle loop; low-volume shop music; full restore on close."
+    },
     {
       "d": "2026-08-08",
       "k": "feat",
