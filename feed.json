@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-10T16:41:49.280Z",
+    "updated": "2026-08-10T18:20:00Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -536,6 +536,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "Turf stale-owner bug: leaving a turf you claimed never cleared ownership, so the CREW panel showed OWNER + JOIN on your old turf forever. Owner-leave now disbands the turf like a server-leave does. Also ported the stuck-arm UnequipTools fix to watch deposits in both vaults.",
+      "ts": "2026-08-10T18:20:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1896,6 +1902,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-10",
+      "k": "fix",
+      "t": "Turf leave disbands owned turf",
+      "s": "CREW panel leave no longer strands turf ownership; rows read CLAIM again after the owner leaves."
+    },
     {
       "d": "2026-08-10",
       "k": "feat",
