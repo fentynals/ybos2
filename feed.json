@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-10T18:40:53.013Z",
+    "updated": "2026-08-10T21:05:00Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -536,6 +536,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Turf-war prize delivered to @ishowpain3: T12 SuperCharger + C63 AMG unlock + $120k bank (the T12 apply cost), written straight to his PlayerStats record via Open Cloud the moment he logged off (presence-gated so his session couldn't clobber it). Verified: bank 186,300 -> 306,300.",
+      "ts": "2026-08-10T21:05:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
