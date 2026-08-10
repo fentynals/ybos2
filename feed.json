@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-10T18:20:00Z",
+    "updated": "2026-08-10T19:25:00Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -536,6 +536,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Bag polish: captured all 7 backpack models as real images (chroma-key rig) and wired them as hotbar/vault tile art; fixed the remaining stuck-arm case (client Animate starts its tool pose after the wear path kills the tool, now swept client-side).",
+      "ts": "2026-08-10T19:25:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "fx",
@@ -1902,6 +1908,12 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-10",
+      "k": "fix",
+      "t": "Bag hotbar art + last stuck-arm case",
+      "s": "All 7 bags show captured model renders in the hotbar and vaults; direct-click wear no longer strands the tool-hold pose."
+    },
     {
       "d": "2026-08-10",
       "k": "fix",
