@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-10T17:42:24.871Z",
+    "updated": "2026-08-10T19:55:00Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -536,6 +536,12 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "Turned OFF the global 2X MONEY + 2X XP events (both were set to FOREVER in GlobalEvents_v1) -- store cleared and off-signal broadcast to live servers. 50KVISITS re-verified end to end and left fresh.",
+      "ts": "2026-08-10T19:55:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
