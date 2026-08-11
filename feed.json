@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-10T23:24:22.695Z",
+    "updated": "2026-08-10T22:40:00Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -536,6 +536,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "Big fix batch: bank corridor no longer traps laser-tailgaters (sweep zone + sweep on every laser re-arm); found the mobile arrest bug -- turf duffel carry state (sprint block + job lock) survived jail's LoadCharacter because Died never fires; CharacterRemoving hook drops the bag on arrest now.",
+      "ts": "2026-08-10T22:40:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "Eject dropdown (click passenger names instead of blind eject), BAG button is now a backpack-emoji circle riding the MENU pill, hotbar pins fists slot 1 + phone slot 2, and Settings grew a PC Toggle Sprint row.",
+      "ts": "2026-08-10T22:40:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "okx",
@@ -1926,6 +1938,24 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-08-10",
+      "k": "fix",
+      "t": "Bank corridor stuck players",
+      "s": "Players sealed between the lasers and vault are teleported out whenever the lasers re-arm."
+    },
+    {
+      "d": "2026-08-10",
+      "k": "fix",
+      "t": "Arrest mid-carry stuck sprint",
+      "s": "Turf duffel carry state now drops on arrest; sprint and job lock no longer persist after jail."
+    },
+    {
+      "d": "2026-08-10",
+      "k": "feat",
+      "t": "Eject dropdown + QoL batch",
+      "s": "Name-targeted car eject, BAG pill on the MENU pill, pinned hotbar slots, PC toggle-sprint setting."
+    },
     {
       "d": "2026-08-10",
       "k": "feat",
