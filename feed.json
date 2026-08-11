@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-11T02:59:00.947Z",
+    "updated": "2026-08-11T04:18:43.268Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,7 +18,7 @@
       "fetched": "2026-08-11T02:29:24Z"
     },
     "analytics": {
-      "updated": "2026-08-11T02:58:57.039Z",
+      "updated": "2026-08-11T04:18:41.371Z",
       "tiktok": {
         "followers": 0,
         "views": 412,
@@ -27,8 +27,8 @@
         "shares": 0
       },
       "youtube": {
-        "subscribers": 9,
-        "views": 240,
+        "subscribers": 10,
+        "views": 241,
         "likes": 5,
         "comments": 4
       },
@@ -63,7 +63,7 @@
         {
           "t": "SHOULD I QUIT?",
           "plat": "youtube",
-          "views": 19,
+          "views": 20,
           "likes": 1,
           "url": "https://youtu.be/2ie3LydWofY"
         },
@@ -267,7 +267,7 @@
         {
           "d": "08-11",
           "tiktok": 412,
-          "youtube": 240,
+          "youtube": 241,
           "instagram": 0
         }
       ]
