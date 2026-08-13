@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-13T16:43:57.593Z",
+    "updated": "2026-08-13T17:49:03.290Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,10 +18,10 @@
       "fetched": "2026-08-13T13:50:27Z"
     },
     "analytics": {
-      "updated": "2026-08-13T16:43:55.278Z",
+      "updated": "2026-08-13T17:49:00.460Z",
       "tiktok": {
-        "followers": 0,
-        "views": 414,
+        "followers": 1,
+        "views": 416,
         "likes": 7,
         "comments": 4,
         "shares": 0
@@ -42,7 +42,7 @@
         {
           "t": "Then VS Now #roblox #thenvsnow #robloxedit game's link is in my bio!",
           "plat": "tiktok",
-          "views": 332,
+          "views": 333,
           "likes": 5,
           "url": "https://www.tiktok.com/@me/video/7669070531433467150"
         },
@@ -56,7 +56,7 @@
         {
           "t": "It turned out pretty good #roblox #headtap #robloxfps #fyp #robloxedit #gaming",
           "plat": "tiktok",
-          "views": 82,
+          "views": 83,
           "likes": 3,
           "url": "https://www.tiktok.com/@me/video/7670945628750433549"
         },
@@ -266,7 +266,7 @@
         },
         {
           "d": "08-13",
-          "tiktok": 414,
+          "tiktok": 416,
           "youtube": 249,
           "instagram": 0
         }
