@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-14T07:06:48.659Z",
+    "updated": "2026-08-14T07:52:30.312Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -9,13 +9,13 @@
       "placeId": 124673719670870,
       "universeId": 10194619622,
       "name": "[FREE SWITCH] HEAD TAP🔫",
-      "playing": 53,
-      "visits": 84315,
-      "favorites": 6847,
+      "playing": 17,
+      "visits": 85832,
+      "favorites": 6949,
       "maxPlayers": 25,
-      "likes": 549,
+      "likes": 554,
       "dislikes": 66,
-      "fetched": "2026-08-14T02:47:37Z"
+      "fetched": "2026-08-14T07:52:30Z"
     },
     "analytics": {
       "updated": "2026-08-14T07:06:46.672Z",
