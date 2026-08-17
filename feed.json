@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-16T23:09:27.347Z",
+    "updated": "2026-08-17T00:35:31.173Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,10 +18,10 @@
       "fetched": "2026-08-16T18:48:09Z"
     },
     "analytics": {
-      "updated": "2026-08-16T23:09:25.947Z",
+      "updated": "2026-08-17T00:35:29.591Z",
       "tiktok": {
         "followers": 1,
-        "views": 419,
+        "views": 420,
         "likes": 7,
         "comments": 4,
         "shares": 0
@@ -56,7 +56,7 @@
         {
           "t": "It turned out pretty good #roblox #headtap #robloxfps #fyp #robloxedit #gaming",
           "plat": "tiktok",
-          "views": 84,
+          "views": 85,
           "likes": 3,
           "url": "https://www.tiktok.com/@me/video/7670945628750433549"
         },
@@ -90,12 +90,6 @@
         }
       ],
       "series": [
-        {
-          "d": "07-18",
-          "tiktok": 0,
-          "youtube": 23,
-          "instagram": 0
-        },
         {
           "d": "07-19",
           "tiktok": 0,
@@ -267,6 +261,12 @@
         {
           "d": "08-16",
           "tiktok": 419,
+          "youtube": 255,
+          "instagram": 0
+        },
+        {
+          "d": "08-17",
+          "tiktok": 420,
           "youtube": 255,
           "instagram": 0
         }
