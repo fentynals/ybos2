@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-26T13:44:16.269Z",
+    "updated": "2026-08-26T14:33:55.454Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,13 +18,13 @@
       "fetched": "2026-08-26T13:18:01Z"
     },
     "analytics": {
-      "updated": "2026-08-26T13:44:14.545Z",
+      "updated": "2026-08-26T14:33:49.862Z",
       "tiktok": {
         "followers": 1,
-        "views": 427,
+        "views": null,
         "likes": 8,
-        "comments": 4,
-        "shares": 0
+        "comments": null,
+        "shares": null
       },
       "youtube": {
         "subscribers": 10,
@@ -40,25 +40,11 @@
       },
       "top": [
         {
-          "t": "Then VS Now #roblox #thenvsnow #robloxedit game's link is in my bio!",
-          "plat": "tiktok",
-          "views": 339,
-          "likes": 5,
-          "url": "https://www.tiktok.com/@me/video/7669070531433467150"
-        },
-        {
           "t": "HOW HEADTAPS GOING NOW",
           "plat": "youtube",
           "views": 225,
           "likes": 4,
           "url": "https://youtu.be/iDTvx7cWNPw"
-        },
-        {
-          "t": "It turned out pretty good #roblox #headtap #robloxfps #fyp #robloxedit #gaming",
-          "plat": "tiktok",
-          "views": 88,
-          "likes": 4,
-          "url": "https://www.tiktok.com/@me/video/7670945628750433549"
         },
         {
           "t": "SHOULD I QUIT?",
@@ -266,7 +252,7 @@
         },
         {
           "d": "08-26",
-          "tiktok": 427,
+          "tiktok": 0,
           "youtube": 256,
           "instagram": 0
         }
