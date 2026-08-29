@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-08-29T07:07:14.925Z",
+    "updated": "2026-08-29T09:30:54.258Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,7 +18,7 @@
       "fetched": "2026-08-29T07:07:14Z"
     },
     "analytics": {
-      "updated": "2026-08-29T02:34:04.590Z",
+      "updated": "2026-08-29T09:30:52.301Z",
       "tiktok": {
         "followers": 1,
         "views": 430,
@@ -49,7 +49,7 @@
         {
           "t": "HOW HEADTAPS GOING NOW",
           "plat": "youtube",
-          "views": 225,
+          "views": 226,
           "likes": 4,
           "url": "https://youtu.be/iDTvx7cWNPw"
         },
@@ -63,7 +63,7 @@
         {
           "t": "SHOULD I QUIT?",
           "plat": "youtube",
-          "views": 31,
+          "views": 32,
           "likes": 2,
           "url": "https://youtu.be/2ie3LydWofY"
         },
