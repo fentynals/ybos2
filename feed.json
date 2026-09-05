@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-05T14:09:31.682Z",
+    "updated": "2026-09-05T15:16:56.888Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -9,13 +9,13 @@
       "placeId": 124673719670870,
       "universeId": 10194619622,
       "name": "[ SEASON 2 🚢 ] HEAD TAP🔫",
-      "playing": 1,
-      "visits": 176398,
-      "favorites": 12349,
+      "playing": 18,
+      "visits": 176609,
+      "favorites": 12359,
       "maxPlayers": 25,
       "likes": 719,
       "dislikes": 107,
-      "fetched": "2026-09-05T10:38:52Z"
+      "fetched": "2026-09-05T15:16:56Z"
     },
     "analytics": {
       "updated": "2026-09-05T14:09:29.679Z",
