@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-08T01:54:36.905Z",
+    "updated": "2026-09-08T03:30:00Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -515,6 +515,24 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "DUELS: bots rebuilt as a 10-level skill ladder that shoots, paths, strafes, retreats + a GLOBAL brain (DuelBotBrain_v1) every player's aim/result feeds. One look + one gun per match, level tag above the head, bust portraits, kill emote, practice bots for everyone (no rewards). New BOTS page on the OS dock.",
+      "ts": "2026-09-08T03:30:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "out",
+      "msg": "DUELS: CONCRETE draft station placed at rim angle -30 (brutalist multi-level arena), not wired. Match-end regen. One-tap rate doubled (L10 50%).",
+      "ts": "2026-09-08T03:30:00Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "fx",
+      "msg": "DUELS: FPSServer's HEADTAP 40% cash-drop-on-death fires on every DUELS death with the bag disabled, so cash vanishes (974 -> 210 in 3 deaths). Not fixed, needs a call.",
+      "ts": "2026-09-08T03:30:00Z"
+    },
     {
       "who": "STUDIO",
       "cls": "fx",
@@ -1917,6 +1935,18 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-09-08",
+      "k": "feat",
+      "t": "DUELS bot ladder + global brain",
+      "s": "10 levels (hit / 1-tap / reaction / speed / strafe / bursts / pathing), global learned level fed by everyone, practice mode, bot busts + emotes, one look + one gun per match"
+    },
+    {
+      "d": "2026-09-08",
+      "k": "feat",
+      "t": "BOTS page on the OS",
+      "s": "bots.html: brain snapshot, per-level stat bars, time-to-kill simulator per gun, ladder small multiples, table view"
+    },
     {
       "d": "2026-08-10",
       "k": "fix",

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0E13">
+<title>BOT LADDER — YUNGSBRUH.OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+:root{
+  --asphalt:#0B0E13; --steel:#131822; --steel2:#1A2130; --line:#232C3E;
+  --amber:#FFAA3C; --amber-dim:#8a5a1e; --red:#E23B3B; --tracer:#9FD1FF;
+  --concrete:#C9CDD6; --dust:#6B7385; --ok:#7BD88A;
+  --hazard:repeating-linear-gradient(-45deg,var(--amber) 0 10px,#151a24 10px 20px);
+  /* chart marks: the FLIP DESK set, validated (CVD + contrast) against the card surface #131822.
+     dot = the data series, you = the level you picked. one series per chart, so no legend. */
+  --chart-dot:#4682D2; --chart-line:#963C46; --chart-you:#C88200;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--asphalt);color:var(--concrete);font-family:'Chakra Petch',sans-serif;font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+body::after{content:"";position:fixed;inset:0;z-index:99;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.45) 100%),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px)}
+header{position:sticky;top:0;z-index:50;height:42px;display:flex;align-items:center;gap:12px;padding:0 14px;
+  background:linear-gradient(180deg,rgba(19,24,34,.96),rgba(19,24,34,.85));border-bottom:1px solid var(--line);
+  backdrop-filter:blur(6px);font-family:'IBM Plex Mono';font-size:11px}
+header .brand{font-family:'Archivo Black';font-size:13px;color:var(--red);letter-spacing:.06em}
+header .brand em{font-style:normal;color:var(--amber)}
+header .grow{flex:1}
+header a{color:var(--dust);text-decoration:none;letter-spacing:.14em}
+header a:hover{color:var(--amber)}
+main{max-width:640px;margin:0 auto;padding:14px 12px 60px}
+.card{background:rgba(17,22,32,.93);border:1px solid var(--line);margin-bottom:14px;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.cardhead{display:flex;align-items:center;gap:10px;padding:8px 12px;background:linear-gradient(180deg,#1B2231,#161C29);
+  border-bottom:1px solid var(--line);font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.18em;color:var(--dust)}
+.cardhead .tape{width:26px;height:8px;background:var(--hazard);opacity:.8;flex:none}
+.cardhead .t{color:var(--concrete)}
+.cardhead .r{margin-left:auto;letter-spacing:.1em}
+.cardbody{padding:14px 12px}
+.eyebrow{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.3em;color:var(--amber);margin-bottom:6px}
+.dim{color:var(--dust)} .mono{font-family:'IBM Plex Mono'}
+.note{font-size:13px;color:var(--dust);margin-top:10px}
+.rule{height:1px;background:var(--line);margin:12px 0}
+.chip{display:inline-block;font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.12em;border:1px solid var(--line);padding:2px 7px;color:var(--dust);margin:2px 3px 2px 0}
+.chip.amber{color:var(--amber);border-color:var(--amber-dim)}
+.chip.red{color:var(--red);border-color:#5c2424}
+.chip.blue{color:var(--tracer);border-color:#2c4358}
+.chip.ok{color:var(--ok);border-color:#2c5136}
+/* brain tiles */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(max-width:420px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.tile{border:1px solid var(--line);padding:10px 10px 8px}
+.tile .lbl{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.22em;color:var(--dust);margin-bottom:2px}
+.tile .val{font-weight:700;font-size:24px;color:#EDEFF4;font-variant-numeric:tabular-nums}
+.tile .val small{font-size:12px;color:var(--dust);font-weight:400}
+#heroWrap{text-align:center;padding:10px 0 12px}
+#hero{font-weight:700;font-size:clamp(56px,18vw,96px);line-height:1;color:var(--amber);letter-spacing:.01em}
+#heroSub{font-family:'IBM Plex Mono';font-size:11px;color:var(--dust);margin-top:6px}
+/* level pills */
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{flex:1 0 46px;height:40px;border:1px solid var(--line);background:var(--steel);color:var(--dust);
+  font-family:'IBM Plex Mono';font-size:13px;cursor:pointer;-webkit-appearance:none;border-radius:0;transition:border-color .12s,color .12s}
+.pill:hover{border-color:var(--amber);color:var(--amber)}
+.pill.on{border-color:var(--amber);color:var(--amber);background:#1a1a14}
+.lvltitle{display:flex;align-items:baseline;gap:10px;margin:14px 0 8px}
+.lvltitle b{font-size:30px;font-weight:700;color:#EDEFF4}
+.lvltitle span{font-family:'IBM Plex Mono';font-size:11px;color:var(--dust);letter-spacing:.1em}
+/* stat bars */
+.bars{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}
+@media(max-width:420px){.bars{grid-template-columns:1fr}}
+.bar{padding:4px 0}
+.bar .top{display:flex;justify-content:space-between;font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.1em;color:var(--dust)}
+.bar .top b{color:var(--concrete);font-weight:600;font-variant-numeric:tabular-nums}
+.bar .trk{height:6px;background:var(--steel2);margin-top:4px;position:relative}
+.bar .fill{height:6px;background:var(--chart-dot);border-radius:0 3px 3px 0;transition:width .25s}
+.bar .fill.you{background:var(--chart-you)}
+/* against you */
+.duo{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+@media(max-width:420px){.duo{grid-template-columns:1fr 1fr}}
+.stat{border:1px solid var(--line);padding:9px 10px}
+.stat .lbl{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.2em;color:var(--dust);margin-bottom:2px}
+.stat .val{font-weight:700;font-size:22px;color:#EDEFF4;font-variant-numeric:tabular-nums}
+.stat .val small{font-size:11px;color:var(--dust);font-weight:400}
+select{width:100%;height:46px;padding:0 12px;font:15px 'IBM Plex Mono';color:var(--concrete);background:var(--steel2);
+  border:1px solid var(--line);outline:none;border-radius:0;-webkit-appearance:none}
+select:focus{border-color:var(--amber-dim)}
+label.f{display:block;font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.22em;color:var(--dust);margin:0 0 4px 1px}
+/* ladder charts */
+.multis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.multis{grid-template-columns:1fr}}
+.multi{border:1px solid var(--line);padding:8px 8px 4px;position:relative}
+.multi .mt{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.22em;color:var(--dust);margin:0 0 4px 2px}
+.multi svg{display:block;width:100%;height:auto}
+.tick{font-family:'IBM Plex Mono';font-size:9px;fill:var(--dust);font-variant-numeric:tabular-nums}
+.lblend{font-family:'IBM Plex Mono';font-size:10px;fill:var(--concrete);font-variant-numeric:tabular-nums}
+#tip{position:fixed;display:none;pointer-events:none;z-index:120;background:#0d1119;border:1px solid var(--amber-dim);
+  padding:5px 9px;font-family:'IBM Plex Mono';font-size:11px;color:var(--concrete);white-space:nowrap}
+/* tables */
+table{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono';font-size:11px}
+th,td{padding:5px 6px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+th{color:var(--dust);font-weight:500;letter-spacing:.08em;font-size:9px}
+td:first-child,th:first-child{text-align:left}
+tr.you td{color:var(--amber)}
+.scroll{overflow-x:auto}
+footer{margin:26px 0 0;text-align:center;font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.3em;color:var(--dust)}
+</style>
+</head>
+<body>
+<header>
+  <span class="brand">YUNGSBRUH<em>.OS</em></span>
+  <span class="dim">BOT LADDER</span>
+  <span class="grow"></span>
+  <a href="index.html">← OS</a>
+</header>
+<main>
+
+  <section class="card">
+    <div class="cardhead"><span class="tape"></span><span class="t">THE BRAIN</span><span class="r" id="brainWhen"></span></div>
+    <div class="cardbody">
+      <div id="heroWrap">
+        <div class="eyebrow">EVERY MATCH RUNS AT LEVEL</div>
+        <div id="hero">1</div>
+        <div id="heroSub"></div>
+      </div>
+      <div class="tiles" id="brainTiles"></div>
+      <div class="note">One record for the whole game, fed by everyone's shots, hits, headshots and results against bots. This is a snapshot from DuelConfig plus the brain attributes the Studio server showed at capture time, not a live pull.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="cardhead"><span class="tape"></span><span class="t">PICK A LEVEL</span><span class="r">1 ASS · 10 CRACKED</span></div>
+    <div class="cardbody">
+      <div class="pills" id="pills"></div>
+      <div class="lvltitle"><b id="lvlName">LEVEL 1</b><span id="lvlTag"></span></div>
+      <div class="bars" id="bars"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="cardhead"><span class="tape"></span><span class="t">AGAINST YOU</span><span class="r">STANDING · EASY RANGE · 100 HP</span></div>
+    <div class="cardbody">
+      <label class="f">THE BOT'S GUN (IT ROLLS ONE PER MATCH, UP TO YOUR EQUIPPED TIER)</label>
+      <select id="gunSel"></select>
+      <div class="duo" id="ttk"></div>
+      <div class="note" id="ttkNote"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="cardhead"><span class="tape"></span><span class="t">THE LADDER</span><span class="r">HOVER A DOT</span></div>
+    <div class="cardbody">
+      <div class="multis" id="multis"></div>
+      <div class="note">One line per chart, levels 1 to 10 along the bottom, the picked level ringed in amber. Time to kill and shots per second use the gun picked above.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="cardhead"><span class="tape"></span><span class="t">HOW A LEVEL IS READ</span><span class="r" id="modeTag"></span></div>
+    <div class="cardbody">
+      <div class="scroll"><table id="skillTable"></table></div>
+      <div class="note" id="skillNote"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="cardhead"><span class="tape"></span><span class="t">EVERY NUMBER</span><span class="r">TABLE VIEW</span></div>
+    <div class="cardbody"><div class="scroll"><table id="allTable"></table></div></div>
+  </section>
+
+  <footer>BOT LADDER · DUELS · DuelConfig.BOT_LEVELS</footer>
+</main>
+<div id="tip"></div>
+
+<script>
+/* ===== DATA: a snapshot of DuelConfig (HEAD TAP DUELS) + the brain attributes at capture time ===== */
+const SNAPSHOT = "2026-09-08T03:23Z";
+const DATA = {"global":{"REFRESH":120,"NUDGE":0.1,"LEARN_STEP":0.25,"KEY":"global","FLUSH":8,"BLEND":0.5,"STORE":"DuelBotBrain_v1"},"brain":{"accuracy":12,"winRate":33,"level":1,"headshotRate":100,"matches":3},"practiceDelay":5,"skill":{"WIN_LOW":0.2,"LEARN_STEP":1,"ACC_WEIGHT":0.4,"WIN_WEIGHT":0.25,"HEAD_SAMPLE":40,"ACC_HIGH":0.65,"KD_SAMPLE":30,"WIN_HIGH":0.8,"LOSS_NUDGE":0.5,"CONFIDENCE":0.6,"WIN_SAMPLE":10,"WIN_NUDGE":0.5,"KD_HIGH":2.5,"HEAD_HIGH":0.45,"KD_WEIGHT":0.15,"HEAD_WEIGHT":0.2,"ACC_LOW":0.15,"ACC_SAMPLE":120,"KD_LOW":0.4,"HEAD_LOW":0.02},"aim":{"AIR_MULT":0.7,"MISS_MAX":5.5,"MISS_MIN":2.5,"MOVING_MULT":0.8,"MOVING_SPEED":10,"EASY_RANGE":15,"FALLOFF_FLOOR":0.5,"FALLOFF_RANGE":100},"killEmoteSeconds":3.5,"levels":[{"retarget":2,"path":true,"burst":1,"head":0,"retreat":false,"close":8,"range":35,"lead":0,"hesitate":0.45,"fireScale":3,"stuckTime":3,"hit":0.25,"react":1.6,"speed":8,"pause":1.5,"strafe":0},{"retarget":1.8,"path":true,"burst":1,"head":0.02,"retreat":false,"close":10,"range":40,"lead":0,"hesitate":0.35,"fireScale":2.6,"stuckTime":2.6,"hit":0.3,"react":1.4,"speed":9,"pause":1.2,"strafe":0},{"retarget":1.6,"path":true,"burst":2,"head":0.04,"retreat":false,"close":12,"range":45,"lead":0.1,"hesitate":0.25,"fireScale":2.2,"stuckTime":2.2,"hit":0.36,"react":1.2,"speed":10,"pause":1,"strafe":0.2},{"retarget":1.4,"path":true,"burst":2,"head":0.08,"retreat":false,"close":14,"range":50,"lead":0.2,"hesitate":0.15,"fireScale":1.9,"stuckTime":1.8,"hit":0.42,"react":1,"speed":11,"pause":0.9,"strafe":0.35},{"retarget":1.2,"path":true,"burst":3,"head":0.14,"retreat":false,"close":16,"range":55,"lead":0.35,"hesitate":0.08,"fireScale":1.7,"stuckTime":1.5,"hit":0.48,"react":0.8,"speed":12,"pause":0.8,"strafe":0.5},{"retarget":1,"path":true,"burst":3,"head":0.2,"retreat":true,"close":18,"range":60,"lead":0.5,"hesitate":0,"fireScale":1.5,"stuckTime":1.3,"hit":0.55,"react":0.65,"speed":13,"pause":0.7,"strafe":0.6},{"retarget":0.8,"path":true,"burst":4,"head":0.26,"retreat":true,"close":20,"range":70,"lead":0.6,"hesitate":0,"fireScale":1.4,"stuckTime":1.1,"hit":0.62,"react":0.5,"speed":14,"pause":0.6,"strafe":0.7},{"retarget":0.7,"path":true,"burst":4,"head":0.34,"retreat":true,"close":22,"range":80,"lead":0.75,"hesitate":0,"fireScale":1.3,"stuckTime":1,"hit":0.7,"react":0.4,"speed":15,"pause":0.5,"strafe":0.8},{"retarget":0.6,"path":true,"burst":5,"head":0.42,"retreat":true,"close":25,"range":90,"lead":0.9,"hesitate":0,"fireScale":1.2,"stuckTime":0.9,"hit":0.78,"react":0.3,"speed":16,"pause":0.4,"strafe":0.9},{"retarget":0.5,"path":true,"burst":6,"head":0.5,"retreat":true,"close":28,"range":100,"lead":1,"hesitate":0,"fireScale":1.1,"stuckTime":0.8,"hit":0.85,"react":0.22,"speed":16,"pause":0.3,"strafe":1}],"guns":[{"rpm":380,"price":0,"reload":2.1,"hsMult":300,"name":"G17Gen4","display":"G17 Gen4","mode":"Semi","mag":17,"damage":33},{"rpm":200,"price":700,"reload":2.7,"hsMult":300,"name":"Snubnose","display":"Snubnose","mode":"Semi","mag":6,"damage":20},{"rpm":350,"price":950,"reload":2,"hsMult":300,"name":"Makarov","display":"Makarov","mode":"Semi","mag":8,"damage":25},{"rpm":240,"price":1450,"reload":2.3,"hsMult":1000,"name":"DracoSemi","display":"Draco Semi","mode":"Semi","mag":30,"damage":28},{"rpm":577,"price":1800,"reload":2,"hsMult":30,"name":"Glock19x","display":"GLOCK 19X","mode":"Auto","mag":23,"damage":28},{"rpm":660,"price":2400,"reload":2.7,"hsMult":50,"name":"Glock17Extendo","display":"G17EXTBOX","mode":"Auto","mag":33,"damage":28},{"rpm":412,"price":2800,"reload":2.87,"hsMult":300,"name":"Uzi","display":"Uzi","mode":"Auto","mag":32,"damage":27},{"rpm":330,"price":3200,"reload":2.3,"hsMult":150,"name":"DracoFully","display":"DracoFully","mode":"Auto","mag":30,"damage":28},{"rpm":375,"price":3500,"reload":2.3,"hsMult":300,"name":"AK47","display":"AK-47","mode":"Semi","mag":30,"damage":28},{"rpm":375,"price":3500,"reload":2.3,"hsMult":700,"name":"AR15556","display":"AR-15 556","mode":"Semi","mag":30,"damage":28},{"rpm":375,"price":3500,"reload":2.3,"hsMult":300,"name":"Red556ARP","display":"RED 556 ARP","mode":"Semi","mag":30,"damage":28},{"rpm":375,"price":3500,"reload":2.3,"hsMult":850,"name":"White762ARP","display":"WHITE 762 ARP","mode":"Semi","mag":30,"damage":28},{"rpm":375,"price":3500,"reload":2.3,"hsMult":300,"name":"Green762ARP","display":"GREEN 762 ARP","mode":"Semi","mag":30,"damage":28},{"rpm":375,"price":3500,"reload":2.3,"hsMult":200,"name":"Blue556ARP","display":"BLUE 556 ARP","mode":"Semi","mag":30,"damage":28},{"rpm":375,"price":4000,"reload":2.3,"hsMult":400,"name":"NeonBlack556ARP","display":"NEON BLACK 556 ARP","mode":"Semi","mag":30,"damage":28},{"rpm":577,"price":4000,"reload":2,"hsMult":30,"name":"Glock20Vector","display":"GLOCK 20 VECTOR","mode":"Auto","mag":35,"damage":28},{"rpm":577,"price":4500,"reload":2.7,"hsMult":75,"name":"G17Gen5Drum","display":"G17 DRUM FLASH","mode":"Auto","mag":50,"damage":28},{"rpm":577,"price":5000,"reload":2,"hsMult":30,"name":"G17ExtendoBlue","display":"G17 DRUM BEAM","mode":"Auto","mag":50,"damage":28},{"rpm":495,"price":6000,"reload":2.3,"hsMult":100,"name":"NeonBlackDraco","display":"BLACK FULLY DRACO","mode":"Auto","mag":30,"damage":28},{"rpm":1100,"price":6500,"reload":2.7,"hsMult":75,"name":"G2CBINARYDRUM","display":"G2C BINARY DRUM","mode":"Burst","mag":50,"damage":28},{"rpm":375,"price":7000,"reload":2.3,"hsMult":550,"name":"RGB762BINARYARP","display":"RGB 762 BINARY ARP","mode":"Burst","mag":30,"damage":28},{"rpm":375,"price":7000,"reload":2.3,"hsMult":300,"name":"TTKDraco","display":"PURPLE DRUM BINARY DRACO","mode":"Burst","mag":50,"damage":28},{"rpm":495,"price":7500,"reload":2.6,"hsMult":100,"name":"DracoRGBDrum","display":"DRACO RGB DRUM","mode":"Auto","mag":150,"damage":28},{"rpm":206,"price":8000,"reload":2.3,"hsMult":300,"name":"Big100ARP","display":"100RD FULLY ARP","mode":"Auto","mag":100,"damage":28},{"rpm":495,"price":8500,"reload":2.3,"hsMult":700,"name":"VHARP","display":"187 ARP","mode":"Auto","mag":30,"damage":28},{"rpm":660,"price":9000,"reload":2.7,"hsMult":50,"name":"RAINBOWBUTTON","display":"RAINBOW SWITCH","mode":"Auto","mag":33,"damage":28},{"rpm":715,"price":12000,"reload":2.3,"hsMult":300,"name":"UltraMythicARP","display":"ULTRA MYTHIC ARP","mode":"Auto","mag":30,"damage":28}],"startLevel":1,"tutorialRamp":[1,2,3,4,5],"mode":"global","botHealth":100,"botGun":"G17Gen4"};
+
+/* ===== helpers ===== */
+const $ = (s) => document.querySelector(s);
+const L = DATA.levels;
+const pct = (v) => Math.round(v * 100) + '%';
+const fx = (v, d) => (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d);
+let level = 1;
+let gun = DATA.guns[0];
+
+/* seeded PRNG so the numbers on the page are stable between loads */
+function mulberry32(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+/* one bot vs one standing player at easy range: the level's cadence, the one-tap roll first, then the body roll.
+   returns {ttk: median seconds from first sight, p10, p90, shots: median shots to kill, sps, onetapsPerMin} */
+function fight(spec, g, runs){
+  const rnd = mulberry32(1337 + Math.round(spec.hit * 1000));
+  const interval = (60 / g.rpm) * spec.fireScale;
+  const times = [], shotsArr = [];
+  for (let r = 0; r < runs; r++){
+    let hp = 100, t = spec.react, shots = 0, inBurst = 0, mag = g.mag, dead = false;
+    while (!dead && shots < 400){
+      if (mag <= 0){ t += g.reload; mag = g.mag; }
+      shots++; mag--;
+      const roll = rnd();
+      if (roll < spec.head){ dead = true; }
+      else if (rnd() < spec.hit){ hp -= g.damage; if (hp <= 0) dead = true; }
+      if (dead) break;
+      inBurst++;
+      if (inBurst >= spec.burst){ inBurst = 0; t += spec.pause; } else { t += interval; }
+    }
+    times.push(t); shotsArr.push(shots);
+  }
+  times.sort((a, b) => a - b); shotsArr.sort((a, b) => a - b);
+  const q = (arr, p) => arr[Math.min(arr.length - 1, Math.floor(p * arr.length))];
+  const cycle = spec.burst * interval + spec.pause;
+  const sps = spec.burst / cycle;
+  return { ttk: q(times, .5), p10: q(times, .1), p90: q(times, .9), shots: q(shotsArr, .5), sps: sps, onetapsPerMin: sps * 60 * spec.head, hitsPerSec: sps * spec.hit };
+}
+
+/* ===== THE BRAIN ===== */
+(function brain(){
+  const b = DATA.brain;
+  $('#hero').textContent = b.level;
+  $('#heroSub').textContent = 'MODE ' + String(DATA.mode).toUpperCase() + ' · ' + DATA.global.STORE + ' / ' + DATA.global.KEY;
+  $('#brainWhen').textContent = 'SNAPSHOT ' + SNAPSHOT;
+  const tiles = [
+    ['MATCHES FED', b.matches, ''],
+    ['PLAYER ACCURACY', b.accuracy, '%'],
+    ['HEADSHOTS / HIT', b.headshotRate, '%'],
+    ['PLAYERS BEAT BOTS', b.winRate, '%'],
+  ];
+  $('#brainTiles').innerHTML = tiles.map(t => '<div class="tile"><div class="lbl">' + t[0] + '</div><div class="val">' + t[1] + '<small>' + t[2] + '</small></div></div>').join('');
+})();
+
+/* ===== PICK A LEVEL ===== */
+const STATS = [
+  ['BODY HIT', 'hit', v => pct(v), 1],
+  ['ONE-TAP PER SHOT', 'head', v => pct(v), 1],
+  ['REACTION', 'react', v => fx(v, 2) + ' s', 'max'],
+  ['SPEED', 'speed', v => v + ' st/s', 'max'],
+  ['ENGAGES WITHIN', 'range', v => v + ' st', 'max'],
+  ['HOLDS AT', 'close', v => v + ' st', 'max'],
+  ['STRAFES', 'strafe', v => pct(v), 1],
+  ['BURST', 'burst', v => v + ' shots', 'max'],
+  ['BREATHER', 'pause', v => fx(v, 1) + ' s', 'max'],
+  ['TRIGGER', 'fireScale', v => 'x' + fx(v, 1) + ' gun rate', 'max'],
+  ['LEADS TARGET', 'lead', v => pct(v), 1],
+  ['HESITATES', 'hesitate', v => pct(v) + ' / s', 'max'],
+  ['STUCK JUMP AFTER', 'stuckTime', v => fx(v, 1) + ' s', 'max'],
+  ['RETARGETS EVERY', 'retarget', v => fx(v, 1) + ' s', 'max'],
+];
+const maxOf = (k) => Math.max.apply(null, L.map(s => s[k]));
+function tagFor(n){
+  return ['SUPER ASS', 'ASS', 'SLOW', 'LEARNING', 'DECENT', 'SOLID', 'GOOD', 'SWEATY', 'CRACKED', 'DEMON'][n - 1] + (L[n - 1].retreat ? ' · RETREATS WHEN LOW' : '') + (L[n - 1].path ? ' · PATHS' : ' · WALKS STRAIGHT');
+}
+function renderPills(){
+  $('#pills').innerHTML = L.map((s, i) => '<button class="pill' + (i + 1 === level ? ' on' : '') + '" data-l="' + (i + 1) + '">' + (i + 1) + '</button>').join('');
+  $('#pills').querySelectorAll('.pill').forEach(p => p.onclick = () => { level = +p.dataset.l; renderAll(); });
+}
+function renderBars(){
+  const s = L[level - 1];
+  $('#lvlName').textContent = 'LEVEL ' + level;
+  $('#lvlTag').textContent = tagFor(level);
+  $('#bars').innerHTML = STATS.map(st => {
+    const v = s[st[1]];
+    const mx = st[3] === 'max' ? maxOf(st[1]) : st[3];
+    const w = mx > 0 ? Math.max(0, Math.min(100, v / mx * 100)) : 0;
+    return '<div class="bar"><div class="top"><span>' + st[0] + '</span><b>' + st[2](v) + '</b></div><div class="trk"><div class="fill you" style="width:' + w.toFixed(1) + '%"></div></div></div>';
+  }).join('');
+}
+
+/* ===== AGAINST YOU ===== */
+function renderGunSel(){
+  $('#gunSel').innerHTML = DATA.guns.map((g, i) => '<option value="' + i + '"' + (g === gun ? ' selected' : '') + '>' + g.display + ' · ' + g.damage + ' dmg · ' + g.rpm + ' rpm · ' + g.mode + (g.price ? ' · $' + g.price : ' · free') + '</option>').join('');
+  $('#gunSel').onchange = () => { gun = DATA.guns[+$('#gunSel').value]; renderAll(); };
+}
+function renderTTK(){
+  const s = L[level - 1];
+  const f = fight(s, gun, 2000);
+  const cells = [
+    ['TIME TO KILL YOU', fx(f.ttk, 1), 's median'],
+    ['LUCKY / UNLUCKY', fx(f.p10, 1) + '–' + fx(f.p90, 1), 's'],
+    ['SHOTS TO KILL', f.shots, 'median'],
+    ['SHOTS PER SEC', fx(f.sps, 2), ''],
+    ['BODY HITS PER SEC', fx(f.hitsPerSec, 2), ''],
+    ['ONE-TAPS PER MIN', fx(f.onetapsPerMin, 1), ''],
+  ];
+  $('#ttk').innerHTML = cells.map(c => '<div class="stat"><div class="lbl">' + c[0] + '</div><div class="val">' + c[1] + ' <small>' + c[2] + '</small></div></div>').join('');
+  const bodyShots = Math.ceil(100 / gun.damage);
+  $('#ttkNote').textContent = '2000 simulated fights: you stand still inside ' + DATA.aim.EASY_RANGE + ' studs with 100 HP, the bot needs ' + bodyShots + ' body hits with the ' + gun.display + ' or one headshot (x' + gun.hsMult + ' damage). Clock starts when it sees you; reaction ' + fx(s.react, 2) + 's, then bursts of ' + s.burst + ' at ' + fx((60 / gun.rpm) * s.fireScale, 2) + 's apart with a ' + fx(s.pause, 1) + 's breather. Moving costs it ' + Math.round((1 - DATA.aim.MOVING_MULT) * 100) + '%, jumping ' + Math.round((1 - DATA.aim.AIR_MULT) * 100) + '%, and past ' + DATA.aim.EASY_RANGE + ' studs its aim fades to half over ' + DATA.aim.FALLOFF_RANGE + ' more.';
+}
+
+/* ===== THE LADDER: small multiples, one series each ===== */
+const CHARTS = [
+  ['BODY HIT %', s => s.hit * 100, v => Math.round(v) + '%'],
+  ['ONE-TAP % PER SHOT', s => s.head * 100, v => Math.round(v) + '%'],
+  ['REACTION (S)', s => s.react, v => fx(v, 2) + 's'],
+  ['SPEED (STUDS/S)', s => s.speed, v => v + ''],
+  ['SHOTS PER SEC', s => fight(s, gun, 1).sps, v => fx(v, 2)],
+  ['TIME TO KILL (S, MEDIAN)', s => fight(s, gun, 600).ttk, v => fx(v, 1) + 's'],
+];
+function renderMultis(){
+  const W = 300, H = 132, padL = 34, padR = 12, padT = 12, padB = 22;
+  $('#multis').innerHTML = CHARTS.map((c, ci) => {
+    const vals = L.map(c[1]);
+    const mn = 0, mx = Math.max.apply(null, vals) * 1.12 || 1;
+    const x = (i) => padL + (i / (L.length - 1)) * (W - padL - padR);
+    const y = (v) => padT + (1 - (v - mn) / (mx - mn)) * (H - padT - padB);
+    let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" data-c="' + ci + '">';
+    for (let g = 0; g <= 2; g++){ const yy = padT + g * (H - padT - padB) / 2; svg += '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + yy + '" y2="' + yy + '" stroke="#232C3E" stroke-width="1"/>'; svg += '<text class="tick" x="' + (padL - 5) + '" y="' + (yy + 3) + '" text-anchor="end">' + c[2](mx - g * (mx - mn) / 2).replace(/s$/, '') + '</text>'; }
+    L.forEach((s, i) => { svg += '<text class="tick" x="' + x(i) + '" y="' + (H - 7) + '" text-anchor="middle">' + (i + 1) + '</text>'; });
+    svg += '<path d="' + vals.map((v, i) => (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1)).join(' ') + '" fill="none" stroke="#4682D2" stroke-width="2" stroke-linejoin="round"/>';
+    vals.forEach((v, i) => { const you = i + 1 === level; svg += '<circle cx="' + x(i).toFixed(1) + '" cy="' + y(v).toFixed(1) + '" r="' + (you ? 5.5 : 3.5) + '" fill="' + (you ? '#C88200' : '#4682D2') + '" stroke="#131822" stroke-width="2"/>'; svg += '<rect class="hit" data-i="' + i + '" x="' + (x(i) - 14).toFixed(1) + '" y="0" width="28" height="' + H + '" fill="transparent"/>'; });
+    const last = vals[vals.length - 1];
+    svg += '<text class="lblend" x="' + (x(L.length - 1) - 8) + '" y="' + (y(last) - 9) + '" text-anchor="end">' + c[2](last) + '</text>';
+    svg += '</svg>';
+    return '<div class="multi"><div class="mt">' + c[0] + '</div>' + svg + '</div>';
+  }).join('');
+  const tip = $('#tip');
+  document.querySelectorAll('#multis svg').forEach(svg => {
+    const ci = +svg.dataset.c;
+    svg.querySelectorAll('rect.hit').forEach(r => {
+      r.addEventListener('mousemove', (e) => { const i = +r.dataset.i; tip.style.display = 'block'; tip.style.left = (e.clientX + 12) + 'px'; tip.style.top = (e.clientY - 28) + 'px'; tip.textContent = 'LEVEL ' + (i + 1) + ' · ' + CHARTS[ci][2](CHARTS[ci][1](L[i])); });
+      r.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+      r.addEventListener('click', () => { level = +r.dataset.i + 1; renderAll(); });
+    });
+  });
+}
+
+/* ===== HOW A LEVEL IS READ ===== */
+(function skill(){
+  const S = DATA.skill;
+  const rows = [
+    ['HIT RATE', S.ACC_WEIGHT, S.ACC_SAMPLE + ' shots', pct(S.ACC_LOW) + ' → ' + pct(S.ACC_HIGH)],
+    ['HEADSHOTS PER HIT', S.HEAD_WEIGHT, S.HEAD_SAMPLE + ' hits', pct(S.HEAD_LOW) + ' → ' + pct(S.HEAD_HIGH)],
+    ['WIN RATE', S.WIN_WEIGHT, S.WIN_SAMPLE + ' matches', pct(S.WIN_LOW) + ' → ' + pct(S.WIN_HIGH)],
+    ['KILLS PER DEATH', S.KD_WEIGHT, S.KD_SAMPLE + ' fights', S.KD_LOW + ' → ' + S.KD_HIGH],
+  ];
+  $('#skillTable').innerHTML = '<tr><th>COMPONENT</th><th>WEIGHT</th><th>FULL WEIGHT AT</th><th>LEVEL 1 → 10 SPAN</th></tr>' + rows.map(r => '<tr><td>' + r[0] + '</td><td>' + pct(r[1]) + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td></tr>').join('');
+  $('#modeTag').textContent = 'MODE ' + String(DATA.mode).toUpperCase();
+  const G = DATA.global;
+  $('#skillNote').textContent = 'Every match against bots adds each player’s shots, hits, headshots, kills, deaths and result to the brain. The brain’s level is this curve read off those totals (a component only counts fully once its sample is in, and thin data leans to level 1), walked at most ' + G.LEARN_STEP + ' per write, pushed +' + G.NUDGE + ' for every player win over the bots and −' + G.NUDGE + ' for every loss. Writes batch every ' + G.FLUSH + 's, re-read every ' + G.REFRESH + 's. Tutorial ramp ' + DATA.tutorialRamp.join(' → ') + '. Practice bots unlock after ' + DATA.practiceDelay + 's alone on a pad; bot matches pay nothing.';
+})();
+
+/* ===== EVERY NUMBER ===== */
+function renderAllTable(){
+  const cols = [['LVL', (s, i) => i + 1], ['HIT', s => pct(s.hit)], ['1-TAP', s => pct(s.head)], ['REACT', s => fx(s.react, 2)], ['SPEED', s => s.speed], ['CLOSE', s => s.close], ['RANGE', s => s.range], ['STRAFE', s => pct(s.strafe)], ['BURST', s => s.burst], ['PAUSE', s => fx(s.pause, 1)], ['FIRE x', s => fx(s.fireScale, 1)], ['LEAD', s => pct(s.lead)], ['HESIT', s => pct(s.hesitate)], ['STUCK', s => fx(s.stuckTime, 1)], ['RETGT', s => fx(s.retarget, 1)], ['RETREAT', s => s.retreat ? 'yes' : 'no']];
+  $('#allTable').innerHTML = '<tr>' + cols.map(c => '<th>' + c[0] + '</th>').join('') + '</tr>' + L.map((s, i) => '<tr class="' + (i + 1 === level ? 'you' : '') + '">' + cols.map(c => '<td>' + c[1](s, i) + '</td>').join('') + '</tr>').join('');
+}
+
+function renderAll(){ renderPills(); renderBars(); renderTTK(); renderMultis(); renderAllTable(); }
+renderGunSel();
+renderAll();
+document.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight' && level < 10){ level++; renderAll(); } if (e.key === 'ArrowLeft' && level > 1){ level--; renderAll(); } });
+</script>
+</body>
+</html>

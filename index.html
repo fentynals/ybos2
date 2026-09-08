@@ -747,6 +747,13 @@ function renderDock(){
   dev.title='thumbnail tester — your thumbnail on the Roblox home + experience page';
   dev.innerHTML='<span class="ic">\u{1F5BC}</span>DEV';
   dock.appendChild(dev);
+  /* BOTS — the DUELS bot ladder: per-level stats, the global brain, time to kill (standalone page) */
+  const bots=document.createElement('a');
+  bots.className='dockbtn devbtn';
+  bots.href='bots.html';
+  bots.title='DUELS bot ladder — every level’s stats, the global brain, time to kill';
+  bots.innerHTML='<span class="ic">\u{1F916}</span>BOTS';
+  dock.appendChild(bots);
 }
 
 /* =====================  BG CANVAS: patrol grid  ===================== */
