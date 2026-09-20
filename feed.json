@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-20T22:01:56.041Z",
+    "updated": "2026-09-20T23:12:19Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -515,6 +515,24 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "HEAD TAP: LIMITED GUN STOCK, server half: 2 units per gun per 5-min roll at the legal stores, Black Market and DINERO; the 3 starter pistols never run out; SOLD OUT refused before money moves and the wall refreshes for everyone at the counter. Client SOLD OUT tile + N LEFT badge lands next Edit window.",
+      "ts": "2026-09-20T23:12:19Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "out",
+      "msg": "HEAD TAP: full-game audit (notes + live place + Roblox APIs) and a Next Update Draft doc for Ian's list: OIL RIG, ARCADE POI, WHEEL port from DUELS, CAR GUNS, CASH PRINTER, F150 / ARMOURED SUV / R8 / TRX, DELIVERY TRUCK HEIST. Season 2 daily ladder ends 09-27 with no rollover. Car crate ledger: 85 of 125 sold in 19 days.",
+      "ts": "2026-09-20T23:12:19Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "HEAD TAP: backdoor scan on the 10 new car models Ian staged (2 TRX, 4 R8, 3 F150, Armoured Truck): clean, only README credit links.",
+      "ts": "2026-09-20T23:12:19Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1935,6 +1953,18 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-09-20",
+      "k": "feat",
+      "t": "Limited gun stock (server)",
+      "s": "2 units per gun per rotation on all three counters, starter pistols exempt, SOLD OUT refusal + live wall refresh."
+    },
+    {
+      "d": "2026-09-20",
+      "k": "feat",
+      "t": "Next update draft",
+      "s": "Audit + draft doc: oil rig, arcade, wheel port, car guns, four cars, delivery truck heist, build order."
+    },
     {
       "d": "2026-09-08",
       "k": "feat",
