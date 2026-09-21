@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-20T23:12:19Z",
+    "updated": "2026-09-21T00:22:49Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -515,6 +515,18 @@
     }
   ],
   "radio": [
+    {
+      "who": "STUDIO",
+      "cls": "shipx",
+      "msg": "HEAD TAP: three new cars converted onto the fleet tune in one pass: R8 (orange, 5th on the fleet ladder per Ian's 'top 5'), RAM TRX (9th, 'top 8-10') and the F-150 6x6 with a real six-driven-wheel tune (mid-pack). Templates, showroom copies and all nine registries wired; listed coming-soon with placeholder prices. Nobody has driven them yet.",
+      "ts": "2026-09-21T00:22:49Z"
+    },
+    {
+      "who": "STUDIO",
+      "cls": "okx",
+      "msg": "HEAD TAP: limited gun stock finished on the client (SOLD OUT tiles + N LEFT badges); ItemBuyerV3 deleted (it froze every player via a hidden WalkSpeed 0 script); Allow Third Party Sales set on so BUY BY ID pays the group its 40%.",
+      "ts": "2026-09-21T00:22:49Z"
+    },
     {
       "who": "STUDIO",
       "cls": "shipx",
@@ -1953,6 +1965,18 @@
     }
   ],
   "ship": [
+    {
+      "d": "2026-09-20",
+      "k": "feat",
+      "t": "R8 / TRX / F150 6x6 join the fleet",
+      "s": "Converted onto the Hellcat-base tune with per-car identity blocks; six-wheel drive on the F150; coming soon until priced."
+    },
+    {
+      "d": "2026-09-20",
+      "k": "fix",
+      "t": "Third-party sales + ItemBuyer",
+      "s": "AllowThirdPartySales on; player-freezing ItemBuyerV3 removed."
+    },
     {
       "d": "2026-09-20",
       "k": "feat",
