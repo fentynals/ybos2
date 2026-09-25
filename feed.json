@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-25T21:37:15.987Z",
+    "updated": "2026-09-25T22:55:32.376Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,11 +18,11 @@
       "fetched": "2026-09-25T21:37:15Z"
     },
     "analytics": {
-      "updated": "2026-09-25T19:00:35.042Z",
+      "updated": "2026-09-25T22:55:30.922Z",
       "tiktok": {
         "followers": 1,
-        "views": 170,
-        "likes": 9,
+        "views": 234,
+        "likes": 10,
         "comments": 0,
         "shares": 0
       },
@@ -47,18 +47,18 @@
           "url": "https://youtu.be/iDTvx7cWNPw"
         },
         {
-          "t": "Peaked at 160 players… now it’s 12. Here’s what went wrong 👇 #roblox #robloxdev #gamedev #headtap #robloxgame #indiedev #shorts",
-          "plat": "tiktok",
-          "views": 105,
-          "likes": 1,
-          "url": "https://www.tiktok.com/@me/video/7689271949343591694"
-        },
-        {
           "t": "Trap POI, yacht heist, exclusive cars, money printers, masks… and players STILL left 🤔 #roblox #robloxdev #gamedev #robloxgame #shorts",
           "plat": "tiktok",
-          "views": 65,
+          "views": 118,
           "likes": 0,
           "url": "https://www.tiktok.com/@me/video/7689519645933456654"
+        },
+        {
+          "t": "Peaked at 160 players… now it’s 12. Here’s what went wrong 👇 #roblox #robloxdev #gamedev #headtap #robloxgame #indiedev #shorts",
+          "plat": "tiktok",
+          "views": 116,
+          "likes": 2,
+          "url": "https://www.tiktok.com/@me/video/7689271949343591694"
         },
         {
           "t": "SHOULD I QUIT?",
@@ -245,7 +245,7 @@
         },
         {
           "d": "09-25",
-          "tiktok": 170,
+          "tiktok": 234,
           "youtube": 263,
           "instagram": 0
         }
