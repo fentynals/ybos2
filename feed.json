@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-09-28T16:12:03.043Z",
+    "updated": "2026-09-28T22:19:19.025Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,10 +18,10 @@
       "fetched": "2026-09-28T14:00:49Z"
     },
     "analytics": {
-      "updated": "2026-09-28T16:12:01.456Z",
+      "updated": "2026-09-28T22:19:17.380Z",
       "tiktok": {
         "followers": 1,
-        "views": 291,
+        "views": 292,
         "likes": 12,
         "comments": 0,
         "shares": 0
@@ -49,7 +49,7 @@
         {
           "t": "Trap POI, yacht heist, exclusive cars, money printers, masks… and players STILL left 🤔 #roblox #robloxdev #gamedev #robloxgame #shorts",
           "plat": "tiktok",
-          "views": 151,
+          "views": 152,
           "likes": 1,
           "url": "https://www.tiktok.com/@me/video/7689519645933456654"
         },
@@ -245,7 +245,7 @@
         },
         {
           "d": "09-28",
-          "tiktok": 291,
+          "tiktok": 292,
           "youtube": 263,
           "instagram": 0
         }
