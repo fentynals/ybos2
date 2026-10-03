@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-03T19:34:46.526Z",
+    "updated": "2026-10-03T21:19:54.995Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -9,13 +9,13 @@
       "placeId": 124673719670870,
       "universeId": 10194619622,
       "name": "[🌊SEASON 3] HEAD TAP🔫",
-      "playing": 22,
-      "visits": 201454,
-      "favorites": 13916,
+      "playing": 18,
+      "visits": 202468,
+      "favorites": 13940,
       "maxPlayers": 25,
-      "likes": 787,
+      "likes": 789,
       "dislikes": 114,
-      "fetched": "2026-10-03T16:20:11Z"
+      "fetched": "2026-10-03T21:19:54Z"
     },
     "analytics": {
       "updated": "2026-10-03T19:34:44.824Z",
