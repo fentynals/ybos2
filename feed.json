@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-10-06T00:05:29.008Z",
+    "updated": "2026-10-06T02:41:25.550Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,10 +18,10 @@
       "fetched": "2026-10-06T00:05:29Z"
     },
     "analytics": {
-      "updated": "2026-10-05T22:58:38.313Z",
+      "updated": "2026-10-06T02:41:24.114Z",
       "tiktok": {
         "followers": 1,
-        "views": 294,
+        "views": 295,
         "likes": 12,
         "comments": 0,
         "shares": 0
@@ -56,7 +56,7 @@
         {
           "t": "Peaked at 160 players… now it’s 12. Here’s what went wrong 👇 #roblox #robloxdev #gamedev #headtap #robloxgame #indiedev #shorts",
           "plat": "tiktok",
-          "views": 142,
+          "views": 143,
           "likes": 3,
           "url": "https://www.tiktok.com/@me/video/7689271949343591694"
         },
@@ -69,12 +69,6 @@
         }
       ],
       "series": [
-        {
-          "d": "09-06",
-          "tiktok": 435,
-          "youtube": 261,
-          "instagram": 0
-        },
         {
           "d": "09-07",
           "tiktok": 435,
@@ -246,6 +240,12 @@
         {
           "d": "10-05",
           "tiktok": 294,
+          "youtube": 264,
+          "instagram": 0
+        },
+        {
+          "d": "10-06",
+          "tiktok": 295,
           "youtube": 264,
           "instagram": 0
         }
