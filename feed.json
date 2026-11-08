@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-08T20:51:34.207Z",
+    "updated": "2026-11-08T22:09:26.691Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -9,13 +9,13 @@
       "placeId": 124673719670870,
       "universeId": 10194619622,
       "name": "[DUELS] HEAD TAP🔫",
-      "playing": 14,
-      "visits": 280279,
-      "favorites": 17512,
+      "playing": 42,
+      "visits": 281661,
+      "favorites": 17561,
       "maxPlayers": 25,
-      "likes": 1260,
+      "likes": 1269,
       "dislikes": 149,
-      "fetched": "2026-11-08T13:29:04Z"
+      "fetched": "2026-11-08T22:09:26Z"
     },
     "analytics": {
       "updated": "2026-11-08T20:51:32.615Z",
