@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-16T22:08:33.932Z",
+    "updated": "2026-11-17T03:17:23.320Z",
     "kernel": "FABLE-5",
     "studio": "4ada3995-48d7-42b4-9265-70736b397aaf",
     "game": "HEADTAP",
@@ -18,7 +18,7 @@
       "fetched": "2026-11-16T22:08:33Z"
     },
     "analytics": {
-      "updated": "2026-11-16T20:44:02.541Z",
+      "updated": "2026-11-17T03:17:21.731Z",
       "tiktok": {
         "followers": 0,
         "views": 298,
@@ -69,12 +69,6 @@
         }
       ],
       "series": [
-        {
-          "d": "10-18",
-          "tiktok": 296,
-          "youtube": 264,
-          "instagram": 0
-        },
         {
           "d": "10-19",
           "tiktok": 296,
@@ -245,6 +239,12 @@
         },
         {
           "d": "11-16",
+          "tiktok": 298,
+          "youtube": 266,
+          "instagram": 0
+        },
+        {
+          "d": "11-17",
           "tiktok": 298,
           "youtube": 266,
           "instagram": 0
